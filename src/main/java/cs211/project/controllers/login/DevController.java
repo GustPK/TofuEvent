@@ -22,7 +22,7 @@ public class DevController {
     @FXML
     void BackButton() throws IOException {
         String viewPath = "ku/cs/views";
-        FXRouter.goTo("Login");
+        FXRouter.goTo("login");
     }
 //    @FXML
 //    public void initialize() {
