@@ -1,0 +1,34 @@
+.shadow{
+    -fx-effect:dropShadow(three-pass-box,rgb(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
+}
+
+.default-background-pink{
+    -fx-background-color:#ff8eff;
+}
+
+.default-background-lightpink{
+    -fx-background-color:#ffd9ff;
+}
+
+.default-border-pink{
+    -fx-border-color:#ff8eff;
+    -fx-background-color:#FFFFFF;
+}
+
+.default-label-pink{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius:10;
+    -fx-text-fill:#ff8eff;
+}
+
+.default-button-white-pink{
+    -fx-background-color:#FFFFFF;
+    -fx-text-fill:#ff8eff;
+    -fx-cursor:hand;
+}
+
+.default-button-pink-white{
+    -fx-background-color:#ff8eff;
+    -fx-text-fill:#ffffff;
+    -fx-cursor:hand;
+}

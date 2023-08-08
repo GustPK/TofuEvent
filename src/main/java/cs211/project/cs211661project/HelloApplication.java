@@ -1,8 +1,8 @@
 package cs211.project.cs211661project;
 
+import cs211.project.services.FXRouter;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import cs211.project.services.FXRouter;
 
 import java.io.IOException;
 
@@ -12,12 +12,13 @@ public class HelloApplication extends Application {
         configRoute();
 
         FXRouter.bind(this, stage, "CS211 661 Project");
-        FXRouter.goTo("hello");
+        FXRouter.goTo("main");
     }
 
     private static void configRoute() {
         String resourcesPath = "cs211/project/views/";
-        FXRouter.when("hello", resourcesPath + "login-view.fxml");
+        FXRouter.when("main", resourcesPath + "main-view.fxml");
+        FXRouter.when("profile", resourcesPath + "profile-view.fxml");
     }
 
 

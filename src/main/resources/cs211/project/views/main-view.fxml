@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.main.MainControllers">
+   <children>
+      <AnchorPane prefHeight="77.0" prefWidth="546.0" styleClass="default-background-pink">
+         <children>
+            <Label layoutX="208.0" layoutY="24.0" text=" Tofu Event " textFill="#ff8eff">
+               <font>
+                  <Font name="Cambria Bold" size="24.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="default-label-pink" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-7.0" layoutY="78.0" prefHeight="522.0" prefWidth="355.0">
+         <children>
+            <ScrollPane layoutX="7.0" layoutY="-2.0" prefHeight="523.0" prefWidth="348.0">
+               <content>
+                  <VBox prefHeight="524.0" prefWidth="334.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="349.0" layoutY="77.0" prefHeight="523.0" prefWidth="451.0" styleClass="default-background-lightpink" />
+      <AnchorPane layoutX="546.0" prefHeight="111.0" prefWidth="254.0" styleClass="default-border-pink">
+         <children>
+            <Circle fx:id="profilePic" fill="#ffd9ff" layoutX="71.0" layoutY="56.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" />
+            <Button layoutX="127.0" layoutY="36.0" mnemonicParsing="false" onAction="#onProfileButtonClick" styleClass="default-button-white-pink" text="Profile">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
