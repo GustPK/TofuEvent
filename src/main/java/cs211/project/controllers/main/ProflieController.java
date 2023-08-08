@@ -14,4 +14,8 @@ public class ProflieController {
     protected void onBackButtonClick() throws IOException {
         FXRouter.goTo("main");
     }
+    @FXML
+    protected void onLogoutButtonClick() throws IOException {
+        FXRouter.goTo("login");
+    }
 }
