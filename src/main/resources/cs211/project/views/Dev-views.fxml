@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.login.DevController">
+   <children>
+      <Label layoutX="304.0" layoutY="84.0" text="Developer Profiles">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="PImageView" fitHeight="150.0" fitWidth="150.0" layoutX="41.0" layoutY="179.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../../../images/P1x1.jpg" />
+         </image></ImageView>
+      <ImageView fx:id="BImageView" fitHeight="150.0" fitWidth="150.0" layoutX="232.0" layoutY="179.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../../../images/B1x1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="GImageView" fitHeight="150.0" fitWidth="150.0" layoutX="421.0" layoutY="179.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../../../images/G1x1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="NImageView" fitHeight="150.0" fitWidth="150.0" layoutX="610.0" layoutY="179.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../../../images/N1x1.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="258.0" layoutY="351.0" styleClass="fill-text-color" text="นาย ภูเบศ สิริเมธาวุฒิ" />
+      <Label layoutX="280.0" layoutY="370.0" styleClass="fill-text-color" text="6510450810" />
+      <Label layoutX="461.0" layoutY="351.0" styleClass="fill-text-color" text="นาย พศวัต คำภีระ" />
+      <Label layoutX="469.0" layoutY="370.0" styleClass="fill-text-color" text="6510450704" />
+      <Label layoutX="62.0" layoutY="349.0" styleClass="fill-text-color" text="นาย ธภัทร จิรเมธารัตน์" />
+      <Label layoutX="78.0" layoutY="370.0" styleClass="fill-text-color" text=" 6510450453" />
+      <Label layoutX="638.0" layoutY="351.0" styleClass="fill-text-color" text="นาย ณฐนนท์ ภูธนกิจ" />
+      <Label layoutX="650.0" layoutY="370.0" styleClass="fill-text-color" text="6510450313" />
+      <Button layoutX="380.0" layoutY="486.0" mnemonicParsing="false" onAction="#BackButton" text="Back" />
+      <Label layoutX="99.0" layoutY="390.0" styleClass="fill-text-color" text="(ปลั๊ก)" />
+      <Label layoutX="297.0" layoutY="390.0" styleClass="fill-text-color" text="(เบศ)" />
+      <Label layoutX="491.0" layoutY="390.0" styleClass="fill-text-color" text="(กัส)" />
+      <Label layoutX="668.0" layoutY="390.0" styleClass="fill-text-color" text="(เนท)" />
+   </children>
+</AnchorPane>
