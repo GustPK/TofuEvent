@@ -23,7 +23,7 @@
          </cursor>
       </Button>
       <PasswordField layoutX="79.0" layoutY="323.0" />
-      <Button cache="true" layoutX="224.0" layoutY="526.0" mnemonicParsing="false" text="back">
+      <Button cache="true" layoutX="224.0" layoutY="526.0" mnemonicParsing="false" text="back" onAction="#clickBackToLogin">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
