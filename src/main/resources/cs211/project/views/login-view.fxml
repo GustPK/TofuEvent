@@ -22,22 +22,12 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <PasswordField fx:id="Password" alignment="CENTER" layoutX="71.0" layoutY="232.0" style="-fx-background-color: transparent; -fx-border-color: #8891FD; -fx-border-width: 0px 0px 3px 0px;" />
-                        <TextField fx:id="Username" alignment="CENTER" layoutX="71.0" layoutY="186.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #8891FD; -fx-border-width: 0px 0px 3px 0px;" />
+                        <PasswordField fx:id="Password" layoutX="71.0" layoutY="232.0" style="-fx-background-color: transparent; -fx-border-color: #8891FD; -fx-border-width: 0px 0px 3px 0px;" />
+                        <TextField fx:id="Username" alignment="TOP_LEFT" layoutX="71.0" layoutY="186.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #8891FD; -fx-border-width: 0px 0px 3px 0px;" />
                         <Hyperlink fx:id="ForgetPassword" layoutX="166.0" layoutY="373.0" text="forget password?" textFill="DODGERBLUE" />
                         <Hyperlink fx:id="CreateAccount" layoutX="33.0" layoutY="373.0" onAction="#onCreateAccountHyperlinkClick" text="create account" textFill="DODGERBLUE">
                            <font>
                               <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Hyperlink>
-                        <Hyperlink layoutX="71.0" layoutY="216.0" text="Password" textFill="#030000">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Hyperlink>
-                        <Hyperlink layoutX="70.0" layoutY="170.0" text="Username" textFill="#0d0000">
-                           <font>
-                              <Font size="11.0" />
                            </font>
                         </Hyperlink>
                         <Label layoutX="87.0" layoutY="131.0" text="USER LOGIN" textFill="#2632b9">
@@ -50,6 +40,16 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Hyperlink>
+                        <Label layoutX="72.0" layoutY="170.0" text="Username">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="73.0" layoutY="214.0" text="Password">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </right>
