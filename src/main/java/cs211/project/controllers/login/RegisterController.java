@@ -10,4 +10,5 @@ public class RegisterController {
     public void clickBackToLogin() throws IOException {
         FXRouter.goTo("login"); 
     }
+
 }
