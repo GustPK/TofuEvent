@@ -11,7 +11,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.login.LoginController">
    <center>
-      <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ADD8E6;" stylesheets="@../../../values/style.css">
+      <AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="default-background-lightnavy" stylesheets="@../../../values/style.css">
           <children>
             <BorderPane layoutX="50.0" layoutY="50.0" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #F0FFFF;">
                <right>
@@ -50,11 +50,12 @@
                               <Font size="11.0" />
                            </font>
                         </Label>
+                        <Hyperlink layoutX="230.0" layoutY="14.0" onAction="#onAdminHyperlinkClick" text="Admin" />
                      </children>
                   </AnchorPane>
                </right>
                <left>
-                  <AnchorPane prefHeight="500.0" prefWidth="408.0" style="-fx-background-color: #8891FD;" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="500.0" prefWidth="408.0" styleClass="default-background-navy" BorderPane.alignment="CENTER">
                      <children>
                         <Label layoutX="40.0" layoutY="50.0" prefHeight="46.0" prefWidth="298.0" text="Welcome!" textFill="WHITE">
                            <font>
