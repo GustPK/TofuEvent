@@ -21,17 +21,20 @@
                   <Insets top="100.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" styleClass="default-button-pink-white" text="profile setting">
+            <Button mnemonicParsing="false" styleClass="default-button-pink-white" text="joined history">
                <font>
                   <Font size="18.0" />
                </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </Button>
             <Button mnemonicParsing="false" onAction="#onLogoutButtonClick" styleClass="default-button-pink-white" text="logout">
                <font>
                   <Font size="18.0" />
                </font>
                <VBox.margin>
-                  <Insets />
+                  <Insets top="10.0" />
                </VBox.margin>
             </Button>
             <Button mnemonicParsing="false" onAction="#onBackButtonClick" styleClass="default-button-pink-white" text="back">
