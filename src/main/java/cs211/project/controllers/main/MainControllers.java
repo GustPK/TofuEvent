@@ -26,4 +26,14 @@ public class MainControllers {
     private void onThisEventAsstaffButtonClick() throws IOException{
         FXRouter.goTo("team");
     }
+
+    @FXML
+    private void onCreateEventButtonClick() throws IOException{
+        FXRouter.goTo("createEvent");
+    }
+
+    @FXML
+    private void onOngoingEventsButtonClick() throws IOException{
+        FXRouter.goTo("ongoingEvents");
+    }
 }
