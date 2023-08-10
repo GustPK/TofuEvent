@@ -14,22 +14,22 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.main.MainControllers">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="default-background-lightnavy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.main.MainControllers">
    <top>
-      <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="default-background-lightpink" stylesheets="@../../../values/style.css" BorderPane.alignment="CENTER">
+      <HBox alignment="BOTTOM_LEFT" prefHeight="110.0" prefWidth="200.0" styleClass="default-background-lightnavy" stylesheets="@../../../values/style.css" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="97.0" prefWidth="250.0" styleClass="default-border-pink">
+            <AnchorPane prefHeight="97.0" prefWidth="250.0" styleClass="default-border-navy">
                <children>
-                  <Circle fx:id="profilePic" fill="#ffd9ff" layoutX="54.0" layoutY="40.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Button layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="53.0" prefWidth="54.0">
+                  <Circle fx:id="profilePic" fill="#808eae" layoutX="56.0" layoutY="50.0" radius="42.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Button layoutX="13.0" layoutY="8.0" mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="84.0" prefWidth="85.0">
                      <styleClass>
                         <String fx:value="button-transparent" />
                         <String fx:value="cursor-hand" />
                      </styleClass>
                   </Button>
-                  <Button layoutX="125.0" layoutY="21.0" mnemonicParsing="false" onAction="#onProfileButtonClick" styleClass="default-button-white-pink" text="Profile">
+                  <Button layoutX="114.0" layoutY="25.0" mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="37.0" prefWidth="113.0" styleClass="default-button-white-navy" text="Profile">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="24.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
@@ -37,10 +37,10 @@
                   </Button>
                </children>
                <HBox.margin>
-                  <Insets left="20.0" top="20.0" />
+                  <Insets left="10.0" top="10.0" />
                </HBox.margin>
             </AnchorPane>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff8eff" height="60.0" stroke="#ff8eff" strokeType="INSIDE" styleClass="default-background-pink" width="510.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#808eae" height="60.0" stroke="#2d3553" strokeType="INSIDE" styleClass="default-background-lightnavy" width="510.0">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -49,11 +49,11 @@
       </HBox>
    </top>
    <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="default-background-lightpink" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="default-background-navy" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="249.0">
+            <VBox prefHeight="500.0" prefWidth="249.0" styleClass="default-background-navy">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" styleClass="default-button-lightpink-pink" text="Event Info">
+                  <Button alignment="CENTER" mnemonicParsing="false" styleClass="default-button-navy-white" text="Event Info">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -61,7 +61,7 @@
                         <Insets top="40.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" styleClass="default-button-lightpink-pink" text="Join This Event">
+                  <Button alignment="CENTER" mnemonicParsing="false" styleClass="default-button-navy-white" text="Join This Event">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -69,7 +69,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" styleClass="default-button-lightpink-pink" text="Create Event">
+                  <Button alignment="CENTER" mnemonicParsing="false" styleClass="default-button-navy-white" text="Create Event">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -82,9 +82,9 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </VBox>
-            <AnchorPane prefHeight="500.0" prefWidth="516.0">
+            <AnchorPane prefHeight="500.0" prefWidth="516.0" styleClass="default-background-navy">
                <children>
-                  <ScrollPane layoutX="1.0" prefHeight="448.0" prefWidth="479.0" />
+                  <ScrollPane layoutX="-9.0" prefHeight="448.0" prefWidth="509.0" />
                </children>
                <HBox.margin>
                   <Insets />

@@ -14,8 +14,8 @@ public class MainControllers {
     private Circle profilePic;
     @FXML
     private void initialize(){
-        Image image = new Image(getClass().getResource("/images/pink-default-profile.jpg").toString());
-        profilePic.setFill(new ImagePattern(image));
+        Image navyImage = new Image(getClass().getResource("/images/navy-default-profile.jpg").toString());
+        profilePic.setFill(new ImagePattern(navyImage));
     }
     @FXML
     protected void onProfileButtonClick() throws IOException{

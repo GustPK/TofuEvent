@@ -9,11 +9,11 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.main.ProflieController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.main.ProfileController">
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" styleClass="default-background-pink" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" styleClass="default-background-navy" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" styleClass="default-button-pink-white" text="profile setting">
+            <Button mnemonicParsing="false" styleClass="default-button-navy-white" text="profile setting">
                <font>
                   <Font size="18.0" />
                </font>
@@ -21,7 +21,7 @@
                   <Insets top="100.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" styleClass="default-button-pink-white" text="joined history">
+            <Button mnemonicParsing="false" styleClass="default-button-navy-white" text="joined history">
                <font>
                   <Font size="18.0" />
                </font>
@@ -29,7 +29,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onLogoutButtonClick" styleClass="default-button-pink-white" text="logout">
+            <Button mnemonicParsing="false" onAction="#onLogoutButtonClick" styleClass="default-button-navy-white" text="logout">
                <font>
                   <Font size="18.0" />
                </font>
@@ -37,7 +37,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onBackButtonClick" styleClass="default-button-pink-white" text="back">
+            <Button mnemonicParsing="false" onAction="#onBackButtonClick" styleClass="default-button-navy-white" text="back">
                <font>
                   <Font size="18.0" />
                </font>
@@ -54,14 +54,14 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Circle fill="#ff8eff" radius="91.0" stroke="BLACK" strokeType="INSIDE">
+            <Circle fx:id="profilePic" fill="#2d3553" radius="91.0" stroke="BLACK" strokeType="INSIDE">
                <VBox.margin>
                   <Insets left="210.0" top="60.0" />
                </VBox.margin>
             </Circle>
             <HBox prefHeight="50.0" prefWidth="600.0">
                <children>
-                  <Label text="Account Name :" textFill="#ff8eff">
+                  <Label styleClass="default-label-lightnavy" text="Account Name :" textFill="#ff8eff">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -69,7 +69,7 @@
                         <Insets left="40.0" />
                      </HBox.margin>
                   </Label>
-                  <Label text="Cristiano Ronaldo">
+                  <Label text="Harry Maguire">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -84,7 +84,7 @@
             </HBox>
             <HBox prefHeight="50.0" prefWidth="600.0">
                <children>
-                  <Label text="        Username :" textFill="#ff8eff">
+                  <Label styleClass="default-label-lightnavy" text="        Username :" textFill="#ff8eff">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -92,7 +92,7 @@
                         <Insets left="40.0" />
                      </HBox.margin>
                   </Label>
-                  <Label text="ronaldoSiu777">
+                  <Label text="HarryMaGOAT5">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -104,7 +104,7 @@
             </HBox>
             <HBox prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <Label text="              E-mail :" textFill="#ff8eff">
+                  <Label styleClass="default-label-lightnavy" text="              E-mail :" textFill="#ff8eff">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -112,7 +112,7 @@
                         <Insets left="40.0" />
                      </HBox.margin>
                   </Label>
-                  <Label text="RonaldoCR7@gmail.com">
+                  <Label text="harrymaguire5@gmail.com">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
