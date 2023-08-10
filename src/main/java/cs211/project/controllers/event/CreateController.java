@@ -12,6 +12,6 @@ public class CreateController {
     }
     @FXML
     public void clickToManage() throws IOException {
-        FXRouter.goTo("main");
+        FXRouter.goTo("manage");
     }
 }
