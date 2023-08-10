@@ -8,7 +8,7 @@ import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 
-public class MainControllers {
+public class MainController {
 
     @FXML
     private Circle profilePic;
