@@ -8,7 +8,7 @@ import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 
-public class MainControllers {
+public class MainController {
 
     @FXML
     private Circle profilePic;
@@ -23,7 +23,22 @@ public class MainControllers {
     }
 
     @FXML
-    private void onThisEventAsstaffButtonClick() throws IOException{
+    private void onThisEventAsStaffButtonClick() throws IOException{
         FXRouter.goTo("team");
+    }
+
+    @FXML
+    private void onCreateEventButtonClick() throws IOException{
+        FXRouter.goTo("create");
+    }
+
+    @FXML
+    private void onOngoingEventsButtonClick() throws IOException{
+        FXRouter.goTo("ongoing");
+    }
+
+    @FXML
+    private void onEventInfoButtonClick() throws IOException{
+        FXRouter.goTo("info");
     }
 }

@@ -18,7 +18,7 @@ public class HelloApplication extends Application {
         String resourcesPath = "cs211/project/views/";
         FXRouter.when("login", resourcesPath + "login-view.fxml");
         FXRouter.when("register", resourcesPath + "register-view.fxml");
-        FXRouter.when("developer", resourcesPath + "Dev-views.fxml");
+        FXRouter.when("developer", resourcesPath + "dev-view.fxml");
         FXRouter.when("main", resourcesPath + "main-view.fxml");
         FXRouter.when("profile", resourcesPath + "profile-view.fxml");
         FXRouter.when("changePassword", resourcesPath + "changepassword-view.fxml");
@@ -28,6 +28,9 @@ public class HelloApplication extends Application {
         FXRouter.when("manage", resourcesPath + "manage-view.fxml");
         FXRouter.when("info", resourcesPath + "info-view.fxml");
         FXRouter.when("ongoing", resourcesPath + "ongoing-view.fxml");
+        FXRouter.when("team", resourcesPath + "team-view.fxml");
+        FXRouter.when("profileSetting", resourcesPath + "profile-setting-view.fxml");
+        FXRouter.when("eventInfo", resourcesPath + "team-view.fxml");
     }
 
 
