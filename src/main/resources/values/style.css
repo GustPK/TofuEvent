@@ -39,3 +39,9 @@
     -fx-text-fill:#ffffff;
     -fx-cursor:hand;
 }
+
+.default-button-lightpink-pink{
+    -fx-background-color:#ffd9ff;
+    -fx-text-fill:#ff8eff;
+    -fx-cursor:hand;
+}
