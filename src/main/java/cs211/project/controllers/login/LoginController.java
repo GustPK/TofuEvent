@@ -38,4 +38,9 @@ public class LoginController {
         FXRouter.goTo("main");
     }
 
+    @FXML
+    private void onAdminHyperlinkClick() throws IOException {
+        FXRouter.goTo("admin");
+    }
+
 }

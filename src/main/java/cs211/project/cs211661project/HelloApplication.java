@@ -22,6 +22,8 @@ public class HelloApplication extends Application {
         FXRouter.when("dev", resourcesPath + "Dev-view.fxml");
         FXRouter.when("main", resourcesPath + "main-view.fxml");
         FXRouter.when("profile", resourcesPath + "profile-view.fxml");
+        FXRouter.when("changePassword", resourcesPath + "changepassword-view.fxml");
+        FXRouter.when("admin", resourcesPath + "admin-view.fxml");
     }
 
 
