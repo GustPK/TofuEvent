@@ -23,9 +23,15 @@
 }
 
 .default-label-navy{
-    -fx-background-color:#FFFFFF;
-    -fx-background-radius:10;
     -fx-text-fill:#2d3553;
+}
+
+.default-label-lightnavy{
+    -fx-text-fill:#808eae;
+}
+
+.default-label-white{
+    -fx-text-fill:#ffffff;
 }
 
 .default-button-white-navy{
