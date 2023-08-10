@@ -21,4 +21,9 @@ public class MainControllers {
     protected void onProfileButtonClick() throws IOException{
         FXRouter.goTo("profile");
     }
+
+    @FXML
+    private void onThisEventAsstaffButtonClick() throws IOException{
+        FXRouter.goTo("team");
+    }
 }
