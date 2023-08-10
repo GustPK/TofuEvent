@@ -27,7 +27,7 @@
                         <String fx:value="cursor-hand" />
                      </styleClass>
                   </Button>
-                  <Button layoutX="125.0" layoutY="26.0" mnemonicParsing="false" onAction="#onProfileButtonClick" styleClass="default-button-white-pink" text="Profile">
+                  <Button layoutX="125.0" layoutY="21.0" mnemonicParsing="false" onAction="#onProfileButtonClick" styleClass="default-button-white-pink" text="Profile">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -84,7 +84,7 @@
             </VBox>
             <AnchorPane prefHeight="500.0" prefWidth="516.0">
                <children>
-                  <ScrollPane layoutX="3.0" prefHeight="448.0" prefWidth="477.0" />
+                  <ScrollPane layoutX="1.0" prefHeight="448.0" prefWidth="479.0" />
                </children>
                <HBox.margin>
                   <Insets />

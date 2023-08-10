@@ -9,39 +9,39 @@
     -fx-background-color:transparent;
 }
 
-.default-background-pink{
-    -fx-background-color:#ff8eff;
+.default-background-navy{
+    -fx-background-color:#2d3553;
 }
 
-.default-background-lightpink{
-    -fx-background-color:#ffd9ff;
+.default-background-lightnavy{
+    -fx-background-color:#808eae;
 }
 
-.default-border-pink{
-    -fx-border-color:#ff8eff;
+.default-border-navy{
+    -fx-border-color:#2d3553;
     -fx-background-color:#FFFFFF;
 }
 
-.default-label-pink{
+.default-label-navy{
     -fx-background-color:#FFFFFF;
     -fx-background-radius:10;
-    -fx-text-fill:#ff8eff;
+    -fx-text-fill:#2d3553;
 }
 
-.default-button-white-pink{
+.default-button-white-navy{
     -fx-background-color:#FFFFFF;
-    -fx-text-fill:#ff8eff;
+    -fx-text-fill:#2d3553;
     -fx-cursor:hand;
 }
 
-.default-button-pink-white{
-    -fx-background-color:#ff8eff;
+.default-button-navy-white{
+    -fx-background-color:#2d3553;
     -fx-text-fill:#ffffff;
     -fx-cursor:hand;
 }
 
-.default-button-lightpink-pink{
-    -fx-background-color:#ffd9ff;
-    -fx-text-fill:#ff8eff;
+.default-button-lightnavy-navy{
+    -fx-background-color:#808eae;
+    -fx-text-fill:#2d3553;
     -fx-cursor:hand;
 }
