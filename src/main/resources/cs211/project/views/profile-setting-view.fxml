@@ -10,8 +10,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="default-background-lightnavy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="default-background-lightnavy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.main.ProfileSettingController">
    <center>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" styleClass="default-button-white-navy" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -81,7 +80,7 @@
                   </HBox>
                   <AnchorPane prefHeight="98.0" prefWidth="363.0">
                      <children>
-                        <Button layoutX="14.0" layoutY="45.0" mnemonicParsing="false" styleClass="default-button-white-navy" text="Back">
+                        <Button layoutX="14.0" layoutY="45.0" mnemonicParsing="false" onAction="#onBackButtonClick" styleClass="default-button-white-navy" text="Back">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
