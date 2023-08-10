@@ -1,8 +1,12 @@
 .shadow{
     -fx-effect:dropShadow(three-pass-box,rgb(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
 }
-.default-button-cursor-hand{
-    -fx-cursor
+.cursor-hand{
+    -fx-cursor:hand;
+}
+
+.button-transparent{
+    -fx-background-color:transparent;
 }
 
 .default-background-pink{
