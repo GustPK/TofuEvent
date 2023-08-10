@@ -46,6 +46,12 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
+            <Button layoutX="38.0" layoutY="23.0" mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="66.0" prefWidth="66.0">
+               <styleClass>
+                  <String fx:value="button-transparent" />
+                  <String fx:value="cursor-hand" />
+               </styleClass>
+            </Button>
          </children>
       </AnchorPane>
    </children>
