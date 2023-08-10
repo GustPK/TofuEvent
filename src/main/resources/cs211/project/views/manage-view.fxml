@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.ManageController">
    <children>
-      <Button layoutY="-1.0" mnemonicParsing="false" onAction="#clickBackToMain" styleClass="default-button-white-navy" text="Back" />
+      <Button layoutY="-1.0" mnemonicParsing="false" onAction="#clickBackToCreate" styleClass="default-button-white-navy" text="Back" />
       <ImageView fitHeight="114.0" fitWidth="134.0" layoutX="222.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/Image.jpg" />

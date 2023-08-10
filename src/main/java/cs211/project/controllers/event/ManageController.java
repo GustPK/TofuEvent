@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class ManageController {
     @FXML
-    public void clickBackToMain() throws IOException {
-        FXRouter.goTo("main");
+    public void clickBackToCreate() throws IOException {
+        FXRouter.goTo("create");
     }
 }
