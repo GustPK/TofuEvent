@@ -13,7 +13,7 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" styleClass="default-background-navy" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" styleClass="default-button-navy-white" text="profile setting">
+            <Button mnemonicParsing="false" onAction="#onProfileSettingClick" styleClass="default-button-navy-white" text="profile setting">
                <font>
                   <Font size="18.0" />
                </font>

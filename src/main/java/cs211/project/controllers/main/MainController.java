@@ -36,4 +36,9 @@ public class MainController {
     private void onOngoingEventsButtonClick() throws IOException{
         FXRouter.goTo("ongoingEvents");
     }
+
+    @FXML
+    private void onEventInfoButtonClick() throws IOException{
+        FXRouter.goTo("eventInfo");
+    }
 }
