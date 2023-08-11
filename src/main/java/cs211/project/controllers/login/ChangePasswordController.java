@@ -5,10 +5,9 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class RegisterController {
+public class ChangePasswordController {
     @FXML
-    public void clickBackToLogin() throws IOException {
-        FXRouter.goTo("login"); 
+    private void onAdminButtonClick() throws IOException {
+        FXRouter.goTo("admin");
     }
-
 }
