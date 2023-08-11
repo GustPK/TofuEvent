@@ -37,7 +37,6 @@ public class HelloApplication extends Application {
         FXRouter.when("eventInfo", resourcesPath + "team-view.fxml");
 
 
-
         FXRouter.when("joinHistory", resourcesPath + "join-history-view.fxml");
 
     }
