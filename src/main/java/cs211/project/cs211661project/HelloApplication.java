@@ -25,6 +25,8 @@ public class HelloApplication extends Application {
         FXRouter.when("admin", resourcesPath + "admin-view.fxml");
         FXRouter.when("team", resourcesPath + "team-view.fxml");
         FXRouter.when("teamChat", resourcesPath + "teamChat-view.fxml");
+        FXRouter.when("profileSetting", resourcesPath + "profile-setting-view.fxml");
+        FXRouter.when("eventInfo", resourcesPath + "team-view.fxml");
     }
 
 

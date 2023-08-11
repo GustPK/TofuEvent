@@ -5,10 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.control.Button;
 
 import java.io.IOException;
 
-public class MainControllers {
+public class MainController {
 
     @FXML
     private Circle profilePic;
@@ -25,5 +26,20 @@ public class MainControllers {
     @FXML
     private void onThisEventAsStaffButtonClick() throws IOException{
         FXRouter.goTo("team");
+    }
+
+    @FXML
+    private void onCreateEventButtonClick() throws IOException{
+        FXRouter.goTo("createEvent");
+    }
+
+    @FXML
+    private void onOngoingEventsButtonClick() throws IOException{
+        FXRouter.goTo("ongoingEvents");
+    }
+
+    @FXML
+    private void onEventInfoButtonClick() throws IOException{
+        FXRouter.goTo("eventInfo");
     }
 }

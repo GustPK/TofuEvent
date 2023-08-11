@@ -19,8 +19,8 @@ public class ProfileController {
     }
 
     @FXML
-    protected void onDeveloperClick() throws IOException{
-        FXRouter.goTo("");
+    protected void onProfileSettingClick() throws IOException{
+        FXRouter.goTo("profileSetting");
     }
     @FXML
     protected void onBackButtonClick() throws IOException {
