@@ -1,38 +1,56 @@
 .shadow{
     -fx-effect:dropShadow(three-pass-box,rgb(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
 }
-.default-button-cursor-hand{
-    -fx-cursor
-}
-
-.default-background-pink{
-    -fx-background-color:#ff8eff;
-}
-
-.default-background-lightpink{
-    -fx-background-color:#ffd9ff;
-}
-
-.default-border-pink{
-    -fx-border-color:#ff8eff;
-    -fx-background-color:#FFFFFF;
-}
-
-.default-label-pink{
-    -fx-background-color:#FFFFFF;
-    -fx-background-radius:10;
-    -fx-text-fill:#ff8eff;
-}
-
-.default-button-white-pink{
-    -fx-background-color:#FFFFFF;
-    -fx-text-fill:#ff8eff;
+.cursor-hand{
     -fx-cursor:hand;
 }
 
-.default-button-pink-white{
-    -fx-background-color:#ff8eff;
+.button-transparent{
+    -fx-background-color:transparent;
+}
+
+.default-background-navy{
+    -fx-background-color:#2d3553;
+}
+
+.default-background-lightnavy{
+    -fx-background-color:#808eae;
+}
+
+.default-border-navy{
+    -fx-border-color:#2d3553;
+    -fx-background-color:#FFFFFF;
+}
+
+.default-label-navy{
+    -fx-text-fill:#2d3553;
+}
+
+.default-label-lightnavy{
+    -fx-text-fill:#808eae;
+}
+
+.default-label-white{
+    -fx-text-fill:#ffffff;
+}
+
+.default-button-white-navy{
+    -fx-background-color:#FFFFFF;
+    -fx-text-fill:#2d3553;
+    -fx-cursor:hand;
+}
+
+.default-button-navy-white{
+    -fx-background-color:#2d3553;
     -fx-text-fill:#ffffff;
     -fx-cursor:hand;
 }
 
+<<<<<<< HEAD
+=======
+.default-button-lightnavy-navy{
+    -fx-background-color:#808eae;
+    -fx-text-fill:#2d3553;
+    -fx-cursor:hand;
+}
+>>>>>>> 092a5511df367ff686c48fd0b5060007cae0e0ff

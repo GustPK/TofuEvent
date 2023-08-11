@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.login.DevController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.login.DevController">
    <children>
       <Label layoutX="304.0" layoutY="84.0" text="Developer Profiles">
          <font>
@@ -41,7 +41,7 @@
       <Label layoutX="78.0" layoutY="370.0" styleClass="fill-text-color" text=" 6510450453" />
       <Label layoutX="638.0" layoutY="351.0" styleClass="fill-text-color" text="นาย ณฐนนท์ ภูธนกิจ" />
       <Label layoutX="650.0" layoutY="370.0" styleClass="fill-text-color" text="6510450313" />
-      <Button layoutX="380.0" layoutY="486.0" mnemonicParsing="false" onAction="#BackButton" text="Back" />
+      <Button layoutX="380.0" layoutY="486.0" mnemonicParsing="false" onAction="#BackButton" styleClass="default-button-white-navy" stylesheets="@../../../values/style.css" text="Back" />
       <Label layoutX="99.0" layoutY="390.0" styleClass="fill-text-color" text="(ปลั๊ก)" />
       <Label layoutX="297.0" layoutY="390.0" styleClass="fill-text-color" text="(เบศ)" />
       <Label layoutX="491.0" layoutY="390.0" styleClass="fill-text-color" text="(กัส)" />
