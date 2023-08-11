@@ -24,7 +24,7 @@
       <Label layoutX="222.0" layoutY="295.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Time:" />
       <Label layoutX="222.0" layoutY="325.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Price:" />
       <Label layoutX="222.0" layoutY="355.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Ticket:" />
-      <Button layoutX="312.0" layoutY="420.0" mnemonicParsing="false" styleClass="default-button-white-navy" text="Done" />
+      <Button layoutX="312.0" layoutY="420.0" mnemonicParsing="false" onAction="#ClickToGoMoreMange" styleClass="default-button-white-navy" text="Done" />
       <Label layoutX="322.0" layoutY="264.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="/" />
       <Label layoutX="392.0" layoutY="263.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="/" />
       <TextField layoutX="262.0" layoutY="291.0" prefHeight="26.0" prefWidth="54.0" />

@@ -14,7 +14,12 @@ module cs211.project.cs211661project {
 
     exports cs211.project.controllers.event;
     opens cs211.project.controllers.event to javafx.fxml;
+<<<<<<< HEAD
+    exports cs211.project.controllers.creator;
+    opens cs211.project.controllers.creator to javafx.fxml;
+=======
 
     exports cs211.project.controllers.team;
     opens cs211.project.controllers.team to javafx.fxml;
+>>>>>>> 697dc2208b081a2797103bca01e6734539074228
 }
