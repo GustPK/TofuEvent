@@ -35,11 +35,11 @@ public class HelloApplication extends Application {
         FXRouter.when("teamChat", resourcesPath + "teamchat-view.fxml");
         FXRouter.when("profileSetting", resourcesPath + "profile-setting-view.fxml");
         FXRouter.when("eventInfo", resourcesPath + "team-view.fxml");
-<<<<<<< HEAD
 
-=======
+
+
         FXRouter.when("joinHistory", resourcesPath + "join-history-view.fxml");
->>>>>>> 697dc2208b081a2797103bca01e6734539074228
+
     }
 
 
