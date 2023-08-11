@@ -22,6 +22,10 @@ public class HelloApplication extends Application {
         FXRouter.when("dev", resourcesPath + "Dev-view.fxml");
         FXRouter.when("main", resourcesPath + "main-view.fxml");
         FXRouter.when("profile", resourcesPath + "profile-view.fxml");
+        FXRouter.when("manage", resourcesPath + "Manage-view.fxml");
+        FXRouter.when("StaffManage", resourcesPath + "staffManage-view.fxml");
+        FXRouter.when("staffSchedule", resourcesPath + "staffSchedule-view.fxml");
+
     }
 
 
