@@ -30,4 +30,9 @@ public class ProfileController {
     protected void onLogoutButtonClick() throws IOException {
         FXRouter.goTo("login");
     }
+
+    @FXML
+    private void onJoinedHistoryButtonClick() throws IOException{
+        FXRouter.goTo("joinHistory");
+    }
 }
