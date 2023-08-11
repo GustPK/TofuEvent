@@ -23,13 +23,12 @@ public class HelloApplication extends Application {
         FXRouter.when("profile", resourcesPath + "profile-view.fxml");
         FXRouter.when("changePassword", resourcesPath + "changepassword-view.fxml");
         FXRouter.when("admin", resourcesPath + "admin-view.fxml");
-        FXRouter.when("team", resourcesPath + "team-view.fxml");
         FXRouter.when("create", resourcesPath + "create-view.fxml");
         FXRouter.when("manage", resourcesPath + "manage-view.fxml");
         FXRouter.when("info", resourcesPath + "info-view.fxml");
         FXRouter.when("ongoing", resourcesPath + "ongoing-view.fxml");
         FXRouter.when("team", resourcesPath + "team-view.fxml");
-        FXRouter.when("teamChat", resourcesPath + "teamChat-view.fxml");
+        FXRouter.when("teamChat", resourcesPath + "teamchat-view.fxml");
         FXRouter.when("profileSetting", resourcesPath + "profile-setting-view.fxml");
         FXRouter.when("eventInfo", resourcesPath + "team-view.fxml");
         FXRouter.when("joinHistory", resourcesPath + "join-history-view.fxml");

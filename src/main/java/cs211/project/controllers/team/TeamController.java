@@ -8,6 +8,11 @@ import java.io.IOException;
 public class TeamController {
     @FXML
     private void onTeamChatHyperlinkClick() throws IOException {
-        FXRouter.goTo("TeamChat");
+        FXRouter.goTo("teamChat");
+    }
+
+    @FXML
+    public void clickBackToMain() throws IOException {
+        FXRouter.goTo("main");
     }
 }
