@@ -5,7 +5,8 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class ProfileSettingController {
+public class JoinHistoryController {
+
     @FXML
     private void onBackButtonClick() throws IOException {
         FXRouter.goTo("profile");

@@ -30,16 +30,16 @@ public class MainController {
 
     @FXML
     private void onCreateEventButtonClick() throws IOException{
-        FXRouter.goTo("createEvent");
+        FXRouter.goTo("create");
     }
 
     @FXML
     private void onOngoingEventsButtonClick() throws IOException{
-        FXRouter.goTo("ongoingEvents");
+        FXRouter.goTo("ongoing");
     }
 
     @FXML
     private void onEventInfoButtonClick() throws IOException{
-        FXRouter.goTo("eventInfo");
+        FXRouter.goTo("info");
     }
 }
