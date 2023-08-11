@@ -5,9 +5,11 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane cache="true" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.login.RegisterController">
@@ -23,7 +25,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="32.0" layoutY="47.0" text="Create account" textFill="#355978">
+      <Label layoutX="32.0" layoutY="34.0" text="Create account" textFill="#355978">
          <font>
             <Font size="24.0" />
          </font>
@@ -31,7 +33,12 @@
       <TextField layoutX="114.0" layoutY="354.0" prefWidth="200.0" style="-fx-border-width: 0px 0px 1px 0px; -fx-background-color: d; -fx-border-color: #000000;" />
       <Label layoutX="114.0" layoutY="388.0" text="Comfirm password" textFill="#575757" />
       <TextField layoutX="114.0" layoutY="402.0" prefWidth="200.0" style="-fx-border-width: 0px 0px 1px 0px; -fx-background-color: d; -fx-border-color: #000000;" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="115.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
+      <Circle fill="#1f93ff00" layoutX="217.0" layoutY="162.0" radius="78.0" stroke="BLACK" strokeType="INSIDE" style="-fx-opacity: 100; -fx-border-width: 2px 4px 2px;" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="116.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/default-profile-picture.png" />
+         </image>
+      </ImageView>
       <Hyperlink layoutX="239.0" layoutY="536.0" onAction="#clickBackToLogin" text="Log in" />
       <Label layoutX="140.0" layoutY="539.0" text="Have an account? " />
    </children>

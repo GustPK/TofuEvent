@@ -10,4 +10,8 @@ public class ManageController {
     public void clickBackToCreate() throws IOException {
         FXRouter.goTo("create");
     }
+    @FXML
+    public void ClickToGoMoreMange()throws IOException {
+        FXRouter.goTo("manageInfo");
+    }
 }
