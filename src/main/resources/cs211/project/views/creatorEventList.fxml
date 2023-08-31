@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.EditEventController">
+   <children>
+      <TableView fx:id="eventsTable" layoutX="204.0" layoutY="104.0" prefHeight="386.0" prefWidth="399.0">
+        <columns>
+          <TableColumn prefWidth="203.35565185546875" text="date" />
+            <TableColumn prefWidth="215.64434814453125" text="name" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
