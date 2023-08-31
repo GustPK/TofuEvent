@@ -14,5 +14,10 @@ public class AdminController {
     private void onChangePasswordHyperlinkClick() throws IOException {
         FXRouter.goTo("changePassword");
     }
+    @FXML
+    void BackButton() throws IOException {
+        String viewPath = "ku/cs/views";
+        FXRouter.goTo("login");
+    }
 
 }
