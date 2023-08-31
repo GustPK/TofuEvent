@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class EventItemController {
 
+    private Event selectedEvent;
     @FXML
     private Label eventNameLabel;
 
@@ -23,4 +24,10 @@ public class EventItemController {
         eventIMG.setImage(image);
 
     }
+
+    @FXML
+    private void onEventItemClick(){
+        selectedEvent = this.event;
+    }
+
 }
