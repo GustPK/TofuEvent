@@ -17,6 +17,10 @@
     -fx-background-color:#808eae;
 }
 
+.default-background-transparent{
+    -fx-background-color:transparent;
+}
+
 .default-border-navy{
     -fx-border-color:#2d3553;
     -fx-background-color:#FFFFFF;

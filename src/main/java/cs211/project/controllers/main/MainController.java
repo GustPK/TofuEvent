@@ -1,23 +1,36 @@
 package cs211.project.controllers.main;
 
+import cs211.project.controllers.event.EventItemController;
+import cs211.project.model.Event;
+import cs211.project.model.EventList;
+import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Button;
+import ku.cs.services.EventListFileDatasource;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.TreeSet;
 
-public class MainController {
+public class MainController implements Initializable {
 
+    private Datasource<EventList> datasource;
+    private EventList events;
     @FXML
     private Circle profilePic;
-    @FXML
-    private void initialize(){
-        Image navyImage = new Image(getClass().getResource("/images/navy-default-profile.jpg").toString());
-        profilePic.setFill(new ImagePattern(navyImage));
-    }
     @FXML
     protected void onProfileButtonClick() throws IOException{
         FXRouter.goTo("profile");
@@ -42,4 +55,47 @@ public class MainController {
     private void onEventInfoButtonClick() throws IOException{
         FXRouter.goTo("info");
     }
+
+    @FXML
+    private ScrollPane scroll;
+    @FXML
+    private GridPane grid;
+
+    private List<Event> getData(){
+        List<Event> events = new ArrayList<>();
+        Event event;
+
+//        for(int i = 0; i < 20; i++){
+//            event = new Event();
+//            event.setName("CR7 Meeting");
+//            event.setImgSrc(getClass().getResource("/images/ronaldo.png").toString());
+//            events.add(event);
+//        }
+        return events;
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        datasource = new EventListFileDatasource("data","event.csv");
+        events = datasource.readData();
+        int column = 0;
+        int row = 0;
+
+        try {
+            for (Event event: events.getEventList()) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                EventItemController eventItemController = fxmlLoader.getController();
+                eventItemController.setData(event);
+
+                grid.add(anchorPane,column,row++);
+                GridPane.setMargin(anchorPane,new Insets(10));
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
