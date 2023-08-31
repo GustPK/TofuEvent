@@ -1,4 +1,4 @@
-package ku.cs.services;
+package cs211.project.services;
 
 import cs211.project.model.EventList;
 import cs211.project.services.Datasource;
