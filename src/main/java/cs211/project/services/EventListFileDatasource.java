@@ -6,7 +6,7 @@ import cs211.project.model.EventList;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-public class EventListFileDatasource implements DataSource<EventList> {
+public class EventListFileDatasource implements Datasource<EventList> {
     private String directoryName;
     private String fileName;
 
@@ -38,7 +38,6 @@ public class EventListFileDatasource implements DataSource<EventList> {
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
 
-        // เตรียม object ที่ใช้ในการอ่านไฟล์
         FileInputStream fileInputStream = null;
 
         try {

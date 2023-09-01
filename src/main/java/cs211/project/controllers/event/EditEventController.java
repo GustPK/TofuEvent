@@ -2,14 +2,12 @@ package cs211.project.controllers.event;
 
 import cs211.project.models.event.Eva;
 import cs211.project.models.event.EvaList;
-import cs211.project.services.AccountDataSource;
-import cs211.project.services.DataSource;
+import cs211.project.services.Datasource;
 import cs211.project.services.EvaDataSource;
 import cs211.project.services.FXRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,7 +20,7 @@ public class EditEventController {
 
     private EvaList eventsLists;
 
-    private DataSource<EvaList> EventListDataSource;
+    private Datasource<EvaList> EventListDataSource;
 
     @FXML
     public void initialize(){
@@ -61,7 +59,7 @@ public class EditEventController {
 
         for(Eva event : eventsList.getEvents()){
             eventsTable.getItems().add(event);
-            System.out.println(event.getName()+" "+event.getDate());
+//            System.out.println(event.getName()+" "+event.getDate());
         }
     }
 

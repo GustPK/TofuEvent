@@ -3,19 +3,16 @@ package cs211.project.controllers.main;
 import cs211.project.controllers.event.EventItemController;
 import cs211.project.model.Event;
 import cs211.project.model.EventList;
-import cs211.project.services.DataSource;
+import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.control.Button;
 import cs211.project.services.EventListFileDatasource ;
 
 import java.io.IOException;
@@ -23,11 +20,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.TreeSet;
 
 public class MainController implements Initializable {
 
-    private DataSource<EventList> datasource;
+    private Datasource<EventList> datasource;
     private EventList events;
     @FXML
     private Circle profilePic;
@@ -54,6 +50,10 @@ public class MainController implements Initializable {
     @FXML
     private void onEventInfoButtonClick() throws IOException{
         FXRouter.goTo("info");
+    }
+    @FXML
+    private void goToEditEvent() throws IOException{
+        FXRouter.goTo("creatorEventList");
     }
 
     @FXML

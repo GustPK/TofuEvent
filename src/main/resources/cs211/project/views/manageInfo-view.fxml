@@ -11,14 +11,9 @@
    <children>
       <Pane layoutX="25.0" layoutY="37.0" prefHeight="57.0" prefWidth="720.0" style="-fx-background-color: #3A6287; -fx-background-radius: 38;">
          <children>
-            <Label layoutX="21.0" layoutY="13.0" text="Management    /" textFill="WHITE">
+            <Label layoutX="21.0" layoutY="13.0" text="Management" textFill="WHITE">
                <font>
                   <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="nameEva" layoutX="200.0" layoutY="21.0" text="Label" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
                </font>
             </Label>
          </children>
@@ -28,7 +23,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Pane layoutX="62.0" layoutY="153.0" prefHeight="3.0" prefWidth="60.0" style="-fx-background-color: #000000;" />
+      <Pane layoutX="62.0" layoutY="155.0" prefHeight="3.0" prefWidth="60.0" style="-fx-background-color: #000000;" />
       <Label layoutX="61.0" layoutY="204.0" text="Maximum of participants : ">
          <font>
             <Font size="15.0" />
@@ -66,6 +61,12 @@
             <Font size="24.0" />
          </font>
       </Hyperlink>
-      <Label fx:id="dateEva" layoutX="111.0" layoutY="248.0" text="Label" />
+      <Label fx:id="dateEva" layoutX="111.0" layoutY="246.0" text="Label" />
+      <Label fx:id="nameEva" layoutX="109.0" layoutY="176.0" text="Label" />
+      <Label layoutX="61.0" layoutY="174.0" text="Event :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
