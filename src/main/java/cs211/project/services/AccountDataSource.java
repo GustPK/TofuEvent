@@ -6,7 +6,7 @@ import cs211.project.models.account.AccountList;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-public class AccountDataSource implements DataSource<AccountList> {
+public class AccountDataSource implements Datasource<AccountList> {
 
     private String fileName = "data" + File.separator + "Account.csv";
 

@@ -1,14 +1,12 @@
 package cs211.project.services;
 
-import cs211.project.models.account.Account;
-import cs211.project.models.account.AccountList;
 import cs211.project.models.event.Eva;
 import cs211.project.models.event.EvaList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-public class EvaDataSource implements DataSource<EvaList>{
+public class EvaDataSource implements Datasource<EvaList> {
     private String fileName = "data" + File.separator + "Eva.csv";
 
     public EvaDataSource() {

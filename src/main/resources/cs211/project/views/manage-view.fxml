@@ -1,65 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.managment.ManageController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.ManageController">
    <children>
-      <Pane layoutX="25.0" layoutY="37.0" prefHeight="57.0" prefWidth="720.0" style="-fx-background-color: #3A6287; -fx-background-radius: 38;">
-         <children>
-            <Label layoutX="21.0" layoutY="13.0" text="Management" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Label layoutX="64.0" layoutY="121.0" text="Participants ">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Pane layoutX="64.0" layoutY="155.0" prefHeight="3.0" prefWidth="120.0" style="-fx-background-color: #000000;" />
-      <Label layoutX="64.0" layoutY="216.0" text="Maximum of participants : ">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="64.0" layoutY="271.0" text="date :">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="247.0" layoutY="271.0" text="end :">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="64.0" layoutY="326.0" text="Edit schedule">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <ListView layoutX="59.0" layoutY="356.0" prefHeight="222.0" prefWidth="353.0" style="-fx-background-radius: 25;" />
-      <ListView layoutX="479.0" layoutY="248.0" prefHeight="335.0" prefWidth="353.0" style="-fx-background-radius: 25;" />
-      <Label layoutX="497.0" layoutY="218.0" text="Paricipants list">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Hyperlink layoutX="241.0" layoutY="116.0" text="Team" textFill="#2c2a2a">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Hyperlink>
-      <Hyperlink layoutX="778.0" layoutY="47.0" onAction="#ClickToGoManu" text="MANU" textFill="#2c2a2a">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Hyperlink>
+      <Button layoutY="-1.0" mnemonicParsing="false" onAction="#clickBackToCreate" styleClass="default-button-white-navy" text="Back" />
+      <ImageView fitHeight="114.0" fitWidth="134.0" layoutX="222.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/Image.jpg" />
+         </image>
+      </ImageView>
+      <TextField layoutX="304.0" layoutY="230.0" />
+      <TextField layoutX="262.0" layoutY="259.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField layoutX="332.0" layoutY="259.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField layoutX="402.0" layoutY="259.0" prefHeight="26.0" prefWidth="54.0" />
+      <Label layoutX="222.0" layoutY="234.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Event Name:" />
+      <Label layoutX="222.0" layoutY="264.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Date:" />
+      <Label layoutX="222.0" layoutY="295.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Time:" />
+      <Label layoutX="222.0" layoutY="325.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Price:" />
+      <Label layoutX="222.0" layoutY="355.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Ticket:" />
+      <Button layoutX="312.0" layoutY="420.0" mnemonicParsing="false" onAction="#ClickToGoMoreMange" styleClass="default-button-white-navy" text="Done" />
+      <Label layoutX="322.0" layoutY="264.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="/" />
+      <Label layoutX="392.0" layoutY="263.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="/" />
+      <TextField layoutX="262.0" layoutY="291.0" prefHeight="26.0" prefWidth="54.0" />
+      <Label layoutX="323.0" layoutY="294.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text=":" />
+      <TextField layoutX="332.0" layoutY="291.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField layoutX="262.0" layoutY="322.0" prefHeight="26.0" prefWidth="54.0" />
+      <Label layoutX="324.0" layoutY="325.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="฿" />
+      <TextField layoutX="262.0" layoutY="353.0" prefHeight="26.0" prefWidth="54.0" />
    </children>
 </AnchorPane>

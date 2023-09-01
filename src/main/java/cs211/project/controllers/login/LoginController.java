@@ -1,16 +1,11 @@
 package cs211.project.controllers.login;
 
-import cs211.project.models.account.Account;
 import cs211.project.models.account.AccountList;
 import cs211.project.services.AccountDataSource;
-import cs211.project.services.DataSource;
+import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 
@@ -29,13 +24,16 @@ public class LoginController {
     private Hyperlink forgetPassword;
     @FXML
     private Hyperlink developers;
+    @FXML
+    Label warning;
 
     private AccountList accountsList;
-    private DataSource<AccountList> accountListDataSource;
+    private Datasource<AccountList> accountListDataSource;
 
 
     @FXML
     public void initialize(){
+        warning.setText("");
 //        accountsList = new AccountList();
 //        accountListDataSource = new AccountDataSource();
 //        accountsList = accountListDataSource.getData();
@@ -52,7 +50,8 @@ public class LoginController {
             FXRouter.goTo("main");
         }
         else{
-            System.out.println("Login: มึงมั่วละไอ้เวร");
+            warning.setText("username or password is wrong");
+            System.out.println("Login: failed");
         }
     }
 
