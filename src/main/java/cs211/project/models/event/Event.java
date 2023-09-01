@@ -1,8 +1,9 @@
-package cs211.project.model;
+package cs211.project.models.event;
 
 public class Event {
     private String name;
     private String imgSrc;
+
 
     public Event(String name, String imgSrc) {
         this.name = name;

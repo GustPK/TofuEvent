@@ -1,4 +1,6 @@
-package cs211.project.models.account;
+package cs211.project.models.collections;
+
+import cs211.project.models.account.Account;
 
 import java.util.ArrayList;
 

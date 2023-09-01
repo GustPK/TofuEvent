@@ -27,5 +27,7 @@ module cs211.project.cs211661project {
 
     exports cs211.project.models.account;
     opens cs211.project.models.account to javafx.fxml;
+    exports cs211.project.models.collections;
+    opens cs211.project.models.collections to javafx.fxml;
 
 }

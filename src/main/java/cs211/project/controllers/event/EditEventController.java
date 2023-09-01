@@ -1,7 +1,7 @@
 package cs211.project.controllers.event;
 
 import cs211.project.models.event.Eva;
-import cs211.project.models.event.EvaList;
+import cs211.project.models.collections.EvaList;
 import cs211.project.services.Datasource;
 import cs211.project.services.EvaDataSource;
 import cs211.project.services.FXRouter;

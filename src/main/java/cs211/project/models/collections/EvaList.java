@@ -1,6 +1,7 @@
-package cs211.project.models.event;
+package cs211.project.models.collections;
 
 import cs211.project.models.account.Account;
+import cs211.project.models.event.Eva;
 
 import java.util.ArrayList;
 

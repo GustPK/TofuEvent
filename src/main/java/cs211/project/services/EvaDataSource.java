@@ -1,7 +1,7 @@
 package cs211.project.services;
 
 import cs211.project.models.event.Eva;
-import cs211.project.models.event.EvaList;
+import cs211.project.models.collections.EvaList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

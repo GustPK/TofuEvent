@@ -1,6 +1,6 @@
 package cs211.project.controllers.login;
 
-import cs211.project.models.account.AccountList;
+import cs211.project.models.collections.AccountList;
 import cs211.project.services.AccountDataSource;
 import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;

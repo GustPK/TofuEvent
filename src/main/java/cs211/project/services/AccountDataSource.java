@@ -1,7 +1,7 @@
 package cs211.project.services;
 
 import cs211.project.models.account.Account;
-import cs211.project.models.account.AccountList;
+import cs211.project.models.collections.AccountList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
