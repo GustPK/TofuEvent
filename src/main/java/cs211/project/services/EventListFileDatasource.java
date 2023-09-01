@@ -1,7 +1,6 @@
-package ku.cs.services;
+package cs211.project.services;
 
 import cs211.project.model.EventList;
-import cs211.project.services.Datasource;
 
 
 import java.io.*;
@@ -39,7 +38,6 @@ public class EventListFileDatasource implements Datasource<EventList> {
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
 
-        // เตรียม object ที่ใช้ในการอ่านไฟล์
         FileInputStream fileInputStream = null;
 
         try {
