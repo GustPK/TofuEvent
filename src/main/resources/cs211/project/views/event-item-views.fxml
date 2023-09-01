@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="150.0" prefWidth="500.0" styleClass="shadow" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.EventItemController">
+<AnchorPane prefHeight="150.0" prefWidth="500.0" styleClass="cursor-hand" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.EventItemController">
    <children>
       <HBox prefHeight="150.0" prefWidth="500.0">
          <children>
