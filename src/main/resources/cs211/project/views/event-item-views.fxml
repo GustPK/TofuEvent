@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="150.0" prefWidth="500.0" styleClass="cursor-hand" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.EventItemController">
+   <children>
+      <HBox prefHeight="150.0" prefWidth="500.0">
+         <children>
+            <ImageView fx:id="eventIMG" fitHeight="130.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../../../images/ronaldo.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="eventNameLabel" text="CR7 Meeting ">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" top="60.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
