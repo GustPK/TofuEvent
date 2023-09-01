@@ -2,11 +2,16 @@ package cs211.project.controllers.event;
 
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
+
+import javafx.scene.control.Label;
+
 import javafx.scene.shape.Circle;
+
 
 import java.io.IOException;
 
 public class InfoController {
+
     private Circle profilePic;
 
     @FXML
@@ -29,6 +34,7 @@ public class InfoController {
         FXRouter.goTo("ongoing");
     }
 
+
     @FXML
     private void onEventInfoButtonClick() throws IOException{
         FXRouter.goTo("info");
@@ -38,4 +44,5 @@ public class InfoController {
     private void onBackButtonClick() throws IOException{
         FXRouter.goTo("main");
     }
+
 }
