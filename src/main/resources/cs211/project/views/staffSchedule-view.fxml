@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.creator.StaffScheduleController">
+   <children>
+      <Pane layoutX="25.0" layoutY="37.0" prefHeight="57.0" prefWidth="720.0" style="-fx-background-color: #3A6287; -fx-background-radius: 38;">
+         <children>
+            <Label layoutX="21.0" layoutY="13.0" text="Management" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="64.0" layoutY="121.0" text="Participants ">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Pane layoutX="248.0" layoutY="155.0" prefHeight="3.0" prefWidth="140.0" style="-fx-background-color: #000000;" />
+      <ListView layoutX="46.0" layoutY="247.0" prefHeight="335.0" prefWidth="353.0" style="-fx-background-radius: 25;" />
+      <Label layoutX="64.0" layoutY="217.0" text="Edit schedule">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Hyperlink layoutX="241.0" layoutY="116.0" text="Team" textFill="#2c2a2a">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Hyperlink>
+      <Label layoutX="314.0" layoutY="120.0" text="/ Name">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ListView layoutX="436.0" layoutY="246.0" prefHeight="335.0" prefWidth="353.0" style="-fx-background-radius: 25;" />
+      <Label layoutX="454.0" layoutY="216.0" text="Staff list">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Hyperlink layoutX="768.0" layoutY="52.0" onAction="#ClickToGoManu" text="MANU" textFill="#2c2a2a">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Hyperlink>
+   </children>
+</AnchorPane>

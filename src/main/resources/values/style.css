@@ -17,6 +17,10 @@
     -fx-background-color:#808eae;
 }
 
+.default-background-transparent{
+    -fx-background-color:transparent;
+}
+
 .default-border-navy{
     -fx-border-color:#2d3553;
     -fx-background-color:#FFFFFF;
@@ -46,8 +50,11 @@
     -fx-cursor:hand;
 }
 
+<<<<<<< HEAD
+=======
 .default-button-lightnavy-navy{
     -fx-background-color:#808eae;
     -fx-text-fill:#2d3553;
     -fx-cursor:hand;
 }
+>>>>>>> 092a5511df367ff686c48fd0b5060007cae0e0ff
