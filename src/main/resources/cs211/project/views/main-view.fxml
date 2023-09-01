@@ -94,6 +94,15 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Button>
+                  <AnchorPane prefHeight="96.0" prefWidth="239.0">
+                     <children>
+                        <Button alignment="CENTER" layoutX="-18.0" layoutY="17.0" mnemonicParsing="false" onAction="#goToEditEvent" prefHeight="39.0" prefWidth="173.0" styleClass="default-button-navy-white" text="Edit event">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
                   <Button alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="214.0" styleClass="default-button-navy-white">
                      <font>
                         <Font name="System Bold" size="18.0" />
