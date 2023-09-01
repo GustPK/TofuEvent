@@ -33,4 +33,9 @@ public class InfoController {
     private void onEventInfoButtonClick() throws IOException{
         FXRouter.goTo("info");
     }
+
+    @FXML
+    private void onBackButtonClick() throws IOException{
+        FXRouter.goTo("main");
+    }
 }
