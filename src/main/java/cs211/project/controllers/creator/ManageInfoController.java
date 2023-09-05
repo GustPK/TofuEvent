@@ -29,8 +29,6 @@ public class ManageInfoController {
     }
     @FXML
     public void initialize() {
-        accountListDataSource = new AccountDataSource();
-        accountsList = accountListDataSource.readData();
 
         Eva nameEvent = (Eva) FXRouter.getData();
         nameEva.setText(nameEvent.getName());
