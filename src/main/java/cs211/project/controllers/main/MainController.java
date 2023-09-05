@@ -1,27 +1,24 @@
 package cs211.project.controllers.main;
 
 import cs211.project.controllers.event.EventItemController;
-import cs211.project.models.event.Event;
 import cs211.project.models.collections.EventList;
+import cs211.project.models.event.Event;
 import cs211.project.services.Datasource;
+import cs211.project.services.EventListDatasource;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
-import cs211.project.services.EventListFileDatasource ;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class MainController {
 
     private Datasource<EventList> datasource;
     private EventList events;
@@ -61,9 +58,9 @@ public class MainController implements Initializable {
     @FXML
     private GridPane grid;
 
-    private List<Event> getData(){
-        List<Event> events = new ArrayList<>();
-        Event event;
+    private List<EventList> getData(){
+        List<EventList> events = new ArrayList<>();
+        EventList event;
 
 //        for(int i = 0; i < 20; i++){
 //            event = new Event();
@@ -73,15 +70,15 @@ public class MainController implements Initializable {
 //        }
         return events;
     }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        datasource = new EventListFileDatasource("data","event.csv");
+    @FXML
+    public void initialize() {
+        datasource = new EventListDatasource();
         events = datasource.readData();
         int column = 0;
         int row = 0;
 
         try {
-            for (Event event: events.getEventList()) {
+            for (Event event: events.getEvents()) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();

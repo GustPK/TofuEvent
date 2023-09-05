@@ -1,6 +1,6 @@
 package cs211.project.controllers.login;
 
-import cs211.project.model.Account;
+import cs211.project.models.account.Account;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,8 +15,8 @@ public class BanController {
     @FXML
     private void initialize() {
         acc = (Account) FXRouter.getData();
-        usernameLabel.setText(acc.getUser());
-        passwordLabel.setText(acc.getPass());
+        usernameLabel.setText(acc.getName());
+        passwordLabel.setText(acc.getPassword());
     }
 
     @FXML

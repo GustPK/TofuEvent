@@ -6,11 +6,11 @@ import cs211.project.models.collections.AccountList;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-public class AccountDataSource implements Datasource<AccountList> {
+public class AccountListDatasource implements Datasource<AccountList> {
 
     private String fileName = "data" + File.separator + "Account.csv";
 
-    public AccountDataSource() {
+    public AccountListDatasource() {
         checkFileIsExisted();
     }
     private void checkFileIsExisted() {

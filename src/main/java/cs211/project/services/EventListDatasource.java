@@ -1,15 +1,15 @@
 package cs211.project.services;
 
-import cs211.project.models.event.Eva;
-import cs211.project.models.collections.EvaList;
+import cs211.project.models.event.Event;
+import cs211.project.models.collections.EventList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-public class EvaDataSource implements Datasource<EvaList> {
-    private String fileName = "data" + File.separator + "Eva.csv";
+public class EventListDatasource implements Datasource<EventList> {
+    private String fileName = "data" + File.separator + "EventList.csv";
 
-    public EvaDataSource() {
+    public EventListDatasource() {
         checkFileIsExisted();
     }
     private void checkFileIsExisted() {
@@ -28,11 +28,11 @@ public class EvaDataSource implements Datasource<EvaList> {
     }
 
     @Override
-    public EvaList readData() {
+    public EventList readData() {
         BufferedReader buffer = null;
         FileInputStream fileInputStream = null;
 
-        EvaList events = new EvaList() ;
+        EventList events = new EventList() ;
         File file = new File(fileName);
 
         try {
@@ -50,9 +50,10 @@ public class EvaDataSource implements Datasource<EvaList> {
 
                 String name = data[0].trim();
                 String date = data[1].trim();
+                String image = getClass().getResource("/images/"
+                            +data[2].trim()).toString();
 
-                events.addEvent((new Eva(name,date)));
-
+                events.addEvent((new Event(name,date,image)));
             }
             buffer.close();
         }catch (FileNotFoundException e){
@@ -64,7 +65,8 @@ public class EvaDataSource implements Datasource<EvaList> {
     }
 
     @Override
-    public void writeData(EvaList data) {
+    public void writeData(EventList data) {
+
 
     }
 

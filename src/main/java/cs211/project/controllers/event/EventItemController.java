@@ -13,14 +13,14 @@ public class EventItemController {
     private Label eventNameLabel;
 
     @FXML
-    private ImageView eventIMG;
+    private ImageView eventImg;
     private Event event;
 
     public void setData(Event event){
         this.event = event;
         eventNameLabel.setText(event.getName());
-        Image image = new Image(event.getImgSrc());
-        eventIMG.setImage(image);
+        Image image = new Image(event.getImgEvent());
+        eventImg.setImage(image);
 
     }
 

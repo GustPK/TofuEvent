@@ -5,18 +5,18 @@ import cs211.project.models.event.Event;
 import java.util.ArrayList;
 
 public class EventList {
-    private ArrayList<Event> eventList ;
+    private ArrayList<Event> events;
 
-    public EventList() {
-         eventList = new ArrayList<>();
+    public EventList(){
+        events = new ArrayList<>();
     }
 
-    public ArrayList<Event> getEventList() {
-        return eventList;
+    public ArrayList<Event> getEvents(){
+        return events;
     }
 
-    public void addEvent(String name, String imgSrc){
-        String img = getClass().getResource("/images/"+imgSrc).toString();
-        eventList.add(new Event(name ,img));
+    public void addEvent(Event event){
+        events.add(event);
     }
+
 }

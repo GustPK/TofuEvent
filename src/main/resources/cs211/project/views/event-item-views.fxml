@@ -13,7 +13,7 @@
    <children>
       <HBox prefHeight="150.0" prefWidth="500.0">
          <children>
-            <ImageView fx:id="eventIMG" fitHeight="130.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="eventImg" fitHeight="130.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>

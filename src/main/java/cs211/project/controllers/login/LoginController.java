@@ -1,7 +1,7 @@
 package cs211.project.controllers.login;
 
 import cs211.project.models.collections.AccountList;
-import cs211.project.services.AccountDataSource;
+import cs211.project.services.AccountListDatasource;
 import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
@@ -37,7 +37,7 @@ public class LoginController {
 //        accountsList = new AccountList();
 //        accountListDataSource = new AccountDataSource();
 //        accountsList = accountListDataSource.getData();
-        accountListDataSource = new AccountDataSource();
+        accountListDataSource = new AccountListDatasource();
         accountsList = accountListDataSource.readData();
     }
 
