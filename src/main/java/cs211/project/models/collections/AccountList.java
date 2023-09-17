@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class AccountList {
 
-    private Account thisAccount;
+    private Account currentAccount;
     private ArrayList<Account> accounts;
 
     public AccountList() {
@@ -21,10 +21,12 @@ public class AccountList {
         accounts.add(account);
     }
 
-    public boolean checkLogin(String username,String password) {
+    public Account getCurrentAccount() { return currentAccount; }
+
+    public boolean checkLogin(String username, String password) {
         for (Account account : accounts) {
             if (account.getUsername().equals(username) && account.getPassword().equals(password)) {
-                thisAccount = account;
+                currentAccount = account;
                 return true;
             }
         }

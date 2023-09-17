@@ -1,6 +1,7 @@
 package cs211.project.controllers.main;
 
 import cs211.project.controllers.event.EventItemController;
+import cs211.project.models.collections.AccountList;
 import cs211.project.models.collections.EventList;
 import cs211.project.models.event.Event;
 import cs211.project.services.Datasource;
@@ -9,6 +10,9 @@ import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -24,6 +28,8 @@ public class MainController {
     private EventList events;
     @FXML
     private Circle profilePic;
+    @FXML private Hyperlink nameLink;
+    private AccountList currentAccount;
     @FXML
     protected void onProfileButtonClick() throws IOException{
         FXRouter.goTo("profile");
@@ -72,6 +78,8 @@ public class MainController {
     }
     @FXML
     public void initialize() {
+        currentAccount = (AccountList) FXRouter.getData();
+        nameLink.setText(currentAccount.getCurrentAccount().getName());
         datasource = new EventListDatasource();
         events = datasource.readData();
         int column = 0;
