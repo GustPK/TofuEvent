@@ -1,6 +1,8 @@
 package cs211.project.controllers.login;
-
 import cs211.project.models.account.LoggedInAccount;
+
+import cs211.project.models.account.Account;
+
 import cs211.project.models.collections.AccountList;
 import cs211.project.services.AccountListDatasource;
 import cs211.project.services.Datasource;
@@ -12,22 +14,12 @@ import java.io.IOException;
 
 public class LoginController {
 
-    @FXML
-    private TextField usernameTextField;
-    @FXML
-    private PasswordField passwordField;
+    @FXML private TextField usernameTextField;
+    @FXML private PasswordField passwordField;
 
-    @FXML
-    private Button login;
-    @FXML
-    private Hyperlink createAccount;
-    @FXML
-    private Hyperlink forgetPassword;
-    @FXML
-    private Hyperlink developers;
-    @FXML
-    Label warning;
 
+    @FXML Label warning;
+    private AccountList currentAccount;
     private AccountList accountsList;
     private Datasource<AccountList> accountListDataSource;
 
@@ -40,21 +32,32 @@ public class LoginController {
 //        accountsList = accountListDataSource.getData();
         accountListDataSource = new AccountListDatasource();
         accountsList = accountListDataSource.readData();
+        currentAccount = new AccountList();
     }
 
     @FXML
     public void clickLoin() throws IOException {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
+        String scene;
+
         if (accountsList.checkLogin(username,password)){
             System.out.println("Login: Success");
             LoggedInAccount.getInstance().setUsername(username);
             FXRouter.goTo("main");
+            scene = "main";
+            try {
+                FXRouter.goTo(scene,accountsList);
+            }catch (IOException e){
+                System.err.println("ไปที่หน้า main ไม่ได้" + e);
+            }
+
         }
         else{
             warning.setText("username or password is wrong");
             System.out.println("Login: failed");
         }
+
     }
 
     @FXML
@@ -66,11 +69,6 @@ public class LoginController {
     private void onCreateAccountHyperlinkClick() throws IOException{
         FXRouter.goTo("register");
     }
-
-//    @FXML
-//    private void onLoginButtonClick() throws IOException{
-//        FXRouter.goTo("main");
-//    }
 
     @FXML
     private void onAdminHyperlinkClick() throws IOException {
