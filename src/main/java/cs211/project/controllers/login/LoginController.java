@@ -1,5 +1,6 @@
 package cs211.project.controllers.login;
 
+import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.AccountList;
 import cs211.project.services.AccountListDatasource;
 import cs211.project.services.Datasource;
@@ -47,6 +48,7 @@ public class LoginController {
         String password = passwordField.getText();
         if (accountsList.checkLogin(username,password)){
             System.out.println("Login: Success");
+            LoggedInAccount.getInstance().setUsername(username);
             FXRouter.goTo("main");
         }
         else{
