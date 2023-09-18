@@ -23,14 +23,13 @@ public class AccountList {
 
     public Account getCurrentAccount() { return currentAccount; }
 
-    public boolean checkLogin(String username, String password) {
+    public Account checkLogin(String username, String password) {
         for (Account account : accounts) {
             if (account.getUsername().equals(username) && account.getPassword().equals(password)) {
-                currentAccount = account;
-                return true;
+                return account;
             }
         }
 
-        return false;
+        return null;
     }
 }

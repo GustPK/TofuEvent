@@ -7,12 +7,14 @@ public class Account {
     private  String name;
     private String username;
     private String password;
+    private String image;
 
 
-    public Account(String name, String username, String password) {
+    public Account(String name, String username, String password, String image) {
         this.name = name;
         this.username = username;
         this.password = password;
+        this.image = image;
     }
 
     public String getName() { return name; }
@@ -25,6 +27,7 @@ public class Account {
         this.password = password;
     }
 
-
-
+    public String getImage() {
+        return image;
+    }
 }

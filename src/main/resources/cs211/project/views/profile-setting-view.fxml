@@ -20,7 +20,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="540.0" prefWidth="381.0">
                <children>
-                  <Circle fill="#2d3553" radius="86.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle fx:id="profilePic" fill="#2d3553" radius="86.0" stroke="BLACK" strokeType="INSIDE">
                      <VBox.margin>
                         <Insets bottom="10.0" top="40.0" />
                      </VBox.margin>
@@ -32,7 +32,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label text="Harry Maguire">
+                        <Label fx:id="userName" text="Harry Maguire">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -52,24 +52,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label text="HarryMaGOAT5">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label styleClass="default-label-lightnavy" text="              E-mail :" textFill="#ff8eff">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="harrymaguire5@gmail.com">
+                        <Label fx:id="accountName" text="HarryMaGOAT5">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -87,6 +70,9 @@
                            </font>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets top="110.0" />
+                     </VBox.margin>
                   </AnchorPane>
                </children>
             </VBox>
@@ -152,27 +138,7 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <Label styleClass="default-label-lightnavy" text="E-mail" textFill="#ff8eff">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets right="270.0" />
-                     </VBox.margin>
-                  </Label>
                   <HBox prefHeight="50.0" prefWidth="200.0">
-                     <children>
-                        <TextField prefHeight="25.0" prefWidth="243.0">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <Button mnemonicParsing="false" text="change">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

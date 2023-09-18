@@ -6,8 +6,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="150.0" prefWidth="500.0" styleClass="cursor-hand" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.EventItemController">
    <children>
@@ -21,15 +21,28 @@
                   <Image url="@../../../images/ronaldo.png" />
                </image>
             </ImageView>
-            <Label fx:id="eventNameLabel" text="CR7 Meeting ">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="20.0" top="60.0" />
-               </HBox.margin>
-            </Label>
+            <VBox prefHeight="150.0" prefWidth="380.0">
+               <children>
+                  <Label fx:id="eventNameLabel" text="CR7 Meeting ">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="50.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
          </children>
       </HBox>
+      <AnchorPane prefHeight="40.0" prefWidth="500.0">
+         <children>
+            <Label fx:id="eventDate" layoutX="385.0" layoutY="7.0" text="13-05-2004" textFill="#00ff11">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

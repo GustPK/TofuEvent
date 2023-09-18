@@ -1,7 +1,7 @@
 package cs211.project.models.account;
 
 public class LoggedInAccount {
-    private String username;
+    private Account account;
     private static LoggedInAccount instance;
 
     private LoggedInAccount() {
@@ -15,11 +15,11 @@ public class LoggedInAccount {
         return instance;
     }
 
-    public String getUsername() {
-        return username;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

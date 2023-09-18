@@ -11,6 +11,8 @@ public class EventItemController {
     private Event selectedEvent;
     @FXML
     private Label eventNameLabel;
+    @FXML
+    private Label eventDate;
 
     @FXML
     private ImageView eventImg;
@@ -21,7 +23,7 @@ public class EventItemController {
         eventNameLabel.setText(event.getName());
         Image image = new Image(event.getImgEvent());
         eventImg.setImage(image);
-
+        eventDate.setText(event.getDate());
     }
 
     @FXML

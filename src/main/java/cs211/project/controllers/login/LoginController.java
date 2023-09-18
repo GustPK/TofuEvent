@@ -40,10 +40,10 @@ public class LoginController {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
         String scene;
-
-        if (accountsList.checkLogin(username,password)){
+        Account exist = accountsList.checkLogin(username,password);
+        if (exist != null){
             System.out.println("Login: Success");
-            LoggedInAccount.getInstance().setUsername(username);
+            LoggedInAccount.getInstance().setAccount(exist);
             FXRouter.goTo("main");
             scene = "main";
             try {

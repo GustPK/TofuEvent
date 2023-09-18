@@ -1,7 +1,11 @@
 package cs211.project.controllers.main;
 
+import cs211.project.models.account.Account;
+import cs211.project.models.account.LoggedInAccount;
+import cs211.project.models.collections.AccountList;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -16,10 +20,15 @@ public class ProfileController {
     private Label username;
     @FXML
     private Circle profilePic;
+    private AccountList currentAccount;
     @FXML
     private void initialize(){
-        Image navyImage = new Image(getClass().getResource("/images/navy-default-profile.jpg").toString());
-        profilePic.setFill(new ImagePattern(navyImage));
+        currentAccount = (AccountList) FXRouter.getData();
+        Image image = new Image(getClass().getResource("/images/"+LoggedInAccount.getInstance().getAccount().getImage()).toString());
+        profilePic.setFill(new ImagePattern(image));
+        accountName.setText(LoggedInAccount.getInstance().getAccount().getName());
+        username.setText(LoggedInAccount.getInstance().getAccount().getUsername());
+
     }
     @FXML
     protected void onProfileSettingClick() throws IOException{
