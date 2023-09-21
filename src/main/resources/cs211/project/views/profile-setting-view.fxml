@@ -101,12 +101,12 @@
                         <Insets />
                      </VBox.margin>
                      <children>
-                        <TextField prefHeight="25.0" prefWidth="243.0">
+                        <TextField fx:id="accountNameChangeField" prefHeight="25.0" prefWidth="243.0">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" text="change">
+                        <Button mnemonicParsing="false" onAction="#onChangeAccountNameClick" text="change">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>

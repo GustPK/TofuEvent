@@ -8,9 +8,11 @@ import java.nio.charset.StandardCharsets;
 
 public class AccountListDatasource implements Datasource<AccountList> {
 
-    private String fileName = "data" + File.separator + "Account.csv";
-
-    public AccountListDatasource() {
+    private String directory;
+    private String fileName;
+    public AccountListDatasource(String directory, String fileName) {
+        this.directory = directory;
+        this.fileName = fileName;
         checkFileIsExisted();
     }
     private void checkFileIsExisted() {
@@ -31,11 +33,12 @@ public class AccountListDatasource implements Datasource<AccountList> {
 
     @Override
     public AccountList readData() {
+        String filePath = directory + File.separator + fileName;
         BufferedReader buffer;
         FileInputStream fileInputStream ;
 
         AccountList accounts = new AccountList() ;
-        File file = new File(fileName);
+        File file = new File(filePath);
 
         try {
             fileInputStream = new FileInputStream(file);

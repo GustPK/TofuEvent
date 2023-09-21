@@ -30,13 +30,13 @@ public class LoginController {
 //        accountsList = new AccountList();
 //        accountListDataSource = new AccountDataSource();
 //        accountsList = accountListDataSource.getData();
-        accountListDataSource = new AccountListDatasource();
+        accountListDataSource = new AccountListDatasource("data", "Account.csv");
         accountsList = accountListDataSource.readData();
         currentAccount = new AccountList();
     }
 
     @FXML
-    public void clickLoin() throws IOException {
+    public void clickLoin() {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
         String scene;
@@ -44,12 +44,10 @@ public class LoginController {
         if (exist != null){
             System.out.println("Login: Success");
             LoggedInAccount.getInstance().setAccount(exist);
-            FXRouter.goTo("main");
-            scene = "main";
             try {
-                FXRouter.goTo(scene,accountsList);
-            }catch (IOException e){
-                System.err.println("ไปที่หน้า main ไม่ได้" + e);
+                FXRouter.goTo("main",accountsList);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
 
         }
