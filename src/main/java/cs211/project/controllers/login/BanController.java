@@ -136,6 +136,7 @@ public class BanController {
         for (Account account : accountList.getAccounts()) {
             if (account.getUsername().equals(acc.getUsername())) {
                 account.setStatus(newStatus);
+//                account.setBanned("--------");
                 break; // Assuming usernames are unique, exit the loop once found
             }
         }
