@@ -14,7 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 
-public class AdminController{
+public class AdminController {
     @FXML
     private TableView<Account> AccoutsTableView;
     private Datasource<AccountList> datasource;
@@ -38,17 +38,21 @@ public class AdminController{
         // Create columns
         TableColumn<Account, String> userColumn = new TableColumn<>("User");
         TableColumn<Account, String> passColumn = new TableColumn<>("Password");
+        TableColumn<Account, String> statusColumn = new TableColumn<>("Status"); // เพิ่มคอลัมน์ "Status"
 
         // Set cell value factories using getter methods
         userColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         passColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status")); // เซ็ตคอลัมน์ "Status" ให้ใช้ getter ของ status
 
-        userColumn.setMinWidth(300);
-        passColumn.setMinWidth(300);
+        userColumn.setMinWidth(200);
+        passColumn.setMinWidth(200);
+        statusColumn.setMinWidth(200); // ปรับขนาดของคอลัมน์ "Status"
+
         // Add columns to TableView
-        AccoutsTableView.getColumns().addAll(userColumn, passColumn);
+        AccoutsTableView.getColumns().addAll(userColumn, passColumn, statusColumn);
 
-        for (Account acc: accounts.getAccounts()) {
+        for (Account acc : accounts.getAccounts()) {
             AccoutsTableView.getItems().add(acc);
         }
 

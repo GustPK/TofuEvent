@@ -75,10 +75,10 @@ public class AccountListDatasource implements Datasource<AccountList> {
 
             for (Account account : data.getAccounts()){
                 String line = account.getName()+","
-                            + account.getUsername()+","
-                            + account.getPassword()+","
-                            + account.getImage()+","
-                            + account.getStatus();
+                        + account.getUsername()+","
+                        + account.getPassword()+","
+                        + account.getImage()+","
+                        + account.getStatus();
 
                 buffer.append(line);
                 buffer.append("\n");
