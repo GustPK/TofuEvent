@@ -80,40 +80,43 @@ public class AccountListDatasource implements Datasource<AccountList> {
     @Override
     public void writeData(AccountList data) {
         BufferedWriter buffer = null;
-        FileOutputStream fileOutputStream;
-        File file = new File(fileName);
+        FileOutputStream fileOutputStream = null;
+        String filePath = directoryName + File.separator + fileName;
+        File file = new File(filePath);
 
         try {
             fileOutputStream = new FileOutputStream(file);
-
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
-                    fileOutputStream,StandardCharsets.UTF_8);
+                    fileOutputStream, StandardCharsets.UTF_8);
 
             buffer = new BufferedWriter(outputStreamWriter);
 
-            for (Account account : data.getAccounts()){
-                String line = account.getName()+","
-                            + account.getUsername()+","
-                            + account.getPassword()+","
-                            + account.getImage()+","
-                            + account.getStatus();
+            for (Account account : data.getAccounts()) {
+                String line = account.getName() + ","
+                        + account.getUsername() + ","
+                        + account.getPassword() + ","
+                        + account.getImage() + ","
+                        + account.getStatus();
 
                 buffer.append(line);
                 buffer.append("\n");
             }
-
-        }catch (IOException e){
+        } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            try{
-                buffer.flush();
-                buffer.close();
-            }catch (IOException e){
+            try {
+                if (buffer != null) {
+                    buffer.close();
+                }
+                if (fileOutputStream != null) {
+                    fileOutputStream.close();
+                }
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-
     }
+
 
 
 }

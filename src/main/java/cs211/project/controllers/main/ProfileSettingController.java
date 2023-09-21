@@ -45,5 +45,9 @@ public class ProfileSettingController {
     private void onBackButtonClick() throws IOException {
         FXRouter.goTo("profile");
     }
+    @FXML
+    private void onChangePasswordButtonClick() throws IOException {
+        FXRouter.goTo("changePassword", "fromPSC");
+    }
 
 }

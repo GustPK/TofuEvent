@@ -22,7 +22,7 @@ public class AdminController{
 
     @FXML
     private void onChangePasswordHyperlinkClick() throws IOException {
-        FXRouter.goTo("changePassword");
+        FXRouter.goTo("changePassword", "fromAdmin");
     }
 
     @FXML
