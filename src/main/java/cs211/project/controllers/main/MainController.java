@@ -21,6 +21,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +83,10 @@ public class MainController {
     @FXML
     public void initialize() {
         currentAccount = (AccountList) FXRouter.getData();
-        Image image = new Image(getClass().getResource("/images/"+LoggedInAccount.getInstance().getAccount().getImage()).toString());
+        // read file outside project src
+        File file = new File("data/images", LoggedInAccount.getInstance().getAccount().getImage());
+        String path = "file:///" + file.getAbsolutePath();
+        Image image = new Image(path);
         profilePic.setFill(new ImagePattern(image));
         nameLink.setText(LoggedInAccount.getInstance().getAccount().getUsername());
         datasource = new EventListDatasource();

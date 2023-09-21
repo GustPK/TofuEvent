@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ProfileSettingController {
@@ -23,7 +24,9 @@ public class ProfileSettingController {
     @FXML
     private void initialize(){
         currentAccount = (Account) FXRouter.getData();
-        Image image = new Image(getClass().getResource("/images/"+ LoggedInAccount.getInstance().getAccount().getImage()).toString());
+        File file = new File("data/images", LoggedInAccount.getInstance().getAccount().getImage());
+        String path = "file:///" + file.getAbsolutePath();
+        Image image = new Image(path);
         profilePic.setFill(new ImagePattern(image));
         accountName.setText(LoggedInAccount.getInstance().getAccount().getName());
         userName.setText(LoggedInAccount.getInstance().getAccount().getUsername());

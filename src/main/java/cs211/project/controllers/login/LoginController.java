@@ -30,7 +30,7 @@ public class LoginController {
 //        accountsList = new AccountList();
 //        accountListDataSource = new AccountDataSource();
 //        accountsList = accountListDataSource.getData();
-        accountListDataSource = new AccountListDatasource();
+        accountListDataSource = new AccountListDatasource("data", "Account.csv");
         accountsList = accountListDataSource.readData();
         currentAccount = new AccountList();
     }
@@ -40,25 +40,29 @@ public class LoginController {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
         String scene;
-        Account exist = accountsList.checkLogin(username,password);
-        if (exist != null){
-            System.out.println("Login: Success");
-            LoggedInAccount.getInstance().setAccount(exist);
-            FXRouter.goTo("main");
-            scene = "main";
-            try {
-                FXRouter.goTo(scene,accountsList);
-            }catch (IOException e){
-                System.err.println("ไปที่หน้า main ไม่ได้" + e);
+        Account exist = accountsList.checkLogin(username, password);
+
+        if (exist != null) {
+            if (!exist.getStatus().equals("banned")) { // เพิ่มการตรวจสอบสถานะการแบน
+                System.out.println("Login: Success");
+                LoggedInAccount.getInstance().setAccount(exist);
+                FXRouter.goTo("main");
+                scene = "main";
+                try {
+                    FXRouter.goTo(scene, accountsList);
+                } catch (IOException e) {
+                    System.err.println("ไปที่หน้า main ไม่ได้" + e);
+                }
+            } else {
+                warning.setText("You got banned");
+                System.out.println("Login: User is banned");
             }
-
+        } else {
+            warning.setText("Username or password is wrong");
+            System.out.println("Login: Failed");
         }
-        else{
-            warning.setText("username or password is wrong");
-            System.out.println("Login: failed");
-        }
-
     }
+
 
     @FXML
     private void onDevelopersHyperlinkClick() throws IOException{

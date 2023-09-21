@@ -8,9 +8,12 @@ import java.nio.charset.StandardCharsets;
 
 public class AccountListDatasource implements Datasource<AccountList> {
 
-    private String fileName = "data" + File.separator + "Account.csv";
+    private String fileName;
+    private String directoryName;
 
-    public AccountListDatasource() {
+    public AccountListDatasource(String directoryName, String fileName) {
+        this.directoryName = directoryName;
+        this.fileName = fileName;
         checkFileIsExisted();
     }
     private void checkFileIsExisted() {
@@ -35,7 +38,8 @@ public class AccountListDatasource implements Datasource<AccountList> {
         FileInputStream fileInputStream ;
 
         AccountList accounts = new AccountList() ;
-        File file = new File(fileName);
+        String filePath = directoryName + File.separator + fileName;
+        File file = new File(filePath);
 
         try {
             fileInputStream = new FileInputStream(file);
@@ -54,8 +58,9 @@ public class AccountListDatasource implements Datasource<AccountList> {
                 String userName = data[1].trim();
                 String password = data[2].trim();
                 String image = data[3].trim();
+                String status = data[4].trim();
 
-                accounts.addAccount((new Account(name,userName,password,image)));
+                accounts.addAccount((new Account(name,userName,password,image,status)));
 
             }
             buffer.close();
@@ -71,7 +76,6 @@ public class AccountListDatasource implements Datasource<AccountList> {
     public void writeData(AccountList data) {
         BufferedWriter buffer = null;
         FileOutputStream fileOutputStream;
-
         File file = new File(fileName);
 
         try {
@@ -86,7 +90,8 @@ public class AccountListDatasource implements Datasource<AccountList> {
                 String line = account.getName()+","
                             + account.getUsername()+","
                             + account.getPassword()+","
-                            + account.getImage();
+                            + account.getImage()+","
+                            + account.getStatus();
 
                 buffer.append(line);
                 buffer.append("\n");
