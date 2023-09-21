@@ -8,12 +8,8 @@ import java.nio.charset.StandardCharsets;
 
 public class AccountListDatasource implements Datasource<AccountList> {
 
-    private String fileName;
-    private String directoryName;
-
-    public AccountListDatasource(String directoryName, String fileName) {
-        this.directoryName = directoryName;
-        this.fileName = fileName;
+    private String fileName = "data" + File.separator + "Account.csv";
+    public AccountListDatasource() {
         checkFileIsExisted();
     }
     private void checkFileIsExisted() {
@@ -36,20 +32,14 @@ public class AccountListDatasource implements Datasource<AccountList> {
     public AccountList readData() {
         BufferedReader buffer;
         FileInputStream fileInputStream ;
-
         AccountList accounts = new AccountList() ;
-        String filePath = directoryName + File.separator + fileName;
-        File file = new File(filePath);
-
+        File file = new File(fileName);
         try {
             fileInputStream = new FileInputStream(file);
-
-        InputStreamReader inputStreamReader = new InputStreamReader(
-                fileInputStream,StandardCharsets.UTF_8);
-
+            InputStreamReader inputStreamReader = new InputStreamReader(
+                    fileInputStream,StandardCharsets.UTF_8);
             buffer = new BufferedReader(inputStreamReader);
             String line = "";
-
             while ((line = buffer.readLine()) != null){
                 if (line.equals("")) continue;
                 String[] data = line.split(",");
@@ -77,21 +67,18 @@ public class AccountListDatasource implements Datasource<AccountList> {
         BufferedWriter buffer = null;
         FileOutputStream fileOutputStream;
         File file = new File(fileName);
-
         try {
             fileOutputStream = new FileOutputStream(file);
-
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
                     fileOutputStream,StandardCharsets.UTF_8);
-
             buffer = new BufferedWriter(outputStreamWriter);
 
             for (Account account : data.getAccounts()){
                 String line = account.getName()+","
-                            + account.getUsername()+","
-                            + account.getPassword()+","
-                            + account.getImage()+","
-                            + account.getStatus();
+                        + account.getUsername()+","
+                        + account.getPassword()+","
+                        + account.getImage()+","
+                        + account.getStatus();
 
                 buffer.append(line);
                 buffer.append("\n");

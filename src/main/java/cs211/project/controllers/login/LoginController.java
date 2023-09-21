@@ -30,7 +30,7 @@ public class LoginController {
 //        accountsList = new AccountList();
 //        accountListDataSource = new AccountDataSource();
 //        accountsList = accountListDataSource.getData();
-        accountListDataSource = new AccountListDatasource("data", "Account.csv");
+        accountListDataSource = new AccountListDatasource();
         accountsList = accountListDataSource.readData();
         currentAccount = new AccountList();
     }
