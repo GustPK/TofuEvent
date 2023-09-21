@@ -27,10 +27,7 @@ public class LoginController {
     @FXML
     public void initialize(){
         warning.setText("");
-//        accountsList = new AccountList();
-//        accountListDataSource = new AccountDataSource();
-//        accountsList = accountListDataSource.getData();
-        accountListDataSource = new AccountListDatasource("data", "Account.csv");
+        accountListDataSource = new AccountListDatasource();
         accountsList = accountListDataSource.readData();
         currentAccount = new AccountList();
     }

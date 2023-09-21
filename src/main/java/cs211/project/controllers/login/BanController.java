@@ -148,12 +148,12 @@ public class BanController {
     }
 
     private AccountList loadAccountListFromFile() {
-        AccountListDatasource datasource = new AccountListDatasource("data", "Account.csv");
+        AccountListDatasource datasource = new AccountListDatasource();
         return datasource.readData();
     }
 
     private void saveAccountListToFile(AccountList accountList) {
-        AccountListDatasource datasource = new AccountListDatasource("data", "Account.csv");
+        AccountListDatasource datasource = new AccountListDatasource();
         datasource.writeData(accountList);
     }
 }

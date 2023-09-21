@@ -38,7 +38,7 @@ public class ProfileSettingController {
         profilePic.setFill(new ImagePattern(image));
         accountName.setText(LoggedInAccount.getInstance().getAccount().getName());
         userName.setText(LoggedInAccount.getInstance().getAccount().getUsername());
-        datasource = new AccountListDatasource("data","Account.csv");
+        datasource = new AccountListDatasource();
         accountList = datasource.readData();
     }
     @FXML

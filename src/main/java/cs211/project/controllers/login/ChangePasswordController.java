@@ -28,16 +28,19 @@ public class ChangePasswordController {
     private void initialize(){
         warning.setText("");
         lastPage = (String) FXRouter.getData();
-        datasource = new AccountListDatasource("data","Account.csv");
+        if (lastPage == null) {
+            lastPage = ""; // Set a default value if it's null
+        }
+        datasource = new AccountListDatasource();
         accountList = datasource.readData();
     }
+
     @FXML
     private void onAdminButtonClick() throws IOException {
-        if (lastPage.equals("fromAdmin")) {
-            FXRouter.goTo("admin");
-        }
         if (lastPage.equals("fromPSC")){
             FXRouter.goTo("profileSetting");
+        }
+        else {FXRouter.goTo("admin");
         }
     }
     @FXML
