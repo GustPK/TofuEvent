@@ -41,7 +41,7 @@ public class RegisterController {
 
     @FXML
     private void initialize() {
-        datasource = new AccountListDatasource("data", "Account.csv");
+        datasource = new AccountListDatasource();
         accountList = datasource.readData();
 
         // ตั้งค่ารูปภาพเริ่มต้นสำหรับ imageCircle
