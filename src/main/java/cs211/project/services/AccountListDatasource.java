@@ -8,10 +8,13 @@ import java.nio.charset.StandardCharsets;
 
 public class AccountListDatasource implements Datasource<AccountList> {
 
-    private String directory;
+
     private String fileName;
-    public AccountListDatasource(String directory, String fileName) {
-        this.directory = directory;
+    private String directoryName;
+
+    public AccountListDatasource(String directoryName, String fileName) {
+        this.directoryName = directoryName;
+
         this.fileName = fileName;
         checkFileIsExisted();
     }
@@ -33,11 +36,14 @@ public class AccountListDatasource implements Datasource<AccountList> {
 
     @Override
     public AccountList readData() {
-        String filePath = directory + File.separator + fileName;
+
         BufferedReader buffer;
         FileInputStream fileInputStream ;
 
         AccountList accounts = new AccountList() ;
+
+        String filePath = directoryName + File.separator + fileName;
+
         File file = new File(filePath);
 
         try {
@@ -57,8 +63,9 @@ public class AccountListDatasource implements Datasource<AccountList> {
                 String userName = data[1].trim();
                 String password = data[2].trim();
                 String image = data[3].trim();
+                String status = data[4].trim();
 
-                accounts.addAccount((new Account(name,userName,password,image)));
+                accounts.addAccount((new Account(name,userName,password,image,status)));
 
             }
             buffer.close();
@@ -74,7 +81,6 @@ public class AccountListDatasource implements Datasource<AccountList> {
     public void writeData(AccountList data) {
         BufferedWriter buffer = null;
         FileOutputStream fileOutputStream;
-
         File file = new File(fileName);
 
         try {
@@ -89,7 +95,8 @@ public class AccountListDatasource implements Datasource<AccountList> {
                 String line = account.getName()+","
                             + account.getUsername()+","
                             + account.getPassword()+","
-                            + account.getImage();
+                            + account.getImage()+","
+                            + account.getStatus();
 
                 buffer.append(line);
                 buffer.append("\n");

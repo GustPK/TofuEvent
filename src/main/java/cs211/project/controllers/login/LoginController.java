@@ -36,27 +36,35 @@ public class LoginController {
     }
 
     @FXML
-    public void clickLoin() {
+    public void clickLoin() throws IOException {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
         String scene;
-        Account exist = accountsList.checkLogin(username,password);
-        if (exist != null){
-            System.out.println("Login: Success");
-            LoggedInAccount.getInstance().setAccount(exist);
-            try {
-                FXRouter.goTo("main",accountsList);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+
+        Account exist = accountsList.checkLogin(username, password);
+
+        if (exist != null) {
+            if (!exist.getStatus().equals("banned")) { // เพิ่มการตรวจสอบสถานะการแบน
+                System.out.println("Login: Success");
+                LoggedInAccount.getInstance().setAccount(exist);
+                FXRouter.goTo("main");
+                scene = "main";
+                try {
+                    FXRouter.goTo(scene, accountsList);
+                } catch (IOException e) {
+                    System.err.println("ไปที่หน้า main ไม่ได้" + e);
+                }
+            } else {
+                warning.setText("You got banned");
+                System.out.println("Login: User is banned");
+
             }
-
+        } else {
+            warning.setText("Username or password is wrong");
+            System.out.println("Login: Failed");
         }
-        else{
-            warning.setText("username or password is wrong");
-            System.out.println("Login: failed");
-        }
-
     }
+
 
     @FXML
     private void onDevelopersHyperlinkClick() throws IOException{

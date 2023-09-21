@@ -32,7 +32,9 @@ public class AdminController{
 
     @FXML
     public void initialize() {
-        datasource = new AccountListDatasource("data","fileName");
+
+        datasource = new AccountListDatasource("data", "Account.csv");
+
         accounts = datasource.readData();
 
         // Create columns
