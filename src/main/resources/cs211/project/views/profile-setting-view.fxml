@@ -30,8 +30,11 @@
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
                         </Label>
-                        <Label fx:id="userName" text="Harry Maguire">
+                        <Label fx:id="accountName" text="Harry Maguire">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -50,8 +53,11 @@
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
                         </Label>
-                        <Label fx:id="accountName" text="HarryMaGOAT5">
+                        <Label fx:id="username" text="HarryMaGOAT5">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -77,27 +83,29 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="520.0" prefWidth="360.0" styleClass="default-background-navy">
                <children>
-                  <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="200.0">
+                  <Label text="Setting" textFill="WHITE">
                      <VBox.margin>
-                        <Insets top="90.0" />
+                        <Insets top="70.0" />
                      </VBox.margin>
-                  </HBox>
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
                   <Button mnemonicParsing="false" styleClass="default-button-navy-white" text="change profile">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="18.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
                   </Button>
-                  <HBox prefHeight="36.0" prefWidth="360.0">
+                  <Button mnemonicParsing="false" onAction="#onChangePasswordButtonClick" styleClass="default-button-navy-white" text="change password">
                      <VBox.margin>
-                        <Insets />
+                        <Insets top="20.0" />
                      </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="50.0" prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-                  <Button mnemonicParsing="false" onAction="#onChangePasswordButtonClick" styleClass="default-button-navy-white" text="change password" />
+                     <font>
+                        <Font size="18.0" />
+                     </font></Button>
                </children>
             </VBox>
          </children>

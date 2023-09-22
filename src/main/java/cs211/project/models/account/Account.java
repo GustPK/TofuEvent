@@ -53,4 +53,8 @@ public class Account {
     public void setBanned(boolean banned) {
         this.banned = banned;
     }
+
+    public void setImage(String name) {
+        this.image = name;
+    }
 }
