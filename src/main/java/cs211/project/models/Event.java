@@ -1,4 +1,4 @@
-package cs211.project.model;
+package cs211.project.models;
 
 public class Event {
     private String name;

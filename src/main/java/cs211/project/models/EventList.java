@@ -1,6 +1,9 @@
-package cs211.project.model;
+package cs211.project.models;
 
-import java.lang.reflect.Array;
+import cs211.project.models.Event;
+import cs211.project.models.account.LoggedInAccount;
+
+import java.io.File;
 import java.util.ArrayList;
 
 public class EventList {
@@ -15,7 +18,8 @@ public class EventList {
     }
 
     public void addEvent(String name, String imgSrc){
-        String img = getClass().getResource("/images/"+imgSrc).toString();
-        eventList.add(new Event(name ,img));
+        File file = new File("data/images", imgSrc);
+        String path = "file:///" + file.getAbsolutePath();
+        eventList.add(new Event(name , path));
     }
 }

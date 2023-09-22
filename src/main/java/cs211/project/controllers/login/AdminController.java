@@ -1,23 +1,20 @@
 package cs211.project.controllers.login;
 
-import cs211.project.model.Account;
-import cs211.project.model.AccountList;
-import cs211.project.services.AccountListFileDatasource;
+import cs211.project.models.account.Account;
+import cs211.project.models.collections.AccountList;
+import cs211.project.services.AccountListDatasource;
 import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class AdminController implements Initializable {
+public class AdminController{
     @FXML
     private TableView<Account> AccoutsTableView;
     private Datasource<AccountList> datasource;
@@ -25,7 +22,7 @@ public class AdminController implements Initializable {
 
     @FXML
     private void onChangePasswordHyperlinkClick() throws IOException {
-        FXRouter.goTo("changePassword");
+        FXRouter.goTo("changePassword", "fromAdmin");
     }
 
     @FXML
@@ -33,9 +30,11 @@ public class AdminController implements Initializable {
         FXRouter.goTo("login");
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        datasource = new AccountListFileDatasource("data", "user-list.csv");
+    @FXML
+    public void initialize() {
+
+        datasource = new AccountListDatasource("data", "Account.csv");
+
         accounts = datasource.readData();
 
         // Create columns
@@ -43,15 +42,15 @@ public class AdminController implements Initializable {
         TableColumn<Account, String> passColumn = new TableColumn<>("Password");
 
         // Set cell value factories using getter methods
-        userColumn.setCellValueFactory(new PropertyValueFactory<>("user"));
-        passColumn.setCellValueFactory(new PropertyValueFactory<>("pass"));
+        userColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        passColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
 
         userColumn.setMinWidth(300);
         passColumn.setMinWidth(300);
         // Add columns to TableView
         AccoutsTableView.getColumns().addAll(userColumn, passColumn);
 
-        for (Account acc: accounts.getAdminList()) {
+        for (Account acc: accounts.getAccounts()) {
             AccoutsTableView.getItems().add(acc);
         }
 
@@ -64,7 +63,7 @@ public class AdminController implements Initializable {
         });
 
         // Use an ObservableList as the data source
-        ObservableList<Account> accountObservableList = FXCollections.observableArrayList(accounts.getAdminList());
+        ObservableList<Account> accountObservableList = FXCollections.observableArrayList(accounts.getAccounts());
 
         // Set the items of the TableView to the ObservableList
         AccoutsTableView.setItems(accountObservableList);

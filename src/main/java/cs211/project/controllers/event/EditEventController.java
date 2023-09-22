@@ -1,9 +1,8 @@
 package cs211.project.controllers.event;
 
-import cs211.project.models.event.Eva;
-import cs211.project.models.event.EvaList;
+import cs211.project.models.Event;
 import cs211.project.services.Datasource;
-import cs211.project.services.EvaDataSource;
+import cs211.project.services.EventListFileDatasource;
 import cs211.project.services.FXRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,24 +12,25 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
+import cs211.project.models.EventList;
 
 public class EditEventController {
 
-    @FXML private TableView<Eva> eventsTable;
+    @FXML private TableView<Event> eventsTable;
 
-    private EvaList eventsLists;
+    private EventList eventsLists;
 
-    private Datasource<EvaList> EventListDataSource;
+    private EventListFileDatasource EventListDataSource;
 
     @FXML
     public void initialize(){
-        EventListDataSource = new EvaDataSource();
+        EventListDataSource = new EventListFileDatasource("data", "EventList.csv");
         eventsLists = EventListDataSource.readData();
         showTable(eventsLists);
 
-        eventsTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Eva>() {
+        eventsTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Event>() {
             @Override
-            public void changed(ObservableValue<? extends Eva> oldValue, Eva event, Eva newValue) {
+            public void changed(ObservableValue<? extends Event> oldValue, Event event, Event newValue) {
                 if (newValue != null){
                     try{
                         FXRouter.goTo("manageInfo", newValue);
@@ -42,13 +42,13 @@ public class EditEventController {
         });
     }
 
-    private void showTable(EvaList eventsList){
+    private void showTable(EventList eventsList){
 
-        TableColumn<Eva, String > nameColumn = new TableColumn<>("Name");
+        TableColumn<Event, String > nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameColumn.setMinWidth(200);
 
-        TableColumn<Eva, String > dateColumn = new TableColumn<>("Date");
+        TableColumn<Event, String > dateColumn = new TableColumn<>("Date");
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         dateColumn.setMinWidth(200);
 
@@ -57,7 +57,7 @@ public class EditEventController {
 
         eventsTable.getItems().clear();
 
-        for(Eva event : eventsList.getEvents()){
+        for(Event event : eventsList.getEventList()){
             eventsTable.getItems().add(event);
 //            System.out.println(event.getName()+" "+event.getDate());
         }

@@ -1,32 +1,37 @@
 package cs211.project.controllers.main;
 
 import cs211.project.controllers.event.EventItemController;
-import cs211.project.model.Event;
-import cs211.project.model.EventList;
+import cs211.project.models.Event;
+import cs211.project.models.EventList;
+import cs211.project.models.account.LoggedInAccount;
+import cs211.project.models.collections.AccountList;
 import cs211.project.services.Datasource;
+import cs211.project.services.EventListFileDatasource;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import cs211.project.services.EventListFileDatasource ;
 
+import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class MainController {
 
     private Datasource<EventList> datasource;
     private EventList events;
     @FXML
     private Circle profilePic;
+    @FXML private Hyperlink nameLink;
+    private AccountList currentAccount;
     @FXML
     protected void onProfileButtonClick() throws IOException{
         FXRouter.goTo("profile");
@@ -34,7 +39,7 @@ public class MainController implements Initializable {
 
     @FXML
     private void onThisEventAsStaffButtonClick() throws IOException{
-        FXRouter.goTo("team");
+        FXRouter.goTo("myteam");
     }
 
     @FXML
@@ -61,9 +66,9 @@ public class MainController implements Initializable {
     @FXML
     private GridPane grid;
 
-    private List<Event> getData(){
-        List<Event> events = new ArrayList<>();
-        Event event;
+    private List<EventList> getData(){
+        List<EventList> events = new ArrayList<>();
+        EventList event;
 
 //        for(int i = 0; i < 20; i++){
 //            event = new Event();
@@ -73,9 +78,16 @@ public class MainController implements Initializable {
 //        }
         return events;
     }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        datasource = new EventListFileDatasource("data","event.csv");
+    @FXML
+    public void initialize() {
+        currentAccount = (AccountList) FXRouter.getData();
+        // read file outside project src
+        File file = new File("data/images", LoggedInAccount.getInstance().getAccount().getImage());
+        String path = "file:///" + file.getAbsolutePath();
+        Image image = new Image(path);
+        profilePic.setFill(new ImagePattern(image));
+        nameLink.setText(LoggedInAccount.getInstance().getAccount().getUsername());
+        datasource = new EventListFileDatasource("data", "EventList.csv");
         events = datasource.readData();
         int column = 0;
         int row = 0;

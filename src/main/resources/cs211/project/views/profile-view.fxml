@@ -29,7 +29,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onLogoutButtonClick" styleClass="default-button-navy-white" text="logout">
+            <Button mnemonicParsing="false" onAction="#onBackButtonClick" styleClass="default-button-navy-white" text="back">
                <font>
                   <Font size="18.0" />
                </font>
@@ -37,7 +37,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onBackButtonClick" styleClass="default-button-navy-white" text="back">
+            <Button mnemonicParsing="false" onAction="#onLogoutButtonClick" styleClass="default-button-navy-white" text="logout">
                <font>
                   <Font size="18.0" />
                </font>
@@ -66,10 +66,10 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="40.0" />
+                        <Insets left="80.0" />
                      </HBox.margin>
                   </Label>
-                  <Label text="Harry Maguire">
+                  <Label fx:id="accountName" text="Harry Maguire">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -79,7 +79,7 @@
                   </Label>
                </children>
                <VBox.margin>
-                  <Insets top="70.0" />
+                  <Insets top="100.0" />
                </VBox.margin>
             </HBox>
             <HBox prefHeight="50.0" prefWidth="600.0">
@@ -89,30 +89,10 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="40.0" />
+                        <Insets left="80.0" />
                      </HBox.margin>
                   </Label>
-                  <Label text="HarryMaGOAT5">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="30.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox prefHeight="50.0" prefWidth="200.0">
-               <children>
-                  <Label styleClass="default-label-lightnavy" text="              E-mail :" textFill="#ff8eff">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="40.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label text="harrymaguire5@gmail.com">
+                  <Label fx:id="username" text="HarryMaGOAT5">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

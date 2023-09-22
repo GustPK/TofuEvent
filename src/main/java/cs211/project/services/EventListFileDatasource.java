@@ -1,6 +1,6 @@
 package cs211.project.services;
 
-import cs211.project.model.EventList;
+import cs211.project.models.EventList;
 
 
 import java.io.*;
