@@ -1,16 +1,15 @@
 package cs211.project.services;
 
-import cs211.project.models.account.Account;
-import cs211.project.models.account.AccountList;
+import cs211.project.models.event.Event;
+import cs211.project.models.collections.EventList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-public class AccountDataSource implements Datasource<AccountList> {
+public class EventListDatasource implements Datasource<EventList> {
+    private String fileName = "data" + File.separator + "EventList.csv";
 
-    private String fileName = "data" + File.separator + "Account.csv";
-
-    public AccountDataSource() {
+    public EventListDatasource() {
         checkFileIsExisted();
     }
     private void checkFileIsExisted() {
@@ -28,20 +27,19 @@ public class AccountDataSource implements Datasource<AccountList> {
         }
     }
 
-
     @Override
-    public AccountList readData() {
+    public EventList readData() {
         BufferedReader buffer = null;
         FileInputStream fileInputStream = null;
 
-        AccountList accounts = new AccountList() ;
+        EventList events = new EventList() ;
         File file = new File(fileName);
 
         try {
             fileInputStream = new FileInputStream(file);
 
-        InputStreamReader inputStreamReader = new InputStreamReader(
-                fileInputStream,StandardCharsets.UTF_8);
+            InputStreamReader inputStreamReader = new InputStreamReader(
+                    fileInputStream, StandardCharsets.UTF_8);
 
             buffer = new BufferedReader(inputStreamReader);
             String line = "";
@@ -51,11 +49,11 @@ public class AccountDataSource implements Datasource<AccountList> {
                 String[] data = line.split(",");
 
                 String name = data[0].trim();
-                String userName = data[1].trim();
-                String password = data[2].trim();
+                String date = data[1].trim();
+                String image = getClass().getResource("/images/"
+                            +data[2].trim()).toString();
 
-                accounts.addAccount((new Account(name,userName,password)));
-
+                events.addEvent((new Event(name,date,image)));
             }
             buffer.close();
         }catch (FileNotFoundException e){
@@ -63,13 +61,13 @@ public class AccountDataSource implements Datasource<AccountList> {
         }catch (IOException e){
             throw new RuntimeException(e);
         }
-        return accounts;
+        return events;
     }
 
     @Override
-    public void writeData(AccountList data) {
+    public void writeData(EventList data) {
+
 
     }
-
 
 }

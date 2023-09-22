@@ -1,6 +1,6 @@
 .shadow{
-    -fx-effect:dropShadow(three-pass-box,rgb(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
-}
+                        -fx-effect:dropShadow(three-pass-box,rgb(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
+                    }
 .cursor-hand{
     -fx-cursor:hand;
 }
@@ -50,11 +50,18 @@
     -fx-cursor:hand;
 }
 
-<<<<<<< HEAD
-=======
 .default-button-lightnavy-navy{
     -fx-background-color:#808eae;
     -fx-text-fill:#2d3553;
     -fx-cursor:hand;
 }
->>>>>>> 092a5511df367ff686c48fd0b5060007cae0e0ff
+
+.red-text {
+    -fx-text-fill: red;
+}
+
+.green-text {
+    -fx-text-fill: green;
+}
+
+

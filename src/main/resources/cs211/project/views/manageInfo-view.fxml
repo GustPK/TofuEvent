@@ -24,7 +24,7 @@
          </font>
       </Label>
       <Pane layoutX="62.0" layoutY="155.0" prefHeight="3.0" prefWidth="60.0" style="-fx-background-color: #000000;" />
-      <Label layoutX="61.0" layoutY="204.0" text="Maximum of participants : ">
+      <Label layoutX="61.0" layoutY="210.0" text="Maximum of participants : ">
          <font>
             <Font size="15.0" />
          </font>
