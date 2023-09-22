@@ -1,16 +1,17 @@
 package cs211.project.services;
 
-import cs211.project.models.EventList;
-
+import cs211.project.models.CommentList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-public class EventListFileDatasource implements Datasource<EventList> {
+public class CommentListDatasource implements Datasource<CommentList>{
+
+
     private String directoryName;
     private String fileName;
 
-    public EventListFileDatasource(String directoryName, String fileName) {
+    public CommentListDatasource(String directoryName, String fileName) {
         this.directoryName = directoryName;
         this.fileName = fileName;
         checkFileIsExisted();
@@ -33,8 +34,8 @@ public class EventListFileDatasource implements Datasource<EventList> {
     }
 
     @Override
-    public EventList readData() {
-        EventList events = new EventList();
+    public CommentList readData() {
+        CommentList comments = new CommentList();
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
 
@@ -60,21 +61,22 @@ public class EventListFileDatasource implements Datasource<EventList> {
                 String[] data = line.split(",");
 
 
-                String name = data[0].trim();
-                String imgSrc = data[1].trim();
+                String teamName = data[0].trim();
+                String comment = data[1].trim();
+                String eventName = data[2].trim();
 
 
-                events.addEvent(name, imgSrc);
+                comments.addComment(teamName, comment, eventName);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        return events;
+        return comments;
     }
 
     @Override
-    public void writeData(EventList data) {
+    public void writeData(CommentList data) {
 
     }
 }

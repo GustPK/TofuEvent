@@ -1,8 +1,8 @@
 package cs211.project.controllers.main;
 
 import cs211.project.controllers.event.EventItemController;
-import cs211.project.model.Event;
-import cs211.project.model.EventList;
+import cs211.project.models.Event;
+import cs211.project.models.EventList;
 import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;

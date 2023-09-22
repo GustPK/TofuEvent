@@ -1,5 +1,7 @@
 package cs211.project.model;
 
+import cs211.project.models.Team;
+
 import java.util.ArrayList;
 
 public class TeamList {
@@ -10,14 +12,13 @@ public class TeamList {
         teams = new ArrayList<>();
     }
 
-    public void addNewTeam(String name) {
-        if (!name.equals("")) {
-            teams.add(new Team(name));
-        }
-    }
 
     public ArrayList<Team> getTeams() {
         return teams;
+    }
+
+    public void addTeam(String teamName, String eventName){
+        teams.add(new Team(teamName, eventName));
     }
 
 }

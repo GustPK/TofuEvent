@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="default-background-lightnavy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.team.TeamChatController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="default-background-lightnavy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.team.TeamController">
    <top>
       <Label styleClass="default-label-navy" text="Team" BorderPane.alignment="CENTER">
          <font>
@@ -26,7 +26,7 @@
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#clickBackToTeam" prefHeight="26.0" prefWidth="59.0" text="Back">
+            <Button mnemonicParsing="false" onAction="#clickBackToMain" prefHeight="26.0" prefWidth="59.0" text="Back">
                <HBox.margin>
                   <Insets left="80.0" top="30.0" />
                </HBox.margin>
@@ -37,16 +37,16 @@
    <center>
       <AnchorPane prefHeight="442.0" prefWidth="286.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView layoutX="33.0" layoutY="28.0" prefHeight="390.0" prefWidth="454.0">
+            <TableView fx:id="activityTableView" layoutX="33.0" layoutY="28.0" prefHeight="390.0" prefWidth="454.0">
               <columns>
                 <TableColumn prefWidth="91.20001220703125" text="เวลา" />
                 <TableColumn prefWidth="228.79998779296875" text="กิจกรรม" />
                   <TableColumn prefWidth="135.20001220703125" text="สถานะ" />
               </columns>
             </TableView>
-            <TextField layoutX="522.0" layoutY="391.0" prefHeight="26.0" prefWidth="192.0" />
-            <Button layoutX="726.0" layoutY="391.0" mnemonicParsing="false" text="Send" />
-            <ListView layoutX="511.0" layoutY="24.0" prefHeight="350.0" prefWidth="259.0" />
+            <TextField fx:id="commentField" layoutX="522.0" layoutY="391.0" prefHeight="26.0" prefWidth="192.0" />
+            <Button layoutX="726.0" layoutY="391.0" mnemonicParsing="false" onAction="#onClickComment" text="Send" />
+            <ListView fx:id="comment" layoutX="511.0" layoutY="24.0" prefHeight="350.0" prefWidth="259.0" />
          </children>
       </AnchorPane>
    </center>

@@ -1,6 +1,7 @@
-package cs211.project.model;
+package cs211.project.models;
 
-import java.lang.reflect.Array;
+import cs211.project.models.Event;
+
 import java.util.ArrayList;
 
 public class EventList {
