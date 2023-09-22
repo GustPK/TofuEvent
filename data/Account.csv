@@ -1,3 +1,4 @@
+name,userName,password,picture,baned,last-login
 Albert Einstein,einstein01,mcpower2,catss.jpg,not banned
 Isaac Newton,newton02,apple10,Isaac.jpg,banned
 Nathanont,nate,112,mymatenate.jpg,not banned
@@ -6,3 +7,4 @@ Kitasan Black,Kitachan,kita,Kita.jpg,not banned
 testname,testuser,test123,pfp.png,not banned
 Wonyoung,wonyoung,ive,wonyoung.png,not banned
 wasd,wasd,wasd,default-pfp.jpg,not banned
+

@@ -58,6 +58,7 @@ public class RegisterController {
 
     @FXML
     public void handleUploadButton(MouseEvent event) {
+        String username = usernameField.getText();
         FileChooser chooser = new FileChooser();
         // SET FILECHOOSER INITIAL DIRECTORY
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
@@ -73,6 +74,7 @@ public class RegisterController {
                 if (!destDir.exists()) destDir.mkdirs();
                 // RENAME FILE
                 String[] fileSplit = file.getName().split("\\.");
+                //เปลี่ยนชื่อรูปภาพ
                 String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
                         + fileSplit[fileSplit.length - 1];
                 Path target = FileSystems.getDefault().getPath(

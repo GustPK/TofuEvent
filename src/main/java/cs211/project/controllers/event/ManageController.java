@@ -14,5 +14,9 @@ public class ManageController {
     public void ClickToGoMoreMange()throws IOException {
         FXRouter.goTo("manageInfo");
     }
+    @FXML
+    public void ClickToGoManu()throws IOException {
+        FXRouter.goTo("main");
+    }
 
 }

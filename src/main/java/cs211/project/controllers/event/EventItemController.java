@@ -1,10 +1,13 @@
 package cs211.project.controllers.event;
 
+import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
+import java.io.File;
 
 public class EventItemController {
 
@@ -21,7 +24,10 @@ public class EventItemController {
     public void setData(Event event){
         this.event = event;
         eventNameLabel.setText(event.getName());
-        Image image = new Image(event.getImgEvent());
+//        Image image = new Image(event.getImgEvent());
+        File file = new File("data/images",event.getImgEvent());
+        String path = "file:///" + file.getAbsolutePath();
+        Image image = new Image(path);
         eventImg.setImage(image);
         eventDate.setText(event.getDate());
     }

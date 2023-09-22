@@ -1,5 +1,6 @@
 package cs211.project.services;
 
+import cs211.project.models.account.Account;
 import cs211.project.models.event.Event;
 import cs211.project.models.collections.EventList;
 
@@ -50,8 +51,7 @@ public class EventListDatasource implements Datasource<EventList> {
 
                 String name = data[0].trim();
                 String date = data[1].trim();
-                String image = getClass().getResource("/images/"
-                            +data[2].trim()).toString();
+                String image = data[2].trim();
 
                 events.addEvent((new Event(name,date,image)));
             }
@@ -66,7 +66,33 @@ public class EventListDatasource implements Datasource<EventList> {
 
     @Override
     public void writeData(EventList data) {
+        BufferedWriter buffer = null;
+        FileOutputStream fileOutputStream;
+        File file = new File(fileName);
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
+                    fileOutputStream,StandardCharsets.UTF_8);
+            buffer = new BufferedWriter(outputStreamWriter);
 
+            for (Event event : data.getEvents()){
+                String line = event.getName()+","
+                        + event.getDate()+","
+                        + event.getImgEvent();
+
+                buffer.append(line);
+                buffer.append("\n");
+            }
+    }catch (IOException e){
+            throw new RuntimeException(e);
+        } finally {
+            try{
+                buffer.flush();
+                buffer.close();
+            }catch (IOException e){
+                throw new RuntimeException(e);
+            }
+        }
 
     }
 
