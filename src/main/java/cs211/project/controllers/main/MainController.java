@@ -1,19 +1,17 @@
 package cs211.project.controllers.main;
 
 import cs211.project.controllers.event.EventItemController;
+import cs211.project.models.Event;
+import cs211.project.models.EventList;
 import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.AccountList;
-import cs211.project.models.collections.EventList;
-import cs211.project.models.event.Event;
 import cs211.project.services.Datasource;
-import cs211.project.services.EventListDatasource;
+import cs211.project.services.EventListFileDatasource;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -41,7 +39,7 @@ public class MainController {
 
     @FXML
     private void onThisEventAsStaffButtonClick() throws IOException{
-        FXRouter.goTo("team");
+        FXRouter.goTo("myteam");
     }
 
     @FXML
@@ -89,13 +87,13 @@ public class MainController {
         Image image = new Image(path);
         profilePic.setFill(new ImagePattern(image));
         nameLink.setText(LoggedInAccount.getInstance().getAccount().getUsername());
-        datasource = new EventListDatasource();
+        datasource = new EventListFileDatasource("data", "EventList.csv");
         events = datasource.readData();
         int column = 0;
         int row = 0;
 
         try {
-            for (Event event: events.getEvents()) {
+            for (Event event: events.getEventList()) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();

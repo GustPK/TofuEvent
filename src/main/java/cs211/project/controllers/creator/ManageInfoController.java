@@ -1,7 +1,7 @@
 package cs211.project.controllers.creator;
 
 import cs211.project.models.collections.AccountList;
-import cs211.project.models.event.Event;
+import cs211.project.models.Event;
 import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
@@ -31,7 +31,7 @@ public class ManageInfoController {
 
         Event nameEvent = (Event) FXRouter.getData();
         nameEva.setText(nameEvent.getName());
-        dateEva.setText(nameEvent.getDate());
+//        dateEva.setText(nameEvent.getDate());
 
     }
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="default-background-lightnavy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.team.MyTeamController">
+   <top>
+      <Label styleClass="default-label-navy" stylesheets="@../../../values/style.css" text="My Team" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets top="40.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="teamListView" layoutX="76.0" layoutY="18.0" prefHeight="390.0" prefWidth="647.0" />
+            <Button layoutX="90.0" layoutY="442.0" mnemonicParsing="false" onAction="#clickBackToMain" prefHeight="26.0" prefWidth="59.0" text="Back" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

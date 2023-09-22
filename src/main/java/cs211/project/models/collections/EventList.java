@@ -1,6 +1,6 @@
 package cs211.project.models.collections;
 
-import cs211.project.models.event.Event;
+import cs211.project.models.Event;
 
 import java.util.ArrayList;
 
