@@ -31,7 +31,7 @@ public class ManageInfoController {
 
         Event nameEvent = (Event) FXRouter.getData();
         nameEva.setText(nameEvent.getName());
-        dateEva.setText(nameEvent.getDate());
+//        dateEva.setText(nameEvent.getDate());
 
     }
 

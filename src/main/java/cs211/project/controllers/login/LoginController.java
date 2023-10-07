@@ -40,6 +40,7 @@ public class LoginController {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
         String scene;
+
         Account exist = accountsList.checkLogin(username, password);
 
         if (exist != null) {
@@ -56,6 +57,7 @@ public class LoginController {
             } else {
                 warning.setText("You got banned");
                 System.out.println("Login: User is banned");
+
             }
         } else {
             warning.setText("Username or password is wrong");

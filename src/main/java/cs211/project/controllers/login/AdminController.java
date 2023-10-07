@@ -5,18 +5,19 @@ import cs211.project.models.collections.AccountList;
 import cs211.project.services.AccountListDatasource;
 import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+
 
 import java.io.IOException;
 
 public class AdminController {
     @FXML
-    private TableView<Account> AccoutsTableView;
+    private GridPane gridPane; // Reference to the GridPane in the FXML
+
     private Datasource<AccountList> datasource;
     private AccountList accounts;
 
@@ -31,43 +32,42 @@ public class AdminController {
     }
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         datasource = new AccountListDatasource();
         accounts = datasource.readData();
+        int column = 0;
+        int row = 0;
 
-        // Create columns
-        TableColumn<Account, String> userColumn = new TableColumn<>("User");
-        TableColumn<Account, String> passColumn = new TableColumn<>("Password");
-        TableColumn<Account, String> statusColumn = new TableColumn<>("Status"); // เพิ่มคอลัมน์ "Status"
+        try {
+            for (Account account : accounts.getAccounts()) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/userlist-item-view.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
-        // Set cell value factories using getter methods
-        userColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        passColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
-        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status")); // เซ็ตคอลัมน์ "Status" ให้ใช้ getter ของ status
+                UserListItemController userListItemController = fxmlLoader.getController();
+                userListItemController.setData(account);
 
-        userColumn.setMinWidth(200);
-        passColumn.setMinWidth(200);
-        statusColumn.setMinWidth(200); // ปรับขนาดของคอลัมน์ "Status"
+                // Add an event handler to the AnchorPane to navigate to the "ban" page
+                anchorPane.setOnMouseClicked(event -> {
+                    try {
+                        goToBanPage(account); // Create a method to navigate to the "ban" page
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
 
-        // Add columns to TableView
-        AccoutsTableView.getColumns().addAll(userColumn, passColumn, statusColumn);
-
-        for (Account acc : accounts.getAccounts()) {
-            AccoutsTableView.getItems().add(acc);
-        }
-
-        AccoutsTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            try {
-                FXRouter.goTo("ban", newValue);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                gridPane.add(anchorPane, column, row++);
+                GridPane.setMargin(anchorPane, new Insets(10));
             }
-        });
-
-        // Use an ObservableList as the data source
-        ObservableList<Account> accountObservableList = FXCollections.observableArrayList(accounts.getAccounts());
-
-        // Set the items of the TableView to the ObservableList
-        AccoutsTableView.setItems(accountObservableList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    private void goToBanPage(Account account) throws IOException {
+        // Pass the account information to the "ban" page controller if needed
+        // You can use FXRouter to navigate to the "ban" page
+        FXRouter.goTo("ban", account);
+    }
+
 }

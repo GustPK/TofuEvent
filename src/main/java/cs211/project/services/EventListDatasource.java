@@ -52,7 +52,6 @@ public class EventListDatasource implements Datasource<EventList> {
                 String name = data[0].trim();
                 String date = data[1].trim();
                 String image = data[2].trim();
-
                 events.addEvent((new Event(name,date,image)));
             }
             buffer.close();

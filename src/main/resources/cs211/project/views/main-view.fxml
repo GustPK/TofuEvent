@@ -67,7 +67,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" styleClass="default-button-navy-white" text="Join this event">
+                  <Button alignment="CENTER" mnemonicParsing="false" styleClass="default-button-navy-white" text="Join this event" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -75,7 +75,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onThisEventAsStaffButtonClick" prefHeight="39.0" prefWidth="214.0" styleClass="default-button-navy-white" text="Join this event as staff">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onThisEventAsStaffButtonClick" prefHeight="40.0" prefWidth="102.0" styleClass="default-button-navy-white" text="My team">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -83,7 +83,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onOngoingEventsButtonClick" prefHeight="39.0" prefWidth="173.0" styleClass="default-button-navy-white" text="Ongoing events">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onOngoingEventsButtonClick" prefHeight="40.0" prefWidth="166.0" styleClass="default-button-navy-white" text="Ongoing events">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

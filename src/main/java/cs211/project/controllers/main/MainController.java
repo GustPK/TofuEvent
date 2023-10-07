@@ -11,9 +11,7 @@ import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -41,7 +39,7 @@ public class MainController {
 
     @FXML
     private void onThisEventAsStaffButtonClick() throws IOException{
-        FXRouter.goTo("team");
+        FXRouter.goTo("myteam");
     }
 
     @FXML
@@ -75,7 +73,7 @@ public class MainController {
 //        for(int i = 0; i < 20; i++){
 //            event = new Event();
 //            event.setName("CR7 Meeting");
-//            event.setImgSrc(getClass().getResource("/images/ronaldo.png").toString());
+//            event.setImgSrc(getClass().getResource("/images/ronaldoi.png").toString());
 //            events.add(event);
 //        }
         return events;

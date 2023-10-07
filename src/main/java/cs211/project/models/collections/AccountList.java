@@ -32,4 +32,19 @@ public class AccountList {
 
         return null;
     }
+    public Account findByAccountName(String accountName){
+        for (Account account: accounts){
+            if (account.getUsername().equals(accountName)) {
+                return account;
+            }
+        }
+        return null;
+    }
+    public Account findByUsername(String username){
+        for (Account account: accounts){
+            if (account.getUsername().equals(username))
+                    return account;
+        }
+        return null;
+    }
 }

@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
         FXRouter.when("developer", resourcesPath + "dev-view.fxml");
         FXRouter.when("main", resourcesPath + "main-view.fxml");
         FXRouter.when("profile", resourcesPath + "profile-view.fxml");
-        FXRouter.when("manage", resourcesPath + "Manage-view.fxml");
+        FXRouter.when("manage", resourcesPath + "manage.fxml");
         FXRouter.when("staffSchedule", resourcesPath + "staffSchedule-view.fxml");
         FXRouter.when("staffMange", resourcesPath + "staffMange-view.fxml");
         FXRouter.when("manageInfo", resourcesPath + "manageInfo-view.fxml");
@@ -34,12 +34,10 @@ public class HelloApplication extends Application {
         FXRouter.when("team", resourcesPath + "team-view.fxml");
         FXRouter.when("teamChat", resourcesPath + "teamchat-view.fxml");
         FXRouter.when("profileSetting", resourcesPath + "profile-setting-view.fxml");
+        FXRouter.when("myteam", resourcesPath + "myteam-view.fxml");
         FXRouter.when("eventInfo", resourcesPath + "team-view.fxml");
         FXRouter.when("ban", resourcesPath + "ban-view.fxml");
-
         FXRouter.when("creatorEventList", resourcesPath + "creatorEventList.fxml");
-
-
         FXRouter.when("joinHistory", resourcesPath + "join-history-view.fxml");
 
     }

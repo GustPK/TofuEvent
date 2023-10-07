@@ -29,7 +29,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onLogoutButtonClick" styleClass="default-button-navy-white" text="logout">
+            <Button mnemonicParsing="false" onAction="#onBackButtonClick" styleClass="default-button-navy-white" text="back">
                <font>
                   <Font size="18.0" />
                </font>
@@ -37,7 +37,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onBackButtonClick" styleClass="default-button-navy-white" text="back">
+            <Button mnemonicParsing="false" onAction="#onLogoutButtonClick" styleClass="default-button-navy-white" text="logout">
                <font>
                   <Font size="18.0" />
                </font>

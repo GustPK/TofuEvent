@@ -17,7 +17,7 @@
                <right>
                   <AnchorPane prefHeight="489.0" prefWidth="292.0" style="-fx-background-color: #F0F8FF;" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="Login" layoutX="70.0" layoutY="280.0" mnemonicParsing="false" onAction="#clickLoin" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #8891FD;" styleClass="default-button-cursor-hand" text="Log in">
+                        <Button fx:id="Login" layoutX="70.0" layoutY="280.0" mnemonicParsing="false" onAction="#clickLoin" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #8891FD;" styleClass="cursor-hand" text="Log in">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>

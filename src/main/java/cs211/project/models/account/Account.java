@@ -26,7 +26,13 @@ public class Account {
 
     public String getPassword() { return password; }
 
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getStatus() { return status; }
+
 
     public void setPassword(String password) {
         this.password = password;
@@ -46,5 +52,9 @@ public class Account {
 
     public void setBanned(boolean banned) {
         this.banned = banned;
+    }
+
+    public void setImage(String name) {
+        this.image = name;
     }
 }
