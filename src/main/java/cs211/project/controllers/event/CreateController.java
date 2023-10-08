@@ -26,6 +26,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -107,17 +108,18 @@ public class CreateController {
         String name = nameField.getText();
         LocalDate selectedDate = datePicker.getValue();
         String dateString = selectedDate.format(formatter);
-;
+        ;
         // ตั้งค่าค่า status เป็น "not banned" และ imgSrc เป็น "default-pfp.jpg" เมื่อไม่มีการอัปโหลดรูปภาพ
         if (imgSrc == null || imgSrc.isEmpty()) {
             imgSrc = "default-pfp.jpg"; // รูปภาพ default-pfp.jpg จะต้องอยู่ในโฟลเดอร์ data/images
         }
 
 
-            eventList.addEvent(new Event(LoggedInAccount.getInstance().getAccount().getUsername(), name,dateString,imgSrc));
-            datasource.writeData(eventList);
-            int lastIndex = eventList.getEvents().size()-1;
-            FXRouter.goTo("manageInfo",eventList.getEvents().get(lastIndex));
+        eventList.addEvent(new Event(LoggedInAccount.getInstance().getAccount().getUsername(), name,dateString,imgSrc));
+        datasource.writeData(eventList);
+        int lastIndex = eventList.getEvents().size()-1;
+        FXRouter.goTo("manageInfo",eventList.getEvents().get(lastIndex));
 
     }
+
 }

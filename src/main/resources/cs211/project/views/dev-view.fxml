@@ -16,21 +16,21 @@
       </Label>
       <ImageView fx:id="PImageView" fitHeight="150.0" fitWidth="150.0" layoutX="41.0" layoutY="179.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../../../images/P1x1.jpg" />
+            <Image url="@../../../../../../data/images/P1x1.jpg" />
          </image></ImageView>
       <ImageView fx:id="BImageView" fitHeight="150.0" fitWidth="150.0" layoutX="232.0" layoutY="179.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../../../images/B1x1.jpg" />
+            <Image url="@../../../../../../data/images/B1x1.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="GImageView" fitHeight="150.0" fitWidth="150.0" layoutX="421.0" layoutY="179.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../../../images/G1x1.jpg" />
+            <Image url="@../../../../../../data/images/G1x1.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="NImageView" fitHeight="150.0" fitWidth="150.0" layoutX="610.0" layoutY="179.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../../../images/N1x1.jpg" />
+            <Image url="@../../../../../../data/images/N1x1.jpg" />
          </image>
       </ImageView>
       <Label layoutX="258.0" layoutY="351.0" styleClass="fill-text-color" text="นาย ภูเบศ สิริเมธาวุฒิ" />
