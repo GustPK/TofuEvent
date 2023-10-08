@@ -1,5 +1,7 @@
 package cs211.project.controllers.event;
 
+import cs211.project.models.account.LoggedInAccount;
+import cs211.project.models.collections.AccountList;
 import cs211.project.models.collections.EventList;
 import cs211.project.models.event.Event;
 import cs211.project.services.Datasource;
@@ -25,6 +27,7 @@ import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class CreateController {
@@ -99,6 +102,7 @@ public class CreateController {
     }
     @FXML
     public void clickSubmit() throws IOException {
+        AccountList currentAccount = (AccountList) FXRouter.getData();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String name = nameField.getText();
         LocalDate selectedDate = datePicker.getValue();
@@ -110,7 +114,7 @@ public class CreateController {
         }
 
 
-            eventList.addEvent(new Event(name,dateString,imgSrc));
+            eventList.addEvent(new Event(LoggedInAccount.getInstance().getAccount().getUsername(), name,dateString,imgSrc));
             datasource.writeData(eventList);
             int lastIndex = eventList.getEvents().size()-1;
             FXRouter.goTo("manageInfo",eventList.getEvents().get(lastIndex));

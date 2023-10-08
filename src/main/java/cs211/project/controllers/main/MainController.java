@@ -1,6 +1,7 @@
 package cs211.project.controllers.main;
 
 import cs211.project.controllers.event.EventItemController;
+import cs211.project.models.account.Account;
 import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.AccountList;
 import cs211.project.models.collections.EventList;
@@ -31,7 +32,7 @@ public class MainController {
     @FXML
     private Circle profilePic;
     @FXML private Hyperlink nameLink;
-    private AccountList currentAccount;
+    private Account currentAccount;
     @FXML
     protected void onProfileButtonClick() throws IOException{
         FXRouter.goTo("profile");
@@ -58,7 +59,8 @@ public class MainController {
     }
     @FXML
     private void goToEditEvent() throws IOException{
-        FXRouter.goTo("creatorEventList");
+        FXRouter.goTo("creatorEventList",currentAccount);
+
     }
 
     @FXML
@@ -80,7 +82,7 @@ public class MainController {
     }
     @FXML
     public void initialize() {
-        currentAccount = (AccountList) FXRouter.getData();
+//        currentAccount = (Account) FXRouter.getData();
         // read file outside project src
         File file = new File("data/images", LoggedInAccount.getInstance().getAccount().getImage());
         String path = "file:///" + file.getAbsolutePath();

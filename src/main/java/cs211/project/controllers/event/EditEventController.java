@@ -1,5 +1,8 @@
 package cs211.project.controllers.event;
 
+import cs211.project.controllers.login.UserListItemController;
+import cs211.project.models.account.Account;
+import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.event.Event;
 import cs211.project.models.collections.EventList;
 import cs211.project.services.Datasource;
@@ -8,59 +11,60 @@ import cs211.project.services.FXRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 
 public class EditEventController {
 
-    @FXML private TableView<Event> eventsTable;
 
     private EventList eventsLists;
 
     private Datasource<EventList> EventListDataSource;
+    @FXML
+    private GridPane grid;
+    @FXML
+    Label text;
 
     @FXML
-    public void initialize(){
+    public void initialize() throws IOException {
+        text.setText("qweqweqwe\nertreterter\nretert");
         EventListDataSource = new EventListDatasource();
         eventsLists = EventListDataSource.readData();
-        showTable(eventsLists);
+        int column = 1;
+        int row = 0;
 
-        eventsTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Event>() {
-            @Override
-            public void changed(ObservableValue<? extends Event> oldValue, Event event, Event newValue) {
-                if (newValue != null){
-                    try{
-                        FXRouter.goTo("manageInfo", newValue);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+        try {
+            for (Event event : eventsLists.getEvents()) {
+                if (LoggedInAccount.getInstance().getAccount().getUsername().equals(event.getOrganizer())) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
+                    AnchorPane anchorPane = fxmlLoader.load();
+
+                    EventItemController eventItemController = fxmlLoader.getController();
+                    eventItemController.setData(event);
+
+                    anchorPane.setOnMouseClicked(events -> {
+                        try {
+                            FXRouter.goTo("manage", event);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+                    grid.add(anchorPane, column, row++);
+                    GridPane.setMargin(anchorPane, new Insets(10));
                 }
             }
-        });
-    }
-
-    private void showTable(EventList eventsList){
-
-        TableColumn<Event, String > nameColumn = new TableColumn<>("Name");
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        nameColumn.setMinWidth(200);
-
-        TableColumn<Event, String > dateColumn = new TableColumn<>("Date");
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        dateColumn.setMinWidth(200);
-
-        eventsTable.getColumns().clear();
-        eventsTable.getColumns().addAll(nameColumn,dateColumn);
-
-        eventsTable.getItems().clear();
-
-        for(Event event : eventsList.getEvents()){
-            eventsTable.getItems().add(event);
-//            System.out.println(event.getName()+" "+event.getDate());
+            } catch(IOException e){
+                e.printStackTrace();
+            }
         }
     }
-
-}

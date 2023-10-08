@@ -29,7 +29,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ScrollPane layoutX="150.0" layoutY="1.0" prefHeight="450.0" prefWidth="500.0">
+                  <ScrollPane layoutX="34.0" layoutY="1.0" prefHeight="450.0" prefWidth="742.0">
                      <content>
                         <GridPane fx:id="gridPane" prefHeight="10.0" prefWidth="0.0">
                            <columnConstraints>

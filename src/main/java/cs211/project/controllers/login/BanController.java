@@ -20,18 +20,18 @@ public class BanController {
     @FXML private Label usernameLabel;
     @FXML private Label passwordLabel;
     @FXML private Label statusLabel;
-    private Account acc;
+    private Account account;
     @FXML
     private Circle profilePic;
 
     @FXML
     private void initialize() {
-        acc = (Account) FXRouter.getData();
-        usernameLabel.setText(acc.getName());
-        passwordLabel.setText(acc.getPassword());
-        statusLabel.setText(acc.getStatus());
+        account = (Account) FXRouter.getData();
+        usernameLabel.setText(account.getName());
+        passwordLabel.setText(account.getPassword());
+        statusLabel.setText(account.getStatus());
 
-        String imagePath = "data/images/" + acc.getImage();
+        String imagePath = "data/images/" + account.getImage();
         File imageFile = new File(imagePath);
         Image profileImage = new Image(imageFile.toURI().toString());
         profilePic.setFill(new ImagePattern(profileImage));
@@ -44,7 +44,7 @@ public class BanController {
 
     @FXML
     private void onBan() {
-        String username = acc.getName();
+        String username = account.getName();
         String confirmTitle = "Confirm Ban";
         String confirmHeaderText = "Ban user";
         String confirmMessage = "Are you sure you want to ban the " + username + "?"; // ข้อความยืนยัน
@@ -59,7 +59,7 @@ public class BanController {
         // ตรวจสอบผลลัพธ์จากการคลิกปุ่มใน Confirm Alert
         if (result.isPresent() && result.get() == ButtonType.OK) {
             // ถ้าผู้ใช้กด OK
-            if (acc.getStatus().equals("not banned")) {
+            if (account.getStatus().equals("not banned")) {
                 updateAccountStatus("banned");
                 String alertTitle = "Ban";
                 String alertHeaderText = "Ban user";
@@ -86,7 +86,7 @@ public class BanController {
 
     @FXML
     private void onUnban() {
-        String username = acc.getName();
+        String username = account.getName();
         String confirmTitle = "Confirm Unban";
         String confirmHeaderText = "Unban user";
         String confirmMessage = "Are you sure you want to unban the " + username + "?"; // ข้อความยืนยัน
@@ -100,7 +100,7 @@ public class BanController {
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
             // ถ้าผู้ใช้กด OK
-            if (acc.getStatus().equals("banned")) {
+            if (account.getStatus().equals("banned")) {
                 updateAccountStatus("not banned");
                 String alertTitle = "Unban";
                 String alertHeaderText = "Unban user";
@@ -127,14 +127,14 @@ public class BanController {
 
     private void updateAccountStatus(String newStatus) {
         // Set the new status
-        acc.setStatus(newStatus);
+        account.setStatus(newStatus);
 
         // Load the account list from the CSV file
         AccountList accountList = loadAccountListFromFile();
 
         // Find and update the account in the list
         for (Account account : accountList.getAccounts()) {
-            if (account.getUsername().equals(acc.getUsername())) {
+            if (account.getUsername().equals(this.account.getUsername())) {
                 account.setStatus(newStatus);
                 break; // Assuming usernames are unique, exit the loop once found
             }

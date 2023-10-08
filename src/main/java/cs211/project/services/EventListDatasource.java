@@ -49,10 +49,12 @@ public class EventListDatasource implements Datasource<EventList> {
                 if (line.equals("")) continue;
                 String[] data = line.split(",");
 
-                String name = data[0].trim();
-                String date = data[1].trim();
-                String image = data[2].trim();
-                events.addEvent((new Event(name,date,image)));
+                String organizer = data[0].trim();
+                String name = data[1].trim();
+                String date = data[2].trim();
+                String image = data[3].trim();
+
+                events.addEvent((new Event(organizer,name,date,image)));
             }
             buffer.close();
         }catch (FileNotFoundException e){
@@ -75,7 +77,8 @@ public class EventListDatasource implements Datasource<EventList> {
             buffer = new BufferedWriter(outputStreamWriter);
 
             for (Event event : data.getEvents()){
-                String line = event.getName()+","
+                String line = event.getOrganizer()+","
+                        + event.getName()+","
                         + event.getDate()+","
                         + event.getImgEvent();
 

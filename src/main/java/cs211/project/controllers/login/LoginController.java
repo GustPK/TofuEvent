@@ -46,11 +46,11 @@ public class LoginController {
         if (exist != null) {
             if (!exist.getStatus().equals("banned")) { // เพิ่มการตรวจสอบสถานะการแบน
                 System.out.println("Login: Success");
-                LoggedInAccount.getInstance().setAccount(exist);
+                LoggedInAccount.getInstance().setAccount(exist);//curr
                 FXRouter.goTo("main");
                 scene = "main";
                 try {
-                    FXRouter.goTo(scene, accountsList);
+                    FXRouter.goTo(scene, accountsList.getAccounts());
                 } catch (IOException e) {
                     System.err.println("ไปที่หน้า main ไม่ได้" + e);
                 }
