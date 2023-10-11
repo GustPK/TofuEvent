@@ -5,7 +5,10 @@ import cs211.project.models.ScheduleList;
 import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.AccountList;
 import cs211.project.models.event.Event;
+import cs211.project.services.Datasource;
+import cs211.project.services.EventListDatasource;
 import cs211.project.services.FXRouter;
+import cs211.project.services.ScheduleFileDatasource;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -34,9 +37,13 @@ public class CreateParticipantsController {
     private Spinner<Integer> minuteSpinner;
     private Event event;
     private ScheduleList scheduleList = new ScheduleList();
+    private Datasource<ScheduleList> datasource;
+    private ScheduleList scheduleLists;
 
     @FXML
     private void initialize() {
+        datasource = new ScheduleFileDatasource("data", "schedule.csv");
+
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();
 
@@ -129,4 +136,20 @@ public class CreateParticipantsController {
 
         scheduleView.getItems().setAll(sortedList);
     }
+    @FXML
+    private void clickNext() throws IOException {
+        scheduleList = datasource.readData();
+        // Create a new data structure to store the data from the TableView
+        List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
+
+        // Append the data from the TableView to the 'scheduleList' variable
+        scheduleList.getActivityList().addAll(dataFromTableView);
+
+        // Write the data to your datasource if needed
+        datasource.writeData(scheduleList);
+
+        // Redirect to the "main" view or perform other actions
+        FXRouter.goTo("main");
+    }
+
 }
