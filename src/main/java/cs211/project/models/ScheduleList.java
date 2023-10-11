@@ -9,8 +9,8 @@ public class ScheduleList {
         scheduleList = new ArrayList<>();
     }
 
-    public void addActivity(String teamName, String time, String activity, String eventName) {
-        scheduleList.add(new Schedule(teamName, time, activity, eventName));
+    public void addActivity(String eventName, String teamName, String activity, String time, String date) {
+        scheduleList.add(new Schedule(eventName, teamName, activity, time, date));
     }
 
     public Schedule findActivityByTeamName(String teamName) {

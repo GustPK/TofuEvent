@@ -4,9 +4,9 @@ public class Team {
     private String teamName;
     private String eventName;
 
-    public Team(String teamName, String eventName) {
-        this.teamName = teamName;
+    public Team(String eventName, String teamName) {
         this.eventName = eventName;
+        this.teamName = teamName;
     }
 
     public String getTeamName() {

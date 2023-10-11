@@ -27,13 +27,8 @@ public class TeamController {
     private TextField commentField;
 
     @FXML
-    public void clickBackToTeam() throws IOException {
-        FXRouter.goTo("team");
-    }
-
-    @FXML
-    public void clickBackToMain() throws IOException {
-        FXRouter.goTo("main");
+    public void clickBackToMyTeam() throws IOException {
+        FXRouter.goTo("myteam");
     }
 
     @FXML

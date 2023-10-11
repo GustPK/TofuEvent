@@ -90,6 +90,11 @@
                </image>
             </ImageView>
             <Label layoutX="45.0" layoutY="46.0" text="Label" textFill="WHITE" />
+            <ImageView fitHeight="19.0" fitWidth="17.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../data/images/clock.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Label layoutX="131.0" layoutY="340.0" text="Description">

@@ -33,7 +33,6 @@ public class Account {
 
     public String getStatus() { return status; }
 
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -44,14 +43,6 @@ public class Account {
 
     public String getImage() {
         return image;
-    }
-
-    public boolean isBanned() {
-        return banned;
-    }
-
-    public void setBanned(boolean banned) {
-        this.banned = banned;
     }
 
     public void setImage(String name) {

@@ -1,16 +1,18 @@
 package cs211.project.models;
 
 public class Schedule {
-    private String teamName;
+    private String eventName;
     private String time;
     private String activity;
-    private String eventName;
+    private String teamName;
+    private String date;
 
-    public Schedule(String teamName, String time, String activity, String eventName) {
-        this.teamName = teamName;
-        this.time = time;
-        this.activity = activity;
+    public Schedule(String eventName, String teamName, String activity, String time, String date) {
         this.eventName = eventName;
+        this.teamName = teamName;
+        this.activity = activity;
+        this.time = time;
+        this.date = date;
     }
 
     public String getTeamName() {
@@ -20,6 +22,9 @@ public class Schedule {
     public String getTime() {
         return time;
     }
+    public String getDate() {
+        return date;
+    }
 
     public String getActivity() {
         return activity;
@@ -27,9 +32,5 @@ public class Schedule {
 
     public String getEventName() {
         return eventName;
-    }
-    @Override
-    public String toString() {
-        return teamName+" "+time+" "+activity;
     }
 }

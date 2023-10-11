@@ -59,13 +59,13 @@ public class ScheduleFileDatasource implements Datasource<ScheduleList> {
 
                 String[] data = line.split(",");
 
-
-                String teamName = data[0].trim();
-                String time = data[1].trim();
+                String eventName = data[0].trim();
+                String teamName = data[1].trim();
                 String activity = data[2].trim();
-                String eventName = data[3].trim();
+                String time = data[3].trim();
+                String date = data[4].trim();
 
-                scheduleList.addActivity(teamName, time, activity, eventName);
+                scheduleList.addActivity(eventName, teamName, activity, time, date);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -78,7 +78,7 @@ public class ScheduleFileDatasource implements Datasource<ScheduleList> {
     public void writeData(ScheduleList data) {
         BufferedWriter buffer = null;
         FileOutputStream fileOutputStream;
-        File file = new File(fileName);
+        File file = new File("data" + File.separator + "schedule.csv");
         try {
             fileOutputStream = new FileOutputStream(file);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(

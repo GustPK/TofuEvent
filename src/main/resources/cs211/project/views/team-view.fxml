@@ -26,7 +26,7 @@
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#clickBackToMain" prefHeight="26.0" prefWidth="59.0" text="Back">
+            <Button mnemonicParsing="false" onAction="#clickBackToMyTeam" prefHeight="26.0" prefWidth="59.0" text="Back">
                <HBox.margin>
                   <Insets left="80.0" top="30.0" />
                </HBox.margin>
