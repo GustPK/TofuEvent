@@ -1,16 +1,17 @@
 package cs211.project.services;
 
-import cs211.project.models.account.Account;
-import cs211.project.models.event.Event;
 import cs211.project.models.collections.EventList;
+import cs211.project.models.collections.ParticipantList;
+import cs211.project.models.event.Event;
+import cs211.project.models.event.Participant;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-public class EventListDatasource implements Datasource<EventList> {
-    private String fileName = "data" + File.separator + "EventList.csv";
+public class ParticipantListDatasource implements Datasource<ParticipantList> {
+    private String fileName = "data" + File.separator + "Participant.csv";
 
-    public EventListDatasource() {
+    public ParticipantListDatasource() {
         checkFileIsExisted();
     }
     private void checkFileIsExisted() {
@@ -27,13 +28,12 @@ public class EventListDatasource implements Datasource<EventList> {
             }
         }
     }
-
     @Override
-    public EventList readData() {
+    public ParticipantList readData() {
         BufferedReader buffer = null;
         FileInputStream fileInputStream = null;
 
-        EventList events = new EventList() ;
+        ParticipantList participantLists = new ParticipantList();
         File file = new File(fileName);
 
         try {
@@ -49,18 +49,11 @@ public class EventListDatasource implements Datasource<EventList> {
                 if (line.equals("")) continue;
                 String[] data = line.split(",");
 
-                String organizer = data[0].trim();
-                String name = data[1].trim();
-                String dateStart = data[2].trim();
-                String dateEnd = data[3].trim();
-                String startTime = data[4].trim();
-                String endTime = data[5].trim();
-                String desc = data[6].trim();
-                String joinFieldText = data[7].trim();
-                String status = data[8].trim();
-                String image = data[9].trim();
+                String userName = data[0].trim();
+                String event = data[1].trim();
+                String team = data[2].trim();
 
-                events.addEvent(new Event(organizer, name, dateStart, dateEnd, startTime, endTime, desc, joinFieldText, status, image));
+                participantLists.addParticipant(new Participant(userName,event,team));
             }
             buffer.close();
         }catch (FileNotFoundException e){
@@ -68,11 +61,11 @@ public class EventListDatasource implements Datasource<EventList> {
         }catch (IOException e){
             throw new RuntimeException(e);
         }
-        return events;
+        return participantLists;
     }
 
     @Override
-    public void writeData(EventList data) {
+    public void writeData(ParticipantList data) {
         BufferedWriter buffer = null;
         FileOutputStream fileOutputStream;
         File file = new File(fileName);
@@ -82,22 +75,15 @@ public class EventListDatasource implements Datasource<EventList> {
                     fileOutputStream,StandardCharsets.UTF_8);
             buffer = new BufferedWriter(outputStreamWriter);
 
-            for (Event event : data.getEvents()){
-                String line = event.getOrganizer()+","
-                        + event.getName()+","
-                        + event.getDateStart()+","
-                        + event.getDateEnd()+","
-                        + event.getStartTime()+","
-                        + event.getEndTime()+","
-                        + event.getDesc()+","
-                        + event.getJoinFieldText()+","
-                        + event.getStatus()+","
-                        + event.getImgEvent();
+            for (Participant participant : data.getParticipants()){
+                String line = participant.getUserName()+","
+                        + participant.getEvent()+","
+                        + participant.getTeam();
 
                 buffer.append(line);
                 buffer.append("\n");
             }
-    }catch (IOException e){
+        }catch (IOException e){
             throw new RuntimeException(e);
         } finally {
             try{

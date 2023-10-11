@@ -5,6 +5,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -110,59 +111,10 @@
                   <Insets bottom="10.0" top="10.0" />
                </HBox.margin>
                <children>
-                  <VBox layoutX="6.0" prefHeight="468.0" prefWidth="503.0">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#onBackButtonClick" styleClass="default-button-navy-white" text="BACK">
-                           <VBox.margin>
-                              <Insets left="10.0" top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Label text="Trash Penaldo Meeting">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="120.0" top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label text="กิจกรรม">
-                           <VBox.margin>
-                              <Insets left="230.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label text="1 แตะบอลอัดโรนัลอัดโรนัล">
-                           <VBox.margin>
-                              <Insets left="30.0" top="20.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label text="2 ถ่มถุยใส่ภาพโรนัลโด้">
-                           <VBox.margin>
-                              <Insets left="30.0" top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label text="3 สาปส่งโรนัลโด้">
-                           <VBox.margin>
-                              <Insets left="30.0" top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label text="4 รับบประทานิาหารร่วมกับผู้ร่วมงาน">
-                           <VBox.margin>
-                              <Insets left="30.0" top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label text="5 สรรเสริญ Messi">
-                           <VBox.margin>
-                              <Insets left="30.0" top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                     </children>
-                  </VBox>
+                  <TextField layoutX="89.0" layoutY="198.0" fx:id="x" />
+                  <TextField fx:id="y" layoutX="89.0" layoutY="248.0" />
+                  <Button layoutX="140.0" layoutY="300.0" mnemonicParsing="false" onAction="#click" text="Button" />
+                  <Label fx:id="text" layoutX="322.0" layoutY="227.0" text="Label" />
                </children>
             </AnchorPane>
          </children>

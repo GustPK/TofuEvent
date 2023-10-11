@@ -73,5 +73,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <Label layoutX="481.0" layoutY="234.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Max join count:" />
+      <TextField fx:id="joinField" layoutX="580.0" layoutY="230.0" prefHeight="26.0" prefWidth="54.0" />
    </children>
 </AnchorPane>

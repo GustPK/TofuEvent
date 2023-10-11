@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
 
+import javafx.scene.control.TextField;
 import javafx.scene.shape.Circle;
 
 
@@ -43,6 +44,18 @@ public class InfoController {
     @FXML
     private void onBackButtonClick() throws IOException{
         FXRouter.goTo("main");
+    }
+
+    @FXML
+    TextField x;
+    @FXML
+    TextField y;
+    @FXML Label text;
+
+    @FXML
+    void click(){
+        text.setText(x.getText()+":"+y.getText());
+
     }
 
 }

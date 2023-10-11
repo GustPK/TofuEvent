@@ -40,6 +40,8 @@ public class CreateController {
     @FXML
     private TextField nameField;
     @FXML
+    private TextField joinField;
+    @FXML
     private TextArea descArea;
     @FXML
     private DatePicker datePickerStart;
@@ -90,6 +92,7 @@ public class CreateController {
             public String toString(Integer value) {
                 return String.format("%02d", value);
             }
+
             @Override
             public Integer fromString(String string) {
                 return 0;
@@ -136,38 +139,58 @@ public class CreateController {
             imageRec.setFill(new ImagePattern(image));
         }
     }
+
     @FXML
     public void clickNext() throws IOException {
         AccountList currentAccount = (AccountList) FXRouter.getData();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String name = nameField.getText();
         String desc = descArea.getText();
-
-        if (desc.isEmpty()) {
-            desc = "description";
-        }
+        String joinFieldText = joinField.getText();
 
         LocalDate startDate = datePickerStart.getValue();
-        String startDateString = startDate.format(formatter);
         LocalDate endDate = datePickerEnd.getValue();
-        String endDateString = endDate.format(formatter);
-
         int startHour = hourSpinnerStart.getValue();
         int startMinute = minuteSpinnerStart.getValue();
-        String startTimeString = String.format("%02d:%02d", startHour, startMinute);
-
         int endHour = hourSpinnerEnd.getValue();
         int endMinute = minuteSpinnerEnd.getValue();
-        String endTimeString = String.format("%02d:%02d", endHour, endMinute);
 
-        if (imgSrc == null || imgSrc.isEmpty()) {
-            imgSrc = "default-pfp.jpg";
+        if (name.isEmpty() || joinFieldText.isEmpty() || desc.isEmpty() || startDate == null || endDate == null || startHour < 0 || startHour > 23
+                || startMinute < 0 || startMinute > 59 || endHour < 0 || endHour > 23 || endMinute < 0 || endMinute > 59) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Please fill in all required fields.");
+            alert.showAndWait();
+        } else if (!isNumeric(joinFieldText)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Please enter Max join count correctly.");
+            alert.showAndWait();
+        } else {
+            String startDateString = startDate.format(formatter);
+            String endDateString = endDate.format(formatter);
+            String startTimeString = String.format("%02d:%02d", startHour, startMinute);
+            String endTimeString = String.format("%02d:%02d", endHour, endMinute);
+
+            if (imgSrc == null || imgSrc.isEmpty()) {
+                imgSrc = "default-pfp.jpg";
+            }
+
+            String status = "UNDONE";
+
+            eventList.addEvent(new Event(LoggedInAccount.getInstance().getAccount().getUsername(), name, startDateString, endDateString, startTimeString, endTimeString, desc, joinFieldText, status ,imgSrc));
+            datasource.writeData(eventList);
+            int lastIndex = eventList.getEvents().size() - 1;
+            FXRouter.goTo("createParticipants", eventList.getEvents().get(lastIndex));
         }
-
-        eventList.addEvent(new Event(LoggedInAccount.getInstance().getAccount().getUsername(), name, startDateString, endDateString, startTimeString, endTimeString, desc, imgSrc));
-        datasource.writeData(eventList);
-        int lastIndex = eventList.getEvents().size() - 1;
-        FXRouter.goTo("createParticipants", eventList.getEvents().get(lastIndex));
     }
 
+    private boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }

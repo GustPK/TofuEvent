@@ -103,6 +103,14 @@ public class MainController {
                 EventItemController eventItemController = fxmlLoader.getController();
                 eventItemController.setData(event);
 
+                anchorPane.setOnMouseClicked(Event -> {
+                    try {
+                        FXRouter.goTo("des", event);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+
                 grid.add(anchorPane,column,row++);
                 GridPane.setMargin(anchorPane,new Insets(10));
             }

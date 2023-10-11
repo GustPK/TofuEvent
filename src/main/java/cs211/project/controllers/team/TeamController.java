@@ -19,7 +19,8 @@ import java.io.IOException;
 public class TeamController {
     private Datasource<ActivityList> activityListDatasource;
     private ActivityList activityList;
-    @FXML private TableView<Activity> activityTableView;
+    @FXML
+    private TableView<Activity> activityTableView;
     private Team currentTeam;
     @FXML
     private ListView<Comment> comment;
@@ -40,7 +41,7 @@ public class TeamController {
     @FXML
     public void initialize(){
         currentTeam = (Team) FXRouter.getData();
-        activityListDatasource = new ActivityFileDatasource("data", "Activity.csv");
+        activityListDatasource = new ActivityFileDatasource("data", "Schedule.csv");
         activityList = activityListDatasource.readData();
 
         showActivity();

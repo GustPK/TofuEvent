@@ -13,8 +13,9 @@ public class Event {
     private String startTime;
     private String endTime;
     private String desc;
-
-    public Event(String organizer, String name, String dateStart, String dateEnd, String startTime, String endTime, String desc, String imgEvent) {
+    private String joinFieldText;
+    private String status;
+    public Event(String organizer, String name, String dateStart, String dateEnd, String startTime, String endTime, String desc, String joinFieldText,String status, String imgEvent) {
         this.organizer = organizer;
         this.name = name;
         this.dateStart = dateStart;
@@ -22,6 +23,8 @@ public class Event {
         this.startTime = startTime;
         this.endTime = endTime;
         this.desc = desc;
+        this.joinFieldText = joinFieldText;
+        this.status = status;
         this.imgEvent = imgEvent;
     }
 
@@ -33,4 +36,6 @@ public class Event {
     public String getStartTime() {return startTime; }
     public String getEndTime() {return endTime; }
     public String getDesc() { return desc; }
+    public String getJoinFieldText() {return joinFieldText; }
+    public String getStatus() {return status; }
 }
