@@ -6,22 +6,31 @@ import java.util.ArrayList;
 
 public class Event {
     private String organizer;
-    private String date;
-    private String name ;
+    private String dateStart;
+    private String dateEnd;
+    private String name;
     private String imgEvent;
+    private String startTime;
+    private String endTime;
+    private String desc;
 
-
-
-    public Event(String organizer, String name, String date, String imgEvent) {
+    public Event(String organizer, String name, String dateStart, String dateEnd, String startTime, String endTime, String desc, String imgEvent) {
         this.organizer = organizer;
         this.name = name;
-        this.date = date;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.desc = desc;
         this.imgEvent = imgEvent;
     }
 
     public String getName() { return name; }
-    public String getDate() { return date; }
     public String getImgEvent() {return imgEvent; }
     public String getOrganizer() {return organizer; }
-
+    public String getDateStart() { return dateStart; }
+    public String getDateEnd() { return dateEnd; }
+    public String getStartTime() {return startTime; }
+    public String getEndTime() {return endTime; }
+    public String getDesc() { return desc; }
 }

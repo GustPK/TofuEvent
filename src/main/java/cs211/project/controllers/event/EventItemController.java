@@ -25,7 +25,7 @@ public class EventItemController {
     public void setData(Event event){
         this.event = event;
         eventNameLabel.setText(event.getName());
-        eventDate.setText(event.getDate());
+        eventDate.setText(event.getDateStart());
         String path = "data/images/"+event.getImgEvent();
         File file = new File(path);
         Image image = new Image(file.toURI().toString());
