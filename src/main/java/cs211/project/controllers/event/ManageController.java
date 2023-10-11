@@ -1,13 +1,9 @@
 package cs211.project.controllers.event;
 
 import cs211.project.controllers.login.UserListItemController;
-import cs211.project.models.Activity;
-import cs211.project.models.ActivityList;
-import cs211.project.models.Team;
-import cs211.project.models.account.Account;
-import cs211.project.models.collections.AccountList;
+import cs211.project.models.Schedule;
+import cs211.project.models.ScheduleList;
 import cs211.project.models.collections.ParticipantList;
-import cs211.project.models.collections.TeamList;
 import cs211.project.models.event.Event;
 import cs211.project.models.event.Participant;
 import cs211.project.services.*;
@@ -16,16 +12,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 
-import java.io.File;
 import java.io.IOException;
 
 public class ManageController {
@@ -48,9 +37,9 @@ public class ManageController {
     public void ClickToGoManu()throws IOException {
         FXRouter.goTo("main");
     }
-    @FXML private ListView<Team> teamListView;
-    private TeamList teamList;
-    private Datasource<TeamList> datasourceTeam;
+    @FXML private ListView<Schedule> scheduleListView;
+    private ScheduleList scheduleList;
+    private Datasource<ScheduleList> datasourceSchedule;
 
     @FXML
     private void initialize(){
@@ -83,13 +72,13 @@ public class ManageController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        datasourceTeam = new TeamListDatasource("data", "TeamList.csv");
-        teamList = datasourceTeam.readData();
-        showList(teamList);
+        datasourceSchedule = new ScheduleFileDatasource("data", "schedule.csv");
+        scheduleList = datasourceSchedule.readData();
+        showList(scheduleList);
     }
 
-    private void showList(TeamList teamList) {
-        teamListView.getItems().addAll(teamList.getTeams());
+    private void showList(ScheduleList scheduleList) {
+        scheduleListView.getItems().addAll(scheduleList.getActivityList());
     }
 
 

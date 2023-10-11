@@ -1,15 +1,15 @@
 package cs211.project.services;
 
-import cs211.project.models.ActivityList;
+import cs211.project.models.ScheduleList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-public class ActivityFileDatasource implements Datasource<ActivityList> {
+public class ScheduleFileDatasource implements Datasource<ScheduleList> {
     private String directoryName;
     private String fileName;
 
-    public ActivityFileDatasource(String directoryName, String fileName) {
+    public ScheduleFileDatasource(String directoryName, String fileName) {
         this.directoryName = directoryName;
         this.fileName = fileName;
         checkFileIsExisted();
@@ -31,8 +31,8 @@ public class ActivityFileDatasource implements Datasource<ActivityList> {
         }
     }
     @Override
-    public ActivityList readData() {
-        ActivityList activityList = new ActivityList();
+    public ScheduleList readData() {
+        ScheduleList scheduleList = new ScheduleList();
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
 
@@ -63,17 +63,17 @@ public class ActivityFileDatasource implements Datasource<ActivityList> {
                 String activity = data[2].trim();
                 String eventName = data[3].trim();
 
-                activityList.addActivity(teamName, time, activity, eventName);
+                scheduleList.addActivity(teamName, time, activity, eventName);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        return activityList;
+        return scheduleList;
     }
 
     @Override
-    public void writeData(ActivityList data) {
+    public void writeData(ScheduleList data) {
 
     }
 }

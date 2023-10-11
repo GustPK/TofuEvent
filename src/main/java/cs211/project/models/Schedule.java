@@ -1,12 +1,12 @@
 package cs211.project.models;
 
-public class Activity {
+public class Schedule {
     private String teamName;
     private String time;
     private String activity;
     private String eventName;
 
-    public Activity(String teamName, String time, String activity, String eventName) {
+    public Schedule(String teamName, String time, String activity, String eventName) {
         this.teamName = teamName;
         this.time = time;
         this.activity = activity;
@@ -27,5 +27,9 @@ public class Activity {
 
     public String getEventName() {
         return eventName;
+    }
+    @Override
+    public String toString() {
+        return teamName+" "+time+" "+activity;
     }
 }

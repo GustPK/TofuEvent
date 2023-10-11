@@ -1,10 +1,10 @@
 package cs211.project.controllers.team;
 
-import cs211.project.models.Activity;
-import cs211.project.models.ActivityList;
+import cs211.project.models.Schedule;
+import cs211.project.models.ScheduleList;
 import cs211.project.models.Comment;
 import cs211.project.models.Team;
-import cs211.project.services.ActivityFileDatasource;
+import cs211.project.services.ScheduleFileDatasource;
 import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
@@ -17,9 +17,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 
 public class TeamController {
-    private Datasource<ActivityList> activityListDatasource;
-    private ActivityList activityList;
-    @FXML private TableView<Activity> activityTableView;
+    private Datasource<ScheduleList> activityListDatasource;
+    private ScheduleList scheduleList;
+    @FXML private TableView<Schedule> activityTableView;
     private Team currentTeam;
     @FXML
     private ListView<Comment> comment;
@@ -45,8 +45,8 @@ public class TeamController {
     @FXML
     public void initialize(){
         currentTeam = (Team) FXRouter.getData();
-        activityListDatasource = new ActivityFileDatasource("data", "Activity.csv");
-        activityList = activityListDatasource.readData();
+        activityListDatasource = new ScheduleFileDatasource("data", "Schedule.csv");
+        scheduleList = activityListDatasource.readData();
 
         showActivity();
     }
@@ -54,17 +54,17 @@ public class TeamController {
     public void showActivity() {
         activityTableView.getColumns().clear();
         activityTableView.getItems().clear();
-        TableColumn<Activity, String> timeColumn = new TableColumn<>("Time");
+        TableColumn<Schedule, String> timeColumn = new TableColumn<>("Time");
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
 
-        TableColumn<Activity, String> activityColumn = new TableColumn<>("Activity");
+        TableColumn<Schedule, String> activityColumn = new TableColumn<>("Activity");
         activityColumn.setCellValueFactory(new PropertyValueFactory<>("activity"));
 
         activityTableView.getColumns().addAll(timeColumn, activityColumn);
 
-        for (Activity activity : activityList.getActivityList()) {
-            if (activity.getTeamName().equals(currentTeam.getTeamName()) && activity.getEventName().equals(currentTeam.getEventName())) {
-                activityTableView.getItems().add(activity);
+        for (Schedule schedule : scheduleList.getActivityList()) {
+            if (schedule.getTeamName().equals(currentTeam.getTeamName()) && schedule.getEventName().equals(currentTeam.getEventName())) {
+                activityTableView.getItems().add(schedule);
             }
         }
     }
