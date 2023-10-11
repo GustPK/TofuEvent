@@ -18,12 +18,12 @@
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Button layoutX="323.0" layoutY="516.0" mnemonicParsing="false" onAction="#clickNext" styleClass="default-button-white-navy" text="Next" />
-      <TableView fx:id="scheduleView" layoutX="104.0" layoutY="134.0" prefHeight="305.0" prefWidth="356.0">
+      <Button layoutX="323.0" layoutY="516.0" mnemonicParsing="false" styleClass="default-button-white-navy" text="Next" />
+      <TableView fx:id="scheduleView" layoutX="104.0" layoutY="134.0" prefHeight="305.0" prefWidth="375.0">
         <columns>
-          <TableColumn prefWidth="118.4000244140625" text="C1" />
-          <TableColumn prefWidth="109.5999755859375" text="C2" />
-            <TableColumn prefWidth="127.20001220703125" text="C1" />
+          <TableColumn prefWidth="125.0" text="C1" />
+          <TableColumn prefWidth="125.0" text="C2" />
+            <TableColumn prefWidth="125.0" text="C1" />
         </columns>
       </TableView>
       <Label layoutX="504.0" layoutY="171.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Date:">

@@ -47,7 +47,7 @@
                 <Font size="15.0" />
             </font>
         </Label>
-        <ListView fx:id="teamListView" layoutX="59.0" layoutY="356.0" prefHeight="222.0" prefWidth="353.0" style="-fx-background-radius: 25;" />
+        <ListView fx:id="scheduleListView" layoutX="59.0" layoutY="356.0" prefHeight="222.0" prefWidth="353.0" style="-fx-background-radius: 25;" />
         <Label layoutX="497.0" layoutY="218.0" text="Paricipants list">
             <font>
                 <Font size="15.0" />

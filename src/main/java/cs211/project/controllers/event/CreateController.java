@@ -142,7 +142,6 @@ public class CreateController {
 
     @FXML
     public void clickNext() throws IOException {
-        AccountList currentAccount = (AccountList) FXRouter.getData();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String name = nameField.getText();
         String desc = descArea.getText();

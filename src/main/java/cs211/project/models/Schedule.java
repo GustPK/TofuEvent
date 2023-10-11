@@ -1,16 +1,18 @@
 package cs211.project.models;
 
-public class Activity {
-    private String teamName;
+public class Schedule {
+    private String eventName;
     private String time;
     private String activity;
-    private String eventName;
+    private String teamName;
+    private String date;
 
-    public Activity(String teamName, String time, String activity, String eventName) {
-        this.teamName = teamName;
-        this.time = time;
-        this.activity = activity;
+    public Schedule(String eventName, String teamName, String activity, String time, String date) {
         this.eventName = eventName;
+        this.teamName = teamName;
+        this.activity = activity;
+        this.time = time;
+        this.date = date;
     }
 
     public String getTeamName() {
@@ -19,6 +21,9 @@ public class Activity {
 
     public String getTime() {
         return time;
+    }
+    public String getDate() {
+        return date;
     }
 
     public String getActivity() {
