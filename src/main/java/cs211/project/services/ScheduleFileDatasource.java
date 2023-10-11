@@ -1,6 +1,8 @@
 package cs211.project.services;
 
+import cs211.project.models.Schedule;
 import cs211.project.models.ScheduleList;
+import cs211.project.models.event.Event;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -74,6 +76,36 @@ public class ScheduleFileDatasource implements Datasource<ScheduleList> {
 
     @Override
     public void writeData(ScheduleList data) {
+        BufferedWriter buffer = null;
+        FileOutputStream fileOutputStream;
+        File file = new File(fileName);
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
+                    fileOutputStream,StandardCharsets.UTF_8);
+            buffer = new BufferedWriter(outputStreamWriter);
 
+            for (Schedule schedule : data.getActivityList()){
+                String line = schedule.getEventName()+","
+                        + schedule.getTeamName()+","
+                        + schedule.getActivity()+","
+                        + schedule.getTime()+","
+                        + schedule.getDate();
+
+                buffer.append(line);
+                buffer.append("\n");
+            }
+        }catch (IOException e){
+            throw new RuntimeException(e);
+        } finally {
+            try{
+                buffer.flush();
+                buffer.close();
+            }catch (IOException e){
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
     }
 }
