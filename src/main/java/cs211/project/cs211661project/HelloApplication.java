@@ -38,11 +38,13 @@ public class HelloApplication extends Application {
         FXRouter.when("ban", resourcesPath + "ban-view.fxml");
         FXRouter.when("creatorEventList", resourcesPath + "creatorEventList.fxml");
         FXRouter.when("joinHistory", resourcesPath + "join-history-view.fxml");
+        FXRouter.when("des", resourcesPath + "eventDes.fxml");
 
     }
 
 
     public static void main(String[] args) {
         launch();
+
     }
 }
