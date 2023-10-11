@@ -12,13 +12,12 @@ public class TeamList {
         teams = new ArrayList<>();
     }
 
-
     public ArrayList<Team> getTeams() {
         return teams;
     }
 
-    public void addTeam(String teamName, String eventName){
-        teams.add(new Team(teamName, eventName));
+    public void addTeam(Team team) {
+        teams.add(team);
     }
 
 }
