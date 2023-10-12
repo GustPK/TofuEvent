@@ -181,13 +181,12 @@ public class CreateController {
 
             String status = "UNDONE";
 
-            eventList.addEvent(new Event(LoggedInAccount.getInstance().getAccount().getUsername(), name, startDateString, endDateString, startTimeString, endTimeString, desc, joinFieldText, status, imgSrc));
+            eventList.addEvent(new Event(LoggedInAccount.getInstance().getAccount().getUsername(), name, startDateString, endDateString, startTimeString, endTimeString, desc, joinFieldText, "0", status, imgSrc));
             datasource.writeData(eventList);
             int lastIndex = eventList.getEvents().size() - 1;
             FXRouter.goTo("createParticipants", eventList.getEvents().get(lastIndex));
         }
     }
-
 
     private boolean isNumeric(String str) {
         try {

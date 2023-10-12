@@ -23,6 +23,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class RegisterController {
     @FXML
@@ -114,7 +116,12 @@ public class RegisterController {
         boolean isUsernameUnique = isUsernameUnique(username);
 
         if (isUsernameUnique && password.equals(confirmPassword)) {
-            accountList.addAccount(new Account(name, username, password, imgSrc, status));
+            // สร้าง LocalDateTime เพื่อเก็บค่าเวลาปัจจุบัน
+            LocalDateTime currentTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedTime = currentTime.format(formatter);
+
+            accountList.addAccount(new Account(name, username, password, imgSrc, status, formattedTime));
             datasource.writeData(accountList);
             FXRouter.goTo("login");
         } else {

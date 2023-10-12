@@ -13,17 +13,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class LoginController {
 
     @FXML private TextField usernameTextField;
-    @FXML private PasswordField passwordField;
 
+    @FXML private PasswordField passwordField;
 
     @FXML Label warning;
     private AccountList currentAccount;
     private AccountList accountsList;
     private Datasource<AccountList> accountListDataSource;
+
 
     public void showAlert(String title, String content, AlertType alertType) {
         Alert alert = new Alert(alertType);
@@ -44,7 +47,7 @@ public class LoginController {
         currentAccount = new AccountList();
     }
 
-    public void clickLoin() throws IOException {
+    public void clickLogin() throws IOException {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
         Account exist = accountsList.checkLogin(username, password);
@@ -53,6 +56,18 @@ public class LoginController {
             if (!exist.getStatus().equals("banned")) {
                 System.out.println("Login: Success");
                 LoggedInAccount.getInstance().setAccount(exist);
+
+                // สร้าง LocalDateTime เพื่อเก็บค่าเวลาปัจจุบัน
+                LocalDateTime currentTime = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                String formattedTime = currentTime.format(formatter);
+
+                // อัปเดตเวลาล็อกอินล่าสุดของบัญชีที่ล็อกอินสำเร็จ
+                exist.setOnline(formattedTime);
+
+                // บันทึกการอัปเดตลงในไฟล์ account.csv
+                accountListDataSource.writeData(accountsList);
+
                 if (exist.getUsername().equals("admin")) {
                     FXRouter.goTo("admin");
                 } else {
@@ -73,6 +88,7 @@ public class LoginController {
             System.out.println("Login: Failed");
         }
     }
+
 
     @FXML
     private void onDevelopersHyperlinkClick() throws IOException{

@@ -57,10 +57,11 @@ public class EventListDatasource implements Datasource<EventList> {
                 String endTime = data[5].trim();
                 String desc = data[6].trim();
                 String joinFieldText = data[7].trim();
-                String status = data[8].trim();
-                String image = data[9].trim();
+                String joinedText = data[8].trim();
+                String status = data[9].trim();
+                String image = data[10].trim();
 
-                events.addEvent(new Event(organizer, name, dateStart, dateEnd, startTime, endTime, desc, joinFieldText, status, image));
+                events.addEvent(new Event(organizer, name, dateStart, dateEnd, startTime, endTime, desc, joinFieldText, joinedText, status, image));
             }
             buffer.close();
         }catch (FileNotFoundException e){
@@ -91,6 +92,7 @@ public class EventListDatasource implements Datasource<EventList> {
                         + event.getEndTime()+","
                         + event.getDesc()+","
                         + event.getJoinFieldText()+","
+                        + event.getJoinedText()+","
                         + event.getStatus()+","
                         + event.getImgEvent();
 

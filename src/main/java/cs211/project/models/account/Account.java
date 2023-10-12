@@ -10,13 +10,15 @@ public class Account {
     private String image;
     private String status;
     private boolean banned;
+    private String online;
 
-    public Account(String name, String username, String password, String image, String status) {
+    public Account(String name, String username, String password, String image, String status, String online) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.image = image;
         this.status = status;
+        this.online = online;
         this.banned = false;
     }
 
@@ -26,6 +28,13 @@ public class Account {
 
     public String getPassword() { return password; }
 
+    public String getOnline() {
+        return online;
+    }
+
+    public void setOnline(String online) {
+        this.online = online;
+    }
 
     public void setUsername(String username) {
         this.username = username;

@@ -11,6 +11,7 @@ import cs211.project.services.ParticipantListDatasource;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -24,7 +25,6 @@ public class EventsAttendedController {
     private Datasource<ParticipantList> participantListDatasource;
     @FXML
     private GridPane grid;
-
 
     @FXML
     public void initialize() throws IOException {

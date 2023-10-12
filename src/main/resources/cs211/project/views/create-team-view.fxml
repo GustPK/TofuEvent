@@ -20,7 +20,7 @@
          </font>
       </Label>
       <TextField fx:id="joinField" layoutX="197.0" layoutY="106.0" prefHeight="26.0" prefWidth="54.0" />
-      <Button layoutX="323.0" layoutY="516.0" mnemonicParsing="false" onAction="#clickAddMore" styleClass="default-button-white-navy" text="Add more teams" />
+      <Button fx:id="addMoreButton" layoutX="323.0" layoutY="516.0" mnemonicParsing="false" onAction="#clickAddMore" styleClass="default-button-white-navy" text="Add more teams" />
       <TextField fx:id="teamField" layoutX="181.0" layoutY="65.0" prefHeight="26.0" prefWidth="151.0" />
       <Label layoutX="104.0" layoutY="70.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Team Name:">
          <font>

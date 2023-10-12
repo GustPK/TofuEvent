@@ -4,11 +4,13 @@ public class Team {
     private String teamName;
     private String eventName;
     private String joinFieldText;
+    private String joinedText;
 
-    public Team(String eventName, String teamName, String joinFieldText) {
+    public Team(String eventName, String teamName, String joinFieldText, String joinedText) {
         this.eventName = eventName;
         this.teamName = teamName;
         this.joinFieldText = joinFieldText;
+        this.joinedText = joinedText;
     }
 
     public String getTeamName() {
@@ -19,6 +21,12 @@ public class Team {
         return eventName;
     }
     public String getJoinFieldText() {return joinFieldText; }
+    public String getJoinedText() {return joinedText; }
+    public void addJoin() {
+        int n = Integer.parseInt(joinedText);
+        n++;
+        joinedText = Integer.toString(n);
+    }
 
 
     @Override

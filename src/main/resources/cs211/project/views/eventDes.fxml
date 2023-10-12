@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -48,7 +49,7 @@
       </Pane>
       <Pane layoutX="513.0" layoutY="91.0" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #000000; -fx-background-radius: 11;">
          <children>
-            <Label fx:id="date" alignment="CENTER" layoutX="3.0" layoutY="-1.0" prefHeight="37.0" prefWidth="50.0" text="29" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="count" alignment="CENTER" layoutX="3.0" layoutY="-1.0" prefHeight="37.0" prefWidth="50.0" text="29" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="30.0" />
                </font>
@@ -81,16 +82,22 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="525.0" layoutY="164.0" prefHeight="101.0" prefWidth="275.0" style="-fx-background-color: #000000; -fx-background-radius: 11;">
+      <Pane fx:id="imageCircle" layoutX="525.0" layoutY="164.0" prefHeight="101.0" prefWidth="275.0" style="-fx-background-color: #000000; -fx-background-radius: 11;">
          <children>
-            <Label layoutX="45.0" layoutY="14.0" text="Label" textFill="WHITE" />
-            <ImageView fitHeight="19.0" fitWidth="17.0" layoutX="14.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+            <Label fx:id="startLabel" layoutX="45.0" layoutY="12.0" text="Label" textFill="WHITE" />
+            <ImageView fx:id="imagePerson" fitHeight="19.0" fitWidth="17.0" layoutX="14.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../data/images/person.png" />
                </image>
             </ImageView>
-            <Label layoutX="45.0" layoutY="46.0" text="Label" textFill="WHITE" />
-            <ImageView fitHeight="19.0" fitWidth="17.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <Label fx:id="joinLabel" layoutX="45.0" layoutY="72.0" text="Label" textFill="WHITE" />
+            <ImageView fx:id="imageClock1" fitHeight="19.0" fitWidth="17.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../data/images/clock.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="endLabel" layoutX="45.0" layoutY="42.0" text="Label" textFill="WHITE" />
+            <ImageView fx:id="imageClock2" fitHeight="19.0" fitWidth="17.0" layoutX="14.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../data/images/clock.png" />
                </image>
@@ -117,7 +124,8 @@
             <TextFlow fx:id="nameField" prefHeight="70.0" prefWidth="214.0" style="-fx-font-size: 16;" textAlignment="CENTER" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="72.0" layoutY="488.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Button" />
+      <Button layoutX="72.0" layoutY="512.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Button" />
+      <TextArea fx:id="descArea" layoutX="131.0" layoutY="381.0" prefHeight="106.0" prefWidth="280.0" />
 
    </children>
 </AnchorPane>
