@@ -3,6 +3,8 @@ package cs211.project.models.collections;
 import cs211.project.models.event.Event;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class EventList {
     private ArrayList<Event> events;
@@ -18,6 +20,7 @@ public class EventList {
     public void addEvent(Event event){
         events.add(event);
     }
-
-
+    public void sort(Comparator<Event> cmp) {
+        Collections.sort(events, cmp);
+    }
 }
