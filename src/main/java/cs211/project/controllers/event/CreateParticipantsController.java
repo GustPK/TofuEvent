@@ -148,14 +148,4 @@ public class CreateParticipantsController {
         // Redirect to the "CreateTeam" view and pass the event stored in the field
         FXRouter.goTo("createTeam", event);
     }
-    private void filterSchedulesByEventAndTeamName(String eventName) {
-        scheduleList = datasource.readData();
-        for (Schedule schedule : scheduleList.getActivityList() ){
-            if (schedule.getEventName().equals(eventName) && schedule.getTeamName().equals("join")){
-                scheduleView.getItems().add(schedule);
-                System.out.println(schedule.getEventName());
-            }
-        }
-
-    }
 }
