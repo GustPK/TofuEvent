@@ -50,7 +50,7 @@ public class MainController {
 
     @FXML
     private void onOngoingEventsButtonClick() throws IOException{
-        FXRouter.goTo("eventsAttended");
+        FXRouter.goTo("eventAttended");
     }
 
     @FXML

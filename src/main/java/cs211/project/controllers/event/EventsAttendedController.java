@@ -1,31 +1,23 @@
-package cs211.project.controllers.team;
+package cs211.project.controllers.event;
 
-import cs211.project.controllers.event.EventItemController;
-import cs211.project.models.Team;
 import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.EventList;
 import cs211.project.models.collections.ParticipantList;
-import cs211.project.models.collections.TeamList;
 import cs211.project.models.event.Participant;
-import cs211.project.services.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import cs211.project.services.Datasource;
+import cs211.project.services.EventListDatasource;
+import cs211.project.services.FXRouter;
+import cs211.project.services.ParticipantListDatasource;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 
-public class MyTeamController {
-
-    @FXML
-    public void clickBackToMain() throws IOException {
-        FXRouter.goTo("main");
-    }
-
+public class EventsAttendedController {
     private EventList eventsLists;
     private ParticipantList participantList;
 
@@ -45,7 +37,7 @@ public class MyTeamController {
 
         try {
             for(Participant participant : participantList.getParticipants()){
-                if (LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername() )) {
+                if (LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername())) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
                     AnchorPane anchorPane = fxmlLoader.load();

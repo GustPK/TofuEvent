@@ -22,6 +22,8 @@ public class UserListItemController {
     private Label statusLabel;
     @FXML
     private Label usernameLabel;
+    @FXML
+    private Label onlineLabel;
 
     public void setData(Account account) {
         this.selectedAccount = account;
@@ -30,8 +32,9 @@ public class UserListItemController {
         File imageFile = new File(imagePath);
         Image profileImage = new Image(imageFile.toURI().toString());
         profilePic.setImage(profileImage);
-        statusLabel.setText(account.getStatus());
         usernameLabel.setText(account.getUsername());
+        onlineLabel.setText(account.getOnline());
+        statusLabel.setText((account.getStatus()));
     }
     private Datasource<AccountList> datasource;
     private AccountList accounts;

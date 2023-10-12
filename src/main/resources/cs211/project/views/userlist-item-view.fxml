@@ -17,17 +17,25 @@
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
             </ImageView>
-            <VBox prefHeight="150.0" prefWidth="105.0">
+            <VBox prefHeight="150.0" prefWidth="200.0">
                <children>
                   <Label layoutX="30.0" text="Username">
                      <font>
                         <Font size="18.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="10.0" top="30.0" />
+                        <Insets left="10.0" top="20.0" />
                      </VBox.margin>
                   </Label>
                   <Label layoutX="30.0" layoutY="60.0" text="Name">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Latest online">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -52,10 +60,18 @@
                         <Font size="18.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="10.0" top="30.0" />
+                        <Insets left="10.0" top="20.0" />
                      </VBox.margin>
                   </Label>
                   <Label fx:id="nameLabel" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="onlineLabel" text="Label">
                      <font>
                         <Font size="18.0" />
                      </font>

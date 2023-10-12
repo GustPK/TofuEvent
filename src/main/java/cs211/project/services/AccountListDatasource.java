@@ -49,8 +49,9 @@ public class AccountListDatasource implements Datasource<AccountList> {
                 String password = data[2].trim();
                 String image = data[3].trim();
                 String status = data[4].trim();
+                String online = data[5].trim();
 
-                accounts.addAccount((new Account(name,userName,password,image,status)));
+                accounts.addAccount((new Account(name,userName,password,image,status,online)));
 
             }
             buffer.close();
@@ -78,7 +79,8 @@ public class AccountListDatasource implements Datasource<AccountList> {
                         + account.getUsername()+","
                         + account.getPassword()+","
                         + account.getImage()+","
-                        + account.getStatus();
+                        + account.getStatus()+","
+                        + account.getOnline();
 
                 buffer.append(line);
                 buffer.append("\n");

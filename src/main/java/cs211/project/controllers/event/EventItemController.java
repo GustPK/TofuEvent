@@ -17,7 +17,6 @@ public class EventItemController {
     private Label eventNameLabel;
     @FXML
     private Label eventDate;
-
     @FXML
     private ImageView eventImg;
     private Event event;

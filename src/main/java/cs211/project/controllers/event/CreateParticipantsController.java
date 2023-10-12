@@ -103,18 +103,32 @@ public class CreateParticipantsController {
         int hour = hourSpinner.getValue();
         int minute = minuteSpinner.getValue();
 
-        // นำข้อมูลไปเพิ่มลงใน scheduleList โดยรวมเป็น "hh:mm"
-        String time = String.format("%02d:%02d", hour, minute);
+        // ตรวจสอบว่าข้อมูลถูกกรอกครบถ้วนหรือไม่
+        if (name.isEmpty() || date == null || hour < 0 || minute < 0) {
+            // สร้าง Alert
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Incomplete Information");
+            alert.setContentText("Please fill out the information completely.");
 
-        // แสดงข้อมูลบน TableView โดยจำแนกจากชื่อ event ที่ซ้ำกัน
-        scheduleList.addActivity(new Schedule(event.getName(), "join", name, time, date.toString()));
-        showList(scheduleList);
+            // แสดง Alert
+            alert.showAndWait();
+        } else {
+            // นำข้อมูลไปเพิ่มลงใน scheduleList โดยรวมเป็น "hh:mm"
+            String time = String.format("%02d:%02d", hour, minute);
 
-        // ล้างค่าใน nameField, hourSpinner และ minuteSpinner หลังจากเพิ่มข้อมูลเสร็จ
-        nameField.clear();
-        hourSpinner.getValueFactory().setValue(0);
-        minuteSpinner.getValueFactory().setValue(0);
+            // แสดงข้อมูลบน TableView โดยจำแนกจากชื่อ event ที่ซ้ำกัน
+            scheduleList.addActivity(new Schedule(event.getName(), "join", name, time, date.toString()));
+            showList(scheduleList);
+
+            // ล้างค่าใน nameField, hourSpinner และ minuteSpinner หลังจากเพิ่มข้อมูลเสร็จสิ้น
+            nameField.clear();
+            hourSpinner.getValueFactory().setValue(0);
+            minuteSpinner.getValueFactory().setValue(0);
+        }
     }
+
+
 
     @FXML
     public void clickDelete() {
@@ -127,8 +141,8 @@ public class CreateParticipantsController {
         } else {
             // แจ้งเตือนผู้ใช้ว่าต้องเลือกรายการก่อนที่จะลบ
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("คำเตือน");
-            alert.setHeaderText("คุณต้องเลือกรายการก่อนที่จะลบ");
+            alert.setTitle("Warning");
+            alert.setHeaderText("You must select items before deleting them.");
             alert.showAndWait();
         }
     }
@@ -137,7 +151,6 @@ public class CreateParticipantsController {
         event = (Event) FXRouter.getData();
         List<Schedule> sortedList = new ArrayList<>(scheduleList.getActivityList());
 
-        // แสดงเฉพาะชื่อ event ที่ซ้ำกัน
         List<Schedule> filteredList = sortedList.stream()
                 .filter(schedule -> schedule.getEventName().equals(event.getName()) && schedule.getTeamName().equals("join"))
                 .collect(Collectors.toList());
@@ -161,20 +174,27 @@ public class CreateParticipantsController {
         scheduleList = datasource.readData();
         List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
 
-        // ลบข้อมูลที่มี eventName เท่ากับ event.getName() และ teamName เท่ากับ "join" ออกจาก scheduleList
-        scheduleList.getActivityList().removeIf(schedule ->
-                schedule.getEventName().equals(event.getName()) && schedule.getTeamName().equals("join")
-        );
+        if (dataFromTableView.isEmpty()) {
+            // แสดง Alert ให้รู้ว่าตารางว่าง
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter at least 1 activity.");
+            alert.showAndWait();
+        } else {
+            // ลบข้อมูลที่มี eventName เท่ากับ event.getName() และ teamName เท่ากับ "join" ออกจาก scheduleList
+            scheduleList.getActivityList().removeIf(schedule ->
+                    schedule.getEventName().equals(event.getName()) && schedule.getTeamName().equals("join")
+            );
 
-        // เพิ่มข้อมูลใหม่ลงใน scheduleList
-        scheduleList.getActivityList().addAll(dataFromTableView);
+            scheduleList.getActivityList().addAll(dataFromTableView);
 
-        // Write the updated data back to your datasource
-        datasource.writeData(scheduleList);
+            datasource.writeData(scheduleList);
 
-        // Redirect to the "CreateTeam" view and pass the event stored in the field
-        FXRouter.goTo("createTeam", event);
+            FXRouter.goTo("createTeam", event);
+        }
     }
+
 
     private void filterSchedulesByEventAndTeamName(String eventName) {
         scheduleList = datasource.readData();

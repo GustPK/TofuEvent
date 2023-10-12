@@ -2,22 +2,19 @@ package cs211.project.controllers.event;
 
 import cs211.project.models.Team;
 import cs211.project.models.account.LoggedInAccount;
+import cs211.project.models.collections.EventList;
 import cs211.project.models.collections.ParticipantList;
 import cs211.project.models.collections.TeamList;
 import cs211.project.models.event.Event;
 import cs211.project.models.event.Participant;
-import cs211.project.services.Datasource;
-import cs211.project.services.FXRouter;
-import cs211.project.services.ParticipantListDatasource;
-import cs211.project.services.TeamListDatasource;
+import cs211.project.services.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -33,13 +30,29 @@ public class Des {
     @FXML
     private Button joinButton;
     private boolean buttonClicked = false;
+    private Datasource<EventList> datasource;
+    private EventList eventList;
     private Datasource<ParticipantList> participantDatasource;
     private Datasource<TeamList> teamListDatasource;
     private ParticipantList participantList;
     private TeamList teamList;
     private Event event;
     @FXML
+    private Label startLabel;
+    @FXML
+    private Label endLabel;
+    @FXML
+    private Label joinLabel;
+    @FXML
+    private TextArea descArea;
+    @FXML
     ComboBox selectTeam;
+    @FXML
+    private ImageView imageClock1;
+    @FXML
+    private ImageView imageClock2;
+    @FXML
+    private ImageView imagePerson;
     @FXML
     private void initialize() {
         event = (Event) FXRouter.getData();
@@ -49,9 +62,16 @@ public class Des {
         teamList = new TeamList();
         teamListDatasource = new TeamListDatasource("data","TeamList.csv");
         teamList = teamListDatasource.readData();
+        datasource = new EventListDatasource();
+        eventList = datasource.readData();
 
         Text text = new Text(event.getName());
         text.setFill(Color.WHITE);
+
+        startLabel.setText(event.getDateStart()+" "+event.getStartTime());
+        endLabel.setText(event.getDateEnd()+" "+event.getEndTime());
+        joinLabel.setText(event.getJoinFieldText());
+        descArea.setText(event.getDesc());
 
         nameField.getChildren().add(text);
 
@@ -68,6 +88,15 @@ public class Des {
             if (team.getEventName().equals(event.getName()))
                 selectTeam.getItems().add(team.getTeamName());
         }
+
+        String clockImagePath = "file:data/images/clock.png";
+        Image clockImage = new Image(clockImagePath);
+        imageClock1.setImage(clockImage);
+        imageClock2.setImage(clockImage);
+
+        String personImagePath = "file:data/images/person.png";
+        Image personImage = new Image(personImagePath);
+        imagePerson.setImage(personImage);
     }
 
     @FXML
@@ -134,7 +163,6 @@ public class Des {
                 participantList.addParticipant(new Participant(username, event.getName(), selectedTeam));
                 participantDatasource.writeData(participantList);
 
-                // Show a confirmation message
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information");
                 alert.setHeaderText("Joined Team");
@@ -144,11 +172,8 @@ public class Des {
         }
     }
 
-
     @FXML
     protected void onBackButtonClick() throws IOException {
         FXRouter.goTo("main");
     }
-
-
 }

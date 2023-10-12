@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CreateTeamController {
     @FXML
@@ -97,17 +98,26 @@ public class CreateTeamController {
         int hour = hourSpinner.getValue();
         int minute = minuteSpinner.getValue();
 
+        // ตรวจสอบว่าข้อมูลถูกครบถ้วน
+        if (name.isEmpty() || team.isEmpty() || date == null) {
+            // ข้อมูลไม่ถูกครบถ้วน
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Incomplete Information");
+            alert.setContentText("Please fill out the information completely.");
+            alert.showAndWait();
+            return;
+        }
+
         String time = String.format("%02d:%02d", hour, minute);
         scheduleList.addActivity(new Schedule(event.getName(), team, name, time, date.toString()));
-
-        scheduleView.getItems().clear();
-
         showList(scheduleList);
 
         nameField.clear();
         hourSpinner.getValueFactory().setValue(0);
         minuteSpinner.getValueFactory().setValue(0);
     }
+
 
     @FXML
     public void clickDelete() {
@@ -120,7 +130,13 @@ public class CreateTeamController {
     }
 
     private void showList(ScheduleList scheduleList) {
+        event = (Event) FXRouter.getData();
         List<Schedule> sortedList = new ArrayList<>(scheduleList.getActivityList());
+
+        // แสดงเฉพาะชื่อ event ที่ซ้ำกัน
+        List<Schedule> filteredList = sortedList.stream()
+                .filter(schedule -> schedule.getEventName().equals(event.getName()))
+                .collect(Collectors.toList());
 
         Comparator<Schedule> customComparator = (schedule1, schedule2) -> {
             int dateComparison = schedule1.getDate().compareTo(schedule2.getDate());
@@ -131,9 +147,8 @@ public class CreateTeamController {
             }
         };
 
-        sortedList.sort(customComparator);
-
-        scheduleView.getItems().setAll(sortedList);
+        filteredList.sort(customComparator);
+        scheduleView.getItems().setAll(filteredList);
     }
 
     @FXML
@@ -151,25 +166,32 @@ public class CreateTeamController {
         String team = teamField.getText();
         String joinFieldText = joinField.getText();
 
-        // Check if the team name is duplicated within the same event
-        if (!isTeamNameDuplicate(event.getName(), team)) {
-            // Team name is unique within the event, proceed with team creation
-            teamList.addTeam(new Team(event.getName(), team, joinFieldText));
-            scheduleList.getActivityList().addAll(dataFromTableView);
-
-            // Write data back to the data sources
-            datasource.writeData(scheduleList);
-            datasource2.writeData(teamList);
-
-            // Navigate to a specific screen (e.g., "createTeam" in this case)
-            FXRouter.goTo("createTeam");
+        // Check if any of the required fields are empty
+        if (team.isEmpty() || joinFieldText.isEmpty() || dataFromTableView.isEmpty()) {
+            showAlert("Missing Information", "Please fill in all the required fields and add data to the table.");
         } else {
-            showAlert("Team Name Duplicate", "Team name is already taken within this event.");
+            // Check if the team name is duplicated within the same event
+            if (!isTeamNameDuplicate(event.getName(), team)) {
+                // Team name is unique within the event, proceed with team creation
+                teamList.addTeam(new Team(event.getName(), team, joinFieldText));
+                scheduleList.getActivityList().addAll(dataFromTableView);
+
+                // Write data back to the data sources
+                datasource.writeData(scheduleList);
+                datasource2.writeData(teamList);
+
+                // Navigate to a specific screen (e.g., "createTeam" in this case)
+                FXRouter.goTo("createTeam");
+            } else {
+                showAlert("Team Name Duplicate", "Team name is already taken within this event.");
+            }
         }
     }
 
     @FXML
     private void clickDone() throws IOException {
+        event = (Event) FXRouter.getData();
+
         // Read data from the data sources
         scheduleList = datasource.readData();
         teamList = datasource2.readData();
@@ -177,28 +199,31 @@ public class CreateTeamController {
         // Get data from the scheduleView (table)
         List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
 
-        // Get the event from the router (assuming that's how you're passing it)
-        Event event = (Event) FXRouter.getData();
-
         String team = teamField.getText();
         String joinFieldText = joinField.getText();
 
-        // Check if the team name is duplicated within the same event
-        if (!isTeamNameDuplicate(event.getName(), team)) {
-            // Team name is unique within the event, proceed with team creation
-            teamList.addTeam(new Team(event.getName(), team, joinFieldText));
-            scheduleList.getActivityList().addAll(dataFromTableView);
-
-            // Write data back to the data sources
-            datasource.writeData(scheduleList);
-            datasource2.writeData(teamList);
-
-            // Navigate to the "main" screen (or wherever you want to go)
-            FXRouter.goTo("main");
+        // Check if any of the required fields are empty
+        if (team.isEmpty() || joinFieldText.isEmpty() || dataFromTableView.isEmpty()) {
+            showAlert("Missing Information", "Please fill in all the required fields and add data to the table.");
         } else {
-            showAlert("Team Name Duplicate", "Team name is already taken within this event.");
+            // Check if the team name is duplicated within the same event
+            if (!isTeamNameDuplicate(event.getName(), team)) {
+                // Team name is unique within the event, proceed with team creation
+                teamList.addTeam(new Team(event.getName(), team, joinFieldText));
+                scheduleList.getActivityList().addAll(dataFromTableView);
+
+                // Write data back to the data sources
+                datasource.writeData(scheduleList);
+                datasource2.writeData(teamList);
+
+                // Navigate to the "main" screen (or wherever you want to go)
+                FXRouter.goTo("main");
+            } else {
+                showAlert("Team Name Duplicate", "Team name is already taken within this event.");
+            }
         }
     }
+
     private boolean isTeamNameDuplicate(String eventName, String teamName) {
         // Iterate through the teams for the current event and check for duplicates
         for (Team team : teamList.getTeams()) {
