@@ -1,8 +1,6 @@
 package cs211.project.services;
 
-import cs211.project.models.collections.EventList;
 import cs211.project.models.collections.ParticipantList;
-import cs211.project.models.event.Event;
 import cs211.project.models.event.Participant;
 
 import java.io.*;
@@ -76,9 +74,10 @@ public class ParticipantListDatasource implements Datasource<ParticipantList> {
             buffer = new BufferedWriter(outputStreamWriter);
 
             for (Participant participant : data.getParticipants()){
-                String line = participant.getUserName()+","
+                String line = participant.getUsername()+","
                         + participant.getEvent()+","
-                        + participant.getTeam();
+                        + participant.getTeamName()+","
+                        + participant.getBan();
 
                 buffer.append(line);
                 buffer.append("\n");

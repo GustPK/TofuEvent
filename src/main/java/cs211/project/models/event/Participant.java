@@ -4,14 +4,16 @@ public class Participant {
     private String userName;
     private String event;
     private String team;
+    private String ban;
 
     public Participant(String userName, String event, String team) {
         this.userName = userName;
         this.event = event;
         this.team = team;
+        this.ban = "unbanned";
     }
 
-    public String getUserName() {
+    public String getUsername() {
         return userName;
     }
 
@@ -19,7 +21,15 @@ public class Participant {
         return event;
     }
 
-    public String getTeam() {
+    public String getTeamName() {
         return team;
+    }
+
+    public String getBan() {
+        return ban;
+    }
+
+    public void setBanned() {
+        this.ban = "banned";
     }
 }

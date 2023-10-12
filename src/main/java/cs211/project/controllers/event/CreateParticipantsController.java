@@ -4,6 +4,7 @@ import cs211.project.models.Schedule;
 import cs211.project.models.ScheduleList;
 import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.AccountList;
+import cs211.project.models.collections.EventList;
 import cs211.project.models.event.Event;
 import cs211.project.services.Datasource;
 import cs211.project.services.EventListDatasource;
@@ -19,10 +20,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CreateParticipantsController {
     @FXML
@@ -38,7 +37,6 @@ public class CreateParticipantsController {
     private Event event;
     private ScheduleList scheduleList = new ScheduleList();
     private Datasource<ScheduleList> datasource;
-    private ScheduleList scheduleLists;
 
     @FXML
     private void initialize() {
@@ -49,15 +47,15 @@ public class CreateParticipantsController {
 
         TableColumn<Schedule, String> dateColumn = new TableColumn<>("Date");
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        dateColumn.setPrefWidth(125); // Set the width to 125
+        dateColumn.setPrefWidth(125);
 
         TableColumn<Schedule, String> timeColumn = new TableColumn<>("Time");
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-        timeColumn.setPrefWidth(125); // Set the width to 125
+        timeColumn.setPrefWidth(125);
 
         TableColumn<Schedule, String> activityColumn = new TableColumn<>("Activity");
         activityColumn.setCellValueFactory(new PropertyValueFactory<>("activity"));
-        activityColumn.setPrefWidth(125); // Set the width to 125
+        activityColumn.setPrefWidth(125);
 
         scheduleView.getColumns().addAll(dateColumn, timeColumn, activityColumn);
 
@@ -65,7 +63,15 @@ public class CreateParticipantsController {
         SpinnerValueFactory<Integer> minuteStartValueFactory = createSpinnerValueFactory(0, 59, 0);
         hourSpinner.setValueFactory(hourStartValueFactory);
         minuteSpinner.setValueFactory(minuteStartValueFactory);
+
+        Event event = (Event) FXRouter.getData();
+        if (event != null) {
+            String eventName = event.getName();
+            filterSchedulesByEventAndTeamName(eventName);
+        }
+
     }
+
 
     private SpinnerValueFactory<Integer> createSpinnerValueFactory(int min, int max, int initialValue) {
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max, initialValue);
@@ -99,7 +105,7 @@ public class CreateParticipantsController {
 
         // นำข้อมูลไปเพิ่มลงใน scheduleList โดยรวมเป็น "hh:mm"
         String time = String.format("%02d:%02d", hour, minute);
-        scheduleList.addActivity(event.getName(), "join", name, time, date.toString());
+        scheduleList.addActivity(new Schedule(event.getName(), "join", name, time, date.toString()));
 
         scheduleView.getItems().clear();
 
@@ -133,23 +139,30 @@ public class CreateParticipantsController {
         };
 
         sortedList.sort(customComparator);
-
         scheduleView.getItems().setAll(sortedList);
     }
     @FXML
     private void clickNext() throws IOException {
         scheduleList = datasource.readData();
-        // Create a new data structure to store the data from the TableView
         List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
-
-        // Append the data from the TableView to the 'scheduleList' variable
         scheduleList.getActivityList().addAll(dataFromTableView);
 
         // Write the data to your datasource if needed
         datasource.writeData(scheduleList);
 
-        // Redirect to the "main" view or perform other actions
-        FXRouter.goTo("main");
+        // Redirect to the "CreateTeam" view and pass the event stored in the field
+        FXRouter.goTo("createTeam", event);
+    }
+
+    private void filterSchedulesByEventAndTeamName(String eventName) {
+        scheduleList = datasource.readData();
+        for (Schedule schedule : scheduleList.getActivityList() ){
+            if (schedule.getEventName().equals(eventName) && schedule.getTeamName().equals("join")){
+                scheduleView.getItems().add(schedule);
+                System.out.println(schedule.getEventName());
+            }
+        }
+
     }
 
 }

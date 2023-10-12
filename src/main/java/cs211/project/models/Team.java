@@ -3,10 +3,12 @@ package cs211.project.models;
 public class Team {
     private String teamName;
     private String eventName;
+    private String joinFieldText;
 
-    public Team(String eventName, String teamName) {
+    public Team(String eventName, String teamName, String joinFieldText) {
         this.eventName = eventName;
         this.teamName = teamName;
+        this.joinFieldText = joinFieldText;
     }
 
     public String getTeamName() {
@@ -16,6 +18,7 @@ public class Team {
     public String getEventName() {
         return eventName;
     }
+    public String getJoinFieldText() {return joinFieldText; }
 
 
     @Override

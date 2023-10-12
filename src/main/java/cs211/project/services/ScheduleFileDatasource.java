@@ -65,7 +65,7 @@ public class ScheduleFileDatasource implements Datasource<ScheduleList> {
                 String time = data[3].trim();
                 String date = data[4].trim();
 
-                scheduleList.addActivity(eventName, teamName, activity, time, date);
+                scheduleList.addActivity(new Schedule(eventName, teamName, activity, time, date));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

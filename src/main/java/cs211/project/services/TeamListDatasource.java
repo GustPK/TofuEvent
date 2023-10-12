@@ -1,5 +1,6 @@
 package cs211.project.services;
 
+import cs211.project.models.Team;
 import cs211.project.models.collections.TeamList;
 
 import java.io.*;
@@ -60,11 +61,12 @@ public class TeamListDatasource implements Datasource<TeamList>{
                 String[] data = line.split(",");
 
 
-                String teamName = data[0].trim();
-                String eventName = data[1].trim();
+                String eventName = data[0].trim();
+                String teamName = data[1].trim();
+                String joinFieldText = data[2].trim();
 
 
-                teams.addTeam(teamName, eventName);
+                teams.addTeam(new Team(eventName, teamName, joinFieldText));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -75,7 +77,35 @@ public class TeamListDatasource implements Datasource<TeamList>{
 
     @Override
     public void writeData(TeamList data) {
+        BufferedWriter buffer = null;
+        FileOutputStream fileOutputStream;
+        String filePath = directoryName + File.separator + fileName;
+        File file = new File(filePath);
 
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
+                    fileOutputStream, StandardCharsets.UTF_8);
+            buffer = new BufferedWriter(outputStreamWriter);
+
+            for (Team team : data.getTeams()) {
+                String line = team.getEventName() + ","
+                        + team.getTeamName() + ","
+                        + team.getJoinFieldText();
+
+                buffer.append(line);
+                buffer.append("\n");
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                buffer.flush();
+                buffer.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
-
 }
