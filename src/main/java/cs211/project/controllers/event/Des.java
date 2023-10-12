@@ -21,10 +21,11 @@ import javafx.scene.text.TextFlow;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Des {
     @FXML
-    private Label date;
+    private Label count;
     @FXML private TextFlow nameField;
     @FXML private Rectangle imageEvent;
     @FXML
@@ -75,7 +76,13 @@ public class Des {
 
         nameField.getChildren().add(text);
 
-        date.setText("29");
+        int data7 = Integer.parseInt(event.getJoinFieldText()); // Assuming data[7] is an integer in the CSV
+        int data8 = Integer.parseInt(event.getJoinedText()); // Assuming data[8] is an integer in the CSV
+        int countValue = data7 - data8;
+
+        // Convert the count value to a String and set it to the label
+        count.setText(String.valueOf(countValue));
+
         String imagePath = "data/images/" + event.getImgEvent();
         File imageFile = new File(imagePath);
         Image profileImage = new Image(imageFile.toURI().toString());
@@ -117,6 +124,9 @@ public class Des {
                 // Add the participant to the list
                 participantList.addParticipant(new Participant(username, event.getName(), "join"));
                 participantDatasource.writeData(participantList);
+                Event current = eventList.findByEventName(event.getName());
+                current.addJoin();
+                datasource.writeData(eventList);
 
                 // Show a popup indicating that the user has joined
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -125,7 +135,6 @@ public class Des {
                 alert.setContentText("You have joined the event.");
                 alert.showAndWait();
 
-                // Update the buttonClicked flag to prevent further clicks
                 buttonClicked = true;
 
                 // Optionally, you can disable the button to prevent further clicks
@@ -159,18 +168,34 @@ public class Des {
                 alert.setContentText("You've already joined the team for this event.");
                 alert.showAndWait();
             } else {
-                // Add the participant with the selected team to the list
-                participantList.addParticipant(new Participant(username, event.getName(), selectedTeam));
-                participantDatasource.writeData(participantList);
+                // Find the team in teamList
+                Team currentTeam = teamList.findByTeamName(selectedTeam);
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information");
-                alert.setHeaderText("Joined Team");
-                alert.setContentText("You have joined the team for this event.");
-                alert.showAndWait();
+                if (currentTeam == null) {
+                    // Handle the case where the team doesn't exist
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Team Not Found");
+                    alert.setContentText("The selected team does not exist.");
+                    alert.showAndWait();
+                } else {
+                    // Add the participant with the selected team to the list
+                    participantList.addParticipant(new Participant(username, event.getName(), selectedTeam));
+                    participantDatasource.writeData(participantList);
+
+                    currentTeam.addJoin();
+                    teamListDatasource.writeData(teamList);
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information");
+                    alert.setHeaderText("Joined Team");
+                    alert.setContentText("You have joined the team for this event.");
+                    alert.showAndWait();
+                }
             }
         }
     }
+
 
     @FXML
     protected void onBackButtonClick() throws IOException {

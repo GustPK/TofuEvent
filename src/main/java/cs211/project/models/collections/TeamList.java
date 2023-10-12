@@ -1,6 +1,7 @@
 package cs211.project.models.collections;
 
 import cs211.project.models.Team;
+import cs211.project.models.event.Event;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,14 @@ public class TeamList {
 
     public void addTeam(Team team) {
         teams.add(team);
+    }
+
+    public Team findByTeamName(String teamName){
+        for(Team team:teams){
+            if (team.getTeamName().equals(teamName))
+                return team;
+        }
+        return null;
     }
 
 }

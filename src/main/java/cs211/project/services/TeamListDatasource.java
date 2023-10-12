@@ -64,9 +64,10 @@ public class TeamListDatasource implements Datasource<TeamList>{
                 String eventName = data[0].trim();
                 String teamName = data[1].trim();
                 String joinFieldText = data[2].trim();
+                String joinedText = data[3].trim();
 
 
-                teams.addTeam(new Team(eventName, teamName, joinFieldText));
+                teams.addTeam(new Team(eventName, teamName, joinFieldText, joinedText));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -91,7 +92,8 @@ public class TeamListDatasource implements Datasource<TeamList>{
             for (Team team : data.getTeams()) {
                 String line = team.getEventName() + ","
                         + team.getTeamName() + ","
-                        + team.getJoinFieldText();
+                        + team.getJoinFieldText() + ","
+                        + team.getJoinedText();
 
                 buffer.append(line);
                 buffer.append("\n");

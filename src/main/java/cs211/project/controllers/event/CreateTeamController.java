@@ -173,7 +173,7 @@ public class CreateTeamController {
             // Check if the team name is duplicated within the same event
             if (!isTeamNameDuplicate(event.getName(), team)) {
                 // Team name is unique within the event, proceed with team creation
-                teamList.addTeam(new Team(event.getName(), team, joinFieldText));
+                teamList.addTeam(new Team(event.getName(), team, joinFieldText, "0"));
                 scheduleList.getActivityList().addAll(dataFromTableView);
 
                 // Write data back to the data sources
@@ -209,7 +209,7 @@ public class CreateTeamController {
             // Check if the team name is duplicated within the same event
             if (!isTeamNameDuplicate(event.getName(), team)) {
                 // Team name is unique within the event, proceed with team creation
-                teamList.addTeam(new Team(event.getName(), team, joinFieldText));
+                teamList.addTeam(new Team(event.getName(), team, joinFieldText, "0"));
                 scheduleList.getActivityList().addAll(dataFromTableView);
 
                 // Write data back to the data sources

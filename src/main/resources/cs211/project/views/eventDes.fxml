@@ -49,7 +49,7 @@
       </Pane>
       <Pane layoutX="513.0" layoutY="91.0" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #000000; -fx-background-radius: 11;">
          <children>
-            <Label fx:id="date" alignment="CENTER" layoutX="3.0" layoutY="-1.0" prefHeight="37.0" prefWidth="50.0" text="29" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="count" alignment="CENTER" layoutX="3.0" layoutY="-1.0" prefHeight="37.0" prefWidth="50.0" text="29" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="30.0" />
                </font>

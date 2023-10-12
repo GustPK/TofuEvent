@@ -3,6 +3,9 @@ package cs211.project.models.event;
 import cs211.project.services.Datasource;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Event {
     private String organizer;
@@ -41,4 +44,10 @@ public class Event {
     public String getDesc() { return desc; }
     public String getJoinFieldText() {return joinFieldText; }
     public String getStatus() {return status; }
+    public void addJoin() {
+        int n = Integer.parseInt(joinedText);
+        n++;
+        joinedText = Integer.toString(n);
+    }
+
 }
