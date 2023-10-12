@@ -157,6 +157,7 @@ public class CreateParticipantsController {
 
     @FXML
     private void clickNext() throws IOException {
+        event = (Event) FXRouter.getData();
         scheduleList = datasource.readData();
         List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
 
