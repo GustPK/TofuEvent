@@ -30,12 +30,9 @@ public class EditEventController {
     private Datasource<EventList> EventListDataSource;
     @FXML
     private GridPane grid;
-    @FXML
-    Label text;
 
     @FXML
     public void initialize() throws IOException {
-        text.setText("qweqweqwe\nertreterter\nretert");
         EventListDataSource = new EventListDatasource();
         eventsLists = EventListDataSource.readData();
         int column = 1;
