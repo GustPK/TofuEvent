@@ -8,6 +8,7 @@ import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -109,10 +110,39 @@ public class RegisterController {
 
         status = "not banned";
 
-        if (password.equals(confirmPassword)) {
+        // ตรวจสอบว่า username ไม่ซ้ำในรายการบัญชี
+        boolean isUsernameUnique = isUsernameUnique(username);
+
+        if (isUsernameUnique && password.equals(confirmPassword)) {
             accountList.addAccount(new Account(name, username, password, imgSrc, status));
             datasource.writeData(accountList);
             FXRouter.goTo("login");
+        } else {
+            // แสดง Alert ถ้า username ซ้ำหรือรหัสผ่านไม่ตรงกัน
+            if (!isUsernameUnique) {
+                showAlert("Duplicate Username", "This username is already taken.");
+            }
+            if (!password.equals(confirmPassword)) {
+                showAlert("Password Mismatch", "Please double-check your password.");
+            }
         }
     }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    private boolean isUsernameUnique(String username) {
+        for (Account account : accountList.getAccounts()) {
+            if (account.getUsername().equals(username)) {
+                return false; // username ซ้ำ
+            }
+        }
+        return true; // username ไม่ซ้ำ
+    }
+
 }

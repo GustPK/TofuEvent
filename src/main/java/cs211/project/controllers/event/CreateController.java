@@ -146,7 +146,6 @@ public class CreateController {
         String name = nameField.getText();
         String desc = descArea.getText();
         String joinFieldText = joinField.getText();
-
         LocalDate startDate = datePickerStart.getValue();
         LocalDate endDate = datePickerEnd.getValue();
         int startHour = hourSpinnerStart.getValue();
@@ -165,6 +164,11 @@ public class CreateController {
             alert.setTitle("Warning");
             alert.setHeaderText("Please enter Max join count correctly.");
             alert.showAndWait();
+        } else if (isEventNameDuplicate(name)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Event name already exists. Please choose a different name.");
+            alert.showAndWait();
         } else {
             String startDateString = startDate.format(formatter);
             String endDateString = endDate.format(formatter);
@@ -177,12 +181,13 @@ public class CreateController {
 
             String status = "UNDONE";
 
-            eventList.addEvent(new Event(LoggedInAccount.getInstance().getAccount().getUsername(), name, startDateString, endDateString, startTimeString, endTimeString, desc, joinFieldText, status ,imgSrc));
+            eventList.addEvent(new Event(LoggedInAccount.getInstance().getAccount().getUsername(), name, startDateString, endDateString, startTimeString, endTimeString, desc, joinFieldText, status, imgSrc));
             datasource.writeData(eventList);
             int lastIndex = eventList.getEvents().size() - 1;
             FXRouter.goTo("createParticipants", eventList.getEvents().get(lastIndex));
         }
     }
+
 
     private boolean isNumeric(String str) {
         try {
@@ -192,4 +197,13 @@ public class CreateController {
             return false;
         }
     }
+    private boolean isEventNameDuplicate(String name) {
+        for (Event event : eventList.getEvents()) {
+            if (event.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

@@ -53,7 +53,7 @@ public class LoginController {
             if (!exist.getStatus().equals("banned")) {
                 System.out.println("Login: Success");
                 LoggedInAccount.getInstance().setAccount(exist);
-                if (exist.getUsername().equals("admin") && exist.getPassword().equals("admin")) {
+                if (exist.getUsername().equals("admin")) {
                     FXRouter.goTo("admin");
                 } else {
                     FXRouter.goTo("main");
