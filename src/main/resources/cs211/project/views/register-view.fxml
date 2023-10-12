@@ -16,7 +16,7 @@
       <TextField fx:id="nameField" layoutX="114.0" layoutY="257.0" prefWidth="200.0" style="-fx-border-width: 0px 0px 1px 0px; -fx-background-color: transparent; -fx-border-color: #3A6287;" />
       <TextField fx:id="usernameField" layoutX="114.0" layoutY="307.0" prefWidth="200.0" style="-fx-border-width: 0px 0px 1px 0px; -fx-border-color: #000000; -fx-background-color: transparent;" />
       <Label layoutX="114.0" layoutY="242.0" text="Name" />
-      <Label layoutX="114.0" layoutY="291.0" text="User name" textFill="#575757" />
+      <Label layoutX="114.0" layoutY="291.0" text="Username" textFill="#575757" />
       <Label layoutX="114.0" layoutY="340.0" text="Password" textFill="#575757" />
       <Button layoutX="131.0" layoutY="464.0" mnemonicParsing="false" onAction="#onSignUp" prefWidth="157.0" style="-fx-background-color: #3A6287;" text="Sign Up" textFill="WHITE">
          <cursor>

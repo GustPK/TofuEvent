@@ -44,7 +44,7 @@ public class ChangePasswordController {
         }
     }
     @FXML
-    private void confirmPassword() {
+    private void confirmPassword() throws IOException {
         Account currentLoggedInAccount = LoggedInAccount.getInstance().getAccount();
         if (currentLoggedInAccount.getPassword().equals(currentPasswordField.getText())){
             if (newPasswordField.getText().equals(confirmPasswordField.getText())){
@@ -57,6 +57,7 @@ public class ChangePasswordController {
                     confirmPasswordField.clear();
                     warning.getStyleClass().add("green-text");
                     warning.setText("Password changed successfully");
+                    FXRouter.goTo("login");
                 }
             }
             else {
