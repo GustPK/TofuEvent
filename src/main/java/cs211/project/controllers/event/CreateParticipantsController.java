@@ -159,14 +159,22 @@ public class CreateParticipantsController {
     private void clickNext() throws IOException {
         scheduleList = datasource.readData();
         List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
+
+        // ลบข้อมูลที่มี eventName เท่ากับ event.getName() และ teamName เท่ากับ "join" ออกจาก scheduleList
+        scheduleList.getActivityList().removeIf(schedule ->
+                schedule.getEventName().equals(event.getName()) && schedule.getTeamName().equals("join")
+        );
+
+        // เพิ่มข้อมูลใหม่ลงใน scheduleList
         scheduleList.getActivityList().addAll(dataFromTableView);
 
-        // Write the data to your datasource if needed
+        // Write the updated data back to your datasource
         datasource.writeData(scheduleList);
 
         // Redirect to the "CreateTeam" view and pass the event stored in the field
         FXRouter.goTo("createTeam", event);
     }
+
     private void filterSchedulesByEventAndTeamName(String eventName) {
         scheduleList = datasource.readData();
         for (Schedule schedule : scheduleList.getActivityList() ){
