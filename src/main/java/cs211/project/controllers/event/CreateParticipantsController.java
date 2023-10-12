@@ -20,10 +20,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CreateParticipantsController {
     @FXML
@@ -49,15 +47,15 @@ public class CreateParticipantsController {
 
         TableColumn<Schedule, String> dateColumn = new TableColumn<>("Date");
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        dateColumn.setPrefWidth(125); // Set the width to 125
+        dateColumn.setPrefWidth(125);
 
         TableColumn<Schedule, String> timeColumn = new TableColumn<>("Time");
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-        timeColumn.setPrefWidth(125); // Set the width to 125
+        timeColumn.setPrefWidth(125);
 
         TableColumn<Schedule, String> activityColumn = new TableColumn<>("Activity");
         activityColumn.setCellValueFactory(new PropertyValueFactory<>("activity"));
-        activityColumn.setPrefWidth(125); // Set the width to 125
+        activityColumn.setPrefWidth(125);
 
         scheduleView.getColumns().addAll(dateColumn, timeColumn, activityColumn);
 
@@ -65,7 +63,15 @@ public class CreateParticipantsController {
         SpinnerValueFactory<Integer> minuteStartValueFactory = createSpinnerValueFactory(0, 59, 0);
         hourSpinner.setValueFactory(hourStartValueFactory);
         minuteSpinner.setValueFactory(minuteStartValueFactory);
+
+        Event event = (Event) FXRouter.getData();
+        if (event != null) {
+            String eventName = event.getName();
+            filterSchedulesByEventAndTeamName(eventName);
+        }
+
     }
+
 
     private SpinnerValueFactory<Integer> createSpinnerValueFactory(int min, int max, int initialValue) {
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max, initialValue);
@@ -99,10 +105,9 @@ public class CreateParticipantsController {
 
         // นำข้อมูลไปเพิ่มลงใน scheduleList โดยรวมเป็น "hh:mm"
         String time = String.format("%02d:%02d", hour, minute);
-        scheduleList.addActivity(event.getName(), "join", name, time, date.toString());
 
-        scheduleView.getItems().clear();
-
+        // แสดงข้อมูลบน TableView โดยจำแนกจากชื่อ event ที่ซ้ำกัน
+        scheduleList.addActivity(new Schedule(event.getName(), "join", name, time, date.toString()));
         showList(scheduleList);
 
         // ล้างค่าใน nameField, hourSpinner และ minuteSpinner หลังจากเพิ่มข้อมูลเสร็จ
@@ -110,18 +115,32 @@ public class CreateParticipantsController {
         hourSpinner.getValueFactory().setValue(0);
         minuteSpinner.getValueFactory().setValue(0);
     }
+
     @FXML
     public void clickDelete() {
         ObservableList<Schedule> selectedRows = scheduleView.getSelectionModel().getSelectedItems();
 
-        scheduleList.getActivityList().removeAll(selectedRows);
-
-        scheduleView.getItems().clear();
-        showList(scheduleList);
+        if (!selectedRows.isEmpty()) {
+            scheduleList.getActivityList().removeAll(selectedRows);
+            scheduleView.getItems().clear();
+            showList(scheduleList);
+        } else {
+            // แจ้งเตือนผู้ใช้ว่าต้องเลือกรายการก่อนที่จะลบ
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("คำเตือน");
+            alert.setHeaderText("คุณต้องเลือกรายการก่อนที่จะลบ");
+            alert.showAndWait();
+        }
     }
 
     private void showList(ScheduleList scheduleList) {
+        event = (Event) FXRouter.getData();
         List<Schedule> sortedList = new ArrayList<>(scheduleList.getActivityList());
+
+        // แสดงเฉพาะชื่อ event ที่ซ้ำกัน
+        List<Schedule> filteredList = sortedList.stream()
+                .filter(schedule -> schedule.getEventName().equals(event.getName()) && schedule.getTeamName().equals("join"))
+                .collect(Collectors.toList());
 
         Comparator<Schedule> customComparator = (schedule1, schedule2) -> {
             int dateComparison = schedule1.getDate().compareTo(schedule2.getDate());
@@ -132,10 +151,10 @@ public class CreateParticipantsController {
             }
         };
 
-        sortedList.sort(customComparator);
-
-        scheduleView.getItems().setAll(sortedList);
+        filteredList.sort(customComparator);
+        scheduleView.getItems().setAll(filteredList);
     }
+
     @FXML
     private void clickNext() throws IOException {
         scheduleList = datasource.readData();
@@ -147,5 +166,14 @@ public class CreateParticipantsController {
 
         // Redirect to the "CreateTeam" view and pass the event stored in the field
         FXRouter.goTo("createTeam", event);
+    }
+    private void filterSchedulesByEventAndTeamName(String eventName) {
+        scheduleList = datasource.readData();
+        for (Schedule schedule : scheduleList.getActivityList() ){
+            if (schedule.getEventName().equals(eventName) && schedule.getTeamName().equals("join")){
+                scheduleView.getItems().add(schedule);
+                System.out.println(schedule.getEventName());
+            }
+        }
     }
 }

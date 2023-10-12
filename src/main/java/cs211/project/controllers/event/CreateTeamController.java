@@ -98,7 +98,7 @@ public class CreateTeamController {
         int minute = minuteSpinner.getValue();
 
         String time = String.format("%02d:%02d", hour, minute);
-        scheduleList.addActivity(event.getName(), team, name, time, date.toString());
+        scheduleList.addActivity(new Schedule(event.getName(), team, name, time, date.toString()));
 
         scheduleView.getItems().clear();
 

@@ -2,11 +2,9 @@ package cs211.project.controllers.login;
 
 import cs211.project.models.account.Account;
 import cs211.project.models.collections.AccountList;
-import cs211.project.models.collections.ParticipantList;
 import cs211.project.models.event.Participant;
 import cs211.project.services.AccountListDatasource;
 import cs211.project.services.Datasource;
-import cs211.project.services.ParticipantListDatasource;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -42,7 +40,7 @@ public class UserListItemController {
         datasource = new AccountListDatasource();
         accounts = datasource.readData();
         for(Account account1 : accounts.getAccounts())
-            if (account.getUserName().equals(account1.getUsername()))
+            if (account.getUsername().equals(account1.getUsername()))
                 selectedAccount = account1;
         nameLabel.setText(" ");
         String imagePath = "data/images/" + selectedAccount.getImage();
@@ -50,6 +48,6 @@ public class UserListItemController {
         Image profileImage = new Image(imageFile.toURI().toString());
         profilePic.setImage(profileImage);
         statusLabel.setText("");
-        usernameLabel.setText(account.getUserName());
+        usernameLabel.setText(account.getUsername());
     }
 }
