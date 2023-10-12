@@ -83,7 +83,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onOngoingEventsButtonClick" prefHeight="40.0" prefWidth="166.0" styleClass="default-button-navy-white" text="Ongoing events">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onOngoingEventsButtonClick" prefHeight="40.0" prefWidth="166.0" styleClass="default-button-navy-white" text="Events Attended">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
