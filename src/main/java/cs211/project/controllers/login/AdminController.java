@@ -2,9 +2,8 @@ package cs211.project.controllers.login;
 
 import cs211.project.models.account.Account;
 import cs211.project.models.collections.AccountList;
-import cs211.project.services.AccountListDatasource;
-import cs211.project.services.Datasource;
-import cs211.project.services.FXRouter;
+import cs211.project.services.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -27,7 +26,7 @@ public class AdminController {
     }
 
     @FXML
-    private void BackButton() throws IOException {
+    private void backButton() throws IOException {
         FXRouter.goTo("login");
     }
 
@@ -35,6 +34,9 @@ public class AdminController {
     private void initialize() {
         datasource = new AccountListDatasource();
         accounts = datasource.readData();
+
+        accounts.sort(new LatestSortComparator());
+
         int column = 0;
         int row = 0;
 

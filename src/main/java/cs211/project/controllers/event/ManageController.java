@@ -55,6 +55,7 @@ public class ManageController {
     @FXML private TableView<Schedule> scheduleView;
 
 
+
     @FXML
     private void initialize(){
         event = (Event) FXRouter.getData();

@@ -1,8 +1,11 @@
 package cs211.project.models.collections;
 
 import cs211.project.models.account.Account;
+import cs211.project.models.event.Event;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class AccountList {
 
@@ -12,8 +15,6 @@ public class AccountList {
     public AccountList() {
         accounts = new ArrayList<>();
     }
-
-
     public ArrayList<Account> getAccounts() {
         return accounts;
     }
@@ -46,5 +47,8 @@ public class AccountList {
                     return account;
         }
         return null;
+    }
+    public void sort(Comparator<Account> cmp) {
+        Collections.sort(accounts, cmp);
     }
 }

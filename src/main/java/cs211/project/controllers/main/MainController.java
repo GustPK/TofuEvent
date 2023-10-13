@@ -84,7 +84,6 @@ public class MainController {
                 events.sort(new DateSortcomparator());
             }
             showGrid(events);
-            System.out.println("Nita");
         }
 
         private List<EventList> getData() {
@@ -132,9 +131,8 @@ public class MainController {
             Image image = new Image(path);
             profilePic.setFill(new ImagePattern(image));
             nameLink.setText(LoggedInAccount.getInstance().getAccount().getUsername());
-
-
         }
+
         private void showGrid(EventList events){
             grid.getChildren().clear();
             int column = 0;
