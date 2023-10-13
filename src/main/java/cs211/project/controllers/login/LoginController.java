@@ -100,9 +100,4 @@ public class LoginController {
         FXRouter.goTo("register");
     }
 
-    @FXML
-    private void onAdminHyperlinkClick() throws IOException {
-        FXRouter.goTo("admin");
-    }
-
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -9,7 +10,38 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.EventsAttendedController">
+   <children>
+      <Label layoutX="77.0" layoutY="58.0" text="Events Attended">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="131.0" layoutY="179.0" prefHeight="407.0" prefWidth="683.0">
+         <children>
+            <ScrollPane layoutX="48.0" layoutY="10.0" prefHeight="377.0" prefWidth="580.0">
+               <content>
+                  <GridPane fx:id="grid" prefHeight="10.0" prefWidth="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <Hyperlink layoutX="139.0" layoutY="134.0" text="Upcoming">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="254.0" layoutY="134.0" text="History">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Hyperlink>
+   </children>
     <children>
+      <Button layoutX="14.0" layoutY="560.0" mnemonicParsing="false" onAction="#clickBackToMain" styleClass="default-button-white-navy" stylesheets="@../../../values/style.css" text="Back" />
         <Label layoutX="77.0" layoutY="58.0" text="Events Attended">
             <font>
                 <Font size="39.0" />
@@ -28,12 +60,12 @@
                 </ScrollPane>
             </children>
         </AnchorPane>
-        <Hyperlink layoutX="139.0" layoutY="134.0" text="Upcoming">
+        <Hyperlink layoutX="139.0" layoutY="134.0" onAction="#onUpcomingHyperlinkClick" text="Upcoming">
             <font>
                 <Font size="18.0" />
             </font>
         </Hyperlink>
-        <Hyperlink layoutX="254.0" layoutY="134.0" onAction="#onHistoryHyperlink" text="History">
+        <Hyperlink layoutX="254.0" layoutY="134.0" onAction="#onHistoryHyperlinkClick" text="History">
             <font>
                 <Font size="18.0" />
             </font>
