@@ -32,6 +32,7 @@ public class ManageController {
     private GridPane gridPane;
 //    @FXML ComboBox;
 //    private String selectTeam = "join";
+    @FXML Label textTeam = null;
 
     @FXML
     public void clickBackToCreate() throws IOException {
@@ -51,7 +52,7 @@ public class ManageController {
     private Event event;
     @FXML private ComboBox selectTeam;
 //    @FXML private ChoiceBox selectTeam;
-    @FXML private TableView scheduleView;
+    @FXML private TableView<Schedule> scheduleView;
 
 
     @FXML
@@ -84,7 +85,7 @@ public class ManageController {
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                         alert.setTitle("Confirmation");
                         alert.setHeaderText(null);
-                        alert.setContentText("คุณต้องการจะban คนนี้หรือไม่?");
+                        alert.setContentText("You want ban this person?");
 
                         // Add "Ban" and "Cancel" buttons to the dialog
                         ButtonType buttonTypeBan = new ButtonType("Ban", ButtonBar.ButtonData.OK_DONE);
@@ -96,6 +97,7 @@ public class ManageController {
                         if (result.isPresent() && result.get() == buttonTypeBan) {
                             account.setBanned();
                             datasource.writeData(accounts);
+                            initialize();
                         }
                     });
 
@@ -107,28 +109,66 @@ public class ManageController {
             e.printStackTrace();
         }
         datasourceSchedule = new ScheduleFileDatasource("data", "schedule.csv");
+        scheduleList = datasourceSchedule.readData();
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();
 
         TableColumn<Schedule, String> dateColumn = new TableColumn<>("Date");
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        dateColumn.setPrefWidth(125);
+        dateColumn.setPrefWidth(100);
 
         TableColumn<Schedule, String> timeColumn = new TableColumn<>("Time");
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-        timeColumn.setPrefWidth(125);
+        timeColumn.setPrefWidth(100);
+
+        TableColumn<Schedule, String> statusColumn = new TableColumn<>("Status");
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        statusColumn.setPrefWidth(100);
 
         TableColumn<Schedule, String> activityColumn = new TableColumn<>("Activity");
         activityColumn.setCellValueFactory(new PropertyValueFactory<>("activity"));
-        activityColumn.setPrefWidth(125);
+        activityColumn.setPrefWidth(100);
 
-        scheduleView.getColumns().addAll(dateColumn, timeColumn, activityColumn);//
-        scheduleList = datasourceSchedule.readData();
+        scheduleView.getColumns().addAll(dateColumn, timeColumn, activityColumn,statusColumn);//
         scheduleList.getActivityList().stream()
                 .filter(i -> i.getEventName().equals(event.getName()) && i.getTeamName().equals(temp))
                 .forEach(k -> {
                     scheduleView.getItems().add(k);
                 });
+        scheduleView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) {
+                Schedule selectedSchedule = scheduleView.getSelectionModel().getSelectedItem();
+                if (selectedSchedule != null) {
+                    // สร้าง Alert
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Set Status");
+                    alert.setHeaderText("Choose the status for this schedule:");
+
+                    // สร้างปุ่ม "Done" และ "Undone"
+                    ButtonType buttonTypeDone = new ButtonType("Done");
+                    ButtonType buttonTypeUndone = new ButtonType("Undone");
+
+                    alert.getButtonTypes().setAll(buttonTypeDone, buttonTypeUndone);
+
+                    // แสดง Alert และรอผู้ใช้เลือก
+                    Optional<ButtonType> result = alert.showAndWait();
+
+                    if (result.isPresent()) {
+                        if (result.get() == buttonTypeDone) {
+                            // ถ้าผู้ใช้เลือก "Done" ให้ใช้ setDone() บน selectedSchedule
+                            selectedSchedule.setStatusDone();
+                        } else if (result.get() == buttonTypeUndone) {
+                            // ถ้าผู้ใช้เลือก "Undone" ให้ใช้ setUndone() บน selectedSchedule
+                            selectedSchedule.setStatusUndone();
+                        }
+
+                        datasourceSchedule.writeData(scheduleList);
+                        initialize();
+                    }
+                }
+            }
+        });
+
 
 
 
@@ -139,22 +179,21 @@ public class ManageController {
         selectTeam.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 temp = newValue.toString(); // กำหนดค่าที่เลือกใน ComboBox เข้าในตัวแปร temp
+                textTeam.setText(null);
                 sample();
             }
         });
     }
 
-    private void showList(ScheduleList scheduleList) {
-        scheduleListView.getItems().addAll(scheduleList.getActivityList());
-    }
 
     @FXML
     public void ClickToGoEditSchedule()throws IOException {
         FXRouter.goTo("editSchedule",event);
     }
     @FXML void clickParticipant(){
-        selectTeam.setValue("Team");
+        selectTeam.setValue("Select team");
         temp = "join";
+        textTeam.setText("Select team");
         sample();
     }
     @FXML

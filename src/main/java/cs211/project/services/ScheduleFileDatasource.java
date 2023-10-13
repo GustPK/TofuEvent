@@ -64,8 +64,10 @@ public class ScheduleFileDatasource implements Datasource<ScheduleList> {
                 String activity = data[2].trim();
                 String time = data[3].trim();
                 String date = data[4].trim();
+                String status = data[5].trim();
 
-                scheduleList.addActivity(new Schedule(eventName, teamName, activity, time, date));
+
+                scheduleList.addActivity(new Schedule(eventName, teamName, activity, time, date,status));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -90,7 +92,8 @@ public class ScheduleFileDatasource implements Datasource<ScheduleList> {
                         + schedule.getTeamName()+","
                         + schedule.getActivity()+","
                         + schedule.getTime()+","
-                        + schedule.getDate();
+                        + schedule.getDate()+","
+                        + schedule.getStatus();
 
                 buffer.append(line);
                 buffer.append("\n");

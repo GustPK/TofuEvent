@@ -24,6 +24,12 @@ public class UserListItemController {
     private Label usernameLabel;
     @FXML
     private Label onlineLabel;
+    @FXML
+    private Label disable;
+    @FXML
+    private Label disableB;
+    @FXML
+    private Label chageToStatusLabel;
 
     public void setData(Account account) {
         this.selectedAccount = account;
@@ -45,12 +51,17 @@ public class UserListItemController {
         for(Account account1 : accounts.getAccounts())
             if (account.getUsername().equals(account1.getUsername()))
                 selectedAccount = account1;
-        nameLabel.setText(" ");
+        nameLabel.setText(account.getUsername());
         String imagePath = "data/images/" + selectedAccount.getImage();
         File imageFile = new File(imagePath);
         Image profileImage = new Image(imageFile.toURI().toString());
         profilePic.setImage(profileImage);
-        statusLabel.setText("");
-        usernameLabel.setText(account.getUsername());
+        statusLabel.setText(null);
+        usernameLabel.setText(null);
+        disable.setText(null);
+        disableB.setText(null);
+        onlineLabel.setText(account.getBan());
+        chageToStatusLabel.setText("Staus");
+
     }
 }

@@ -8,18 +8,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="150.0" prefWidth="500.0" styleClass="cursor-hand" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.login.UserListItemController">
+<AnchorPane prefHeight="150.0" prefWidth="200.0" styleClass="cursor-hand" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.login.UserListItemController">
    <children>
-      <HBox prefHeight="150.0" prefWidth="500.0">
+      <HBox prefHeight="150.0" prefWidth="470.0">
          <children>
             <ImageView fx:id="profilePic" fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" style="-fx-arc-width: 111; -fx-arc-height: 111;">
                <HBox.margin>
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
             </ImageView>
-            <VBox prefHeight="150.0" prefWidth="200.0">
+            <VBox prefHeight="150.0" prefWidth="153.0">
                <children>
-                  <Label layoutX="30.0" text="Username">
+                  <Label fx:id="disableB" layoutX="30.0" text="Username">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -35,7 +35,7 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Latest online">
+                  <Label fx:id="chageToStatusLabel" text="Latest online">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -43,7 +43,7 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Status">
+                  <Label fx:id="disable" text="Status">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -53,7 +53,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox prefHeight="150.0" prefWidth="253.0">
+            <VBox prefHeight="100.0" prefWidth="253.0">
                <children>
                   <Label fx:id="usernameLabel" text="Label">
                      <font>

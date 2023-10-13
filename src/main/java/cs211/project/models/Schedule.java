@@ -6,15 +6,26 @@ public class Schedule {
     private String activity;
     private String teamName;
     private String date;
+    private String status;
 
+    public Schedule(String eventName, String teamName, String activity, String time, String date,String status) {
+        this.eventName = eventName;
+        this.teamName = teamName;
+        this.activity = activity;
+        this.time = time;
+        this.date = date;
+        this.status = status;
+
+    }
     public Schedule(String eventName, String teamName, String activity, String time, String date) {
         this.eventName = eventName;
         this.teamName = teamName;
         this.activity = activity;
         this.time = time;
         this.date = date;
-    }
+        this.status = "undone";
 
+    }
     public String getTeamName() {
         return teamName;
     }
@@ -32,5 +43,14 @@ public class Schedule {
 
     public String getEventName() {
         return eventName;
+    }
+
+    public String getStatus() { return status; }
+
+    public void setStatusDone() {
+        this.status = "done";
+    }
+    public void setStatusUndone() {
+        this.status = "undone";
     }
 }

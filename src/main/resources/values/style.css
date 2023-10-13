@@ -63,5 +63,8 @@
 .green-text {
     -fx-text-fill: green;
 }
+.scroll-pane {
+    -fx-background-color: white;
+}
 
 
