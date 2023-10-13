@@ -12,6 +12,12 @@ public class Participant {
         this.team = team;
         this.ban = "unbanned";
     }
+    public Participant(String userName, String event, String team,String ban) {
+        this.userName = userName;
+        this.event = event;
+        this.team = team;
+        this.ban = ban;
+    }
 
     public String getUsername() {
         return userName;
