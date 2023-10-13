@@ -189,7 +189,9 @@ public class ManageController {
 
     @FXML
     public void ClickToGoEditSchedule()throws IOException {
+        event.tamp = temp;
         FXRouter.goTo("editSchedule",event);
+
     }
     @FXML void clickParticipant(){
         selectTeam.setValue("Select team");

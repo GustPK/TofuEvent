@@ -30,14 +30,16 @@ public class EditSchedule {
     private Spinner<Integer> hourSpinner;
     @FXML
     private Spinner<Integer> minuteSpinner;
-    private Event event;
     private ScheduleList scheduleList = new ScheduleList();
     private Datasource<ScheduleList> datasource;
-    private Event getEvent = (Event) FXRouter.getData();
-    String temp = "join";
+    private Event getEvent ;
+    String temp;
+
 
     @FXML
     private void initialize() {
+        getEvent = (Event) FXRouter.getData();
+        temp = getEvent.tamp;
         datasource = new ScheduleFileDatasource("data", "schedule.csv");
 
         scheduleView.getColumns().clear();
@@ -87,7 +89,7 @@ public class EditSchedule {
 
     @FXML
     public void clickAdd() {
-        getEvent = (Event) FXRouter.getData();
+//        getEvent = (Event) FXRouter.getData();
 
         // รับข้อมูลจาก nameField
         String name = nameField.getText();
@@ -130,7 +132,7 @@ public class EditSchedule {
     }
 
     private void showList(ScheduleList scheduleList) {
-        getEvent = (Event) FXRouter.getData();
+//        getEvent = (Event) FXRouter.getData();
         List<Schedule> sortedList = new ArrayList<>(scheduleList.getActivityList());
 
         // แสดงเฉพาะชื่อ event ที่ซ้ำกัน
@@ -169,7 +171,7 @@ public class EditSchedule {
         datasource.writeData(scheduleList);
 
         // Redirect to the "CreateTeam" view and pass the event stored in the field
-        FXRouter.goTo("createTeam", getEvent);
+        FXRouter.goTo("manage");
     }
 
     private void filterSchedulesByEventAndTeamName(String eventName,String temp) {
@@ -181,9 +183,6 @@ public class EditSchedule {
             }
         }
     }
-    @FXML void sample(){
-        temp = "wednesday";
-        initialize();
-    }
+
 }
 

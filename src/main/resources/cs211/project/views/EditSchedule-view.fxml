@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
@@ -19,7 +18,7 @@
             <font>
                 <Font size="36.0" />
             </font></Label>
-        <Button layoutX="323.0" layoutY="516.0" mnemonicParsing="false" onAction="#clickNext" styleClass="default-button-white-navy" text="Next" />
+        <Button layoutX="323.0" layoutY="516.0" mnemonicParsing="false" onAction="#clickNext" styleClass="default-button-white-navy" text="Submit" />
         <TableView fx:id="scheduleView" layoutX="105.0" layoutY="187.0" prefHeight="305.0" prefWidth="375.0">
             <columns>
                 <TableColumn prefWidth="125.0" text="C1" />
@@ -65,7 +64,5 @@
             </children>
         </HBox>
         <Button layoutX="554.0" layoutY="364.0" mnemonicParsing="false" onAction="#clickDelete" styleClass="default-button-white-navy" text="Delete" />
-      <ComboBox layoutX="103.0" layoutY="131.0" prefWidth="150.0" promptText="select team" />
-      <Button layoutX="373.0" layoutY="119.0" mnemonicParsing="false" onAction="#sample" text="Button" />
     </children>
 </AnchorPane>

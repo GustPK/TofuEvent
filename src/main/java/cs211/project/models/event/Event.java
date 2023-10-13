@@ -19,6 +19,7 @@ public class Event {
     private String joinFieldText;
     private String joinedText;
     private String status;
+    public String tamp;
     public Event(String organizer, String name, String dateStart, String dateEnd, String startTime, String endTime, String desc, String joinFieldText, String joinedText, String status, String imgEvent) {
         this.organizer = organizer;
         this.name = name;
