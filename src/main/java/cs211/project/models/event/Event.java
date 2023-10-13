@@ -2,6 +2,8 @@ package cs211.project.models.event;
 
 import cs211.project.services.Datasource;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -50,5 +52,4 @@ public class Event {
         n++;
         joinedText = Integer.toString(n);
     }
-
 }

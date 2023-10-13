@@ -17,6 +17,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,30 +43,38 @@ public class EventsAttendedController {
 
         Set<String> processedEvents = new HashSet<>();
 
+        LocalDate currentDate = LocalDate.now(); // วันที่ปัจจุบัน
+
         try {
             for (Participant participant : participantList.getParticipants()) {
                 Event event = eventsLists.getEvents().stream()
                         .filter(e -> e.getName().equals(participant.getEvent()))
                         .findFirst()
                         .orElse(null);
-                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername()) && "UNDONE".equals(event.getStatus())) {
+                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername())) {
                     String eventName = participant.getEvent();
 
                     if (!processedEvents.contains(eventName)) {
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
-                        AnchorPane anchorPane = fxmlLoader.load();
+                        // เปรียบเทียบ LocalDate กับ startDate ของ Event
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                        LocalDate startDate = LocalDate.parse(event.getDateStart(), formatter);
+                        if (currentDate.isEqual(startDate)) { // ถ้า startDate ถึงในวันปัจจุบัน
+                            FXMLLoader fxmlLoader = new FXMLLoader();
+                            fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
+                            AnchorPane anchorPane = fxmlLoader.load();
 
-                        EventItemController eventItemController = fxmlLoader.getController();
-                        eventsLists.getEvents().stream()
-                                .filter(i -> i.getName().equals(eventName))
-                                .forEach(schedule -> {
-                                    eventItemController.setData(schedule);
-                                });
+                            EventItemController eventItemController = fxmlLoader.getController();
+                            eventsLists.getEvents().stream()
+                                    .filter(i -> i.getName().equals(eventName))
+                                    .forEach(schedule -> {
+                                        eventItemController.setData(schedule);
+                                    });
 
-                        grid.add(anchorPane, column, row++);
-                        GridPane.setMargin(anchorPane, new Insets(10));
-                        processedEvents.add(eventName);
+                            grid.add(anchorPane, column, row++);
+                            GridPane.setMargin(anchorPane, new Insets(10));
+
+                            processedEvents.add(eventName);
+                        }
                     }
                 }
             }
@@ -83,31 +94,38 @@ public class EventsAttendedController {
 
         Set<String> processedEvents = new HashSet<>();
 
+        LocalDate currentDate = LocalDate.now(); // วันที่ปัจจุบัน
+
         try {
             for (Participant participant : participantList.getParticipants()) {
                 Event event = eventsLists.getEvents().stream()
                         .filter(e -> e.getName().equals(participant.getEvent()))
                         .findFirst()
                         .orElse(null);
-                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername()) && "DONE".equals(event.getStatus())) {
+                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername())) {
                     String eventName = participant.getEvent();
 
                     if (!processedEvents.contains(eventName)) {
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
-                        AnchorPane anchorPane = fxmlLoader.load();
+                        // เปรียบเทียบ LocalDate กับ startDate ของ Event
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                        LocalDate startDate = LocalDate.parse(event.getDateStart(), formatter);
+                        if (currentDate.isAfter(startDate)) {
+                            FXMLLoader fxmlLoader = new FXMLLoader();
+                            fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
+                            AnchorPane anchorPane = fxmlLoader.load();
 
-                        EventItemController eventItemController = fxmlLoader.getController();
-                        eventsLists.getEvents().stream()
-                                .filter(i -> i.getName().equals(eventName))
-                                .forEach(schedule -> {
-                                    eventItemController.setData(schedule);
-                                });
+                            EventItemController eventItemController = fxmlLoader.getController();
+                            eventsLists.getEvents().stream()
+                                    .filter(i -> i.getName().equals(eventName))
+                                    .forEach(schedule -> {
+                                        eventItemController.setData(schedule);
+                                    });
 
-                        grid.add(anchorPane, column, row++);
-                        GridPane.setMargin(anchorPane, new Insets(10));
+                            grid.add(anchorPane, column, row++);
+                            GridPane.setMargin(anchorPane, new Insets(10));
 
-                        processedEvents.add(eventName);
+                            processedEvents.add(eventName);
+                        }
                     }
                 }
             }
@@ -128,31 +146,38 @@ public class EventsAttendedController {
 
         Set<String> processedEvents = new HashSet<>();
 
+        LocalDate currentDate = LocalDate.now(); // วันที่ปัจจุบัน
+
         try {
             for (Participant participant : participantList.getParticipants()) {
                 Event event = eventsLists.getEvents().stream()
                         .filter(e -> e.getName().equals(participant.getEvent()))
                         .findFirst()
                         .orElse(null);
-                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername()) && "UNDONE".equals(event.getStatus())) {
+                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername())) {
                     String eventName = participant.getEvent();
 
                     if (!processedEvents.contains(eventName)) {
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
-                        AnchorPane anchorPane = fxmlLoader.load();
+                        // เปรียบเทียบ LocalDate กับ startDate ของ Event
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                        LocalDate startDate = LocalDate.parse(event.getDateStart(), formatter);
+                        if (currentDate.isEqual(startDate)) { // ถ้า startDate ถึงในวันปัจจุบัน
+                            FXMLLoader fxmlLoader = new FXMLLoader();
+                            fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
+                            AnchorPane anchorPane = fxmlLoader.load();
 
-                        EventItemController eventItemController = fxmlLoader.getController();
-                        eventsLists.getEvents().stream()
-                                .filter(i -> i.getName().equals(eventName))
-                                .forEach(schedule -> {
-                                    eventItemController.setData(schedule);
-                                });
+                            EventItemController eventItemController = fxmlLoader.getController();
+                            eventsLists.getEvents().stream()
+                                    .filter(i -> i.getName().equals(eventName))
+                                    .forEach(schedule -> {
+                                        eventItemController.setData(schedule);
+                                    });
 
-                        grid.add(anchorPane, column, row++);
-                        GridPane.setMargin(anchorPane, new Insets(10));
+                            grid.add(anchorPane, column, row++);
+                            GridPane.setMargin(anchorPane, new Insets(10));
 
-                        processedEvents.add(eventName);
+                            processedEvents.add(eventName);
+                        }
                     }
                 }
             }
@@ -160,6 +185,7 @@ public class EventsAttendedController {
             e.printStackTrace();
         }
     }
+
     @FXML
     public void clickBackToMain() throws IOException {
         FXRouter.goTo("main");

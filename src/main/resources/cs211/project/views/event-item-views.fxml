@@ -37,10 +37,18 @@
       </HBox>
       <AnchorPane prefHeight="40.0" prefWidth="500.0">
          <children>
-            <Label fx:id="eventDate" layoutX="385.0" layoutY="7.0" text="13-05-2004" textFill="#00ff11">
+            <Label fx:id="eventDate" layoutX="362.0" layoutY="7.0" text="13-05-2004" textFill="#00ff11">
                <font>
                   <Font size="18.0" />
                </font>
+            </Label>
+            <Label fx:id="count" layoutX="467.0" layoutY="7.0" text="10/20">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <padding>
+                  <Insets left="-130.0" top="70.0" />
+               </padding>
             </Label>
          </children>
       </AnchorPane>

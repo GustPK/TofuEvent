@@ -1,5 +1,6 @@
 package cs211.project.controllers.event;
 
+import cs211.project.models.Team;
 import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.event.Event;
 
@@ -20,6 +21,8 @@ public class EventItemController {
     @FXML
     private ImageView eventImg;
     private Event event;
+    @FXML
+    private Label count;
 
     public void setData(Event event){
         this.event = event;
@@ -30,7 +33,12 @@ public class EventItemController {
         Image image = new Image(file.toURI().toString());
         eventImg.setImage(image);
 
+        int data7 = Integer.parseInt(event.getJoinFieldText()); // Assuming data[7] is an integer in the CSV
+        int data8 = Integer.parseInt(event.getJoinedText()); // Assuming data[8] is an integer in the CSV
+        int countValue = data7 - data8;
 
+        // Convert the count value to a String and set it to the label
+        count.setText(countValue +"/"+data7);
     }
 
     @FXML
