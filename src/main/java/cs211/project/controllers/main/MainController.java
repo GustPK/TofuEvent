@@ -26,120 +26,110 @@ import javafx.scene.shape.Circle;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class MainController {
+    private Datasource<EventList> datasource;
+    private EventList events;
+    @FXML
+    private ComboBox<String> combox;
+    @FXML
+    private Circle profilePic;
+    @FXML
+    private Hyperlink nameLink;
+    private Account currentAccount;
+    @FXML
+    private TextField srcField;
+    @FXML
+    private ScrollPane scroll;
+    @FXML
+    private GridPane grid;
 
-        private Datasource<EventList> datasource;
-        private EventList events;
-        @FXML
-        private ComboBox<String> combox;
-        @FXML
-        private Circle profilePic;
-        @FXML
-        private Hyperlink nameLink;
-        private Account currentAccount;
+    @FXML
+    protected void onProfileButtonClick() throws IOException {
+        FXRouter.goTo("profile");
+    }
 
-        @FXML
-        protected void onProfileButtonClick() throws IOException {
-            FXRouter.goTo("profile");
+    @FXML
+    private void onThisEventAsStaffButtonClick() throws IOException {
+        FXRouter.goTo("myteam");
+    }
+
+    @FXML
+    private void onCreateEventButtonClick() throws IOException {
+        FXRouter.goTo("create");
+    }
+
+    @FXML
+    private void onOngoingEventsButtonClick() throws IOException {
+        FXRouter.goTo("eventAttended");
+    }
+
+    @FXML
+    private void onEventInfoButtonClick() throws IOException {
+        FXRouter.goTo("info");
+    }
+
+    @FXML
+    private void goToEditEvent() throws IOException {
+        FXRouter.goTo("creatorEventList", currentAccount);
+    }
+
+    private void sort(ActionEvent event) {
+        if (combox.getValue().equals("Date")) {
+            events.sort(new DateSortcomparator());
         }
+        showGrid(events);
+    }
 
-        @FXML
-        private void onThisEventAsStaffButtonClick() throws IOException {
-            FXRouter.goTo("myteam");
-        }
-
-        @FXML
-        private void onCreateEventButtonClick() throws IOException {
-            FXRouter.goTo("create");
-        }
-
-        @FXML
-        private void onOngoingEventsButtonClick() throws IOException {
-            FXRouter.goTo("eventAttended");
-        }
-
-        @FXML
-        private void onEventInfoButtonClick() throws IOException {
-            FXRouter.goTo("info");
-        }
-
-        @FXML
-        private void goToEditEvent() throws IOException {
-            FXRouter.goTo("creatorEventList", currentAccount);
-
-        }
-        @FXML
-        private TextField srcField;
-        @FXML
-        private ScrollPane scroll;
-        @FXML
-        private GridPane grid;
-
-        private void sort(ActionEvent event) {
-            if (combox.getValue().equals("Date")) {
-                events.sort(new DateSortcomparator());
+    private EventList filter(String src){
+        EventList filtered = new EventList();
+        for (Event event:events.getEvents()){
+            if (event.getName().toLowerCase().contains(src.toLowerCase())){
+                filtered.addEvent(event);
             }
-            showGrid(events);
         }
-
-        private List<EventList> getData() {
-            List<EventList> events = new ArrayList<>();
-            EventList event;
-
-    //        for(int i = 0; i < 20; i++){
-    //            event = new Event();
-    //            event.setName("CR7 Meeting");
-    //            event.setImgSrc(getClass().getResource("/images/ronaldoi.png").toString());
-    //            events.add(event);
-    //        }
-            return events;
-        }
-
-        private EventList filter(String src){
-            EventList filtered = new EventList();
-            for (Event event:events.getEvents()){
-                if (event.getName().toLowerCase().contains(src.toLowerCase())){
-                    filtered.addEvent(event);
-                }
+        return filtered;
+    }
+    @FXML
+    public void initialize() {
+        datasource = new EventListDatasource();
+        events = datasource.readData();
+        showGrid(events);
+        srcField.textProperty().addListener((observable, oldValue, newValue)->{
+            if (newValue != null && !newValue.isEmpty()) {
+                showGrid(filter(newValue));
             }
-            return filtered;
-        }
-        @FXML
-        public void initialize() {
-            datasource = new EventListDatasource();
-            events = datasource.readData();
-            showGrid(events);
-            srcField.textProperty().addListener((observable, oldValue, newValue)->{
-                if (newValue != null && !newValue.isEmpty()) {
-                    showGrid(filter(newValue));
-                }
-                else {
-                    showGrid(events);
-                }
-            });
-            String[] types = {"Date"};
-            combox.getItems().addAll(types);
-            combox.setOnAction(this::sort);
-    //        currentAccount = (Account) FXRouter.getData();
-            // read file outside project src
-            File file = new File("data/images", LoggedInAccount.getInstance().getAccount().getImage());
-            String path = "file:///" + file.getAbsolutePath();
-            Image image = new Image(path);
-            profilePic.setFill(new ImagePattern(image));
-            nameLink.setText(LoggedInAccount.getInstance().getAccount().getUsername());
-        }
+            else {
+                showGrid(events);
+            }
+        });
+        String[] types = {"Date"};
+        combox.getItems().addAll(types);combox.setOnAction(this::sort);
+        File file = new File("data/images", LoggedInAccount.getInstance().getAccount().getImage());
+        String path = "file:///" + file.getAbsolutePath();
+        Image image = new Image(path);
+        profilePic.setFill(new ImagePattern(image));
+        nameLink.setText(LoggedInAccount.getInstance().getAccount().getUsername());
+    }
 
-        private void showGrid(EventList events){
-            grid.getChildren().clear();
-            int column = 0;
-            int row = 0;
+    private void showGrid(EventList events) {
+        grid.getChildren().clear();
+        int column = 0;
+        int row = 0;
 
-            try {
-                for (Event event: events.getEvents()) {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+
+        try {
+            for (Event event : events.getEvents()) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+                LocalDateTime eventStartDateTime = LocalDateTime.parse(event.getDateStart() + " " + event.getStartTime(), formatter);
+
+                if (currentDateTime.isBefore(eventStartDateTime) || currentDateTime.isEqual(eventStartDateTime)) { // Check if event is in the future
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
                     AnchorPane anchorPane = fxmlLoader.load();
@@ -147,7 +137,7 @@ public class MainController {
                     EventItemController eventItemController = fxmlLoader.getController();
                     eventItemController.setData(event);
 
-                    anchorPane.setOnMouseClicked(Event -> {
+                    anchorPane.setOnMouseClicked(eventClick -> {
                         try {
                             FXRouter.goTo("des", event);
                         } catch (IOException e) {
@@ -155,14 +145,14 @@ public class MainController {
                         }
                     });
 
-                    grid.add(anchorPane,column,row++);
-                    GridPane.setMargin(anchorPane,new Insets(10));
+                    grid.add(anchorPane, column, row++);
+                    GridPane.setMargin(anchorPane, new Insets(10));
                 }
             }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
 }
 

@@ -43,7 +43,7 @@ public class EventsAttendedController {
 
         Set<String> processedEvents = new HashSet<>();
 
-        LocalDate currentDate = LocalDate.now(); // วันที่ปัจจุบัน
+        LocalDateTime currentDateTime = LocalDateTime.now();
 
         try {
             for (Participant participant : participantList.getParticipants()) {
@@ -55,10 +55,9 @@ public class EventsAttendedController {
                     String eventName = participant.getEvent();
 
                     if (!processedEvents.contains(eventName)) {
-                        // เปรียบเทียบ LocalDate กับ startDate ของ Event
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                        LocalDate startDate = LocalDate.parse(event.getDateStart(), formatter);
-                        if (currentDate.isEqual(startDate)) { // ถ้า startDate ถึงในวันปัจจุบัน
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+                        LocalDateTime eventStartDateTime = LocalDateTime.parse(event.getDateStart() + " " + event.getStartTime(), formatter);
+                        if (currentDateTime.isBefore(eventStartDateTime) || currentDateTime.isEqual(eventStartDateTime)) {
                             FXMLLoader fxmlLoader = new FXMLLoader();
                             fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
                             AnchorPane anchorPane = fxmlLoader.load();
@@ -94,7 +93,7 @@ public class EventsAttendedController {
 
         Set<String> processedEvents = new HashSet<>();
 
-        LocalDate currentDate = LocalDate.now(); // วันที่ปัจจุบัน
+        LocalDateTime currentDateTime = LocalDateTime.now();
 
         try {
             for (Participant participant : participantList.getParticipants()) {
@@ -106,10 +105,9 @@ public class EventsAttendedController {
                     String eventName = participant.getEvent();
 
                     if (!processedEvents.contains(eventName)) {
-                        // เปรียบเทียบ LocalDate กับ startDate ของ Event
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                        LocalDate startDate = LocalDate.parse(event.getDateStart(), formatter);
-                        if (currentDate.isAfter(startDate)) {
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+                        LocalDateTime eventStartDateTime = LocalDateTime.parse(event.getDateStart() + " " + event.getStartTime(), formatter);
+                        if (currentDateTime.isAfter(eventStartDateTime)) {
                             FXMLLoader fxmlLoader = new FXMLLoader();
                             fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
                             AnchorPane anchorPane = fxmlLoader.load();
@@ -146,7 +144,7 @@ public class EventsAttendedController {
 
         Set<String> processedEvents = new HashSet<>();
 
-        LocalDate currentDate = LocalDate.now(); // วันที่ปัจจุบัน
+        LocalDateTime currentDateTime = LocalDateTime.now();
 
         try {
             for (Participant participant : participantList.getParticipants()) {
@@ -158,10 +156,9 @@ public class EventsAttendedController {
                     String eventName = participant.getEvent();
 
                     if (!processedEvents.contains(eventName)) {
-                        // เปรียบเทียบ LocalDate กับ startDate ของ Event
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                        LocalDate startDate = LocalDate.parse(event.getDateStart(), formatter);
-                        if (currentDate.isEqual(startDate)) { // ถ้า startDate ถึงในวันปัจจุบัน
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+                        LocalDateTime eventStartDateTime = LocalDateTime.parse(event.getDateStart() + " " + event.getStartTime(), formatter);
+                        if (currentDateTime.isBefore(eventStartDateTime) || currentDateTime.isEqual(eventStartDateTime)) {
                             FXMLLoader fxmlLoader = new FXMLLoader();
                             fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
                             AnchorPane anchorPane = fxmlLoader.load();

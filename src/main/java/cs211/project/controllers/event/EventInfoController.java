@@ -14,16 +14,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
-public class Des {
+public class EventInfoController {
     @FXML
     private Label count;
     @FXML private TextFlow nameField;
