@@ -13,15 +13,14 @@ public class Team {
         this.joinedText = joinedText;
     }
 
-    public String getTeamName() {
-        return teamName;
-    }
+
 
     public String getEventName() {
         return eventName;
     }
     public String getJoinFieldText() {return joinFieldText; }
     public String getJoinedText() {return joinedText; }
+    public String getTeamName() {return teamName; }
     public void addJoin() {
         int n = Integer.parseInt(joinedText);
         n++;

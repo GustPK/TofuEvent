@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="default-button-lightnavy-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.team.MyTeamController">
    <children>
       <Button layoutX="32.0" layoutY="537.0" mnemonicParsing="false" onAction="#clickBackToMain" prefHeight="26.0" prefWidth="59.0" text="Back" />
@@ -19,7 +18,7 @@
       </Label>
       <AnchorPane layoutX="108.0" layoutY="111.0" prefHeight="407.0" prefWidth="683.0">
          <children>
-            <ScrollPane layoutX="48.0" layoutY="10.0" prefHeight="377.0" prefWidth="580.0">
+            <ScrollPane layoutX="48.0" layoutY="47.0" prefHeight="340.0" prefWidth="580.0">
                <content>
                   <GridPane fx:id="grid" prefHeight="10.0" prefWidth="0.0">
                      <columnConstraints>

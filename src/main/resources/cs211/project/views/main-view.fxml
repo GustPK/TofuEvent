@@ -120,7 +120,7 @@
                   <Insets />
                </HBox.margin>
                <children>
-                  <ScrollPane layoutX="6.0" layoutY="52.0" prefHeight="428.0" prefWidth="500.0">
+                  <ScrollPane layoutX="6.0" layoutY="52.0" prefHeight="421.0" prefWidth="500.0">
                      <content>
                         <GridPane fx:id="grid" prefHeight="10.0" prefWidth="0.0">
                           <columnConstraints>
@@ -129,7 +129,7 @@
                         </GridPane>
                      </content>
                   </ScrollPane>
-                  <ComboBox fx:id="combox" layoutX="373.0" layoutY="14.0" prefHeight="25.0" prefWidth="132.0" />
+                  <ComboBox fx:id="combox" layoutX="373.0" layoutY="14.0" prefHeight="25.0" prefWidth="132.0" promptText="Sort by" styleClass="default-button-white-navy" />
                   <TextField fx:id="srcField" layoutX="12.0" layoutY="14.0" prefHeight="25.0" prefWidth="344.0" />
                </children>
             </AnchorPane>

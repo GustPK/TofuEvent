@@ -31,6 +31,8 @@ public class MyTeamController {
 
     private Datasource<EventList> eventListDataSource;
     private Datasource<ParticipantList> participantListDatasource;
+    private Datasource<TeamList> teamListDatasource;
+    private TeamList teamList;
     @FXML
     private GridPane grid;
 
@@ -38,8 +40,10 @@ public class MyTeamController {
     public void initialize() throws IOException {
         participantListDatasource = new ParticipantListDatasource();
         eventListDataSource = new EventListDatasource();
+        teamListDatasource = new TeamListDatasource("data","TeamList.csv");
         eventsLists = eventListDataSource.readData();
         participantList = participantListDatasource.readData();
+        teamList = teamListDatasource.readData();
         int column = 1;
         int row = 0;
 
@@ -47,14 +51,14 @@ public class MyTeamController {
             for(Participant participant : participantList.getParticipants()){
                 if (LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername() )) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
+                    fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/team-item-view.fxml"));
                     AnchorPane anchorPane = fxmlLoader.load();
 
-                    EventItemController eventItemController = fxmlLoader.getController();
-                    eventsLists.getEvents().stream()
-                            .filter(i -> i.getName().equals(participant.getEvent()))
-                            .forEach(schedule -> {
-                                eventItemController.setData(schedule);
+                    TeamItemController teamItemController = fxmlLoader.getController();
+                    teamList.getTeams().stream()
+                            .filter(i -> i.getTeamName().equals(participant.getTeamName()))
+                            .forEach(team -> {
+                                teamItemController.setData(team);
                             });
 
 //                    anchorPane.setOnMouseClicked(events -> {

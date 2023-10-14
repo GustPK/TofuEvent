@@ -64,4 +64,10 @@
     -fx-text-fill: green;
 }
 
+.label {
+    -fx-background-radius:10;
+    -fx-border-radius:10;
+    -fx-padding:0 10;
+    -fx-effect:dropShadow(three-pass-box,rgb(0,0,0,0.25), 10.0, 0.0, 0.0, 10.0);
+}
 
