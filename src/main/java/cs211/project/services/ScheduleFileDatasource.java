@@ -1,8 +1,7 @@
 package cs211.project.services;
 
-import cs211.project.models.Schedule;
-import cs211.project.models.ScheduleList;
-import cs211.project.models.event.Event;
+import cs211.project.models.event.Schedule;
+import cs211.project.models.collections.ScheduleList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -64,10 +63,8 @@ public class ScheduleFileDatasource implements Datasource<ScheduleList> {
                 String activity = data[2].trim();
                 String time = data[3].trim();
                 String date = data[4].trim();
-                String status = data[5].trim();
 
-
-                scheduleList.addActivity(new Schedule(eventName, teamName, activity, time, date,status));
+                scheduleList.addActivity(new Schedule(eventName, teamName, activity, time, date));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -92,8 +89,7 @@ public class ScheduleFileDatasource implements Datasource<ScheduleList> {
                         + schedule.getTeamName()+","
                         + schedule.getActivity()+","
                         + schedule.getTime()+","
-                        + schedule.getDate()+","
-                        + schedule.getStatus();
+                        + schedule.getDate();
 
                 buffer.append(line);
                 buffer.append("\n");

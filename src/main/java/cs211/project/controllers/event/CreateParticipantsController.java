@@ -1,13 +1,9 @@
 package cs211.project.controllers.event;
 
-import cs211.project.models.Schedule;
-import cs211.project.models.ScheduleList;
-import cs211.project.models.account.LoggedInAccount;
-import cs211.project.models.collections.AccountList;
-import cs211.project.models.collections.EventList;
+import cs211.project.models.event.Schedule;
+import cs211.project.models.collections.ScheduleList;
 import cs211.project.models.event.Event;
 import cs211.project.services.Datasource;
-import cs211.project.services.EventListDatasource;
 import cs211.project.services.FXRouter;
 import cs211.project.services.ScheduleFileDatasource;
 import javafx.collections.ObservableList;
@@ -18,8 +14,6 @@ import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 

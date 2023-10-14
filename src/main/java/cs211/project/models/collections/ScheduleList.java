@@ -1,4 +1,6 @@
-package cs211.project.models;
+package cs211.project.models.collections;
+
+import cs211.project.models.event.Schedule;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,9 @@
 package cs211.project.controllers.event;
 
 import cs211.project.controllers.login.UserListItemController;
-import cs211.project.models.Schedule;
-import cs211.project.models.ScheduleList;
-import cs211.project.models.Team;
+import cs211.project.models.event.Schedule;
+import cs211.project.models.collections.ScheduleList;
+import cs211.project.models.event.Team;
 import cs211.project.models.collections.EventList;
 import cs211.project.models.collections.ParticipantList;
 import cs211.project.models.collections.TeamList;

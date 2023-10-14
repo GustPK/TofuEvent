@@ -1,9 +1,9 @@
 package cs211.project.controllers.team;
 
-import cs211.project.models.Schedule;
-import cs211.project.models.ScheduleList;
-import cs211.project.models.Comment;
-import cs211.project.models.Team;
+import cs211.project.models.event.Schedule;
+import cs211.project.models.collections.ScheduleList;
+import cs211.project.models.event.Comment;
+import cs211.project.models.event.Team;
 import cs211.project.services.ScheduleFileDatasource;
 import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;

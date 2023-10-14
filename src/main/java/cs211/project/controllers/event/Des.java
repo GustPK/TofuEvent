@@ -1,6 +1,6 @@
 package cs211.project.controllers.event;
 
-import cs211.project.models.Team;
+import cs211.project.models.event.Team;
 import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.EventList;
 import cs211.project.models.collections.ParticipantList;

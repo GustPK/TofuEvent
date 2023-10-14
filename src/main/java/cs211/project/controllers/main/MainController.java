@@ -51,7 +51,7 @@ public class MainController {
 
         @FXML
         private void onThisEventAsStaffButtonClick() throws IOException {
-            FXRouter.goTo("myteam");
+            FXRouter.goTo("myteam", events);
         }
 
         @FXML

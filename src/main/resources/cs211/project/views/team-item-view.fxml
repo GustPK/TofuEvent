@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane onMouseClicked="#onEventItemClick" prefHeight="150.0" prefWidth="500.0" styleClass="cursor-hand" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.team.TeamItemController">
+   <children>
+      <HBox prefHeight="150.0" prefWidth="500.0">
+         <children>
+            <VBox prefHeight="150.0" prefWidth="380.0">
+               <children>
+                  <Label fx:id="eventNameLabel" text="CR7 Meeting ">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="170.0" top="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="teamName" prefHeight="20.0" prefWidth="142.0" text="team name">
+                     <VBox.margin>
+                        <Insets left="180.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <AnchorPane prefHeight="40.0" prefWidth="500.0" />
+   </children>
+</AnchorPane>
