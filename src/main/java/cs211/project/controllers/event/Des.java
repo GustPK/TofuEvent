@@ -1,6 +1,6 @@
 package cs211.project.controllers.event;
 
-import cs211.project.models.Team;
+import cs211.project.models.event.Team;
 import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.EventList;
 import cs211.project.models.collections.ParticipantList;
@@ -14,14 +14,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Des {
     @FXML
@@ -71,12 +69,12 @@ public class Des {
 
         startLabel.setText(event.getDateStart()+" "+event.getStartTime());
         endLabel.setText(event.getDateEnd()+" "+event.getEndTime());
-        joinLabel.setText(event.getJoinFieldText());
+        joinLabel.setText(event.getMaximum());
         descArea.setText(event.getDesc());
 
         nameField.getChildren().add(text);
 
-        int data7 = Integer.parseInt(event.getJoinFieldText()); // Assuming data[7] is an integer in the CSV
+        int data7 = Integer.parseInt(event.getMaximum()); // Assuming data[7] is an integer in the CSV
         int data8 = Integer.parseInt(event.getJoinedText()); // Assuming data[8] is an integer in the CSV
         int countValue = data7 - data8;
 

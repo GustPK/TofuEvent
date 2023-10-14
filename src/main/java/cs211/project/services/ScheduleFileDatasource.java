@@ -1,8 +1,7 @@
 package cs211.project.services;
 
-import cs211.project.models.Schedule;
-import cs211.project.models.ScheduleList;
-import cs211.project.models.event.Event;
+import cs211.project.models.event.Schedule;
+import cs211.project.models.collections.ScheduleList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

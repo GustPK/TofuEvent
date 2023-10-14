@@ -1,6 +1,6 @@
 package cs211.project.services;
 
-import cs211.project.models.Team;
+import cs211.project.models.event.Team;
 import cs211.project.models.collections.TeamList;
 
 import java.io.*;

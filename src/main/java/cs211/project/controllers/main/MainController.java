@@ -19,6 +19,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
@@ -40,6 +41,7 @@ public class MainController {
         private Circle profilePic;
         @FXML
         private Hyperlink nameLink;
+        @FXML ImageView logo;
         private Account currentAccount;
 
         @FXML
@@ -131,6 +133,10 @@ public class MainController {
             Image image = new Image(path);
             profilePic.setFill(new ImagePattern(image));
             nameLink.setText(LoggedInAccount.getInstance().getAccount().getUsername());
+
+            String personImagePath = "file:data/images/tofu.png";
+            Image personImage = new Image(personImagePath);
+            logo.setImage(personImage);
         }
 
         private void showGrid(EventList events){

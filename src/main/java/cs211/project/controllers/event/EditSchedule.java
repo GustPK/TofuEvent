@@ -1,7 +1,7 @@
 package cs211.project.controllers.event;
 
-import cs211.project.models.Schedule;
-import cs211.project.models.ScheduleList;
+import cs211.project.models.event.Schedule;
+import cs211.project.models.collections.ScheduleList;
 import cs211.project.models.event.Event;
 import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;
@@ -30,14 +30,16 @@ public class EditSchedule {
     private Spinner<Integer> hourSpinner;
     @FXML
     private Spinner<Integer> minuteSpinner;
-    private Event event;
     private ScheduleList scheduleList = new ScheduleList();
     private Datasource<ScheduleList> datasource;
-    private Event getEvent = (Event) FXRouter.getData();
-    String temp = "join";
+    private Event getEvent ;
+    String temp;
+
 
     @FXML
     private void initialize() {
+        getEvent = (Event) FXRouter.getData();
+        temp = getEvent.tamp;
         datasource = new ScheduleFileDatasource("data", "schedule.csv");
 
         scheduleView.getColumns().clear();
@@ -87,7 +89,7 @@ public class EditSchedule {
 
     @FXML
     public void clickAdd() {
-        getEvent = (Event) FXRouter.getData();
+//        getEvent = (Event) FXRouter.getData();
 
         // รับข้อมูลจาก nameField
         String name = nameField.getText();
@@ -103,7 +105,7 @@ public class EditSchedule {
         String time = String.format("%02d:%02d", hour, minute);
 
         // แสดงข้อมูลบน TableView โดยจำแนกจากชื่อ event ที่ซ้ำกัน
-        scheduleList.addActivity(new Schedule(getEvent.getName(), "join", name, time, date.toString()));
+        scheduleList.addActivity(new Schedule(getEvent.getName(), temp, name, time, date.toString()));
         showList(scheduleList);
 
         // ล้างค่าใน nameField, hourSpinner และ minuteSpinner หลังจากเพิ่มข้อมูลเสร็จ
@@ -130,12 +132,12 @@ public class EditSchedule {
     }
 
     private void showList(ScheduleList scheduleList) {
-        getEvent = (Event) FXRouter.getData();
+
         List<Schedule> sortedList = new ArrayList<>(scheduleList.getActivityList());
 
         // แสดงเฉพาะชื่อ event ที่ซ้ำกัน
         List<Schedule> filteredList = sortedList.stream()
-                .filter(schedule -> schedule.getEventName().equals(getEvent.getName()) && schedule.getTeamName().equals("join"))
+                .filter(schedule -> schedule.getEventName().equals(getEvent.getName()) && schedule.getTeamName().equals(temp))
                 .collect(Collectors.toList());
 
         Comparator<Schedule> customComparator = (schedule1, schedule2) -> {
@@ -169,7 +171,7 @@ public class EditSchedule {
         datasource.writeData(scheduleList);
 
         // Redirect to the "CreateTeam" view and pass the event stored in the field
-        FXRouter.goTo("createTeam", getEvent);
+        FXRouter.goTo("manage");
     }
 
     private void filterSchedulesByEventAndTeamName(String eventName,String temp) {
@@ -181,9 +183,6 @@ public class EditSchedule {
             }
         }
     }
-    @FXML void sample(){
-        temp = "wednesday";
-        initialize();
-    }
+
 }
 

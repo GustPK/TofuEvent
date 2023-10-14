@@ -9,8 +9,6 @@ import javafx.scene.image.ImageView;
 import java.io.IOException;
 
 public class DevController {
-    @FXML
-    private Label welcomeText;
 
     @FXML
     private ImageView PImageView;

@@ -1,14 +1,12 @@
 package cs211.project.controllers.team;
 
-import cs211.project.models.Team;
+import cs211.project.models.event.Team;
 import cs211.project.models.event.Event;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.File;
 import java.io.IOException;
 
 public class TeamItemController {

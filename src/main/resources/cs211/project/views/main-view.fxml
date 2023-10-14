@@ -5,13 +5,17 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
@@ -19,118 +23,102 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="default-background-lightnavy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.main.MainController">
    <top>
-      <HBox alignment="BOTTOM_LEFT" prefHeight="110.0" prefWidth="200.0" styleClass="default-background-lightnavy" stylesheets="@../../../values/style.css" BorderPane.alignment="CENTER">
+      <HBox alignment="BOTTOM_LEFT" prefHeight="75.0" prefWidth="200.0" styleClass="default-background-lightnavy" stylesheets="@../../../values/style.css" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="97.0" prefWidth="250.0" styleClass="default-border-navy">
+            <AnchorPane prefHeight="100.0" prefWidth="800.0">
                <children>
-                  <Circle fx:id="profilePic" fill="#808eae" layoutX="56.0" layoutY="50.0" radius="42.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Button layoutX="13.0" layoutY="8.0" mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="84.0" prefWidth="85.0">
+                  <Pane layoutX="-23.0" layoutY="-6.0" prefHeight="135.0" prefWidth="838.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css">
+                     <children>
+                        <Button alignment="CENTER" layoutX="249.0" layoutY="71.0" mnemonicParsing="false" onAction="#onCreateEventButtonClick" prefHeight="40.0" style="-fx-background-radius: 20;" styleClass="default-background-lightnavy" text="Create event" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button alignment="CENTER" layoutX="170.0" layoutY="71.0" mnemonicParsing="false" onAction="#onThisEventAsStaffButtonClick" prefHeight="40.0" style="-fx-background-radius: 20;" styleClass="default-background-lightnavy" text="My team" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button alignment="CENTER" layoutX="45.0" layoutY="71.0" mnemonicParsing="false" onAction="#onOngoingEventsButtonClick" prefHeight="40.0" style="-fx-background-radius: 20;" styleClass="default-background-lightnavy" text="Events Attended" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button alignment="CENTER" layoutX="351.0" layoutY="71.0" mnemonicParsing="false" onAction="#goToEditEvent" prefHeight="40.0" style="-fx-background-radius: 20;" styleClass="default-background-lightnavy" text="Edit event" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="5.0" layoutX="33.0" layoutY="122.0" stroke="WHITE" strokeType="INSIDE" width="800.0" />
+                        <ImageView id="logo" fx:id="logo" fitHeight="49.0" fitWidth="200.0" layoutX="39.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../data/images/tofu.png" />
+                           </image>
+                        </ImageView>
+
+                     </children></Pane>
+                  <Circle fx:id="profilePic" fill="#808eae" layoutX="742.0" layoutY="54.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Button layoutX="709.0" layoutY="29.0" mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="62.0" prefWidth="65.0">
                      <styleClass>
                         <String fx:value="button-transparent" />
                         <String fx:value="cursor-hand" />
                      </styleClass>
                   </Button>
-                  <Hyperlink fx:id="nameLink" layoutX="106.0" layoutY="37.0" onAction="#onProfileButtonClick" prefHeight="27.0" prefWidth="135.0" text="Name" textAlignment="CENTER" textFill="#141414">
+                  <Hyperlink fx:id="nameLink" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="589.0" layoutY="44.0" onAction="#onProfileButtonClick" prefHeight="27.0" prefWidth="113.0" text="Name" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Hyperlink>
                </children>
                <HBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </HBox.margin>
-            </AnchorPane>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#808eae" height="60.0" stroke="#2d3553" strokeType="INSIDE" styleClass="default-background-lightnavy" width="510.0">
-               <HBox.margin>
                   <Insets />
                </HBox.margin>
-            </Rectangle>
+               <styleClass>
+                  <String fx:value="default-border-navy" />
+                  <String fx:value="default-background-navy" />
+               </styleClass>
+            </AnchorPane>
          </children>
       </HBox>
    </top>
    <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="default-background-navy" BorderPane.alignment="CENTER">
+      <HBox prefHeight="486.0" prefWidth="800.0" styleClass="default-background-navy" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="490.0" prefWidth="239.0" styleClass="default-background-navy">
+            <VBox prefHeight="525.0" prefWidth="174.0" styleClass="default-background-navy">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onCreateEventButtonClick" styleClass="default-button-navy-white" text="Create event">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="60.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onEventInfoButtonClick" styleClass="default-button-navy-white" text="Event info">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" styleClass="default-button-navy-white" text="Join this event" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onThisEventAsStaffButtonClick" prefHeight="40.0" prefWidth="102.0" styleClass="default-button-navy-white" text="My team">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onOngoingEventsButtonClick" prefHeight="40.0" prefWidth="166.0" styleClass="default-button-navy-white" text="Events Attended">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Button>
-                  <AnchorPane prefHeight="96.0" prefWidth="239.0">
-                     <children>
-                        <Button alignment="CENTER" layoutX="-18.0" layoutY="17.0" mnemonicParsing="false" onAction="#goToEditEvent" prefHeight="39.0" prefWidth="173.0" styleClass="default-button-navy-white" text="Edit event">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="214.0" styleClass="default-button-navy-white">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Button>
+                  <AnchorPane prefHeight="96.0" prefWidth="239.0" />
                </children>
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
             </VBox>
-            <AnchorPane prefHeight="490.0" prefWidth="511.0" styleClass="default-background-navy">
+            <AnchorPane prefHeight="517.0" prefWidth="951.0" style="-fx-background-radius: 20; -fx-background-color: balck;">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
                <children>
-                  <ScrollPane layoutX="6.0" layoutY="52.0" prefHeight="421.0" prefWidth="500.0">
+                  <ScrollPane layoutX="74.0" layoutY="55.0" prefHeight="443.0" prefWidth="669.0">
                      <content>
-                        <GridPane fx:id="grid" prefHeight="10.0" prefWidth="0.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
+                        <GridPane fx:id="grid" prefHeight="10.0" prefWidth="0.0" style="-fx-background-color: #FFFFFF;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <padding>
+                              <Insets left="-10.0" />
+                           </padding>
                         </GridPane>
                      </content>
+                     <padding>
+                        <Insets left="-10.0" />
+                     </padding>
                   </ScrollPane>
-                  <ComboBox fx:id="combox" layoutX="373.0" layoutY="14.0" prefHeight="25.0" prefWidth="132.0" promptText="Sort by" styleClass="default-button-white-navy" />
-                  <TextField fx:id="srcField" layoutX="12.0" layoutY="14.0" prefHeight="25.0" prefWidth="344.0" />
+                  <TextField fx:id="srcField" layoutX="306.0" layoutY="9.0" prefHeight="41.0" prefWidth="344.0" promptText="        search" style="-fx-background-radius: 20;" />
+                  <ComboBox fx:id="combox" layoutX="660.0" layoutY="11.0" prefHeight="35.0" prefWidth="74.0" promptText="Sort" style="-fx-background-radius: 20;" />
+                  <Label layoutX="18.0" layoutY="14.0" text="Events" textFill="WHITE">
+                     <font>
+                        <Font name="Ayuthaya" size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

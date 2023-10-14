@@ -1,4 +1,4 @@
-package cs211.project.models;
+package cs211.project.models.event;
 
 public class Team {
     private String teamName;

@@ -177,6 +177,17 @@ public class CreateController {
 
             if (imgSrc == null || imgSrc.isEmpty()) {
                 imgSrc = "default-pfp.jpg";
+            } else {
+                String[] fileSplit = imgSrc.split("\\.");
+                String extension = fileSplit[fileSplit.length - 1];
+                String newFileName =  name +"_pic" + "." + extension;
+
+                File oldFile = new File("data/images/" + imgSrc);
+                File newFile = new File("data/images/" + newFileName);
+
+                if (oldFile.renameTo(newFile)) {
+                    imgSrc = newFileName;
+                }
             }
 
             String status = "UNDONE";

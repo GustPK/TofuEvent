@@ -1,19 +1,14 @@
 package cs211.project.controllers.team;
 
-import cs211.project.controllers.event.EventItemController;
-import cs211.project.models.Team;
 import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.EventList;
 import cs211.project.models.collections.ParticipantList;
 import cs211.project.models.collections.TeamList;
 import cs211.project.models.event.Participant;
 import cs211.project.services.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 

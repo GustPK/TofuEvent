@@ -32,4 +32,5 @@ public class Participant {
     public void setBanned() {
         this.ban = "banned";
     }
+    public void setEvent(String eventName){this.event = eventName;}
 }

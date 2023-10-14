@@ -1,6 +1,6 @@
-package cs211.project.models;
+package cs211.project.models.collections;
 
-import cs211.project.models.Comment;
+import cs211.project.models.event.Comment;
 
 import java.util.ArrayList;
 

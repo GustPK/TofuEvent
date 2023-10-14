@@ -1,7 +1,7 @@
 package cs211.project.services;
 
-import cs211.project.models.Comment;
-import cs211.project.models.CommentList;
+import cs211.project.models.event.Comment;
+import cs211.project.models.collections.CommentList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

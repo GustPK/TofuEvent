@@ -1,7 +1,6 @@
 package cs211.project.controllers.login;
 
 import cs211.project.models.account.Account;
-import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.AccountList;
 import cs211.project.services.AccountListDatasource;
 import cs211.project.services.Datasource;
@@ -42,6 +41,7 @@ public class RegisterController {
     private String imgSrc;
     private String status;
 
+
     @FXML
     private void initialize() {
         datasource = new AccountListDatasource();
@@ -61,7 +61,7 @@ public class RegisterController {
 
     @FXML
     public void handleUploadButton(MouseEvent event) {
-        String username = usernameField.getText();
+//
         FileChooser chooser = new FileChooser();
         // SET FILECHOOSER INITIAL DIRECTORY
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
@@ -105,9 +105,21 @@ public class RegisterController {
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
 
+
         // ตั้งค่าค่า status เป็น "not banned" และ imgSrc เป็น "default-pfp.jpg" เมื่อไม่มีการอัปโหลดรูปภาพ
         if (imgSrc == null || imgSrc.isEmpty()) {
             imgSrc = "default-pfp.jpg"; // รูปภาพ default-pfp.jpg จะต้องอยู่ในโฟลเดอร์ data/images
+        } else {
+            String[] fileSplit = imgSrc.split("\\.");
+            String extension = fileSplit[fileSplit.length - 1]; // นามสกุลของไฟล์
+            String newFileName = username +"_profile" + "." + extension; // ชื่อไฟล์ใหม่
+
+            File oldFile = new File("data/images/" + imgSrc);
+            File newFile = new File("data/images/" + newFileName);
+
+            if (oldFile.renameTo(newFile)) {
+                imgSrc = newFileName;
+            }
         }
 
         status = "not banned";
@@ -123,6 +135,8 @@ public class RegisterController {
 
             accountList.addAccount(new Account(name, username, password, imgSrc, status, formattedTime));
             datasource.writeData(accountList);
+
+
             FXRouter.goTo("login");
         } else {
             // แสดง Alert ถ้า username ซ้ำหรือรหัสผ่านไม่ตรงกัน
