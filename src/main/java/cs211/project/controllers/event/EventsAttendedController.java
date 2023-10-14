@@ -1,5 +1,6 @@
 package cs211.project.controllers.event;
 
+import cs211.project.models.account.Account;
 import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.EventList;
 import cs211.project.models.event.Event;
@@ -69,6 +70,14 @@ public class EventsAttendedController {
                                         eventItemController.setData(schedule);
                                     });
 
+                            anchorPane.setOnMouseClicked(event1 -> {
+                                try {
+                                    goToSchedulePage(event);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            });
+
                             grid.add(anchorPane, column, row++);
                             GridPane.setMargin(anchorPane, new Insets(10));
 
@@ -81,6 +90,7 @@ public class EventsAttendedController {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void onHistoryHyperlinkClick() {
         clearGrid();
@@ -118,6 +128,14 @@ public class EventsAttendedController {
                                     .forEach(schedule -> {
                                         eventItemController.setData(schedule);
                                     });
+
+                            anchorPane.setOnMouseClicked(event1 -> {
+                                try {
+                                    goToSchedulePage(event);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            });
 
                             grid.add(anchorPane, column, row++);
                             GridPane.setMargin(anchorPane, new Insets(10));
@@ -170,6 +188,14 @@ public class EventsAttendedController {
                                         eventItemController.setData(schedule);
                                     });
 
+                            anchorPane.setOnMouseClicked(event1 -> {
+                                try {
+                                    goToSchedulePage(event);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            });
+
                             grid.add(anchorPane, column, row++);
                             GridPane.setMargin(anchorPane, new Insets(10));
 
@@ -189,5 +215,8 @@ public class EventsAttendedController {
     }
     private void clearGrid() {
         grid.getChildren().clear();
+    }
+    private void goToSchedulePage(Event event) throws IOException {
+        FXRouter.goTo("scheduleActivity", event);
     }
 }

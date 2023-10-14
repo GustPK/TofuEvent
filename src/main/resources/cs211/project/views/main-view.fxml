@@ -89,6 +89,9 @@
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
+                           <padding>
+                              <Insets right="4.0" />
+                           </padding>
                         </Button>
                      </children>
                   </AnchorPane>
