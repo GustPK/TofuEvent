@@ -1,5 +1,6 @@
 package cs211.project.services;
 
+import cs211.project.models.Comment;
 import cs211.project.models.CommentList;
 
 import java.io.*;
@@ -77,6 +78,27 @@ public class CommentListDatasource implements Datasource<CommentList>{
 
     @Override
     public void writeData(CommentList data) {
+        String filePath = directoryName + File.separator + fileName;
+        File file = new File(filePath);
 
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file);
+             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
+             BufferedWriter writer = new BufferedWriter(outputStreamWriter)) {
+
+            for (Comment comment : data.getCommentList()) {
+                // Assuming that you have a Comment class with appropriate getters
+                String teamName = comment.getTeamName();
+                String commentText = comment.getComment();
+                String eventName = comment.getEventName();
+
+                // Compose the CSV line and write it to the file
+                String csvLine = teamName + "," + commentText + "," + eventName;
+                writer.write(csvLine);
+                writer.newLine();  // Add a newline separator
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Error while writing data to file: " + e.getMessage(), e);
+        }
     }
+
 }

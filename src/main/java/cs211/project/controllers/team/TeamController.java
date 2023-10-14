@@ -1,9 +1,7 @@
 package cs211.project.controllers.team;
 
-import cs211.project.models.Schedule;
-import cs211.project.models.ScheduleList;
-import cs211.project.models.Comment;
-import cs211.project.models.Team;
+import cs211.project.models.*;
+import cs211.project.services.CommentListDatasource;
 import cs211.project.services.ScheduleFileDatasource;
 import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;
@@ -25,6 +23,9 @@ public class TeamController {
     private ListView<Comment> comment;
     @FXML
     private TextField commentField;
+    private Team selectedTeam;
+    private Datasource<CommentList> commentListDatasource;
+    private CommentList commentList;
 
     @FXML
     public void clickBackToMyTeam() throws IOException {
@@ -36,12 +37,17 @@ public class TeamController {
         String c = commentField.getText();
         Comment comment = new Comment(currentTeam.getTeamName(), c, currentTeam.getEventName());
         this.comment.getItems().add(comment);
+        commentList.addComment(currentTeam.getTeamName(), c, currentTeam.getEventName());
+        commentListDatasource.writeData(commentList);
     }
     @FXML
     public void initialize(){
         currentTeam = (Team) FXRouter.getData();
         activityListDatasource = new ScheduleFileDatasource("data", "Schedule.csv");
         scheduleList = activityListDatasource.readData();
+        commentListDatasource = new CommentListDatasource("data", "comment.csv");
+        commentList = commentListDatasource.readData();
+        showComment(commentList);
 
         showActivity();
     }
@@ -64,4 +70,11 @@ public class TeamController {
         }
     }
 
+    public void showComment(CommentList comments){
+        for(Comment c: comments.getCommentList()){
+            if(c.getTeamName().equals(currentTeam.getTeamName())){
+                comment.getItems().add(c);
+            }
+        }
+    }
 }
