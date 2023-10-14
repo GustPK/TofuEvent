@@ -53,4 +53,5 @@ public class Schedule {
     public void setStatusUndone() {
         this.status = "undone";
     }
+    public void setEventName(String eventName){this.eventName = eventName;}
 }

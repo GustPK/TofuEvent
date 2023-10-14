@@ -1,14 +1,5 @@
 package cs211.project.models.event;
 
-import cs211.project.services.Datasource;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-
 public class Event {
     private String organizer;
     private String dateStart;
@@ -18,11 +9,11 @@ public class Event {
     private String startTime;
     private String endTime;
     private String desc;
-    private String joinFieldText;
+    private String maximum;
     private String joinedText;
     private String status;
     public String tamp;
-    public Event(String organizer, String name, String dateStart, String dateEnd, String startTime, String endTime, String desc, String joinFieldText, String joinedText, String status, String imgEvent) {
+    public Event(String organizer, String name, String dateStart, String dateEnd, String startTime, String endTime, String desc, String maximum, String joinedText, String status, String imgEvent) {
         this.organizer = organizer;
         this.name = name;
         this.dateStart = dateStart;
@@ -30,7 +21,7 @@ public class Event {
         this.startTime = startTime;
         this.endTime = endTime;
         this.desc = desc;
-        this.joinFieldText = joinFieldText;
+        this.maximum = maximum;
         this.joinedText = joinedText;
         this.status = status;
         this.imgEvent = imgEvent;
@@ -45,11 +36,32 @@ public class Event {
     public String getStartTime() {return startTime; }
     public String getEndTime() {return endTime; }
     public String getDesc() { return desc; }
-    public String getJoinFieldText() {return joinFieldText; }
+    public String getMaximum() {return maximum; }
     public String getStatus() {return status; }
     public void addJoin() {
         int n = Integer.parseInt(joinedText);
         n++;
         joinedText = Integer.toString(n);
+    }
+    public void setEditEvent(String name,String des,String maximum,String picture,String startTime,String endTime){
+        this.desc = des;
+        this.maximum = maximum;
+        this.imgEvent = picture;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.name = name;
+    }
+    public int[] splitDate(String date) {
+        String[] data = date.split("-");
+        int[] result = new int[data.length];
+
+        for (int i = 0; i < data.length; i++) {
+            result[i] = Integer.parseInt(data[i]);
+        }
+
+        return result;
+    }
+    public void setMaximum(){
+        this.maximum = "99";
     }
 }

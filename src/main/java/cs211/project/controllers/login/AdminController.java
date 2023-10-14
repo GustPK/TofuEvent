@@ -59,7 +59,7 @@ public class AdminController {
                 });
 
                 gridPane.add(anchorPane, column, row++);
-                GridPane.setMargin(anchorPane, new Insets(10));
+                GridPane.setMargin(anchorPane, new Insets(3));
             }
         } catch (IOException e) {
             e.printStackTrace();

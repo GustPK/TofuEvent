@@ -10,7 +10,7 @@
 }
 
 .default-background-navy{
-    -fx-background-color:#2d3553;
+    -fx-background-color: #2d3553;
 }
 
 .default-background-lightnavy{
@@ -51,20 +51,25 @@
 }
 
 .default-button-lightnavy-navy{
-    -fx-background-color:#808eae;
+    -fx-background-color: #808eae;
     -fx-text-fill:#2d3553;
     -fx-cursor:hand;
 }
 
-.red-text {
-    -fx-text-fill: red;
+.circular-image {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+    -fx-border-color: transparent;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: #2d3553;
 }
 
-.green-text {
-    -fx-text-fill: green;
-}
-.scroll-pane {
-    -fx-background-color: white;
+.scroll-pane > .scroll-bar:vertical .track {
+    -fx-background-color:  #192847;
 }
 
+.scroll-pane > .scroll-bar:horizontal .track {
+    -fx-background-color: #808eae;
+}
 

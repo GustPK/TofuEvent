@@ -1,6 +1,5 @@
 package cs211.project.services;
 
-import cs211.project.models.account.Account;
 import cs211.project.models.event.Event;
 import cs211.project.models.collections.EventList;
 
@@ -91,7 +90,7 @@ public class EventListDatasource implements Datasource<EventList> {
                         + event.getStartTime()+","
                         + event.getEndTime()+","
                         + event.getDesc()+","
-                        + event.getJoinFieldText()+","
+                        + event.getMaximum()+","
                         + event.getJoinedText()+","
                         + event.getStatus()+","
                         + event.getImgEvent();

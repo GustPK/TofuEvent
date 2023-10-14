@@ -1,56 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import java.lang.String?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="150.0" prefWidth="500.0" styleClass="cursor-hand" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.EventItemController">
+<AnchorPane prefHeight="140.0" prefWidth="579.0" style="-fx-background-radius: 40;" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.EventItemController">
    <children>
-      <HBox prefHeight="150.0" prefWidth="500.0">
+      <HBox layoutX="11.0" prefHeight="140.0" prefWidth="586.0">
          <children>
-            <ImageView fx:id="eventImg" fitHeight="130.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </HBox.margin>
-               <image>
-                  <Image url="@../../../images/ronaldo.png" />
-               </image>
-            </ImageView>
-            <VBox prefHeight="150.0" prefWidth="380.0">
+            <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="eventNameLabel" text="CR7 Meeting ">
+                  <ImageView fx:id="eventImg" fitHeight="105.0" fitWidth="129.0" layoutX="33.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="eventNameLabel" layoutX="37.0" layoutY="47.0" text="CR7 Meeting ">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets left="20.0" top="50.0" />
-                     </VBox.margin>
                   </Label>
                </children>
-            </VBox>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="count" alignment="CENTER" layoutX="39.0" layoutY="83.0" prefHeight="45.0" prefWidth="90.0" style="-fx-background-radius: 20;" styleClass="default-background-navy" text="10/20" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="eventDate" layoutX="29.0" layoutY="14.0" prefHeight="23.0" prefWidth="111.0" text="13-05-2004" textFill="#00ff11">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </HBox>
-      <AnchorPane prefHeight="40.0" prefWidth="500.0">
-         <children>
-            <Label fx:id="eventDate" layoutX="362.0" layoutY="7.0" text="13-05-2004" textFill="#00ff11">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="count" layoutX="467.0" layoutY="7.0" text="10/20">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-               <padding>
-                  <Insets left="-130.0" top="70.0" />
-               </padding>
-            </Label>
-         </children>
-      </AnchorPane>
    </children>
+   <styleClass>
+      <String fx:value="cursor-hand" />
+      <String fx:value="default-background-lightnavy" />
+   </styleClass>
 </AnchorPane>

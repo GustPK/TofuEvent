@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 
 import java.io.File;
 
@@ -17,15 +19,11 @@ public class UserListItemController {
     @FXML
     private Label nameLabel;
     @FXML
-    private ImageView profilePic;
-    @FXML
-    private Label statusLabel;
+    private Circle profilePic;
     @FXML
     private Label usernameLabel;
     @FXML
     private Label onlineLabel;
-    @FXML
-    private Label disable;
     @FXML
     private Label disableB;
     @FXML
@@ -37,10 +35,9 @@ public class UserListItemController {
         String imagePath = "data/images/" + selectedAccount.getImage();
         File imageFile = new File(imagePath);
         Image profileImage = new Image(imageFile.toURI().toString());
-        profilePic.setImage(profileImage);
+        profilePic.setFill(new ImagePattern(profileImage));
         usernameLabel.setText(account.getUsername());
         onlineLabel.setText(account.getOnline());
-        statusLabel.setText((account.getStatus()));
     }
     private Datasource<AccountList> datasource;
     private AccountList accounts;
@@ -55,13 +52,11 @@ public class UserListItemController {
         String imagePath = "data/images/" + selectedAccount.getImage();
         File imageFile = new File(imagePath);
         Image profileImage = new Image(imageFile.toURI().toString());
-        profilePic.setImage(profileImage);
-        statusLabel.setText(null);
-        usernameLabel.setText(null);
-        disable.setText(null);
-        disableB.setText(null);
-        onlineLabel.setText(account.getBan());
-        chageToStatusLabel.setText("Staus");
+        profilePic.setFill(new ImagePattern(profileImage));
+        usernameLabel.setText(account.getBan());
+        disableB.setText("Staus");
+        onlineLabel.setText(null);
+        chageToStatusLabel.setText(null);
 
     }
 }

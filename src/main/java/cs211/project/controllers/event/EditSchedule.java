@@ -105,7 +105,7 @@ public class EditSchedule {
         String time = String.format("%02d:%02d", hour, minute);
 
         // แสดงข้อมูลบน TableView โดยจำแนกจากชื่อ event ที่ซ้ำกัน
-        scheduleList.addActivity(new Schedule(getEvent.getName(), "join", name, time, date.toString()));
+        scheduleList.addActivity(new Schedule(getEvent.getName(), temp, name, time, date.toString()));
         showList(scheduleList);
 
         // ล้างค่าใน nameField, hourSpinner และ minuteSpinner หลังจากเพิ่มข้อมูลเสร็จ
@@ -132,12 +132,12 @@ public class EditSchedule {
     }
 
     private void showList(ScheduleList scheduleList) {
-//        getEvent = (Event) FXRouter.getData();
+
         List<Schedule> sortedList = new ArrayList<>(scheduleList.getActivityList());
 
         // แสดงเฉพาะชื่อ event ที่ซ้ำกัน
         List<Schedule> filteredList = sortedList.stream()
-                .filter(schedule -> schedule.getEventName().equals(getEvent.getName()) && schedule.getTeamName().equals("join"))
+                .filter(schedule -> schedule.getEventName().equals(getEvent.getName()) && schedule.getTeamName().equals(temp))
                 .collect(Collectors.toList());
 
         Comparator<Schedule> customComparator = (schedule1, schedule2) -> {
