@@ -17,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,30 +42,45 @@ public class EventsAttendedController {
 
         Set<String> processedEvents = new HashSet<>();
 
+        LocalDateTime currentDateTime = LocalDateTime.now();
+
         try {
             for (Participant participant : participantList.getParticipants()) {
                 Event event = eventsLists.getEvents().stream()
                         .filter(e -> e.getName().equals(participant.getEvent()))
                         .findFirst()
                         .orElse(null);
-                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername()) && "UNDONE".equals(event.getStatus())) {
+                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername())) {
                     String eventName = participant.getEvent();
 
                     if (!processedEvents.contains(eventName)) {
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
-                        AnchorPane anchorPane = fxmlLoader.load();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+                        LocalDateTime eventStartDateTime = LocalDateTime.parse(event.getDateStart() + " " + event.getStartTime(), formatter);
+                        if (currentDateTime.isBefore(eventStartDateTime) || currentDateTime.isEqual(eventStartDateTime)) {
+                            FXMLLoader fxmlLoader = new FXMLLoader();
+                            fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
+                            AnchorPane anchorPane = fxmlLoader.load();
 
-                        EventItemController eventItemController = fxmlLoader.getController();
-                        eventsLists.getEvents().stream()
-                                .filter(i -> i.getName().equals(eventName))
-                                .forEach(schedule -> {
-                                    eventItemController.setData(schedule);
-                                });
+                            EventItemController eventItemController = fxmlLoader.getController();
+                            eventsLists.getEvents().stream()
+                                    .filter(i -> i.getName().equals(eventName))
+                                    .forEach(schedule -> {
+                                        eventItemController.setData(schedule);
+                                    });
 
-                        grid.add(anchorPane, column, row++);
-                        GridPane.setMargin(anchorPane, new Insets(10));
-                        processedEvents.add(eventName);
+                            anchorPane.setOnMouseClicked(event1 -> {
+                                try {
+                                    goToSchedulePage(event);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            });
+
+                            grid.add(anchorPane, column, row++);
+                            GridPane.setMargin(anchorPane, new Insets(10));
+
+                            processedEvents.add(eventName);
+                        }
                     }
                 }
             }
@@ -71,6 +88,7 @@ public class EventsAttendedController {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void onHistoryHyperlinkClick() {
         clearGrid();
@@ -83,31 +101,45 @@ public class EventsAttendedController {
 
         Set<String> processedEvents = new HashSet<>();
 
+        LocalDateTime currentDateTime = LocalDateTime.now();
+
         try {
             for (Participant participant : participantList.getParticipants()) {
                 Event event = eventsLists.getEvents().stream()
                         .filter(e -> e.getName().equals(participant.getEvent()))
                         .findFirst()
                         .orElse(null);
-                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername()) && "DONE".equals(event.getStatus())) {
+                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername())) {
                     String eventName = participant.getEvent();
 
                     if (!processedEvents.contains(eventName)) {
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
-                        AnchorPane anchorPane = fxmlLoader.load();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+                        LocalDateTime eventStartDateTime = LocalDateTime.parse(event.getDateStart() + " " + event.getStartTime(), formatter);
+                        if (currentDateTime.isAfter(eventStartDateTime)) {
+                            FXMLLoader fxmlLoader = new FXMLLoader();
+                            fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
+                            AnchorPane anchorPane = fxmlLoader.load();
 
-                        EventItemController eventItemController = fxmlLoader.getController();
-                        eventsLists.getEvents().stream()
-                                .filter(i -> i.getName().equals(eventName))
-                                .forEach(schedule -> {
-                                    eventItemController.setData(schedule);
-                                });
+                            EventItemController eventItemController = fxmlLoader.getController();
+                            eventsLists.getEvents().stream()
+                                    .filter(i -> i.getName().equals(eventName))
+                                    .forEach(schedule -> {
+                                        eventItemController.setData(schedule);
+                                    });
 
-                        grid.add(anchorPane, column, row++);
-                        GridPane.setMargin(anchorPane, new Insets(10));
+                            anchorPane.setOnMouseClicked(event1 -> {
+                                try {
+                                    goToSchedulePage(event);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            });
 
-                        processedEvents.add(eventName);
+                            grid.add(anchorPane, column, row++);
+                            GridPane.setMargin(anchorPane, new Insets(10));
+
+                            processedEvents.add(eventName);
+                        }
                     }
                 }
             }
@@ -128,31 +160,45 @@ public class EventsAttendedController {
 
         Set<String> processedEvents = new HashSet<>();
 
+        LocalDateTime currentDateTime = LocalDateTime.now();
+
         try {
             for (Participant participant : participantList.getParticipants()) {
                 Event event = eventsLists.getEvents().stream()
                         .filter(e -> e.getName().equals(participant.getEvent()))
                         .findFirst()
                         .orElse(null);
-                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername()) && "UNDONE".equals(event.getStatus())) {
+                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername())) {
                     String eventName = participant.getEvent();
 
                     if (!processedEvents.contains(eventName)) {
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
-                        AnchorPane anchorPane = fxmlLoader.load();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+                        LocalDateTime eventStartDateTime = LocalDateTime.parse(event.getDateStart() + " " + event.getStartTime(), formatter);
+                        if (currentDateTime.isBefore(eventStartDateTime) || currentDateTime.isEqual(eventStartDateTime)) {
+                            FXMLLoader fxmlLoader = new FXMLLoader();
+                            fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
+                            AnchorPane anchorPane = fxmlLoader.load();
 
-                        EventItemController eventItemController = fxmlLoader.getController();
-                        eventsLists.getEvents().stream()
-                                .filter(i -> i.getName().equals(eventName))
-                                .forEach(schedule -> {
-                                    eventItemController.setData(schedule);
-                                });
+                            EventItemController eventItemController = fxmlLoader.getController();
+                            eventsLists.getEvents().stream()
+                                    .filter(i -> i.getName().equals(eventName))
+                                    .forEach(schedule -> {
+                                        eventItemController.setData(schedule);
+                                    });
 
-                        grid.add(anchorPane, column, row++);
-                        GridPane.setMargin(anchorPane, new Insets(10));
+                            anchorPane.setOnMouseClicked(event1 -> {
+                                try {
+                                    goToSchedulePage(event);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            });
 
-                        processedEvents.add(eventName);
+                            grid.add(anchorPane, column, row++);
+                            GridPane.setMargin(anchorPane, new Insets(10));
+
+                            processedEvents.add(eventName);
+                        }
                     }
                 }
             }
@@ -160,11 +206,15 @@ public class EventsAttendedController {
             e.printStackTrace();
         }
     }
+
     @FXML
     public void clickBackToMain() throws IOException {
         FXRouter.goTo("main");
     }
     private void clearGrid() {
         grid.getChildren().clear();
+    }
+    private void goToSchedulePage(Event event) throws IOException {
+        FXRouter.goTo("scheduleActivity", event);
     }
 }

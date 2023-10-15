@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 import java.io.File;
 
 public class EventItemController {
-
     private Event selectedEvent;
     @FXML
     private Label eventNameLabel;

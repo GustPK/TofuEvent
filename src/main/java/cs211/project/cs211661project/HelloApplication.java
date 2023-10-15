@@ -45,6 +45,7 @@ public class HelloApplication extends Application {
         FXRouter.when("des", resourcesPath + "eventDes.fxml");
         FXRouter.when("eventAttended",resourcesPath + "eventsAttended.fxml");
         FXRouter.when("editSchedule",resourcesPath + "EditSchedule-view.fxml");
+        FXRouter.when("scheduleActivity",resourcesPath + "schedule-activity-view.fxml");
 
     }
 
