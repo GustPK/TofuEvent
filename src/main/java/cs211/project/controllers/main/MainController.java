@@ -29,91 +29,117 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class MainController {
-    private Datasource<EventList> datasource;
-    private EventList events;
-    @FXML
-    private ComboBox<String> combox;
-    @FXML
-    private Circle profilePic;
-    @FXML
-    private Hyperlink nameLink;
-    private Account currentAccount;
-    @FXML
-    private TextField srcField;
-    @FXML
-    private ScrollPane scroll;
-    @FXML
-    private GridPane grid;
 
-    @FXML
-    protected void onProfileButtonClick() throws IOException {
-        FXRouter.goTo("profile");
-    }
+        private Datasource<EventList> datasource;
+        private EventList events;
+        @FXML
+        private ComboBox<String> combox;
+        @FXML
+        private Circle profilePic;
+        @FXML
+        private Hyperlink nameLink;
+        @FXML ImageView logo;
+        private Account currentAccount;
 
-    @FXML
-    private void onThisEventAsStaffButtonClick() throws IOException {
-        FXRouter.goTo("myteam");
-    }
-
-    @FXML
-    private void onCreateEventButtonClick() throws IOException {
-        FXRouter.goTo("create");
-    }
-
-    @FXML
-    private void onOngoingEventsButtonClick() throws IOException {
-        FXRouter.goTo("eventAttended");
-    }
-
-    @FXML
-    private void onEventInfoButtonClick() throws IOException {
-        FXRouter.goTo("info");
-    }
-
-    @FXML
-    private void goToEditEvent() throws IOException {
-        FXRouter.goTo("creatorEventList", currentAccount);
-    }
-
-    private void sort(ActionEvent event) {
-        if (combox.getValue().equals("Date")) {
-            events.sort(new DateSortcomparator());
+        @FXML
+        protected void onProfileButtonClick() throws IOException {
+            FXRouter.goTo("profile");
         }
-        showGrid(events);
-    }
 
-    private EventList filter(String src){
-        EventList filtered = new EventList();
-        for (Event event:events.getEvents()){
-            if (event.getName().toLowerCase().contains(src.toLowerCase())){
-                filtered.addEvent(event);
-            }
+        @FXML
+        private void onThisEventAsStaffButtonClick() throws IOException {
+            FXRouter.goTo("myteam", events);
         }
-        return filtered;
-    }
-    @FXML
-    public void initialize() {
-        datasource = new EventListDatasource();
-        events = datasource.readData();
-        showGrid(events);
-        srcField.textProperty().addListener((observable, oldValue, newValue)->{
-            if (newValue != null && !newValue.isEmpty()) {
-                showGrid(filter(newValue));
+
+        @FXML
+        private void onCreateEventButtonClick() throws IOException {
+            FXRouter.goTo("create");
+        }
+
+        @FXML
+        private void onOngoingEventsButtonClick() throws IOException {
+            FXRouter.goTo("eventAttended");
+        }
+
+        @FXML
+        private void onEventInfoButtonClick() throws IOException {
+            FXRouter.goTo("info");
+        }
+
+        @FXML
+        private void goToEditEvent() throws IOException {
+            FXRouter.goTo("creatorEventList", currentAccount);
+
+        }
+        @FXML
+        private TextField srcField;
+        @FXML
+        private ScrollPane scroll;
+        @FXML
+        private GridPane grid;
+
+        private void sort(ActionEvent event) {
+            if (combox.getValue().equals("Date")) {
+                events.sort(new DateSortcomparator());
             }
-            else {
-                showGrid(events);
+            showGrid(events);
+        }
+
+        private List<EventList> getData() {
+            List<EventList> events = new ArrayList<>();
+            EventList event;
+
+    //        for(int i = 0; i < 20; i++){
+    //            event = new Event();
+    //            event.setName("CR7 Meeting");
+    //            event.setImgSrc(getClass().getResource("/images/ronaldoi.png").toString());
+    //            events.add(event);
+    //        }
+            return events;
+        }
+
+        private EventList filter(String src){
+            EventList filtered = new EventList();
+            for (Event event:events.getEvents()){
+                if (event.getName().toLowerCase().contains(src.toLowerCase())){
+                    filtered.addEvent(event);
+                }
             }
-        });
-        String[] types = {"Date"};
-        combox.getItems().addAll(types);combox.setOnAction(this::sort);
-        File file = new File("data/images", LoggedInAccount.getInstance().getAccount().getImage());
-        String path = "file:///" + file.getAbsolutePath();
-        Image image = new Image(path);
-        profilePic.setFill(new ImagePattern(image));
-        nameLink.setText(LoggedInAccount.getInstance().getAccount().getUsername());
-    }
+            return filtered;
+        }
+        @FXML
+        public void initialize() {
+            datasource = new EventListDatasource();
+            events = datasource.readData();
+            showGrid(events);
+            srcField.textProperty().addListener((observable, oldValue, newValue)->{
+                if (newValue != null && !newValue.isEmpty()) {
+                    showGrid(filter(newValue));
+                }
+                else {
+                    showGrid(events);
+                }
+            });
+            String[] types = {"Date"};
+            combox.getItems().addAll(types);
+            combox.setOnAction(this::sort);
+    //        currentAccount = (Account) FXRouter.getData();
+            // read file outside project src
+            File file = new File("data/images", LoggedInAccount.getInstance().getAccount().getImage());
+            String path = "file:///" + file.getAbsolutePath();
+            Image image = new Image(path);
+            profilePic.setFill(new ImagePattern(image));
+            nameLink.setText(LoggedInAccount.getInstance().getAccount().getUsername());
+
+            String personImagePath = "file:data/images/tofu.png";
+            Image personImage = new Image(personImagePath);
+            logo.setImage(personImage);
+        }
 
     private void showGrid(EventList events) {
         grid.getChildren().clear();

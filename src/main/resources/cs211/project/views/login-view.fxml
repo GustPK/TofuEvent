@@ -11,11 +11,11 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.login.LoginController">
    <center>
-      <AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="default-background-lightnavy" stylesheets="@../../../values/style.css">
+      <AnchorPane prefHeight="600.0" prefWidth="850.0" styleClass="default-background-lightnavy" stylesheets="@../../../values/style.css">
           <children>
             <BorderPane layoutX="50.0" layoutY="50.0" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #F0FFFF;">
                <right>
-                  <AnchorPane prefHeight="489.0" prefWidth="292.0" style="-fx-background-color: #F0F8FF;" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #F0F8FF;" BorderPane.alignment="CENTER">
                      <children>
                         <Button fx:id="Login" layoutX="70.0" layoutY="280.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #8891FD;" styleClass="cursor-hand" text="Log in">
                            <font>
@@ -59,7 +59,7 @@
                   </AnchorPane>
                </right>
                <left>
-                  <AnchorPane prefHeight="500.0" prefWidth="408.0" styleClass="default-background-navy" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="500.0" prefWidth="400.0" styleClass="default-background-navy" BorderPane.alignment="CENTER">
                      <children>
                         <Label layoutX="40.0" layoutY="50.0" prefHeight="46.0" prefWidth="298.0" text="Welcome!" textFill="WHITE">
                            <font>
