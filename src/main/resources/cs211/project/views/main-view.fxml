@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
@@ -27,27 +28,15 @@
          <children>
             <AnchorPane prefHeight="100.0" prefWidth="800.0">
                <children>
-                  <Pane layoutX="-23.0" layoutY="-6.0" prefHeight="135.0" prefWidth="838.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css">
+                  <Pane layoutX="11.0" layoutY="-6.0" prefHeight="78.0" prefWidth="879.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css">
                      <children>
-                        <Button alignment="CENTER" layoutX="249.0" layoutY="71.0" mnemonicParsing="false" onAction="#onCreateEventButtonClick" prefHeight="40.0" style="-fx-background-radius: 20;" styleClass="default-background-lightnavy" text="Create event" textFill="WHITE">
+                        <Button alignment="CENTER" layoutX="581.0" layoutY="24.0" mnemonicParsing="false" onAction="#onCreateEventButtonClick" prefHeight="40.0" style="-fx-background-radius: 20; -fx-background-color: white;" text="Create event">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
-                        </Button>
-                        <Button alignment="CENTER" layoutX="170.0" layoutY="71.0" mnemonicParsing="false" onAction="#onThisEventAsStaffButtonClick" prefHeight="40.0" style="-fx-background-radius: 20;" styleClass="default-background-lightnavy" text="My team" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
-                        <Button alignment="CENTER" layoutX="45.0" layoutY="71.0" mnemonicParsing="false" onAction="#onOngoingEventsButtonClick" prefHeight="40.0" style="-fx-background-radius: 20;" styleClass="default-background-lightnavy" text="Events Attended" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
-                        <Button alignment="CENTER" layoutX="351.0" layoutY="71.0" mnemonicParsing="false" onAction="#goToEditEvent" prefHeight="40.0" style="-fx-background-radius: 20;" styleClass="default-background-lightnavy" text="Edit event" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="5.0" layoutX="33.0" layoutY="122.0" stroke="WHITE" strokeType="INSIDE" width="800.0" />
                         <ImageView id="logo" fx:id="logo" fitHeight="49.0" fitWidth="200.0" layoutX="39.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
@@ -57,18 +46,18 @@
                         </ImageView>
 
                      </children></Pane>
-                  <Circle fx:id="profilePic" fill="#808eae" layoutX="742.0" layoutY="54.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Button layoutX="709.0" layoutY="29.0" mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="62.0" prefWidth="65.0">
+                  <Circle fx:id="profilePic" fill="#808eae" layoutX="801.0" layoutY="36.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Hyperlink fx:id="nameLink" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="656.0" layoutY="22.0" onAction="#onProfileButtonClick" prefHeight="27.0" prefWidth="113.0" text="Name" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Hyperlink>
+                  <Button layoutX="772.0" layoutY="9.0" mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="62.0" prefWidth="65.0">
                      <styleClass>
                         <String fx:value="button-transparent" />
                         <String fx:value="cursor-hand" />
                      </styleClass>
                   </Button>
-                  <Hyperlink fx:id="nameLink" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="589.0" layoutY="44.0" onAction="#onProfileButtonClick" prefHeight="27.0" prefWidth="113.0" text="Name" textAlignment="RIGHT" textFill="WHITE">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Hyperlink>
                </children>
                <HBox.margin>
                   <Insets />
@@ -97,7 +86,7 @@
                   <Insets />
                </HBox.margin>
                <children>
-                  <ScrollPane layoutX="74.0" layoutY="55.0" prefHeight="443.0" prefWidth="669.0">
+                  <ScrollPane layoutX="127.0" layoutY="55.0" prefHeight="443.0" prefWidth="616.0">
                      <content>
                         <GridPane fx:id="grid" prefHeight="10.0" prefWidth="0.0" style="-fx-background-color: #FFFFFF;">
                            <columnConstraints>
@@ -112,13 +101,37 @@
                         <Insets left="-10.0" />
                      </padding>
                   </ScrollPane>
-                  <TextField fx:id="srcField" layoutX="306.0" layoutY="9.0" prefHeight="41.0" prefWidth="344.0" promptText="        search" style="-fx-background-radius: 20;" />
-                  <ComboBox fx:id="combox" layoutX="660.0" layoutY="11.0" prefHeight="35.0" prefWidth="74.0" promptText="Sort" style="-fx-background-radius: 20;" />
-                  <Label layoutX="18.0" layoutY="14.0" text="Events" textFill="WHITE">
+                  <TextField fx:id="srcField" layoutX="260.0" layoutY="9.0" prefHeight="41.0" prefWidth="344.0" promptText="        search" style="-fx-background-radius: 20;" />
+                  <ComboBox fx:id="combox" layoutX="614.0" layoutY="11.0" prefHeight="35.0" prefWidth="74.0" promptText="Sort" style="-fx-background-radius: 20;" />
+                  <Label layoutX="-14.0" layoutY="11.0" text="Events" textFill="WHITE">
                      <font>
                         <Font name="Ayuthaya" size="24.0" />
                      </font>
                   </Label>
+                  <Button alignment="CENTER" layoutX="-30.0" layoutY="86.0" mnemonicParsing="false" onAction="#onOngoingEventsButtonClick" prefHeight="40.0" style="-fx-background-radius: 20;" styleClass="default-background-lightnavy" text="Events Attended" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button alignment="CENTER" layoutX="-28.0" layoutY="152.0" mnemonicParsing="false" onAction="#onThisEventAsStaffButtonClick" prefHeight="40.0" prefWidth="115.0" style="-fx-background-radius: 20;" styleClass="default-background-lightnavy" text="My team" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button alignment="CENTER" layoutX="-28.0" layoutY="222.0" mnemonicParsing="false" onAction="#goToEditEvent" prefHeight="40.0" prefWidth="115.0" style="-fx-background-radius: 20; -fx-background-color: black;" styleClass="default-background-lightnavy" text="Edit event" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
          </children>
