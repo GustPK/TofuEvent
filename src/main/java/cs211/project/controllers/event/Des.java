@@ -53,6 +53,8 @@ public class Des {
     @FXML
     private ImageView imagePerson;
     @FXML
+    private Label showTeamCount;
+    @FXML
     private void initialize() {
         event = (Event) FXRouter.getData();
         participantList = new ParticipantList();
@@ -102,6 +104,15 @@ public class Des {
         String personImagePath = "file:data/images/person.png";
         Image personImage = new Image(personImagePath);
         imagePerson.setImage(personImage);
+
+        selectTeam.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                int x = (Integer.parseInt(teamList.findByTeamName(newValue.toString()).getJoinFieldText())-
+                         Integer.parseInt(teamList.findByTeamName(newValue.toString()).getJoinedText()));
+                showTeamCount.setText(x+" person left");
+
+            }
+        });
     }
 
     @FXML
@@ -117,6 +128,12 @@ public class Des {
                 alert.setTitle("Warning");
                 alert.setHeaderText("Already Joined");
                 alert.setContentText("You've already joined the event.");
+                alert.showAndWait();
+            }else if(event.getJoinedText().equals(event.getMaximum())){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Event has reached its maximum capacity");
+                alert.setContentText("No more participants can join.");
                 alert.showAndWait();
             } else {
                 // Add the participant to the list
@@ -165,6 +182,13 @@ public class Des {
                 alert.setHeaderText("Already Joined");
                 alert.setContentText("You've already joined the team for this event.");
                 alert.showAndWait();
+            }else if(teamList.findByTeamName(selectedTeam).getJoinedText().equals(teamList.findByTeamName(selectedTeam).getJoinFieldText())){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Event has reached its maximum capacity");
+                alert.setContentText("No more team can join.");
+                alert.showAndWait();
+
             } else {
                 // Find the team in teamList
                 Team currentTeam = teamList.findByTeamName(selectedTeam);

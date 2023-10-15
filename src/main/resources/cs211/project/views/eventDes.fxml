@@ -17,9 +17,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.Des">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.Des">
    <children>
-      <Pane layoutX="525.0" layoutY="282.0" prefHeight="118.0" prefWidth="275.0" style="-fx-background-color: #000000; -fx-background-radius: 11;">
+      <Pane layoutX="525.0" layoutY="282.0" prefHeight="118.0" prefWidth="275.0" style="-fx-background-radius: 11;" styleClass="default-background-lightnavy">
          <children>
             <Label layoutX="7.0" layoutY="6.0" prefHeight="31.0" prefWidth="252.0" text="Event" textFill="WHITE">
                <font>
@@ -27,7 +27,7 @@
                </font>
             </Label>
             <Separator layoutY="39.0" prefWidth="275.0" style="-fx-background-color: #FFFFFF;" />
-            <Button fx:id="joinButton" layoutX="181.0" layoutY="68.0" mnemonicParsing="false" onAction="#clickJoinEvent" prefHeight="24.0" prefWidth="82.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 18;" text="Join">
+            <Button fx:id="joinButton" layoutX="181.0" layoutY="68.0" mnemonicParsing="false" onAction="#clickJoinEvent" prefHeight="24.0" prefWidth="82.0" style="-fx-background-radius: 18;" styleClass="default-background-navy" text="Join" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -40,14 +40,14 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="18.0" layoutY="83.0" text="last day" textFill="#c9c9c9">
+            <Label layoutX="18.0" layoutY="83.0" text="Click the button" textFill="#c9c9c9">
                <font>
                   <Font size="12.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="513.0" layoutY="91.0" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #000000; -fx-background-radius: 11;">
+      <Pane layoutX="513.0" layoutY="91.0" prefHeight="52.0" prefWidth="58.0" style="-fx-background-radius: 11;" styleClass="default-background-lightnavy">
          <children>
             <Label fx:id="count" alignment="CENTER" layoutX="3.0" layoutY="-1.0" prefHeight="37.0" prefWidth="50.0" text="29" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -57,8 +57,8 @@
             <Label layoutX="16.0" layoutY="31.0" text="Left" textFill="WHITE" />
          </children>
       </Pane>
-      <Pane layoutX="579.0" layoutY="91.0" prefHeight="52.0" prefWidth="215.0" style="-fx-background-color: #000000; -fx-background-radius: 11;" />
-      <Pane layoutX="526.0" layoutY="422.0" prefHeight="119.0" prefWidth="275.0" style="-fx-background-color: #000000; -fx-background-radius: 11;">
+      <Pane layoutX="579.0" layoutY="91.0" prefHeight="52.0" prefWidth="215.0" style="-fx-background-radius: 11;" styleClass="default-background-lightnavy" />
+      <Pane layoutX="526.0" layoutY="422.0" prefHeight="119.0" prefWidth="275.0" style="-fx-background-radius: 11;" styleClass="default-background-lightnavy">
          <children>
             <Label layoutX="7.0" layoutY="6.0" prefHeight="31.0" prefWidth="252.0" text="Organizing team" textFill="WHITE">
                <font>
@@ -66,7 +66,7 @@
                </font>
             </Label>
             <Separator layoutY="39.0" prefWidth="275.0" style="-fx-background-color: #FFFFFF;" />
-            <Button layoutX="180.0" layoutY="65.0" mnemonicParsing="false" onAction="#clickJoinTeam" prefHeight="24.0" prefWidth="82.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 18;" text="Join">
+            <Button layoutX="180.0" layoutY="65.0" mnemonicParsing="false" onAction="#clickJoinTeam" prefHeight="24.0" prefWidth="82.0" style="-fx-background-radius: 18;" styleClass="default-background-navy" text="Join" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -75,14 +75,14 @@
                </cursor>
             </Button>
             <ComboBox fx:id="selectTeam" layoutX="11.0" layoutY="59.0" prefWidth="150.0" promptText="Select team" style="-fx-background-color: #FFFFFF;" />
-            <Label layoutX="16.0" layoutY="93.0" text="last day" textFill="#c9c9c9">
+            <Label fx:id="showTeamCount" layoutX="16.0" layoutY="93.0" text="Choose to see vacancies are left." textFill="#c9c9c9">
                <font>
                   <Font size="12.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="imageCircle" layoutX="525.0" layoutY="164.0" prefHeight="101.0" prefWidth="275.0" style="-fx-background-color: #000000; -fx-background-radius: 11;">
+      <Pane fx:id="imageCircle" layoutX="525.0" layoutY="164.0" prefHeight="101.0" prefWidth="275.0" style="-fx-background-radius: 11;" styleClass="default-background-lightnavy">
          <children>
             <Label fx:id="startLabel" layoutX="45.0" layoutY="12.0" text="Label" textFill="WHITE" />
             <ImageView fx:id="imagePerson" fitHeight="19.0" fitWidth="17.0" layoutX="14.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
@@ -104,12 +104,12 @@
             </ImageView>
          </children>
       </Pane>
-      <Label layoutX="131.0" layoutY="340.0" text="Description">
+      <Label layoutX="131.0" layoutY="340.0" text="Description" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Pane layoutX="132.0" layoutY="362.0" prefHeight="0.5" prefWidth="250.0" style="-fx-background-color: #000000;" />
+      <Pane layoutX="132.0" layoutY="362.0" prefHeight="0.5" prefWidth="250.0" style="-fx-background-color: white;" />
       <Rectangle fx:id="imageEvent" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="234.0" layoutX="140.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="234.0" />
       <GridPane layoutX="580.0" layoutY="75.0" prefHeight="90.0" prefWidth="214.0">
         <columnConstraints>
@@ -124,7 +124,7 @@
             <TextFlow fx:id="nameField" prefHeight="70.0" prefWidth="214.0" style="-fx-font-size: 16;" textAlignment="CENTER" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="72.0" layoutY="512.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Button" />
+      <Button layoutX="72.0" layoutY="512.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="BACK" />
       <TextArea fx:id="descArea" layoutX="131.0" layoutY="381.0" prefHeight="106.0" prefWidth="280.0" />
 
    </children>

@@ -6,6 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
 
 import java.io.File;
 
@@ -22,6 +25,7 @@ public class EventItemController {
     @FXML
     private Label count;
 
+
     public void setData(Event event){
         this.event = event;
         eventNameLabel.setText(event.getName());
@@ -33,10 +37,12 @@ public class EventItemController {
 
         int data7 = Integer.parseInt(event.getMaximum()); // Assuming data[7] is an integer in the CSV
         int data8 = Integer.parseInt(event.getJoinedText()); // Assuming data[8] is an integer in the CSV
-        int countValue = data7 - data8;
 
-        // Convert the count value to a String and set it to the label
-        count.setText(countValue +"/"+data7);
+        if (data7 == data8) {
+            count.setText("FULL");
+            count.setStyle("-fx-background-color: RED; -fx-background-radius: 20;");
+        }else
+            count.setText(data8 +"/"+data7);
     }
 
     @FXML

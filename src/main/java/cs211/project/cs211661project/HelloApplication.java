@@ -9,6 +9,8 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        stage.setWidth(850);
+        stage.setHeight(600);
         configRoute();
         FXRouter.bind(this, stage, "CS211 661 Project");
         FXRouter.goTo("login");
