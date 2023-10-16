@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -15,7 +16,9 @@ import java.io.IOException;
 
 public class AdminController {
     @FXML
-    private GridPane gridPane; // Reference to the GridPane in the FXML
+    private GridPane gridPane;
+    @FXML
+    private ScrollPane scrollPane;
 
     private Datasource<AccountList> datasource;
     private AccountList accounts;
@@ -51,16 +54,20 @@ public class AdminController {
 
                 // Add an event handler to the AnchorPane to navigate to the "ban" page
                 anchorPane.setOnMouseClicked(event -> {
-                    try {
-                        goToBanPage(account); // Create a method to navigate to the "ban" page
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if (event.getClickCount() == 2) { // Check for double-click
+                        try {
+                            goToBanPage(account); // Create a method to navigate to the "ban" page
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
                 gridPane.add(anchorPane, column, row++);
                 GridPane.setMargin(anchorPane, new Insets(3));
             }
+            scrollPane.setPannable(true);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -142,9 +142,9 @@ public class ManageController {
         maximum.setText(event.getMaximum());
         int column = 0;
         int row = 0;
-        try {
-            for (Participant account : accounts.getParticipants()) {
-                if (event.getName().equals(account.getEvent()) && account.getTeamName().equals(temp)) {
+        for (Participant account : accounts.getParticipants()) {
+            if (event.getName().equals(account.getEvent()) && account.getTeamName().equals(temp)) {
+                try {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/userlist-item-view.fxml"));
                     AnchorPane anchorPane = fxmlLoader.load();
@@ -152,34 +152,36 @@ public class ManageController {
                     UserListItemController userListItemController = fxmlLoader.getController();
                     userListItemController.setData(account);
 
-                    // Add an event handler to the AnchorPane to show the confirmation dialog when clicked
-                    anchorPane.setOnMouseClicked(events -> {
-                        // Create the confirmation dialog
+                    anchorPane.setOnMouseClicked(event -> {
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                         alert.setTitle("Confirmation");
                         alert.setHeaderText(null);
-                        alert.setContentText("You want ban this person?");
 
-                        // Add "Ban" and "Cancel" buttons to the dialog
-                        ButtonType buttonTypeBan = new ButtonType("Ban", ButtonBar.ButtonData.OK_DONE);
+                        if ("banned".equals(account.getBan())) {
+                            alert.setContentText("You want to unban this person?");
+                            account.setBan("unbanned");
+                        } else {
+                            alert.setContentText("You want to ban this person?");
+                            account.setBan("banned");
+                        }
+
+                        ButtonType buttonTypeBanUnban = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
                         ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-                        alert.getButtonTypes().setAll(buttonTypeBan, buttonTypeCancel);
+                        alert.getButtonTypes().setAll(buttonTypeBanUnban, buttonTypeCancel);
 
-                        // Show the dialog and handle the user's choice
                         Optional<ButtonType> result = alert.showAndWait();
-                        if (result.isPresent() && result.get() == buttonTypeBan) {
-                            account.setBanned();
+                        if (result.isPresent() && result.get() == buttonTypeBanUnban) {
                             datasource.writeData(accounts);
-                            initialize();
+                            refreshGridPane();
                         }
                     });
 
                     gridPane.add(anchorPane, column, row++);
-                    GridPane.setMargin(anchorPane, new Insets(3));
+                    GridPane.setMargin(anchorPane, new Insets(10));
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         datasourceSchedule = new ScheduleFileDatasource("data", "schedule.csv");
         scheduleList = datasourceSchedule.readData();
@@ -293,27 +295,34 @@ public class ManageController {
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                         alert.setTitle("Confirmation");
                         alert.setHeaderText(null);
-                        alert.setContentText("คุณต้องการจะban คนนี้หรือไม่?");
 
-                        ButtonType buttonTypeBan = new ButtonType("Ban", ButtonBar.ButtonData.OK_DONE);
+                        if ("banned".equals(account.getBan())) {
+                            alert.setContentText("You want to unban this person?");
+                            account.setBan("unbanned");
+                        } else {
+                            alert.setContentText("You want to ban this person?");
+                            account.setBan("banned");
+                        }
+
+                        ButtonType buttonTypeBanUnban = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
                         ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-                        alert.getButtonTypes().setAll(buttonTypeBan, buttonTypeCancel);
+                        alert.getButtonTypes().setAll(buttonTypeBanUnban, buttonTypeCancel);
 
                         Optional<ButtonType> result = alert.showAndWait();
-                        if (result.isPresent() && result.get() == buttonTypeBan) {
-                            account.setBanned();
+                        if (result.isPresent() && result.get() == buttonTypeBanUnban) {
                             datasource.writeData(accounts);
+                            refreshGridPane();
                         }
                     });
 
-
                     gridPane.add(anchorPane, column, row++);
-                    GridPane.setMargin(anchorPane, new Insets(3));
+                    GridPane.setMargin(anchorPane, new Insets(10));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
+
         scheduleList = datasourceSchedule.readData();
         scheduleList.getActivityList().stream()
                 .filter(i -> i.getEventName().equals(event.getName()) && i.getTeamName().equals(temp))
@@ -358,6 +367,51 @@ public class ManageController {
 
         }
     }
+    public void refreshGridPane() {
+        gridPane.getChildren().clear();
 
+        int column = 0;
+        int row = 0;
+        for (Participant account : accounts.getParticipants()) {
+            if (event.getName().equals(account.getEvent()) && account.getTeamName().equals(temp)) {
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/userlist-item-view.fxml"));
+                    AnchorPane anchorPane = fxmlLoader.load();
 
+                    UserListItemController userListItemController = fxmlLoader.getController();
+                    userListItemController.setData(account);
+
+                    anchorPane.setOnMouseClicked(event -> {
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("Confirmation");
+                        alert.setHeaderText(null);
+
+                        if ("banned".equals(account.getBan())) {
+                            alert.setContentText("You want to unban this person?");
+                            account.setBan("unbanned");
+                        } else {
+                            alert.setContentText("You want to ban this person?");
+                            account.setBan("banned");
+                        }
+
+                        ButtonType buttonTypeBanUnban = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+                        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+                        alert.getButtonTypes().setAll(buttonTypeBanUnban, buttonTypeCancel);
+
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.isPresent() && result.get() == buttonTypeBanUnban) {
+                            datasource.writeData(accounts);
+                            refreshGridPane();
+                        }
+                    });
+
+                    gridPane.add(anchorPane, column, row++);
+                    GridPane.setMargin(anchorPane, new Insets(10));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

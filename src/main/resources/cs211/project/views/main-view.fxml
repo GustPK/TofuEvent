@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -73,17 +72,9 @@
    <center>
       <HBox prefHeight="486.0" prefWidth="800.0" styleClass="default-background-navy" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="525.0" prefWidth="174.0" styleClass="default-background-navy">
-               <children>
-                  <AnchorPane prefHeight="96.0" prefWidth="239.0" />
-               </children>
+            <AnchorPane prefHeight="525.0" prefWidth="742.0" style="-fx-background-radius: 20; -fx-background-color: balck;">
                <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-            </VBox>
-            <AnchorPane prefHeight="517.0" prefWidth="850.0" style="-fx-background-radius: 20; -fx-background-color: balck;">
-               <HBox.margin>
-                  <Insets right="50.0" />
+                  <Insets left="50.0" right="50.0" />
                </HBox.margin>
                <children>
                   <ScrollPane layoutX="127.0" layoutY="55.0" prefHeight="443.0" prefWidth="616.0">
