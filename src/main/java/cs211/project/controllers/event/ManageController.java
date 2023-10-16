@@ -26,8 +26,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
+import javafx.util.StringConverter;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -59,6 +62,14 @@ public class ManageController {
     @FXML DatePicker startDate;
     @FXML DatePicker endDate;
     @FXML TextField eventName;
+    @FXML
+    private Spinner<Integer> hourSpinnerStart;
+    @FXML
+    private Spinner<Integer> minuteSpinnerStart;
+    @FXML
+    private Spinner<Integer> hourSpinnerEnd;
+    @FXML
+    private Spinner<Integer> minuteSpinnerEnd;
 
     @FXML Label play;
     @FXML
@@ -76,25 +87,6 @@ public class ManageController {
         play.setBackground(background);
     }
 
-
-    @FXML
-    public void ClickToGoManu()throws IOException {
-//        event.setEditEvent(eventName.getText(),description.getText(),maximum.getText(),namePicture,startDateString,endDateString);
-        eventList.getEvents().stream()
-                .filter(i -> i.getName().equals(event.getName()))
-                .forEach(i -> i.setEditEvent(eventName.getText(),description.getText(),maximum.getText(),namePicture,startDateString,endDateString));
-        scheduleList.getActivityList().stream()
-                .filter(i -> i.getEventName().equals(event.getName()))
-                .forEach(i -> i.setEventName(eventName.getText()));
-        accounts.getParticipants().stream()
-                .filter(i -> i.getEvent().equals(event.getName()))
-                .forEach(i -> i.setEvent(eventName.getText()));
-        datasource.writeData(accounts);
-        datasourceSchedule.writeData(scheduleList);
-        eventListDatasource.writeData(eventList);
-        FXRouter.goTo("main");
-    }
-
     private ScheduleList scheduleList;
     private Datasource<ScheduleList> datasourceSchedule;
     private Event event;
@@ -102,15 +94,33 @@ public class ManageController {
 //    @FXML private ChoiceBox selectTeam;
     @FXML private TableView<Schedule> scheduleView;
 
+    private SpinnerValueFactory<Integer> createSpinnerValueFactory(int min, int max, int initialValue) {
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max, initialValue);
+        valueFactory.setConverter(new StringConverter<Integer>() {
+            @Override
+            public String toString(Integer value) {
+                return String.format("%02d", value);
+            }
 
+            @Override
+            public Integer fromString(String string) {
+                if (string == null || string.isEmpty()) {
+                    return 0;
+                }
+                try {
+                    return Integer.parseInt(string);
+                } catch (NumberFormatException e) {
+                    return 0; // Return a default value or handle the error as needed
+                }
+            }
+        });
+        return valueFactory;
+    }
 
     @FXML
     private void initialize(){
         event = (Event) FXRouter.getData();
         nameLabel.setText("Participant");
-
-
-
 //        datasource = new AccountListDatasource();
 //        accounts = datasource.readData();
         teamListDatasource = new TeamListDatasource("data","TeamList.csv");
@@ -125,12 +135,13 @@ public class ManageController {
 
         int[] date = event.splitDate(event.getDateStart());
         LocalDate defaultDate = LocalDate.of(date[2], date[1], date[0]);
-        startDateString = date[2]+"-"+date[1]+"-"+date[0];
+        startDateString = String.format("%02d-%02d-%04d", date[0], date[1], date[2]);
         startDate.setValue(defaultDate);
         date = event.splitDate(event.getDateEnd());
         defaultDate = LocalDate.of(date[2], date[1], date[0]);
-        endDateString = date[2]+"-"+date[1]+"-"+date[0];
+        endDateString = String.format("%02d-%02d-%04d", date[0], date[1], date[2]);
         endDate.setValue(defaultDate);
+
 
         File file = new File("data/images", event.getImgEvent());
         String path = "file:///" + file.getAbsolutePath();
@@ -214,26 +225,21 @@ public class ManageController {
             if (event.getClickCount() == 1) {
                 Schedule selectedSchedule = scheduleView.getSelectionModel().getSelectedItem();
                 if (selectedSchedule != null) {
-                    // สร้าง Alert
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Set Status");
                     alert.setHeaderText("Choose the status for this schedule:");
 
-                    // สร้างปุ่ม "Done" และ "Undone"
                     ButtonType buttonTypeDone = new ButtonType("Done");
                     ButtonType buttonTypeUndone = new ButtonType("Undone");
 
                     alert.getButtonTypes().setAll(buttonTypeDone, buttonTypeUndone);
 
-                    // แสดง Alert และรอผู้ใช้เลือก
                     Optional<ButtonType> result = alert.showAndWait();
 
                     if (result.isPresent()) {
                         if (result.get() == buttonTypeDone) {
-                            // ถ้าผู้ใช้เลือก "Done" ให้ใช้ setDone() บน selectedSchedule
                             selectedSchedule.setStatusDone();
                         } else if (result.get() == buttonTypeUndone) {
-                            // ถ้าผู้ใช้เลือก "Undone" ให้ใช้ setUndone() บน selectedSchedule
                             selectedSchedule.setStatusUndone();
                         }
 
@@ -243,8 +249,15 @@ public class ManageController {
                 }
             }
         });
+        SpinnerValueFactory<Integer> hourStartValueFactory = createSpinnerValueFactory(0, 23, 0);
+        SpinnerValueFactory<Integer> minuteStartValueFactory = createSpinnerValueFactory(0, 59, 0);
+        SpinnerValueFactory<Integer> hourEndValueFactory = createSpinnerValueFactory(0, 23, 0);
+        SpinnerValueFactory<Integer> minuteEndValueFactory = createSpinnerValueFactory(0, 59, 0);
 
-
+        hourSpinnerStart.setValueFactory(hourStartValueFactory);
+        minuteSpinnerStart.setValueFactory(minuteStartValueFactory);
+        hourSpinnerEnd.setValueFactory(hourEndValueFactory);
+        minuteSpinnerEnd.setValueFactory(minuteEndValueFactory);
 
         for (Team team : teamList.getTeams()) {
             if (team.getEventName().equals(event.getName()))
@@ -259,7 +272,29 @@ public class ManageController {
             }
         });
     }
+    @FXML
+    public void ClickToGoManu() throws IOException {
+        int startHour = hourSpinnerStart.getValue();
+        int startMinute = minuteSpinnerStart.getValue();
+        int endHour = hourSpinnerEnd.getValue();
+        int endMinute = minuteSpinnerEnd.getValue();
+        String startTimeString = String.format("%02d:%02d", startHour, startMinute);
+        String endTimeString = String.format("%02d:%02d", endHour, endMinute);
 
+        // สลับสองเวลาให้ไปอยู่ด้านหลัง
+        eventList.getEvents().stream()
+                .filter(i -> i.getName().equals(event.getName()))
+                .forEach(i -> {
+                    i.setEditEvent(eventName.getText(), description.getText(), maximum.getText(), namePicture, endTimeString, startTimeString, endDateString, startDateString);
+                });
+
+        // อัพเดทข้อมูลใน datasource
+        datasource.writeData(accounts);
+        datasourceSchedule.writeData(scheduleList);
+        eventListDatasource.writeData(eventList);
+
+        FXRouter.goTo("main");
+    }
 
     @FXML
     public void ClickToGoEditSchedule()throws IOException {
@@ -413,5 +448,13 @@ public class ManageController {
                 }
             }
         }
+    }
+    private boolean isEventNameDuplicate(String name) {
+        for (Event event : eventList.getEvents()) {
+            if (event.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
