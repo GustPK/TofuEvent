@@ -249,15 +249,18 @@ public class ManageController {
                 }
             }
         });
-        SpinnerValueFactory<Integer> hourStartValueFactory = createSpinnerValueFactory(0, 23, 0);
-        SpinnerValueFactory<Integer> minuteStartValueFactory = createSpinnerValueFactory(0, 59, 0);
-        SpinnerValueFactory<Integer> hourEndValueFactory = createSpinnerValueFactory(0, 23, 0);
-        SpinnerValueFactory<Integer> minuteEndValueFactory = createSpinnerValueFactory(0, 59, 0);
+        int[] time = event.splitTime(event.getStartTime());
+        SpinnerValueFactory<Integer> hourStartValueFactory = createSpinnerValueFactory(0, 23, time[0]);
+        SpinnerValueFactory<Integer> minuteStartValueFactory = createSpinnerValueFactory(0, 59, time[1]);
+        time = event.splitTime(event.getEndTime());
+        SpinnerValueFactory<Integer> hourEndValueFactory = createSpinnerValueFactory(0, 23, time[0]);
+        SpinnerValueFactory<Integer> minuteEndValueFactory = createSpinnerValueFactory(0, 59, time[1]);
 
         hourSpinnerStart.setValueFactory(hourStartValueFactory);
         minuteSpinnerStart.setValueFactory(minuteStartValueFactory);
         hourSpinnerEnd.setValueFactory(hourEndValueFactory);
         minuteSpinnerEnd.setValueFactory(minuteEndValueFactory);
+
 
         for (Team team : teamList.getTeams()) {
             if (team.getEventName().equals(event.getName()))
@@ -295,7 +298,12 @@ public class ManageController {
 
         FXRouter.goTo("main");
     }
+    @FXML
+    public void ClickAddMoreTeam()throws IOException {
+        event.tamp = temp;
+        FXRouter.goTo("createTeam",event);
 
+    }
     @FXML
     public void ClickToGoEditSchedule()throws IOException {
         event.tamp = temp;

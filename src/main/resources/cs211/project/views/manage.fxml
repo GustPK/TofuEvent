@@ -175,5 +175,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <Button layoutX="240.0" layoutY="323.0" mnemonicParsing="false" onAction="#ClickAddMoreTeam" text="Add more team" />
     </children>
 </AnchorPane>

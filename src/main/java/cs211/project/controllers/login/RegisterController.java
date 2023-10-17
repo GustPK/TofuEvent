@@ -8,9 +8,13 @@ import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
@@ -36,6 +40,8 @@ public class RegisterController {
     private TextField passwordField;
     @FXML
     private TextField confirmPasswordField;
+    @FXML
+    private Label label;
     private Datasource<AccountList> datasource;
     private AccountList accountList;
     private String imgSrc;
@@ -93,8 +99,8 @@ public class RegisterController {
             }
         } else {
             imgSrc = "default-pfp.jpg";
-            Image image = new Image(getClass().getResourceAsStream("/data/images/default-pfp.jpg"));
-            imageCircle.setFill(new ImagePattern(image));
+//            Image image = new Image(getClass().getResourceAsStream("/data/images/default-pfp.jpg"));
+//            imageCircle.setFill(new ImagePattern(image));
         }
     }
 

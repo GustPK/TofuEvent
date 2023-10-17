@@ -77,7 +77,7 @@
                   <Insets left="50.0" right="50.0" />
                </HBox.margin>
                <children>
-                  <ScrollPane layoutX="127.0" layoutY="55.0" prefHeight="443.0" prefWidth="616.0">
+                  <ScrollPane fx:id="scrollPane" layoutX="127.0" layoutY="55.0" prefHeight="443.0" prefWidth="616.0">
                      <content>
                         <GridPane fx:id="grid" prefHeight="10.0" prefWidth="0.0" style="-fx-background-color: #FFFFFF;">
                            <columnConstraints>

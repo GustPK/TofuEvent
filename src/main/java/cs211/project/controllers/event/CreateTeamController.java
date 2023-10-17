@@ -217,8 +217,12 @@ public class CreateTeamController {
                 datasource2.writeData(teamList);
 
                 // Navigate to the "main" screen (or wherever you want to go)
-                FXRouter.goTo("main");
-            } else {
+                if(event.tamp == null) {
+                    FXRouter.goTo("main");
+                }else {
+                    FXRouter.goTo("manage",event);
+                }
+            }else {
                 showAlert("Team Name Duplicate", "Team name is already taken within this event.");
             }
         }
