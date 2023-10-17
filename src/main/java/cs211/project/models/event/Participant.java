@@ -6,11 +6,11 @@ public class Participant {
     private String team;
     private String ban;
 
-    public Participant(String userName, String event, String team) {
+    public Participant(String userName, String event, String team, String ban) {
         this.userName = userName;
         this.event = event;
         this.team = team;
-        this.ban = "unbanned";
+        this.ban = ban;
     }
 
     public String getUsername() {

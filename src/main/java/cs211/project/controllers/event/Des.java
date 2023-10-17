@@ -137,7 +137,7 @@ public class Des {
                 alert.showAndWait();
             } else {
                 // Add the participant to the list
-                participantList.addParticipant(new Participant(username, event.getName(), "join"));
+                participantList.addParticipant(new Participant(username, event.getName(), "join","unbanned"));
                 participantDatasource.writeData(participantList);
                 Event current = eventList.findByEventName(event.getName());
                 current.addJoin();
@@ -202,7 +202,7 @@ public class Des {
                     alert.showAndWait();
                 } else {
                     // Add the participant with the selected team to the list
-                    participantList.addParticipant(new Participant(username, event.getName(), selectedTeam));
+                    participantList.addParticipant(new Participant(username, event.getName(), selectedTeam, "unbanned"));
                     participantDatasource.writeData(participantList);
 
                     currentTeam.addJoin();

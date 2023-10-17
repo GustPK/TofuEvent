@@ -12,6 +12,7 @@ import cs211.project.services.ParticipantListDatasource;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -41,7 +42,6 @@ public class EventsAttendedController {
         int row = 0;
 
         Set<String> processedEvents = new HashSet<>();
-
         LocalDateTime currentDateTime = LocalDateTime.now();
 
         try {
@@ -50,12 +50,14 @@ public class EventsAttendedController {
                         .filter(e -> e.getName().equals(participant.getEvent()))
                         .findFirst()
                         .orElse(null);
+
                 if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername())) {
                     String eventName = participant.getEvent();
 
                     if (!processedEvents.contains(eventName)) {
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
                         LocalDateTime eventStartDateTime = LocalDateTime.parse(event.getDateStart() + " " + event.getStartTime(), formatter);
+
                         if (currentDateTime.isBefore(eventStartDateTime) || currentDateTime.isEqual(eventStartDateTime)) {
                             FXMLLoader fxmlLoader = new FXMLLoader();
                             fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
@@ -69,10 +71,20 @@ public class EventsAttendedController {
                                     });
 
                             anchorPane.setOnMouseClicked(event1 -> {
-                                try {
-                                    goToSchedulePage(event);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                                if ("banned".equals(participant.getBan())) {
+                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    alert.setTitle("Banned Account");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Your account has been banned from this event");
+                                    alert.showAndWait();
+
+                                } else {
+                                    try {
+                                        goToSchedulePage(event);
+
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
 
@@ -89,6 +101,7 @@ public class EventsAttendedController {
         }
     }
 
+
     @FXML
     private void onHistoryHyperlinkClick() {
         clearGrid();
@@ -100,7 +113,6 @@ public class EventsAttendedController {
         int row = 0;
 
         Set<String> processedEvents = new HashSet<>();
-
         LocalDateTime currentDateTime = LocalDateTime.now();
 
         try {
@@ -109,12 +121,14 @@ public class EventsAttendedController {
                         .filter(e -> e.getName().equals(participant.getEvent()))
                         .findFirst()
                         .orElse(null);
+
                 if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername())) {
                     String eventName = participant.getEvent();
 
                     if (!processedEvents.contains(eventName)) {
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
                         LocalDateTime eventStartDateTime = LocalDateTime.parse(event.getDateStart() + " " + event.getStartTime(), formatter);
+
                         if (currentDateTime.isAfter(eventStartDateTime)) {
                             FXMLLoader fxmlLoader = new FXMLLoader();
                             fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
@@ -128,10 +142,18 @@ public class EventsAttendedController {
                                     });
 
                             anchorPane.setOnMouseClicked(event1 -> {
-                                try {
-                                    goToSchedulePage(event);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                                if ("banned".equals(participant.getBan())) {
+                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    alert.setTitle("Banned Account");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Your account has been banned from this event");
+                                    alert.showAndWait();
+                                } else {
+                                    try {
+                                        goToSchedulePage(event);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
 
@@ -159,7 +181,6 @@ public class EventsAttendedController {
         int row = 0;
 
         Set<String> processedEvents = new HashSet<>();
-
         LocalDateTime currentDateTime = LocalDateTime.now();
 
         try {
@@ -174,6 +195,7 @@ public class EventsAttendedController {
                     if (!processedEvents.contains(eventName)) {
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
                         LocalDateTime eventStartDateTime = LocalDateTime.parse(event.getDateStart() + " " + event.getStartTime(), formatter);
+
                         if (currentDateTime.isBefore(eventStartDateTime) || currentDateTime.isEqual(eventStartDateTime)) {
                             FXMLLoader fxmlLoader = new FXMLLoader();
                             fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
@@ -187,10 +209,18 @@ public class EventsAttendedController {
                                     });
 
                             anchorPane.setOnMouseClicked(event1 -> {
-                                try {
-                                    goToSchedulePage(event);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                                if ("banned".equals(participant.getBan())) {
+                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    alert.setTitle("Banned Account");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Your account has been banned from this event");
+                                    alert.showAndWait();
+                                } else {
+                                    try {
+                                        goToSchedulePage(event);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
 

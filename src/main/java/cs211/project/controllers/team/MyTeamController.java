@@ -46,19 +46,22 @@ public class MyTeamController {
             for (Participant participant : participantList.getParticipants()) {
                 if (LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername())) {
                     if (!"join".equals(participant.getTeamName())) {
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/team-item-view.fxml"));
-                        AnchorPane anchorPane = fxmlLoader.load();
+                        if ("banned".equals(participant.getBan())) {
+                        } else {
+                            FXMLLoader fxmlLoader = new FXMLLoader();
+                            fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/team-item-view.fxml"));
+                            AnchorPane anchorPane = fxmlLoader.load();
 
-                        TeamChatItemController teamItemController = fxmlLoader.getController();
-                        teamList.getTeams().stream()
-                                .filter(i -> i.getTeamName().equals(participant.getTeamName()))
-                                .forEach(team -> {
-                                    teamItemController.setData(team);
-                                });
+                            TeamChatItemController teamItemController = fxmlLoader.getController();
+                            teamList.getTeams().stream()
+                                    .filter(i -> i.getTeamName().equals(participant.getTeamName()))
+                                    .forEach(team -> {
+                                        teamItemController.setData(team);
+                                    });
 
-                        grid.add(anchorPane, column, row++);
-                        GridPane.setMargin(anchorPane, new Insets(10));
+                            grid.add(anchorPane, column, row++);
+                            GridPane.setMargin(anchorPane, new Insets(10));
+                        }
                     }
                 }
             }
