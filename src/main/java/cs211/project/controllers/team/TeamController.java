@@ -1,5 +1,6 @@
 package cs211.project.controllers.team;
 
+import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.CommentList;
 import cs211.project.models.collections.ScheduleList;
 import cs211.project.models.event.Comment;
@@ -39,13 +40,14 @@ public class TeamController {
     @FXML
     public void onClickComment(){
         String c = commentField.getText();
-        Comment comment = new Comment(currentTeam.getTeamName(), c, currentTeam.getEventName());
+        Comment comment = new Comment(currentTeam.getTeamName(), c, currentTeam.getEventName(),LoggedInAccount.getInstance().getAccount().getUsername());
         this.comment.getItems().add(comment);
-        commentList.addComment(currentTeam.getTeamName(), c, currentTeam.getEventName());
+        commentList.addComment(currentTeam.getTeamName(), c, currentTeam.getEventName(),LoggedInAccount.getInstance().getAccount().getUsername());
         commentListDatasource.writeData(commentList);
     }
     @FXML
     public void initialize(){
+
         currentTeam = (Team) FXRouter.getData();
         activityListDatasource = new ScheduleFileDatasource("data", "Schedule.csv");
         scheduleList = activityListDatasource.readData();

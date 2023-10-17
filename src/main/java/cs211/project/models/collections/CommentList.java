@@ -15,7 +15,7 @@ public class CommentList {
         return commentList;
     }
 
-    public void addComment(String teamName, String comment, String eventName){
-        commentList.add(new Comment(teamName, comment, eventName));
+    public void addComment(String teamName, String comment, String eventName,String username){
+        commentList.add(new Comment(teamName, comment, eventName,username));
     }
 }

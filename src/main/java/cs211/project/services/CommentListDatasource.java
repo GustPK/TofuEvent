@@ -61,13 +61,13 @@ public class CommentListDatasource implements Datasource<CommentList>{
 
                 String[] data = line.split(",");
 
+                String username = data[0].trim();
+                String teamName = data[1].trim();
+                String comment = data[2].trim();
+                String eventName = data[3].trim();
 
-                String teamName = data[0].trim();
-                String comment = data[1].trim();
-                String eventName = data[2].trim();
 
-
-                comments.addComment(teamName, comment, eventName);
+                comments.addComment(teamName, comment, eventName,username);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -87,12 +87,13 @@ public class CommentListDatasource implements Datasource<CommentList>{
 
             for (Comment comment : data.getCommentList()) {
                 // Assuming that you have a Comment class with appropriate getters
+                String username = comment.getUsername();
                 String teamName = comment.getTeamName();
                 String commentText = comment.getComment();
                 String eventName = comment.getEventName();
 
                 // Compose the CSV line and write it to the file
-                String csvLine = teamName + "," + commentText + "," + eventName;
+                String csvLine = username + ","+ teamName + "," + commentText + "," + eventName;
                 writer.write(csvLine);
                 writer.newLine();  // Add a newline separator
             }
