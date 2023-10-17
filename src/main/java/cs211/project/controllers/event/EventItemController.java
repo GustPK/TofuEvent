@@ -24,7 +24,6 @@ public class EventItemController {
     @FXML
     private Label count;
 
-
     public void setData(Event event){
         this.event = event;
         eventNameLabel.setText(event.getName());

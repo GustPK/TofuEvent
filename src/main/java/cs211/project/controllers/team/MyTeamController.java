@@ -39,7 +39,7 @@ public class MyTeamController {
         eventsLists = eventListDataSource.readData();
         participantList = participantListDatasource.readData();
         teamList = teamListDatasource.readData();
-        int column = 0;
+        int column = 1;
         int row = 0;
 
         try {

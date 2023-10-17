@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -15,11 +16,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.ManageController">
+<AnchorPane prefHeight="600.0" prefWidth="850.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.ManageController">
     <children>
         <Pane layoutX="25.0" layoutY="37.0" prefHeight="57.0" prefWidth="720.0" style="-fx-background-radius: 38;" styleClass="default-background-lightnavy">
             <children>
@@ -30,17 +32,17 @@
                 </Label>
             </children>
         </Pane>
-        <Label layoutX="479.0" layoutY="201.0" text="Maximum  member : " textFill="WHITE">
+        <Label layoutX="479.0" layoutY="179.0" text="Maximum  member : " textFill="WHITE">
             <font>
                 <Font size="15.0" />
             </font>
         </Label>
-        <Label layoutX="479.0" layoutY="243.0" text="date :" textFill="WHITE">
+        <Label layoutX="479.0" layoutY="221.0" text="date :" textFill="WHITE">
             <font>
                 <Font size="15.0" />
             </font>
         </Label>
-        <Label layoutX="648.0" layoutY="245.0" text="end :" textFill="WHITE">
+        <Label layoutX="648.0" layoutY="223.0" text="end :" textFill="WHITE">
             <font>
                 <Font size="15.0" />
             </font>
@@ -55,7 +57,7 @@
                 <Font size="15.0" />
             </font>
         </Label>
-        <Hyperlink layoutX="770.0" layoutY="43.0" onAction="#ClickToGoManu" prefHeight="50.0" style="-fx-background-color: green; -fx-background-radius: 20;" text="Done" textFill="WHITE">
+        <Hyperlink layoutX="765.0" layoutY="43.0" onAction="#ClickToGoManu" prefHeight="50.0" style="-fx-background-color: green; -fx-background-radius: 20;" text="Done" textFill="WHITE">
             <font>
                 <Font size="24.0" />
             </font>
@@ -107,23 +109,71 @@
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <TextField fx:id="maximum" layoutX="611.0" layoutY="197.0" prefHeight="26.0" prefWidth="65.0" />
-      <DatePicker fx:id="startDate" layoutX="518.0" layoutY="241.0" prefHeight="26.0" prefWidth="120.0" promptText="Cick calendar" />
-      <DatePicker fx:id="endDate" layoutX="682.0" layoutY="241.0" prefHeight="26.0" prefWidth="120.0" />
+      <TextField fx:id="maximum" layoutX="611.0" layoutY="175.0" prefHeight="26.0" prefWidth="65.0" />
+      <DatePicker fx:id="startDate" layoutX="518.0" layoutY="219.0" prefHeight="26.0" prefWidth="120.0" promptText="Cick calendar" />
+      <DatePicker fx:id="endDate" layoutX="682.0" layoutY="219.0" prefHeight="26.0" prefWidth="120.0" />
       <Rectangle fx:id="picture" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="136.0" layoutX="57.0" layoutY="173.0" onMouseClicked="#handleUploadButton" onMouseExited="#something" onMouseMoved="#sometime" stroke="BLACK" strokeType="INSIDE" width="136.0" />
       <TextArea fx:id="description" layoutX="213.0" layoutY="200.0" prefHeight="102.0" prefWidth="234.0" style="-fx-background-color: black; -fx-background-radius: 20;" />
       <Label layoutX="214.0" layoutY="179.0" text="Description" textFill="WHITE" />
-      <Label layoutX="472.0" layoutY="120.0" text="*Click on the image to change the picture." textFill="#ffffffa9">
+      <Label layoutX="472.0" layoutY="106.0" text="*Click on the image to change the picture." textFill="#ffffffa9">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="479.0" layoutY="165.0" text="Event name" textFill="WHITE">
+      <Label layoutX="479.0" layoutY="141.0" text="Event name" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="eventName" layoutX="560.0" layoutY="161.0" prefHeight="26.0" prefWidth="158.0" />
+      <TextField fx:id="eventName" layoutX="560.0" layoutY="137.0" prefHeight="26.0" prefWidth="158.0" />
       <Label fx:id="play" alignment="CENTER" disable="true" layoutX="58.0" layoutY="175.0" prefHeight="134.0" prefWidth="134.0" text="click to  change." textFill="TRANSPARENT" />
+      <HBox layoutX="481.0" layoutY="260.0" prefHeight="27.0" prefWidth="151.0">
+         <children>
+            <Spinner fx:id="hourSpinnerStart" prefHeight="26.0" prefWidth="55.0">
+               <HBox.margin>
+                  <Insets right="2.0" />
+               </HBox.margin>
+            </Spinner>
+            <Label styleClass="default-label-white" stylesheets="@../../../values/style.css" text=":">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Spinner fx:id="minuteSpinnerStart" prefHeight="26.0" prefWidth="55.0">
+               <HBox.margin>
+                  <Insets left="2.0" />
+               </HBox.margin>
+            </Spinner>
+         </children>
+      </HBox>
+      <HBox layoutX="667.0" layoutY="260.0" prefHeight="27.0" prefWidth="151.0">
+         <children>
+            <Spinner fx:id="hourSpinnerEnd" prefHeight="26.0" prefWidth="55.0">
+               <HBox.margin>
+                  <Insets right="2.0" />
+               </HBox.margin>
+            </Spinner>
+            <Label styleClass="default-label-white" stylesheets="@../../../values/style.css" text=":">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Spinner fx:id="minuteSpinnerEnd" prefHeight="26.0" prefWidth="55.0">
+               <HBox.margin>
+                  <Insets left="2.0" />
+               </HBox.margin>
+            </Spinner>
+         </children>
+      </HBox>
+      <Label layoutX="796.0" layoutY="265.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="HH:MM">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="610.0" layoutY="265.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="HH:MM">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
