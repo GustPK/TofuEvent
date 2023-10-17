@@ -171,5 +171,20 @@ public class RegisterController {
         }
         return true; // username ไม่ซ้ำ
     }
+    @FXML
+    public void show(){
+        label.setTextFill(Color.BLACK);
+        BackgroundFill backgroundFill = new BackgroundFill(Color.WHITE, null, null);
+        Background background = new Background(backgroundFill);
+        label.setBackground(background);
+        label.setStyle("-fx-background-radius: 100;");
 
+    }
+    @FXML
+    public void hide(){
+        label.setTextFill(Color.web("#ffffff00"));
+        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#FFFFFF00"), null, null);
+        Background background = new Background(backgroundFill);
+        label.setBackground(background);
+    }
 }
