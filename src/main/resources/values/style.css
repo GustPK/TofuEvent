@@ -73,6 +73,9 @@
     -fx-background-color: #808eae;
 }
 .label-with-radius {
+    -fx-background-color: white;
     -fx-background-radius: 100;
+    -fx-text-fill: black;
 }
+
 
