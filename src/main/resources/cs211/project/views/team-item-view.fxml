@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane onMouseClicked="#onEventItemClick" prefHeight="150.0" prefWidth="500.0" styleClass="cursor-hand" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.team.TeamItemController">
+<AnchorPane onMouseClicked="#onEventItemClick" prefHeight="150.0" prefWidth="500.0" styleClass="cursor-hand" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.team.TeamChatItemController">
    <children>
       <HBox prefHeight="150.0" prefWidth="500.0">
          <children>

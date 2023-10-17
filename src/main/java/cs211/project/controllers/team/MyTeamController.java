@@ -49,7 +49,7 @@ public class MyTeamController {
                     fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/team-item-view.fxml"));
                     AnchorPane anchorPane = fxmlLoader.load();
 
-                    TeamItemController teamItemController = fxmlLoader.getController();
+                    TeamChatItemController teamItemController = fxmlLoader.getController();
                     teamList.getTeams().stream()
                             .filter(i -> i.getTeamName().equals(participant.getTeamName()))
                             .forEach(team -> {
