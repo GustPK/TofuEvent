@@ -135,7 +135,6 @@ public class EditSchedule {
 
         List<Schedule> sortedList = new ArrayList<>(scheduleList.getActivityList());
 
-        // แสดงเฉพาะชื่อ event ที่ซ้ำกัน
         List<Schedule> filteredList = sortedList.stream()
                 .filter(schedule -> schedule.getEventName().equals(getEvent.getName()) && schedule.getTeamName().equals(temp))
                 .collect(Collectors.toList());
@@ -158,19 +157,11 @@ public class EditSchedule {
         getEvent = (Event) FXRouter.getData();
         scheduleList = datasource.readData();
         List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
-
-        // ลบข้อมูลที่มี eventName เท่ากับ event.getName() และ teamName เท่ากับ "join" ออกจาก scheduleList
         scheduleList.getActivityList().removeIf(schedule ->
-                schedule.getEventName().equals(getEvent.getName()) && schedule.getTeamName().equals("join")
+                schedule.getEventName().equals(getEvent.getName())
         );
-
-        // เพิ่มข้อมูลใหม่ลงใน scheduleList
         scheduleList.getActivityList().addAll(dataFromTableView);
-
-        // Write the updated data back to your datasource
         datasource.writeData(scheduleList);
-
-        // Redirect to the "CreateTeam" view and pass the event stored in the field
         FXRouter.goTo("manage");
     }
 

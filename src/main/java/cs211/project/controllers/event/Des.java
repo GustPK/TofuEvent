@@ -121,7 +121,7 @@ public class Des {
             // Check if the participant is already in the list
             String username = LoggedInAccount.getInstance().getAccount().getUsername();
             boolean isAlreadyJoined = participantList.getParticipants().stream()
-                    .anyMatch(p -> p.getUsername().equals(username) && p.getEvent().equals(event.getName()));
+                    .anyMatch(p -> p.getUsername().equals(username) && p.getEvent().equals(event.getName()) && p.getTeamName().equals("join"));
 
             if (isAlreadyJoined) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -129,7 +129,7 @@ public class Des {
                 alert.setHeaderText("Already Joined");
                 alert.setContentText("You've already joined the event.");
                 alert.showAndWait();
-            }else if(event.getJoinedText().equals(event.getMaximum())){
+            } else if (event.getJoinedText().equals(event.getMaximum())) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("Event has reached its maximum capacity");
