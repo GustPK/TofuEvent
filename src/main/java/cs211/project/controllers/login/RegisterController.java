@@ -99,8 +99,8 @@ public class RegisterController {
             }
         } else {
             imgSrc = "default-pfp.jpg";
-            Image image = new Image(getClass().getResourceAsStream("/data/images/default-pfp.jpg"));
-            imageCircle.setFill(new ImagePattern(image));
+//            Image image = new Image(getClass().getResourceAsStream("/data/images/default-pfp.jpg"));
+//            imageCircle.setFill(new ImagePattern(image));
         }
     }
 

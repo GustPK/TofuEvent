@@ -67,6 +67,5 @@
       <Hyperlink layoutX="239.0" layoutY="536.0" onAction="#clickBackToLogin" text="Log in" />
       <Label layoutX="140.0" layoutY="539.0" text="Have an account? " />
       <Circle fx:id="imageCircle" fill="DODGERBLUE" layoutX="214.0" layoutY="145.0" onMouseClicked="#handleUploadButton" radius="76.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label fx:id="label" alignment="CENTER" disable="true" layoutX="139.0" layoutY="70.0" onMouseExited="#hide" onMouseMoved="#show" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 100; -fx-background-color: #FFFFFF;" styleClass="label-with-radius" stylesheets="@../../../values/style.css" text="Add image" textFill="TRANSPARENT" />
    </children>
 </AnchorPane>
