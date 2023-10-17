@@ -27,6 +27,8 @@ import javafx.scene.shape.Circle;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -139,13 +141,19 @@ public class MainController {
             logo.setImage(personImage);
         }
 
-        private void showGrid(EventList events){
-            grid.getChildren().clear();
-            int column = 0;
-            int row = 0;
+    private void showGrid(EventList events) {
+        grid.getChildren().clear();
+        int column = 0;
+        int row = 0;
 
-            try {
-                for (Event event: events.getEvents()) {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+
+        try {
+            for (Event event : events.getEvents()) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+                LocalDateTime eventStartDateTime = LocalDateTime.parse(event.getDateStart() + " " + event.getStartTime(), formatter);
+
+                if (currentDateTime.isBefore(eventStartDateTime) || currentDateTime.isEqual(eventStartDateTime)) { // Check if event is in the future
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
                     AnchorPane anchorPane = fxmlLoader.load();
@@ -153,7 +161,7 @@ public class MainController {
                     EventItemController eventItemController = fxmlLoader.getController();
                     eventItemController.setData(event);
 
-                    anchorPane.setOnMouseClicked(Event -> {
+                    anchorPane.setOnMouseClicked(eventClick -> {
                         try {
                             FXRouter.goTo("des", event);
                         } catch (IOException e) {
@@ -161,14 +169,14 @@ public class MainController {
                         }
                     });
 
-                    grid.add(anchorPane,column,row++);
-                    GridPane.setMargin(anchorPane,new Insets(10));
+                    grid.add(anchorPane, column, row++);
+                    GridPane.setMargin(anchorPane, new Insets(10));
                 }
             }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
 }
 

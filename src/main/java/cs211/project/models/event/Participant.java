@@ -33,4 +33,7 @@ public class Participant {
         this.ban = "banned";
     }
     public void setEvent(String eventName){this.event = eventName;}
+    public void setBan(String banStatus) {
+        this.ban = banStatus;
+    }
 }

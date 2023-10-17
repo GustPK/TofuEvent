@@ -10,7 +10,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         stage.setWidth(850);
-        stage.setHeight(600);
+        stage.setHeight(630);
         configRoute();
         FXRouter.bind(this, stage, "CS211 661 Project");
         FXRouter.goTo("login");
@@ -45,6 +45,7 @@ public class HelloApplication extends Application {
         FXRouter.when("des", resourcesPath + "eventDes.fxml");
         FXRouter.when("eventAttended",resourcesPath + "eventsAttended.fxml");
         FXRouter.when("editSchedule",resourcesPath + "EditSchedule-view.fxml");
+        FXRouter.when("scheduleActivity",resourcesPath + "schedule-activity-view.fxml");
 
     }
 

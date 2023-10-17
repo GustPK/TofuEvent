@@ -13,23 +13,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.login.AdminController">
-   <top>
-      <Label text="ADMIN" textFill="WHITE" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="5.0" top="30.0" />
-         </BorderPane.margin>
-         <font>
-            <Font name="Ayuthaya" size="33.0" />
-         </font>
-      </Label>
-   </top>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.login.AdminController">
    <center>
       <VBox prefHeight="400.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="450.0" prefWidth="740.0">
+            <AnchorPane prefHeight="452.0" prefWidth="461.0">
                <children>
-                  <ScrollPane layoutX="79.0" layoutY="1.0" prefHeight="450.0" prefWidth="742.0" style="-fx-background-insets: red; -fx-background-color: #2d3553;" styleClass="-fx-background-insets">
+                  <ScrollPane fx:id="scrollPane" layoutX="54.0" layoutY="1.0" prefHeight="450.0" prefWidth="742.0" style="-fx-background-insets: red; -fx-background-color: #2d3553;" styleClass="-fx-background-insets">
                      <content>
                         <GridPane fx:id="gridPane" prefHeight="1.0" prefWidth="0.0">
                            <columnConstraints>
@@ -50,7 +40,7 @@
                         <Insets left="10.0" top="25.0" />
                      </HBox.margin>
                   </Button>
-                  <Hyperlink fx:id="changePassword" onAction="#onChangePasswordHyperlinkClick" prefHeight="34.0" prefWidth="189.0" styleClass="default-label-navy" text="Change password">
+                  <Hyperlink fx:id="changePassword" onAction="#onChangePasswordHyperlinkClick" prefHeight="34.0" prefWidth="189.0" styleClass="default-label-white" text="Change password">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -63,4 +53,15 @@
          </children>
       </VBox>
    </center>
+   <top>
+      <AnchorPane prefHeight="75.0" prefWidth="850.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="362.0" layoutY="21.0" text="ADMIN" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
 </BorderPane>

@@ -58,7 +58,7 @@ public class MyTeamController {
 
 //                    anchorPane.setOnMouseClicked(events -> {
 //                        try {
-//                            FXRouter.goTo("manage", event);
+//                            FXRouter.goTo("team-view", event);
 //                        } catch (IOException e) {
 //                            e.printStackTrace();
 //                        }

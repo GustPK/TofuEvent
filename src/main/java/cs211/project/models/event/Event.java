@@ -43,14 +43,17 @@ public class Event {
         n++;
         joinedText = Integer.toString(n);
     }
-    public void setEditEvent(String name,String des,String maximum,String picture,String startTime,String endTime){
+    public void setEditEvent(String name, String des, String maximum, String picture, String startTime, String endTime, String dateStart, String dateEnd) {
         this.desc = des;
         this.maximum = maximum;
         this.imgEvent = picture;
         this.startTime = startTime;
         this.endTime = endTime;
         this.name = name;
+        this.dateEnd = dateEnd;
+        this.dateStart = dateStart;
     }
+
     public int[] splitDate(String date) {
         String[] data = date.split("-");
         int[] result = new int[data.length];
