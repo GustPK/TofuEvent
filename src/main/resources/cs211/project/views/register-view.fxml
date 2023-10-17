@@ -5,14 +5,47 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane cache="true" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.login.RegisterController">
+<AnchorPane cache="true" onMouseExited="#hide" onMouseMoved="#show" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.login.RegisterController">
    <children>
-      <Pane layoutX="450.0" prefHeight="600.0" prefWidth="450.0" style="-fx-background-color: #808eae;" styleClass="C:\Users\theze\Java\cs211-661-project-tofu\src\main\resources\values" />
+      <Pane layoutX="450.0" onMouseMoved="#show" prefHeight="600.0" prefWidth="450.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css">
+         <children>
+            <ImageView blendMode="MULTIPLY" fitHeight="673.0" fitWidth="450.0" layoutX="1.0" layoutY="-38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../1324008.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="-8.0" layoutY="-2.0" prefWidth="685.0">
+               <children>
+                  <Label layoutX="33.0" text="EVENTEVENT" textFill="WHITE">
+                     <font>
+                        <Font size="96.0" />
+                     </font>
+                  </Label>
+                  <Label layoutY="60.0" text="OFUTOFUTOFU" textFill="WHITE">
+                     <font>
+                        <Font size="96.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="43.0" layoutY="10.0" text="EVENTEVENT" textFill="WHITE">
+                     <font>
+                        <Font size="96.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="70.0" text="OFUTOFUTOFU" textFill="WHITE">
+                     <font>
+                        <Font size="96.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children></Pane>
       <TextField fx:id="nameField" layoutX="114.0" layoutY="257.0" prefWidth="200.0" style="-fx-border-width: 0px 0px 1px 0px; -fx-background-color: transparent; -fx-border-color: #3A6287;" />
       <TextField fx:id="usernameField" layoutX="114.0" layoutY="307.0" prefWidth="200.0" style="-fx-border-width: 0px 0px 1px 0px; -fx-border-color: #000000; -fx-background-color: transparent;" />
       <Label layoutX="114.0" layoutY="242.0" text="Name" />

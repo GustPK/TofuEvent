@@ -16,7 +16,7 @@
       </Label>
       <AnchorPane layoutX="130.0" layoutY="86.0" prefHeight="447.0" prefWidth="626.0">
          <children>
-            <ScrollPane layoutX="3.0" layoutY="1.0" prefHeight="460.0" prefWidth="618.0">
+            <ScrollPane layoutX="3.0" layoutY="1.0" prefHeight="460.0" prefWidth="615.0" styleClass="default-background-navy">
                <content>
                   <GridPane fx:id="grid" prefHeight="10.0" prefWidth="0.0">
                     <columnConstraints>
