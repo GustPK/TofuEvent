@@ -64,4 +64,8 @@ public class EditEventController {
                 e.printStackTrace();
             }
         }
+    @FXML
+    protected void onBackButtonClick() throws IOException {
+        FXRouter.goTo("main");
+    }
     }
