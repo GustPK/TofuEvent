@@ -150,7 +150,7 @@ public class RegisterController {
     private boolean isUsernameUnique(String username) {
         for (Account account : accountList.getAccounts()) {
             if (account.getUsername().equals(username)) {
-                return false; // username ซ้ำ
+                return false;
             }
         }
         return true;
