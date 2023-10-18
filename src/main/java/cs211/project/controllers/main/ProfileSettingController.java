@@ -34,7 +34,7 @@ public class ProfileSettingController {
     @FXML
     private void initialize(){
         currentAccount = (Account) FXRouter.getData();
-        File file = new File("data/images", LoggedInAccount.getInstance().getAccount().getImage());
+        File file = new File("src/data/images", LoggedInAccount.getInstance().getAccount().getImage());
         String path = "file:///" + file.getAbsolutePath();
         Image image = new Image(path);
         profilePic.setFill(new ImagePattern(image));
@@ -53,27 +53,21 @@ public class ProfileSettingController {
     }
 
     @FXML
-    private void onChangeProileButtonClick() throws IOException {
+    private void onChangeProileButtonClick() {
         FileChooser fileChooser = new FileChooser();
 
-        // Set the title of the dialog
         fileChooser.setTitle("Select Profile Picture");
 
-        // Set the file extension filter to restrict selection to image files
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
 
-        // Show the dialog and get the selected file
         File selectedFile = fileChooser.showOpenDialog(new Stage());
 
         if (selectedFile != null) {
-            // Load and set the selected image as the profile picture
             Image image = new Image(selectedFile.toURI().toString());
             profilePic.setFill(new ImagePattern(image));
 
-            // Optionally, you can save the selected image file path to the user's account for future reference
             currentAccount.setImage(selectedFile.getName());
 
-            // Save the updated account information to your data source
             datasource.writeData(accountList);
         }
     }

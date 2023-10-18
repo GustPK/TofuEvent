@@ -8,7 +8,6 @@ import cs211.project.services.Datasource;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
@@ -32,7 +31,7 @@ public class UserListItemController {
     public void setData(Account account) {
         this.selectedAccount = account;
         nameLabel.setText(account.getName());
-        String imagePath = "data/images/" + selectedAccount.getImage();
+        String imagePath = "src/data/images/" + selectedAccount.getImage();
         File imageFile = new File(imagePath);
         Image profileImage = new Image(imageFile.toURI().toString());
         profilePic.setFill(new ImagePattern(profileImage));
@@ -49,7 +48,7 @@ public class UserListItemController {
             if (account.getUsername().equals(account1.getUsername()))
                 selectedAccount = account1;
         nameLabel.setText(account.getUsername());
-        String imagePath = "data/images/" + selectedAccount.getImage();
+        String imagePath = "src/data/images/" + selectedAccount.getImage();
         File imageFile = new File(imagePath);
         Image profileImage = new Image(imageFile.toURI().toString());
         profilePic.setFill(new ImagePattern(profileImage));

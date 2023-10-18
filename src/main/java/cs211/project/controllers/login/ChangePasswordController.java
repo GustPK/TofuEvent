@@ -33,7 +33,7 @@ public class ChangePasswordController {
         warning.setText("");
         lastPage = (String) FXRouter.getData();
         if (lastPage == null) {
-            lastPage = ""; // Set a default value if it's null
+            lastPage = "";
         }
         datasource = new AccountListDatasource();
 

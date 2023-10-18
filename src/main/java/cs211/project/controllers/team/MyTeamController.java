@@ -15,15 +15,8 @@ import javafx.scene.layout.GridPane;
 import java.io.IOException;
 
 public class MyTeamController {
-
-    @FXML
-    public void clickBackToMain() throws IOException {
-        FXRouter.goTo("main");
-    }
-
     private EventList eventsLists;
     private ParticipantList participantList;
-
     private Datasource<EventList> eventListDataSource;
     private Datasource<ParticipantList> participantListDatasource;
     private Datasource<TeamList> teamListDatasource;
@@ -32,10 +25,15 @@ public class MyTeamController {
     private GridPane grid;
 
     @FXML
+    public void clickBackToMain() throws IOException {
+        FXRouter.goTo("main");
+    }
+
+    @FXML
     public void initialize() throws IOException {
         participantListDatasource = new ParticipantListDatasource();
         eventListDataSource = new EventListDatasource();
-        teamListDatasource = new TeamListDatasource("data", "TeamList.csv");
+        teamListDatasource = new TeamListDatasource("src/data", "TeamList.csv");
         eventsLists = eventListDataSource.readData();
         participantList = participantListDatasource.readData();
         teamList = teamListDatasource.readData();

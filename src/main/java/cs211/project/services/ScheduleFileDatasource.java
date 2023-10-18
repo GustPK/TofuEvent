@@ -79,7 +79,7 @@ public class ScheduleFileDatasource implements Datasource<ScheduleList> {
     public void writeData(ScheduleList data) {
         BufferedWriter buffer = null;
         FileOutputStream fileOutputStream;
-        File file = new File("data" + File.separator + "schedule.csv");
+        File file = new File("src/data" + File.separator + "schedule.csv");
         try {
             fileOutputStream = new FileOutputStream(file);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(

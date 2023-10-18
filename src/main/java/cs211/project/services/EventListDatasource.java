@@ -7,13 +7,13 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class EventListDatasource implements Datasource<EventList> {
-    private String fileName = "data" + File.separator + "EventList.csv";
+    private String fileName = "src/data" + File.separator + "EventList.csv";
 
     public EventListDatasource() {
         checkFileIsExisted();
     }
     private void checkFileIsExisted() {
-        File file = new File("data");
+        File file = new File("src/data");
         if (!file.exists()) {
             file.mkdir();
         }

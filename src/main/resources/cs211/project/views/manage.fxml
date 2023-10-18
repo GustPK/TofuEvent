@@ -21,7 +21,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="850.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.ManageController">
+<AnchorPane prefHeight="600.0" prefWidth="850.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.creator.ManageController">
     <children>
         <Pane layoutX="25.0" layoutY="37.0" prefHeight="57.0" prefWidth="720.0" style="-fx-background-radius: 38;" styleClass="default-background-lightnavy">
             <children>
@@ -112,7 +112,7 @@
       <TextField fx:id="maximum" layoutX="611.0" layoutY="175.0" prefHeight="26.0" prefWidth="65.0" />
       <DatePicker fx:id="startDate" layoutX="518.0" layoutY="219.0" prefHeight="26.0" prefWidth="120.0" promptText="Cick calendar" />
       <DatePicker fx:id="endDate" layoutX="682.0" layoutY="219.0" prefHeight="26.0" prefWidth="120.0" />
-      <Rectangle fx:id="picture" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="136.0" layoutX="57.0" layoutY="173.0" onMouseClicked="#handleUploadButton" onMouseExited="#something" onMouseMoved="#sometime" stroke="BLACK" strokeType="INSIDE" width="136.0" />
+      <Rectangle fx:id="picture" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="136.0" layoutX="57.0" layoutY="173.0" onMouseClicked="#handleUploadButton" onMouseExited="#hide" onMouseMoved="#show" stroke="BLACK" strokeType="INSIDE" width="136.0" />
       <TextArea fx:id="description" layoutX="213.0" layoutY="200.0" prefHeight="102.0" prefWidth="234.0" style="-fx-background-color: black; -fx-background-radius: 20;" />
       <Label layoutX="214.0" layoutY="179.0" text="Description" textFill="WHITE" />
       <Label layoutX="472.0" layoutY="106.0" text="*Click on the image to change the picture." textFill="#ffffffa9">

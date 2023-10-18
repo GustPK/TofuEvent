@@ -6,9 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.paint.Color;
 
 import java.io.File;
 
@@ -28,13 +25,13 @@ public class EventItemController {
         this.event = event;
         eventNameLabel.setText(event.getName());
         eventDate.setText(event.getDateStart());
-        String path = "data/images/"+event.getImgEvent();
+        String path = "src/data/images/" +event.getImgEvent();
         File file = new File(path);
         Image image = new Image(file.toURI().toString());
         eventImg.setImage(image);
 
-        int data7 = Integer.parseInt(event.getMaximum()); // Assuming data[7] is an integer in the CSV
-        int data8 = Integer.parseInt(event.getJoinedText()); // Assuming data[8] is an integer in the CSV
+        int data7 = Integer.parseInt(event.getMaximum());
+        int data8 = Integer.parseInt(event.getJoinedText());
 
         if (data7 == data8) {
             count.setText("FULL");
@@ -43,9 +40,6 @@ public class EventItemController {
             count.setText(data8 +"/"+data7);
     }
 
-    @FXML
-    private void onEventItemClick(){
-        selectedEvent = this.event;
-    }
+
 
 }

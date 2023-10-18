@@ -8,12 +8,12 @@ import java.nio.charset.StandardCharsets;
 
 public class AccountListDatasource implements Datasource<AccountList> {
 
-    private String fileName = "data" + File.separator + "Account.csv";
+    private String fileName = "src/data" + File.separator + "Account.csv";
     public AccountListDatasource() {
         checkFileIsExisted();
     }
     private void checkFileIsExisted() {
-        File file = new File("data");
+        File file = new File("src/data");
         if (!file.exists()) {
             file.mkdir();
         }

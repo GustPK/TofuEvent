@@ -8,17 +8,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.ScheduleActivityController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.ScheduleActivityController">
    <children>
       <Button layoutX="14.0" layoutY="560.0" mnemonicParsing="false" onAction="#BackButton" styleClass="default-button-white-navy" stylesheets="@../../../values/style.css" text="Back" />
-      <Label fx:id="nameLabel" layoutX="226.0" layoutY="58.0" text="Label">
+      <Label fx:id="nameLabel" layoutX="226.0" layoutY="58.0" text="Label" textFill="WHITE">
          <font>
             <Font size="39.0" />
          </font>
       </Label>
       <AnchorPane layoutX="130.0" layoutY="137.0" prefHeight="407.0" prefWidth="683.0">
          <children>
-            <TableView fx:id="scheduleView" layoutX="142.0" layoutY="66.0" prefHeight="274.0" prefWidth="400.0">
+            <TableView fx:id="scheduleView" layoutX="53.0" layoutY="66.0" prefHeight="330.0" prefWidth="567.0">
                <columns>
                   <TableColumn prefWidth="75.0" text="C1" />
                   <TableColumn prefWidth="75.0" text="C2" />

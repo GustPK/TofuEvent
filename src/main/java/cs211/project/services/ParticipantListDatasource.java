@@ -7,13 +7,13 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class ParticipantListDatasource implements Datasource<ParticipantList> {
-    private String fileName = "data" + File.separator + "Participant.csv";
+    private String fileName = "src/data" + File.separator + "Participant.csv";
 
     public ParticipantListDatasource() {
         checkFileIsExisted();
     }
     private void checkFileIsExisted() {
-        File file = new File("data");
+        File file = new File("src/data");
         if (!file.exists()) {
             file.mkdir();
         }

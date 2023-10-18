@@ -17,35 +17,34 @@
                <right>
                   <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #F0F8FF;" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="Login" layoutX="70.0" layoutY="280.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #8891FD;" styleClass="cursor-hand" text="Log in">
+                        <Button fx:id="Login" layoutX="106.0" layoutY="280.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #8891FD;" styleClass="cursor-hand" text="Log in">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <PasswordField fx:id="passwordField" layoutX="71.0" layoutY="232.0" style="-fx-background-color: transparent; -fx-border-color: #8891FD; -fx-border-width: 0px 0px 3px 0px;" />
-                        <TextField fx:id="usernameTextField" alignment="TOP_LEFT" layoutX="71.0" layoutY="186.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #8891FD; -fx-border-width: 0px 0px 3px 0px;" />
-                        <Hyperlink fx:id="ForgetPassword" layoutX="166.0" layoutY="373.0" text="forget password?" textFill="DODGERBLUE" />
-                        <Hyperlink fx:id="CreateAccount" layoutX="33.0" layoutY="373.0" onAction="#onCreateAccountHyperlinkClick" text="create account" textFill="DODGERBLUE">
+                        <PasswordField fx:id="passwordField" layoutX="107.0" layoutY="232.0" style="-fx-background-color: transparent; -fx-border-color: #8891FD; -fx-border-width: 0px 0px 3px 0px;" />
+                        <TextField fx:id="usernameTextField" alignment="TOP_LEFT" layoutX="107.0" layoutY="186.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #8891FD; -fx-border-width: 0px 0px 3px 0px;" />
+                        <Hyperlink fx:id="CreateAccount" layoutX="79.0" layoutY="324.0" onAction="#onCreateAccountHyperlinkClick" text="create account" textFill="DODGERBLUE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Hyperlink>
-                        <Label layoutX="87.0" layoutY="131.0" text="USER LOGIN" textFill="#2632b9">
+                        <Label layoutX="123.0" layoutY="131.0" text="USER LOGIN" textFill="#2632b9">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <Hyperlink fx:id="Developers" layoutX="204.0" layoutY="468.0" onAction="#onDevelopersHyperlinkClick" prefHeight="24.0" prefWidth="70.0" text="developers" textFill="DODGERBLUE">
+                        <Hyperlink fx:id="Developers" layoutX="265.0" layoutY="468.0" onAction="#onDevelopersHyperlinkClick" prefHeight="24.0" prefWidth="70.0" text="developers" textFill="DODGERBLUE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Hyperlink>
-                        <Label layoutX="72.0" layoutY="170.0" text="Username">
+                        <Label layoutX="108.0" layoutY="170.0" text="Username">
                            <font>
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <Label layoutX="73.0" layoutY="214.0" text="Password">
+                        <Label layoutX="109.0" layoutY="214.0" text="Password">
                            <font>
                               <Font size="11.0" />
                            </font>
