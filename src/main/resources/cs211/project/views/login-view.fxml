@@ -24,7 +24,6 @@
                         </Button>
                         <PasswordField fx:id="passwordField" layoutX="71.0" layoutY="232.0" style="-fx-background-color: transparent; -fx-border-color: #8891FD; -fx-border-width: 0px 0px 3px 0px;" />
                         <TextField fx:id="usernameTextField" alignment="TOP_LEFT" layoutX="71.0" layoutY="186.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #8891FD; -fx-border-width: 0px 0px 3px 0px;" />
-                        <Hyperlink fx:id="ForgetPassword" layoutX="166.0" layoutY="373.0" text="forget password?" textFill="DODGERBLUE" />
                         <Hyperlink fx:id="CreateAccount" layoutX="33.0" layoutY="373.0" onAction="#onCreateAccountHyperlinkClick" text="create account" textFill="DODGERBLUE">
                            <font>
                               <Font name="System Bold" size="12.0" />

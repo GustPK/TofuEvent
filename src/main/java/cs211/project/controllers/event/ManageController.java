@@ -54,8 +54,6 @@ public class ManageController {
     private String temp = "join";
     @FXML
     private GridPane gridPane;
-//    @FXML ComboBox;
-//    private String selectTeam = "join";
     @FXML Rectangle picture;
     @FXML Label textTeam = null;
     @FXML TextField maximum;
@@ -92,7 +90,6 @@ public class ManageController {
     private Datasource<ScheduleList> datasourceSchedule;
     private Event event;
     @FXML private ComboBox selectTeam;
-//    @FXML private ChoiceBox selectTeam;
     @FXML private TableView<Schedule> scheduleView;
 
     private SpinnerValueFactory<Integer> createSpinnerValueFactory(int min, int max, int initialValue) {
@@ -122,8 +119,6 @@ public class ManageController {
     private void initialize(){
         event = (Event) FXRouter.getData();
         nameLabel.setText("Participant");
-//        datasource = new AccountListDatasource();
-//        accounts = datasource.readData();
         teamListDatasource = new TeamListDatasource("data","TeamList.csv");
         datasource = new ParticipantListDatasource();
         eventListDatasource = new EventListDatasource();
@@ -134,7 +129,6 @@ public class ManageController {
         eventName.setText(event.getName());
         namePicture = event.getImgEvent();
 
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         int[] date = event.splitDate(event.getDateStart());
         LocalDate defaultDate = LocalDate.of(date[2], date[1], date[0]);
         startDateString = date[0]+"-"+date[1]+"-"+date[2];
@@ -272,7 +266,7 @@ public class ManageController {
         }
         selectTeam.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                temp = newValue.toString(); // กำหนดค่าที่เลือกใน ComboBox เข้าในตัวแปร temp
+                temp = newValue.toString();
                 textTeam.setText(null);
                 sample();
                 nameLabel.setDisable(false);
@@ -293,7 +287,6 @@ public class ManageController {
         String startTimeString = String.format("%02d:%02d", startHour, startMinute);
         String endTimeString = String.format("%02d:%02d", endHour, endMinute);
 
-        // สลับสองเวลาให้ไปอยู่ด้านหลัง
         eventList.getEvents().stream()
                 .filter(i -> i.getName().equals(event.getName()))
                 .forEach(i -> {
@@ -306,7 +299,6 @@ public class ManageController {
                 .filter(i -> i.getEvent().equals(event.getName()))
                 .forEach(i -> i.setEvent(eventName.getText()));
 
-        // อัพเดทข้อมูลใน datasource
         datasource.writeData(accounts);
         datasourceSchedule.writeData(scheduleList);
         eventListDatasource.writeData(eventList);
@@ -391,23 +383,16 @@ public class ManageController {
     }
     @FXML
     public void handleUploadButton(MouseEvent choose) {
-//
         FileChooser chooser = new FileChooser();
-        // SET FILECHOOSER INITIAL DIRECTORY
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-        // DEFINE ACCEPTABLE FILE EXTENSION
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
-        // GET FILE FROM FILECHOOSER WITH JAVAFX COMPONENT WINDOW
         Node source = (Node) choose.getSource();
         File file = chooser.showOpenDialog(source.getScene().getWindow());
         if (file != null) {
             try {
-                // CREATE FOLDER IF NOT EXIST
                 File destDir = new File("data/images");
                 if (!destDir.exists()) destDir.mkdirs();
-                // RENAME FILE
                 String[] fileSplit = file.getName().split("\\.");
-                //เปลี่ยนชื่อรูปภาพ
                 String filename = event.getName() + "_pic" + "."
                         + fileSplit[fileSplit.length - 1];
                 Path target = FileSystems.getDefault().getPath(
@@ -472,12 +457,6 @@ public class ManageController {
             }
         }
     }
-    private boolean isEventNameDuplicate(String name) {
-        for (Event event : eventList.getEvents()) {
-            if (event.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
+
+
 }

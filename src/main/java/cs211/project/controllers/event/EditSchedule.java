@@ -89,26 +89,19 @@ public class EditSchedule {
 
     @FXML
     public void clickAdd() {
-//        getEvent = (Event) FXRouter.getData();
 
-        // รับข้อมูลจาก nameField
         String name = nameField.getText();
 
-        // รับวันที่จาก datePicker
         LocalDate date = datePicker.getValue();
 
-        // รับค่าจาก hourSpinner และ minuteSpinner
         int hour = hourSpinner.getValue();
         int minute = minuteSpinner.getValue();
 
-        // นำข้อมูลไปเพิ่มลงใน scheduleList โดยรวมเป็น "hh:mm"
         String time = String.format("%02d:%02d", hour, minute);
 
-        // แสดงข้อมูลบน TableView โดยจำแนกจากชื่อ event ที่ซ้ำกัน
         scheduleList.addActivity(new Schedule(getEvent.getName(), temp, name, time, date.toString()));
         showList(scheduleList);
 
-        // ล้างค่าใน nameField, hourSpinner และ minuteSpinner หลังจากเพิ่มข้อมูลเสร็จ
         nameField.clear();
         hourSpinner.getValueFactory().setValue(0);
         minuteSpinner.getValueFactory().setValue(0);
@@ -123,7 +116,6 @@ public class EditSchedule {
             scheduleView.getItems().clear();
             showList(scheduleList);
         } else {
-            // แจ้งเตือนผู้ใช้ว่าต้องเลือกรายการก่อนที่จะลบ
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("คำเตือน");
             alert.setHeaderText("คุณต้องเลือกรายการก่อนที่จะลบ");
@@ -135,7 +127,6 @@ public class EditSchedule {
 
         List<Schedule> sortedList = new ArrayList<>(scheduleList.getActivityList());
 
-        // แสดงเฉพาะชื่อ event ที่ซ้ำกัน
         List<Schedule> filteredList = sortedList.stream()
                 .filter(schedule -> schedule.getEventName().equals(getEvent.getName()) && schedule.getTeamName().equals(temp))
                 .collect(Collectors.toList());
@@ -159,18 +150,14 @@ public class EditSchedule {
         scheduleList = datasource.readData();
         List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
 
-        // ลบข้อมูลที่มี eventName เท่ากับ event.getName() และ teamName เท่ากับ "join" ออกจาก scheduleList
         scheduleList.getActivityList().removeIf(schedule ->
                 schedule.getEventName().equals(getEvent.getName()) && schedule.getTeamName().equals("join")
         );
 
-        // เพิ่มข้อมูลใหม่ลงใน scheduleList
         scheduleList.getActivityList().addAll(dataFromTableView);
 
-        // Write the updated data back to your datasource
         datasource.writeData(scheduleList);
 
-        // Redirect to the "CreateTeam" view and pass the event stored in the field
         FXRouter.goTo("manage");
     }
 

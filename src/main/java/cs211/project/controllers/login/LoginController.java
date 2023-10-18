@@ -39,9 +39,6 @@ public class LoginController {
     @FXML
     public void initialize(){
         warning.setText("");
-//        accountsList = new AccountList();
-//        accountListDataSource = new AccountDataSource();
-//        accountsList = accountListDataSource.getData();
         accountListDataSource = new AccountListDatasource();
         accountsList = accountListDataSource.readData();
         currentAccount = new AccountList();
@@ -57,15 +54,12 @@ public class LoginController {
                 System.out.println("Login: Success");
                 LoggedInAccount.getInstance().setAccount(exist);
 
-                // สร้าง LocalDateTime เพื่อเก็บค่าเวลาปัจจุบัน
                 LocalDateTime currentTime = LocalDateTime.now();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 String formattedTime = currentTime.format(formatter);
 
-                // อัปเดตเวลาล็อกอินล่าสุดของบัญชีที่ล็อกอินสำเร็จ
                 exist.setOnline(formattedTime);
 
-                // บันทึกการอัปเดตลงในไฟล์ account.csv
                 accountListDataSource.writeData(accountsList);
 
                 if (exist.getUsername().equals("admin")) {

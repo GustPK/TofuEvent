@@ -40,8 +40,6 @@ public class RegisterController {
     private TextField passwordField;
     @FXML
     private TextField confirmPasswordField;
-    @FXML
-    private Label label;
     private Datasource<AccountList> datasource;
     private AccountList accountList;
     private String imgSrc;
@@ -53,7 +51,6 @@ public class RegisterController {
         datasource = new AccountListDatasource();
         accountList = datasource.readData();
 
-        // ตั้งค่ารูปภาพเริ่มต้นสำหรับ imageCircle
         File defaultImageFile = new File("data/images/default-pfp.jpg"); // เปลี่ยน path ไปยังรูปภาพเริ่มต้นของคุณ
         String defaultImagePath = "file:///" + defaultImageFile.getAbsolutePath();
         Image defaultImage = new Image(defaultImagePath);
@@ -67,29 +64,22 @@ public class RegisterController {
 
     @FXML
     public void handleUploadButton(MouseEvent event) {
-//
+
         FileChooser chooser = new FileChooser();
-        // SET FILECHOOSER INITIAL DIRECTORY
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-        // DEFINE ACCEPTABLE FILE EXTENSION
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
-        // GET FILE FROM FILECHOOSER WITH JAVAFX COMPONENT WINDOW
         Node source = (Node) event.getSource();
         File file = chooser.showOpenDialog(source.getScene().getWindow());
         if (file != null) {
             try {
-                // CREATE FOLDER IF NOT EXIST
                 File destDir = new File("data/images");
                 if (!destDir.exists()) destDir.mkdirs();
-                // RENAME FILE
                 String[] fileSplit = file.getName().split("\\.");
-                //เปลี่ยนชื่อรูปภาพ
                 String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
                         + fileSplit[fileSplit.length - 1];
                 Path target = FileSystems.getDefault().getPath(
                         destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
                 );
-                // COPY WITH FLAG REPLACE FILE IF FILE IS EXIST
                 Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
                 imgSrc = filename;
                 Image image = new Image(target.toUri().toString());
@@ -99,8 +89,6 @@ public class RegisterController {
             }
         } else {
             imgSrc = "default-pfp.jpg";
-//            Image image = new Image(getClass().getResourceAsStream("/data/images/default-pfp.jpg"));
-//            imageCircle.setFill(new ImagePattern(image));
         }
     }
 
@@ -111,14 +99,12 @@ public class RegisterController {
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
 
-
-        // ตั้งค่าค่า status เป็น "not banned" และ imgSrc เป็น "default-pfp.jpg" เมื่อไม่มีการอัปโหลดรูปภาพ
         if (imgSrc == null || imgSrc.isEmpty()) {
-            imgSrc = "default-pfp.jpg"; // รูปภาพ default-pfp.jpg จะต้องอยู่ในโฟลเดอร์ data/images
+            imgSrc = "default-pfp.jpg";
         } else {
             String[] fileSplit = imgSrc.split("\\.");
-            String extension = fileSplit[fileSplit.length - 1]; // นามสกุลของไฟล์
-            String newFileName = username +"_profile" + "." + extension; // ชื่อไฟล์ใหม่
+            String extension = fileSplit[fileSplit.length - 1];
+            String newFileName = username +"_profile" + "." + extension;
 
             File oldFile = new File("data/images/" + imgSrc);
             File newFile = new File("data/images/" + newFileName);
@@ -130,11 +116,10 @@ public class RegisterController {
 
         status = "not banned";
 
-        // ตรวจสอบว่า username ไม่ซ้ำในรายการบัญชี
+
         boolean isUsernameUnique = isUsernameUnique(username);
 
         if (isUsernameUnique && password.equals(confirmPassword)) {
-            // สร้าง LocalDateTime เพื่อเก็บค่าเวลาปัจจุบัน
             LocalDateTime currentTime = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String formattedTime = currentTime.format(formatter);
@@ -145,7 +130,6 @@ public class RegisterController {
 
             FXRouter.goTo("login");
         } else {
-            // แสดง Alert ถ้า username ซ้ำหรือรหัสผ่านไม่ตรงกัน
             if (!isUsernameUnique) {
                 showAlert("Duplicate Username", "This username is already taken.");
             }
@@ -169,7 +153,7 @@ public class RegisterController {
                 return false; // username ซ้ำ
             }
         }
-        return true; // username ไม่ซ้ำ
+        return true;
     }
 
 }

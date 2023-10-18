@@ -12,10 +12,17 @@ git clone https://github.com/CS211-661/cs211-661-project-tofu.git
 
 # บัญชี
 - บัญชีที่สร้างอีเว้นท์
+<<<<<<< HEAD
     - username: jett
     - password: jett11
     - username: หนุ่มกะลา
     - password: numnum
+=======
+    - username:
+    - password:
+    - username:
+    - password:
+>>>>>>> 5e2fbf88f09deb84d33468e79db3109e528d2c3d
     - username:
     - password:
     - username:
@@ -109,7 +116,11 @@ git clone https://github.com/CS211-661/cs211-661-project-tofu.git
 
 
 
+<<<<<<< HEAD
 ### ณฐนนท์ ภูธนกิจ 6510450313
+=======
+### ไอเน้ด
+>>>>>>> 5e2fbf88f09deb84d33468e79db3109e528d2c3d
 ### Github Username: TheZeroNXD
 - 10.b Graphic User Interface (GUI) มีรูปแบบที่เข้าใจง่าย
 - 10.c ขนาดหน้าจอของโปรแกรมต้องมีความสูงไม่เกิน 1024 pixel มีความกว้างของหน้าจอโปรแกรมเหมาะสําหรับผู้ใช้โน้ตบุ๊กทั่วไป

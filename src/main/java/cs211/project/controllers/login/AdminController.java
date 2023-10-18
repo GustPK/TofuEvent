@@ -73,8 +73,6 @@ public class AdminController {
     }
 
     private void goToBanPage(Account account) throws IOException {
-        // Pass the account information to the "ban" page controller if needed
-        // You can use FXRouter to navigate to the "ban" page
         FXRouter.goTo("ban", account);
     }
 
