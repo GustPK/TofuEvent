@@ -33,8 +33,8 @@ public class EventItemController {
         Image image = new Image(file.toURI().toString());
         eventImg.setImage(image);
 
-        int data7 = Integer.parseInt(event.getMaximum()); // Assuming data[7] is an integer in the CSV
-        int data8 = Integer.parseInt(event.getJoinedText()); // Assuming data[8] is an integer in the CSV
+        int data7 = Integer.parseInt(event.getMaximum());
+        int data8 = Integer.parseInt(event.getJoinedText());
 
         if (data7 == data8) {
             count.setText("FULL");
@@ -43,9 +43,6 @@ public class EventItemController {
             count.setText(data8 +"/"+data7);
     }
 
-    @FXML
-    private void onEventItemClick(){
-        selectedEvent = this.event;
-    }
+
 
 }

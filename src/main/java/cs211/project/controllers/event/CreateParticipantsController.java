@@ -35,24 +35,19 @@ public class CreateParticipantsController {
     @FXML
     private void initialize() {
         datasource = new ScheduleFileDatasource("data", "schedule.csv");
-
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();
 
         TableColumn<Schedule, String> dateColumn = new TableColumn<>("Date");
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         dateColumn.setPrefWidth(125);
-
         TableColumn<Schedule, String> timeColumn = new TableColumn<>("Time");
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         timeColumn.setPrefWidth(125);
-
         TableColumn<Schedule, String> activityColumn = new TableColumn<>("Activity");
         activityColumn.setCellValueFactory(new PropertyValueFactory<>("activity"));
         activityColumn.setPrefWidth(125);
-
         scheduleView.getColumns().addAll(dateColumn, timeColumn, activityColumn);
-
         SpinnerValueFactory<Integer> hourStartValueFactory = createSpinnerValueFactory(0, 23, 0);
         SpinnerValueFactory<Integer> minuteStartValueFactory = createSpinnerValueFactory(0, 59, 0);
         hourSpinner.setValueFactory(hourStartValueFactory);
@@ -86,36 +81,22 @@ public class CreateParticipantsController {
     @FXML
     public void clickAdd() {
         event = (Event) FXRouter.getData();
-
-        // รับข้อมูลจาก nameField
         String name = nameField.getText();
-
-        // รับวันที่จาก datePicker
         LocalDate date = datePicker.getValue();
-
-        // รับค่าจาก hourSpinner และ minuteSpinner
         int hour = hourSpinner.getValue();
         int minute = minuteSpinner.getValue();
-
-        // ตรวจสอบว่าข้อมูลถูกกรอกครบถ้วนหรือไม่
         if (name.isEmpty() || date == null || hour < 0 || minute < 0) {
-            // สร้าง Alert
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Warning");
             alert.setHeaderText("Incomplete Information");
             alert.setContentText("Please fill out the information completely.");
-
-            // แสดง Alert
             alert.showAndWait();
         } else {
-            // นำข้อมูลไปเพิ่มลงใน scheduleList โดยรวมเป็น "hh:mm"
             String time = String.format("%02d:%02d", hour, minute);
 
-            // แสดงข้อมูลบน TableView โดยจำแนกจากชื่อ event ที่ซ้ำกัน
             scheduleList.addActivity(new Schedule(event.getName(), "join", name, time, date.toString()));
             showList(scheduleList);
 
-            // ล้างค่าใน nameField, hourSpinner และ minuteSpinner หลังจากเพิ่มข้อมูลเสร็จสิ้น
             nameField.clear();
             hourSpinner.getValueFactory().setValue(0);
             minuteSpinner.getValueFactory().setValue(0);

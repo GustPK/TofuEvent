@@ -79,11 +79,10 @@ public class Des {
 
 
 
-        int data7 = Integer.parseInt(event.getMaximum()); // Assuming data[7] is an integer in the CSV
-        int data8 = Integer.parseInt(event.getJoinedText()); // Assuming data[8] is an integer in the CSV
+        int data7 = Integer.parseInt(event.getMaximum());
+        int data8 = Integer.parseInt(event.getJoinedText());
         int countValue = data7 - data8;
 
-        // Convert the count value to a String and set it to the label
         count.setText(String.valueOf(countValue));
 
         String imagePath = "data/images/" + event.getImgEvent();
@@ -91,8 +90,7 @@ public class Des {
         Image profileImage = new Image(imageFile.toURI().toString());
         imageEvent.setFill(new ImagePattern(profileImage));
 
-        // Populate the ComboBox with team names
-        selectTeam.getItems().clear(); // Clear existing items (if any)
+        selectTeam.getItems().clear();
 
         for (Team team : teamList.getTeams()) {
             if (team.getEventName().equals(event.getName()))
@@ -121,7 +119,6 @@ public class Des {
     @FXML
     private void clickJoinEvent() {
         if (!buttonClicked) {
-            // Check if the participant is already in the list
             String username = LoggedInAccount.getInstance().getAccount().getUsername();
             boolean isAlreadyJoined = participantList.getParticipants().stream()
                     .anyMatch(p -> p.getUsername().equals(username) && p.getEvent().equals(event.getName()) && p.getTeamName().equals("join"));
@@ -139,14 +136,12 @@ public class Des {
                 alert.setContentText("No more participants can join.");
                 alert.showAndWait();
             } else {
-                // Add the participant to the list
                 participantList.addParticipant(new Participant(username, event.getName(), "join","unbanned"));
                 participantDatasource.writeData(participantList);
                 Event current = eventList.findByEventName(event.getName());
                 current.addJoin();
                 datasource.writeData(eventList);
 
-                // Show a popup indicating that the user has joined
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information");
                 alert.setHeaderText("Joined");
@@ -155,7 +150,6 @@ public class Des {
 
                 buttonClicked = true;
 
-                // Optionally, you can disable the button to prevent further clicks
                 joinButton.setDisable(true);
             }
         }
@@ -165,7 +159,6 @@ public class Des {
         String selectedTeam = (String) selectTeam.getValue();
 
         if (selectedTeam == null) {
-            // No team selected, show an error message
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Team Selection Error");
@@ -174,12 +167,10 @@ public class Des {
         } else {
             String username = LoggedInAccount.getInstance().getAccount().getUsername();
 
-            // Check if the user is already in the participant list for the selected team
             boolean isAlreadyJoined = participantList.getParticipants().stream()
                     .anyMatch(p -> p.getUsername().equals(username) && p.getEvent().equals(event.getName()) && p.getTeamName().equals(selectedTeam));
 
             if (isAlreadyJoined) {
-                // User is already in the list for the selected team
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("Already Joined");
@@ -193,18 +184,15 @@ public class Des {
                 alert.showAndWait();
 
             } else {
-                // Find the team in teamList
                 Team currentTeam = teamList.findByTeamName(selectedTeam);
 
                 if (currentTeam == null) {
-                    // Handle the case where the team doesn't exist
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setHeaderText("Team Not Found");
                     alert.setContentText("The selected team does not exist.");
                     alert.showAndWait();
                 } else {
-                    // Add the participant with the selected team to the list
                     participantList.addParticipant(new Participant(username, event.getName(), selectedTeam, "unbanned"));
                     participantDatasource.writeData(participantList);
 

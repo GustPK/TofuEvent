@@ -103,29 +103,21 @@ public class CreateController {
 
     @FXML
     public void handleUploadButton(MouseEvent event) {
-//        String username = usernameField.getText();
         FileChooser chooser = new FileChooser();
-        // SET FILECHOOSER INITIAL DIRECTORY
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-        // DEFINE ACCEPTABLE FILE EXTENSION
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
-        // GET FILE FROM FILECHOOSER WITH JAVAFX COMPONENT WINDOW
         Node source = (Node) event.getSource();
         File file = chooser.showOpenDialog(source.getScene().getWindow());
         if (file != null) {
             try {
-                // CREATE FOLDER IF NOT EXIST
                 File destDir = new File("data/images");
                 if (!destDir.exists()) destDir.mkdirs();
-                // RENAME FILE
                 String[] fileSplit = file.getName().split("\\.");
-                //เปลี่ยนชื่อรูปภาพ
                 String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
                         + fileSplit[fileSplit.length - 1];
                 Path target = FileSystems.getDefault().getPath(
                         destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
                 );
-                // COPY WITH FLAG REPLACE FILE IF FILE IS EXIST
                 Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
                 imgSrc = filename;
                 Image image = new Image(target.toUri().toString());

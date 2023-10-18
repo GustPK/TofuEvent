@@ -56,9 +56,7 @@ public class BanController {
 
         Optional<ButtonType> result = confirmAlert.showAndWait();
 
-        // ตรวจสอบผลลัพธ์จากการคลิกปุ่มใน Confirm Alert
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            // ถ้าผู้ใช้กด OK
             if (account.getStatus().equals("not banned")) {
                 updateAccountStatus("banned");
                 String alertTitle = "Ban";
@@ -99,7 +97,6 @@ public class BanController {
         Optional<ButtonType> result = confirmAlert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            // ถ้าผู้ใช้กด OK
             if (account.getStatus().equals("banned")) {
                 updateAccountStatus("not banned");
                 String alertTitle = "Unban";
@@ -126,24 +123,19 @@ public class BanController {
     }
 
     private void updateAccountStatus(String newStatus) {
-        // Set the new status
         account.setStatus(newStatus);
 
-        // Load the account list from the CSV file
         AccountList accountList = loadAccountListFromFile();
 
-        // Find and update the account in the list
         for (Account account : accountList.getAccounts()) {
             if (account.getUsername().equals(this.account.getUsername())) {
                 account.setStatus(newStatus);
-                break; // Assuming usernames are unique, exit the loop once found
+                break;
             }
         }
 
-        // Save the updated account list back to the CSV file
         saveAccountListToFile(accountList);
 
-        // Update the status label immediately
         statusLabel.setText(newStatus);
     }
 
