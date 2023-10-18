@@ -19,7 +19,7 @@
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="eventNameLabel" alignment="CENTER" layoutX="-54.0" layoutY="56.0" prefHeight="23.0" prefWidth="316.0" text="CR7 Meeting ">
+                  <Label fx:id="eventNameLabel" alignment="CENTER" layoutX="-77.0" layoutY="56.0" prefHeight="23.0" prefWidth="369.0" text="CR7 Meeting ">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
