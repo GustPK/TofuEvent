@@ -47,7 +47,6 @@ public class TeamController {
     }
     @FXML
     public void initialize(){
-
         currentTeam = (Team) FXRouter.getData();
         activityListDatasource = new ScheduleFileDatasource("data", "Schedule.csv");
         scheduleList = activityListDatasource.readData();
@@ -81,7 +80,6 @@ public class TeamController {
             }
         }
     }
-
 
     public void showComment(CommentList comments){
         for(Comment c: comments.getCommentList()){

@@ -18,17 +18,14 @@ public class TeamChatItemController {
     private Event selectedEvent;
     @FXML
     private Label eventNameLabel;
-
     @FXML
     private Label teamName;
     @FXML
     private ImageView eventImg;
     private Event eventTamp;
     private Team team;
-
     private Datasource<EventList> eventListDatasource;
     private EventList eventList;
-
 
     public void setData(Team team){
         eventListDatasource = new EventListDatasource();
@@ -36,7 +33,6 @@ public class TeamChatItemController {
         for(Event event : eventList.getEvents())
             if (event.getName().equals(team.getEventName()))
                 eventTamp = event;
-
         String imagePath = "data/images/" + eventTamp.getImgEvent();
         File imageFile = new File(imagePath);
         Image profileImage = new Image(imageFile.toURI().toString());
@@ -44,14 +40,10 @@ public class TeamChatItemController {
         this.team = team;
         eventNameLabel.setText(team.getEventName());
         teamName.setText(team.getTeamName());
-
-
     }
 
     @FXML
     private void onEventItemClick() throws IOException {
         FXRouter.goTo("team", team);
     }
-
-
 }

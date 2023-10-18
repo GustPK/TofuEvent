@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.net.URL;
 
 public class ProfileController {
-
     @FXML
     private Label accountName;
     @FXML
@@ -28,14 +27,12 @@ public class ProfileController {
     @FXML
     private void initialize(){
         currentAccount = (AccountList) FXRouter.getData();
-//        Image image = new Image(getClass().getResource("data/images/" + LoggedInAccount.getInstance().getAccount().getImage()).toString());
         File file = new File("data/images", LoggedInAccount.getInstance().getAccount().getImage());
         String path = "file:///" + file.getAbsolutePath();
         Image image = new Image(path);
         profilePic.setFill(new ImagePattern(image));
         accountName.setText(LoggedInAccount.getInstance().getAccount().getName());
         username.setText(LoggedInAccount.getInstance().getAccount().getUsername());
-
     }
     @FXML
     protected void onProfileSettingClick() throws IOException{
@@ -48,10 +45,5 @@ public class ProfileController {
     @FXML
     protected void onLogoutButtonClick() throws IOException {
         FXRouter.goTo("login");
-    }
-
-    @FXML
-    private void onJoinedHistoryButtonClick() throws IOException{
-        FXRouter.goTo("joinHistory");
     }
 }
