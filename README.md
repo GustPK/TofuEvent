@@ -8,7 +8,7 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 
 
 # วิธีการติดตั้งหรือรันโปรแกรม
-1.git clone 
+1.git clone https://github.com/CS211-661/cs211-661-project-tofu.git
 2. เปิดโฟลเดอร์ TofuApplication
 3.เปิด tofu-application-mac.jar หากเปิดจาก MacOS และ tofu-application-win.jar หากเปิดจาก Window
 *หมายเหตุ หากเไม่สามารถปิดไฟล์ tofu-application-mac.jar ได้จาก MacOS ให้เปิดผ่าน terminal java -jar tofu-application-mac.jar
