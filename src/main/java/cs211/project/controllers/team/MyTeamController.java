@@ -33,7 +33,7 @@ public class MyTeamController {
     public void initialize() throws IOException {
         participantListDatasource = new ParticipantListDatasource();
         eventListDataSource = new EventListDatasource();
-        teamListDatasource = new TeamListDatasource("src/data", "TeamList.csv");
+        teamListDatasource = new TeamListDatasource("data", "TeamList.csv");
         eventsLists = eventListDataSource.readData();
         participantList = participantListDatasource.readData();
         teamList = teamListDatasource.readData();

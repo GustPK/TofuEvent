@@ -40,7 +40,7 @@ public class EditScheduleController {
     private void initialize() {
         getEvent = (Event) FXRouter.getData();
         temp = getEvent.tamp;
-        datasource = new ScheduleFileDatasource("src/data", "schedule.csv");
+        datasource = new ScheduleFileDatasource("data", "schedule.csv");
 
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();

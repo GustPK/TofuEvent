@@ -37,12 +37,12 @@ public class ScheduleActivityController {
     private void initialize() {
         event = (Event) FXRouter.getData();
         nameLabel.setText(event.getName());
-        String imagePath = "src/data/images/" + event.getImgEvent();
+        String imagePath = "data/images/" + event.getImgEvent();
         File imageFile = new File(imagePath);
         Image eventImage = new Image(imageFile.toURI().toString());
         eventImageView.setImage(eventImage);
 
-        datasource = new ScheduleFileDatasource("src/data", "schedule.csv");
+        datasource = new ScheduleFileDatasource("data", "schedule.csv");
         scheduleList = datasource.readData();
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();

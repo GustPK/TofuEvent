@@ -34,7 +34,7 @@ public class CreateParticipantsController {
 
     @FXML
     private void initialize() {
-        datasource = new ScheduleFileDatasource("src/data", "schedule.csv");
+        datasource = new ScheduleFileDatasource("data", "schedule.csv");
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();
 

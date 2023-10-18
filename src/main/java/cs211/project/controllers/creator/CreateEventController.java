@@ -61,7 +61,7 @@ public class CreateEventController {
         datasource = new EventListDatasource();
         eventList = datasource.readData();
 
-        File defaultImageFile = new File("src/data/images/Image.jpg");
+        File defaultImageFile = new File("data/images/Image.jpg");
         String defaultImagePath = "file:///" + defaultImageFile.getAbsolutePath();
         Image defaultImage = new Image(defaultImagePath);
         imageRec.setFill(new ImagePattern(defaultImage));
@@ -102,7 +102,7 @@ public class CreateEventController {
         File file = chooser.showOpenDialog(source.getScene().getWindow());
         if (file != null) {
             try {
-                File destDir = new File("src/data/images");
+                File destDir = new File("data/images");
                 if (!destDir.exists()) destDir.mkdirs();
                 String[] fileSplit = file.getName().split("\\.");
                 String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
@@ -119,7 +119,7 @@ public class CreateEventController {
             }
         } else {
             imgSrc = "default-pfp.jpg";
-            Image image = new Image(getClass().getResourceAsStream("/src/data/images/default-pfp.jpg"));
+            Image image = new Image(getClass().getResourceAsStream("/data/images/default-pfp.jpg"));
             imageRec.setFill(new ImagePattern(image));
         }
     }
@@ -166,8 +166,8 @@ public class CreateEventController {
                 String extension = fileSplit[fileSplit.length - 1];
                 String newFileName =  name +"_pic" + "." + extension;
 
-                File oldFile = new File("src/data/images/" + imgSrc);
-                File newFile = new File("src/data/images/" + newFileName);
+                File oldFile = new File("data/images/" + imgSrc);
+                File newFile = new File("data/images/" + newFileName);
 
                 if (oldFile.renameTo(newFile)) {
                     imgSrc = newFileName;

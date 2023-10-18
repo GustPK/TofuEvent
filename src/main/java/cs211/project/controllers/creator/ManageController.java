@@ -99,7 +99,7 @@ public class ManageController {
     private void initialize(){
         event = (Event) FXRouter.getData();
         nameLabel.setText("Participant");
-        teamListDatasource = new TeamListDatasource("src/data","TeamList.csv");
+        teamListDatasource = new TeamListDatasource("data","TeamList.csv");
         datasource = new ParticipantListDatasource();
         eventListDatasource = new EventListDatasource();
         eventList = eventListDatasource.readData();
@@ -119,7 +119,7 @@ public class ManageController {
         endDate.setValue(defaultDate);
 
 
-        File file = new File("src/data/images", event.getImgEvent());
+        File file = new File("data/images", event.getImgEvent());
         String path = "file:///" + file.getAbsolutePath();
         Image image = new Image(path);
         picture.setFill(new ImagePattern(image));
@@ -170,7 +170,7 @@ public class ManageController {
                 }
             }
         }
-        datasourceSchedule = new ScheduleFileDatasource("src/data", "schedule.csv");
+        datasourceSchedule = new ScheduleFileDatasource("data", "schedule.csv");
         scheduleList = datasourceSchedule.readData();
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();
@@ -368,7 +368,7 @@ public class ManageController {
         File file = chooser.showOpenDialog(source.getScene().getWindow());
         if (file != null) {
             try {
-                File destDir = new File("src/data/images");
+                File destDir = new File("data/images");
                 if (!destDir.exists()) destDir.mkdirs();
                 String[] fileSplit = file.getName().split("\\.");
                 String filename = event.getName() + "_pic" + "."

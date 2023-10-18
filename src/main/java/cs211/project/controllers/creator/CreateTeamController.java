@@ -45,8 +45,8 @@ public class CreateTeamController {
 
     @FXML
     private void initialize() {
-        datasource = new ScheduleFileDatasource("src/data", "schedule.csv");
-        datasource2 = new TeamListDatasource("src/data", "TeamList.csv");
+        datasource = new ScheduleFileDatasource("data", "schedule.csv");
+        datasource2 = new TeamListDatasource("data", "TeamList.csv");
 
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();

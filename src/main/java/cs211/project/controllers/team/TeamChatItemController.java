@@ -33,7 +33,7 @@ public class TeamChatItemController {
         for(Event event : eventList.getEvents())
             if (event.getName().equals(team.getEventName()))
                 eventTamp = event;
-        String imagePath = "src/data/images/" + eventTamp.getImgEvent();
+        String imagePath = "data/images/" + eventTamp.getImgEvent();
         File imageFile = new File(imagePath);
         Image profileImage = new Image(imageFile.toURI().toString());
         eventImg.setImage(profileImage);

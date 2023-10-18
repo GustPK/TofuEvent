@@ -61,7 +61,7 @@ public class EventInfoController {
         participantDatasource = new ParticipantListDatasource();
         participantList = participantDatasource.readData();
         teamList = new TeamList();
-        teamListDatasource = new TeamListDatasource("src/data","TeamList.csv");
+        teamListDatasource = new TeamListDatasource("data","TeamList.csv");
         teamList = teamListDatasource.readData();
         datasource = new EventListDatasource();
         eventList = datasource.readData();
@@ -85,7 +85,7 @@ public class EventInfoController {
 
         count.setText(String.valueOf(countValue));
 
-        String imagePath = "src/data/images/" + event.getImgEvent();
+        String imagePath = "data/images/" + event.getImgEvent();
         File imageFile = new File(imagePath);
         Image profileImage = new Image(imageFile.toURI().toString());
         imageEvent.setFill(new ImagePattern(profileImage));

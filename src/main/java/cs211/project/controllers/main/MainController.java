@@ -3,6 +3,7 @@ package cs211.project.controllers.main;
 import cs211.project.controllers.event.EventItemController;
 import cs211.project.models.account.Account;
 import cs211.project.models.account.LoggedInAccount;
+import cs211.project.models.collections.AccountList;
 import cs211.project.models.collections.EventList;
 import cs211.project.models.event.Event;
 import cs211.project.services.Datasource;
@@ -30,6 +31,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainController {
     private Datasource<EventList> datasource;
@@ -110,7 +112,7 @@ public class MainController {
         String[] types = {"Date"};
         combox.getItems().addAll(types);
         combox.setOnAction(this::sort);
-        File file = new File("src/data/images", LoggedInAccount.getInstance().getAccount().getImage());
+        File file = new File("data/images", LoggedInAccount.getInstance().getAccount().getImage());
         String path = "file:///" + file.getAbsolutePath();
         Image image = new Image(path);
         profilePic.setFill(new ImagePattern(image));

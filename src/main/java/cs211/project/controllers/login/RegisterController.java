@@ -8,9 +8,13 @@ import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
@@ -47,7 +51,7 @@ public class RegisterController {
         datasource = new AccountListDatasource();
         accountList = datasource.readData();
 
-        File defaultImageFile = new File("src/data/images/default-pfp.jpg"); // เปลี่ยน path ไปยังรูปภาพเริ่มต้นของคุณ
+        File defaultImageFile = new File("data/images/default-pfp.jpg"); // เปลี่ยน path ไปยังรูปภาพเริ่มต้นของคุณ
         String defaultImagePath = "file:///" + defaultImageFile.getAbsolutePath();
         Image defaultImage = new Image(defaultImagePath);
         imageCircle.setFill(new ImagePattern(defaultImage));
@@ -68,7 +72,7 @@ public class RegisterController {
         File file = chooser.showOpenDialog(source.getScene().getWindow());
         if (file != null) {
             try {
-                File destDir = new File("src/data/images");
+                File destDir = new File("data/images");
                 if (!destDir.exists()) destDir.mkdirs();
                 String[] fileSplit = file.getName().split("\\.");
                 String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
@@ -102,8 +106,8 @@ public class RegisterController {
             String extension = fileSplit[fileSplit.length - 1];
             String newFileName = username +"_profile" + "." + extension;
 
-            File oldFile = new File("src/data/images/" + imgSrc);
-            File newFile = new File("src/data/images/" + newFileName);
+            File oldFile = new File("data/images/" + imgSrc);
+            File newFile = new File("data/images/" + newFileName);
 
             if (oldFile.renameTo(newFile)) {
                 imgSrc = newFileName;

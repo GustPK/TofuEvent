@@ -31,7 +31,7 @@ public class BanController {
         passwordLabel.setText(account.getPassword());
         statusLabel.setText(account.getStatus());
 
-        String imagePath = "src/data/images/" + account.getImage();
+        String imagePath = "data/images/" + account.getImage();
         File imageFile = new File(imagePath);
         Image profileImage = new Image(imageFile.toURI().toString());
         profilePic.setFill(new ImagePattern(profileImage));

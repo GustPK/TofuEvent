@@ -6,6 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
 
 import java.io.File;
 
@@ -25,7 +28,7 @@ public class EventItemController {
         this.event = event;
         eventNameLabel.setText(event.getName());
         eventDate.setText(event.getDateStart());
-        String path = "src/data/images/" +event.getImgEvent();
+        String path = "data/images/"+event.getImgEvent();
         File file = new File(path);
         Image image = new Image(file.toURI().toString());
         eventImg.setImage(image);

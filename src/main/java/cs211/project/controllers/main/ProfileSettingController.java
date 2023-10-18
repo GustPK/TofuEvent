@@ -34,7 +34,7 @@ public class ProfileSettingController {
     @FXML
     private void initialize(){
         currentAccount = (Account) FXRouter.getData();
-        File file = new File("src/data/images", LoggedInAccount.getInstance().getAccount().getImage());
+        File file = new File("data/images", LoggedInAccount.getInstance().getAccount().getImage());
         String path = "file:///" + file.getAbsolutePath();
         Image image = new Image(path);
         profilePic.setFill(new ImagePattern(image));
