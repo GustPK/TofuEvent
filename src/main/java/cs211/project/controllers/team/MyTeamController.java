@@ -15,21 +15,19 @@ import javafx.scene.layout.GridPane;
 import java.io.IOException;
 
 public class MyTeamController {
-
-    @FXML
-    public void clickBackToMain() throws IOException {
-        FXRouter.goTo("main");
-    }
-
     private EventList eventsLists;
     private ParticipantList participantList;
-
     private Datasource<EventList> eventListDataSource;
     private Datasource<ParticipantList> participantListDatasource;
     private Datasource<TeamList> teamListDatasource;
     private TeamList teamList;
     @FXML
     private GridPane grid;
+
+    @FXML
+    public void clickBackToMain() throws IOException {
+        FXRouter.goTo("main");
+    }
 
     @FXML
     public void initialize() throws IOException {

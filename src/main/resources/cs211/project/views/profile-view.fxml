@@ -21,14 +21,6 @@
                   <Insets top="100.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onJoinedHistoryButtonClick" styleClass="default-button-navy-white" text="joined history">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Button>
             <Button mnemonicParsing="false" onAction="#onBackButtonClick" styleClass="default-button-navy-white" text="back">
                <font>
                   <Font size="18.0" />
