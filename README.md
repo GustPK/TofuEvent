@@ -12,6 +12,7 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 2. เปิดโฟลเดอร์ TofuApplication
 3.เปิด tofu-application-mac.jar หากเปิดจาก MacOS และ tofu-application-win.jar หากเปิดจาก Window
 *หมายเหตุ หากเไม่สามารถปิดไฟล์ tofu-application-mac.jar ได้จาก MacOS ให้เปิดผ่าน terminal java -jar tofu-application-mac.jar
+*หากต้องการดูรายละเอียดของ event ที่หน้า main **ให้คลิ๊ก 2 ครั้ง
 
 # บัญชี
 - บัญชีที่สร้างอีเว้นท์
