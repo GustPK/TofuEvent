@@ -37,6 +37,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 public class ManageController {
@@ -133,14 +134,16 @@ public class ManageController {
         eventName.setText(event.getName());
         namePicture = event.getImgEvent();
 
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         int[] date = event.splitDate(event.getDateStart());
         LocalDate defaultDate = LocalDate.of(date[2], date[1], date[0]);
-        startDateString = String.format("%02d-%02d-%04d", date[0], date[1], date[2]);
+        startDateString = date[0]+"-"+date[1]+"-"+date[2];
         startDate.setValue(defaultDate);
         date = event.splitDate(event.getDateEnd());
         defaultDate = LocalDate.of(date[2], date[1], date[0]);
-        endDateString = String.format("%02d-%02d-%04d", date[0], date[1], date[2]);
+        endDateString = date[0]+"-"+date[1]+"-"+date[2];
         endDate.setValue(defaultDate);
+
 
 
         File file = new File("data/images", event.getImgEvent());
@@ -151,6 +154,7 @@ public class ManageController {
         description.setText(event.getDesc());
 
         maximum.setText(event.getMaximum());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         int column = 0;
         int row = 0;
         for (Participant account : accounts.getParticipants()) {
@@ -277,6 +281,11 @@ public class ManageController {
     }
     @FXML
     public void ClickToGoManu() throws IOException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate firstDate = startDate.getValue();
+        LocalDate lastDate = endDate.getValue();
+        String startDateString = firstDate.format(formatter);
+        String endDateString = lastDate.format(formatter);
         int startHour = hourSpinnerStart.getValue();
         int startMinute = minuteSpinnerStart.getValue();
         int endHour = hourSpinnerEnd.getValue();
@@ -288,8 +297,14 @@ public class ManageController {
         eventList.getEvents().stream()
                 .filter(i -> i.getName().equals(event.getName()))
                 .forEach(i -> {
-                    i.setEditEvent(eventName.getText(), description.getText(), maximum.getText(), namePicture, endTimeString, startTimeString, endDateString, startDateString);
+                    i.setEditEvent(eventName.getText(), description.getText(), maximum.getText(), namePicture, endTimeString, startTimeString, startDateString, endDateString);
                 });
+        scheduleList.getActivityList().stream()
+                .filter(i -> i.getEventName().equals(event.getName()))
+                .forEach(i -> i.setEventName(eventName.getText()));
+        accounts.getParticipants().stream()
+                .filter(i -> i.getEvent().equals(event.getName()))
+                .forEach(i -> i.setEvent(eventName.getText()));
 
         // อัพเดทข้อมูลใน datasource
         datasource.writeData(accounts);

@@ -43,7 +43,7 @@ public class Des {
     @FXML
     private Label joinLabel;
     @FXML
-    private TextArea descArea;
+    private TextFlow descArea;
     @FXML
     ComboBox selectTeam;
     @FXML
@@ -68,13 +68,16 @@ public class Des {
 
         Text text = new Text(event.getName());
         text.setFill(Color.WHITE);
+        nameField.getChildren().add(text);
+        text = new Text(event.getDesc());
+        descArea.getChildren().add(text);
 
         startLabel.setText(event.getDateStart()+" "+event.getStartTime());
         endLabel.setText(event.getDateEnd()+" "+event.getEndTime());
         joinLabel.setText(event.getMaximum());
-        descArea.setText(event.getDesc());
 
-        nameField.getChildren().add(text);
+
+
 
         int data7 = Integer.parseInt(event.getMaximum()); // Assuming data[7] is an integer in the CSV
         int data8 = Integer.parseInt(event.getJoinedText()); // Assuming data[8] is an integer in the CSV

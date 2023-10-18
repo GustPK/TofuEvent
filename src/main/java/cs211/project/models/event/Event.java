@@ -50,8 +50,8 @@ public class Event {
         this.startTime = startTime;
         this.endTime = endTime;
         this.name = name;
-        this.dateEnd = dateEnd;
         this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
     }
 
     public int[] splitDate(String date) {

@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -125,7 +124,8 @@
          </children>
       </GridPane>
       <Button layoutX="72.0" layoutY="512.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="BACK" />
-      <TextArea fx:id="descArea" layoutX="131.0" layoutY="381.0" prefHeight="106.0" prefWidth="280.0" />
+      <Pane layoutX="129.0" layoutY="369.0" prefHeight="118.0" prefWidth="252.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" />
+      <TextFlow fx:id="descArea" layoutX="137.0" layoutY="383.0" prefHeight="90.0" prefWidth="234.0" />
 
    </children>
 </AnchorPane>
