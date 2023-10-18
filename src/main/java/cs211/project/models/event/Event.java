@@ -38,6 +38,7 @@ public class Event {
     public String getDesc() { return desc; }
     public String getMaximum() {return maximum; }
     public String getStatus() {return status; }
+
     public void addJoin() {
         int n = Integer.parseInt(joinedText);
         n++;
@@ -52,6 +53,9 @@ public class Event {
         this.name = name;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
+    }
+    public void setOrganizer(String name){
+        this.organizer = name;
     }
 
     public int[] splitDate(String date) {

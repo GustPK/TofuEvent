@@ -13,8 +13,6 @@ public class Team {
         this.joinedText = joinedText;
     }
 
-
-
     public String getEventName() {
         return eventName;
     }
@@ -26,7 +24,6 @@ public class Team {
         n++;
         joinedText = Integer.toString(n);
     }
-
 
     @Override
     public String toString() {

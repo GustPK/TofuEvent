@@ -5,17 +5,11 @@ import cs211.project.models.event.Team;
 import java.util.ArrayList;
 
 public class TeamList {
-
     private ArrayList<Team> teams;
-
+    public ArrayList<Team> getTeams() { return teams; }
     public TeamList() {
         teams = new ArrayList<>();
     }
-
-    public ArrayList<Team> getTeams() {
-        return teams;
-    }
-
     public void addTeam(Team team) {
         teams.add(team);
     }

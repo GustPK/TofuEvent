@@ -7,12 +7,11 @@ import java.util.ArrayList;
 public class CommentList {
 
     private ArrayList<Comment> commentList;
-    public CommentList(){
-        commentList = new ArrayList<>();
-    }
-
     public ArrayList<Comment> getCommentList() {
         return commentList;
+    }
+    public CommentList(){
+        commentList = new ArrayList<>();
     }
 
     public void addComment(String teamName, String comment, String eventName,String username){

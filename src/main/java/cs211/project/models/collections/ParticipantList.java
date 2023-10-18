@@ -6,15 +6,13 @@ import java.util.ArrayList;
 
 public class ParticipantList {
     private ArrayList<Participant> participants;
-
-    public ParticipantList(){
-        participants = new ArrayList<>();
-    }
-
     public ArrayList<Participant> getParticipants(){
         return participants;
     }
 
+    public ParticipantList(){
+        participants = new ArrayList<>();
+    }
     public void addParticipant(Participant participant){
         participants.add(participant);
     }

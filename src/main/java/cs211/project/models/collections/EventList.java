@@ -8,14 +8,13 @@ import java.util.Comparator;
 
 public class EventList {
     private ArrayList<Event> events;
-
+    public ArrayList<Event> getEvents(){
+        return events;
+    }
     public EventList(){
         events = new ArrayList<>();
     }
 
-    public ArrayList<Event> getEvents(){
-        return events;
-    }
 
     public void addEvent(Event event){
         events.add(event);

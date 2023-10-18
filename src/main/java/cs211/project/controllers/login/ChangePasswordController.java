@@ -3,8 +3,12 @@ package cs211.project.controllers.login;
 import cs211.project.models.account.Account;
 import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.AccountList;
+import cs211.project.models.collections.CommentList;
+import cs211.project.models.collections.EventList;
+import cs211.project.models.collections.ParticipantList;
 import cs211.project.services.AccountListDatasource;
 import cs211.project.services.Datasource;
+import cs211.project.services.EventListDatasource;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -32,6 +36,8 @@ public class ChangePasswordController {
             lastPage = ""; // Set a default value if it's null
         }
         datasource = new AccountListDatasource();
+
+
         accountList = datasource.readData();
     }
 
@@ -46,11 +52,13 @@ public class ChangePasswordController {
     @FXML
     private void confirmPassword() throws IOException {
         Account currentLoggedInAccount = LoggedInAccount.getInstance().getAccount();
+
         if (currentLoggedInAccount.getPassword().equals(currentPasswordField.getText())){
             if (newPasswordField.getText().equals(confirmPasswordField.getText())){
                 Account existAccount = accountList.findByUsername(currentLoggedInAccount.getUsername());
                 if (existAccount != null){
                     existAccount.setPassword(newPasswordField.getText());
+
                     datasource.writeData(accountList);
                     currentPasswordField.clear();
                     newPasswordField.clear();

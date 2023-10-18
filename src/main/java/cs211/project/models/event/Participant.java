@@ -29,11 +29,9 @@ public class Participant {
         return ban;
     }
 
-    public void setBanned() {
-        this.ban = "banned";
-    }
     public void setEvent(String eventName){this.event = eventName;}
     public void setBan(String banStatus) {
         this.ban = banStatus;
     }
+    public void setUserName(String name){this.userName = name; }
 }

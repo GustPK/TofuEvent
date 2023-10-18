@@ -86,16 +86,14 @@ public class CommentListDatasource implements Datasource<CommentList>{
              BufferedWriter writer = new BufferedWriter(outputStreamWriter)) {
 
             for (Comment comment : data.getCommentList()) {
-                // Assuming that you have a Comment class with appropriate getters
                 String username = comment.getUsername();
                 String teamName = comment.getTeamName();
                 String commentText = comment.getComment();
                 String eventName = comment.getEventName();
 
-                // Compose the CSV line and write it to the file
                 String csvLine = username + ","+ teamName + "," + commentText + "," + eventName;
                 writer.write(csvLine);
-                writer.newLine();  // Add a newline separator
+                writer.newLine();
             }
         } catch (IOException e) {
             throw new RuntimeException("Error while writing data to file: " + e.getMessage(), e);

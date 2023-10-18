@@ -26,6 +26,7 @@ public class Comment {
     public String getEventName() {
         return eventName;
     }
+    public void setUsername(String name) {this.username = name; }
 
     @Override
     public String toString() {
