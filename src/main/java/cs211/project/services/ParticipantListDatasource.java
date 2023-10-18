@@ -50,8 +50,9 @@ public class ParticipantListDatasource implements Datasource<ParticipantList> {
                 String userName = data[0].trim();
                 String event = data[1].trim();
                 String team = data[2].trim();
+                String ban = data[3].trim();
 
-                participantLists.addParticipant(new Participant(userName,event,team));
+                participantLists.addParticipant(new Participant(userName,event,team,ban));
             }
             buffer.close();
         }catch (FileNotFoundException e){

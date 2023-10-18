@@ -52,11 +52,10 @@ public class AdminController {
                 UserListItemController userListItemController = fxmlLoader.getController();
                 userListItemController.setData(account);
 
-                // Add an event handler to the AnchorPane to navigate to the "ban" page
                 anchorPane.setOnMouseClicked(event -> {
-                    if (event.getClickCount() == 2) { // Check for double-click
+                    if (event.getClickCount() == 2) {
                         try {
-                            goToBanPage(account); // Create a method to navigate to the "ban" page
+                            goToBanPage(account);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

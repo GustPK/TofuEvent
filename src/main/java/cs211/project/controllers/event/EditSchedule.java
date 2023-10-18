@@ -161,7 +161,7 @@ public class EditSchedule {
 
         // ลบข้อมูลที่มี eventName เท่ากับ event.getName() และ teamName เท่ากับ "join" ออกจาก scheduleList
         scheduleList.getActivityList().removeIf(schedule ->
-                schedule.getEventName().equals(getEvent.getName()) && schedule.getTeamName().equals(temp)
+                schedule.getEventName().equals(getEvent.getName()) && schedule.getTeamName().equals("join")
         );
 
         // เพิ่มข้อมูลใหม่ลงใน scheduleList

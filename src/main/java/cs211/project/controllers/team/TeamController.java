@@ -61,13 +61,19 @@ public class TeamController {
     public void showActivity() {
         activityTableView.getColumns().clear();
         activityTableView.getItems().clear();
-        TableColumn<Schedule, String> timeColumn = new TableColumn<>("Time");
+        TableColumn<Schedule, String> dateColumn = new TableColumn<>("DATE");
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        dateColumn.setMinWidth(150);
+
+        TableColumn<Schedule, String> timeColumn = new TableColumn<>("TIME");
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        timeColumn.setMinWidth(150);
 
-        TableColumn<Schedule, String> activityColumn = new TableColumn<>("Activity");
+        TableColumn<Schedule, String> activityColumn = new TableColumn<>("ACTIVITY");
         activityColumn.setCellValueFactory(new PropertyValueFactory<>("activity"));
+        activityColumn.setMinWidth(150);
 
-        activityTableView.getColumns().addAll(timeColumn, activityColumn);
+        activityTableView.getColumns().addAll(dateColumn, timeColumn, activityColumn);
 
         for (Schedule schedule : scheduleList.getActivityList()) {
             if (schedule.getTeamName().equals(currentTeam.getTeamName()) && schedule.getEventName().equals(currentTeam.getEventName())) {
@@ -75,6 +81,7 @@ public class TeamController {
             }
         }
     }
+
 
     public void showComment(CommentList comments){
         for(Comment c: comments.getCommentList()){

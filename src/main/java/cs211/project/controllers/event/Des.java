@@ -124,7 +124,7 @@ public class Des {
             // Check if the participant is already in the list
             String username = LoggedInAccount.getInstance().getAccount().getUsername();
             boolean isAlreadyJoined = participantList.getParticipants().stream()
-                    .anyMatch(p -> p.getUsername().equals(username) && p.getEvent().equals(event.getName()));
+                    .anyMatch(p -> p.getUsername().equals(username) && p.getEvent().equals(event.getName()) && p.getTeamName().equals("join"));
 
             if (isAlreadyJoined) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -132,7 +132,7 @@ public class Des {
                 alert.setHeaderText("Already Joined");
                 alert.setContentText("You've already joined the event.");
                 alert.showAndWait();
-            }else if(event.getJoinedText().equals(event.getMaximum())){
+            } else if (event.getJoinedText().equals(event.getMaximum())) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("Event has reached its maximum capacity");
@@ -140,7 +140,7 @@ public class Des {
                 alert.showAndWait();
             } else {
                 // Add the participant to the list
-                participantList.addParticipant(new Participant(username, event.getName(), "join"));
+                participantList.addParticipant(new Participant(username, event.getName(), "join","unbanned"));
                 participantDatasource.writeData(participantList);
                 Event current = eventList.findByEventName(event.getName());
                 current.addJoin();
@@ -205,7 +205,7 @@ public class Des {
                     alert.showAndWait();
                 } else {
                     // Add the participant with the selected team to the list
-                    participantList.addParticipant(new Participant(username, event.getName(), selectedTeam));
+                    participantList.addParticipant(new Participant(username, event.getName(), selectedTeam, "unbanned"));
                     participantDatasource.writeData(participantList);
 
                     currentTeam.addJoin();

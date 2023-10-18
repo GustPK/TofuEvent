@@ -38,6 +38,8 @@ public class MainController {
         private Datasource<EventList> datasource;
         private EventList events;
         @FXML
+        private ScrollPane scrollPane;
+        @FXML
         private ComboBox<String> combox;
         @FXML
         private Circle profilePic;
@@ -162,17 +164,20 @@ public class MainController {
                     eventItemController.setData(event);
 
                     anchorPane.setOnMouseClicked(eventClick -> {
+                        if (eventClick.getClickCount() == 2) {
                         try {
                             FXRouter.goTo("des", event);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                    }
                     });
 
                     grid.add(anchorPane, column, row++);
                     GridPane.setMargin(anchorPane, new Insets(10));
                 }
             }
+            scrollPane.setPannable(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
