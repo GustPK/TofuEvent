@@ -19,6 +19,7 @@ public class Team {
     public String getJoinFieldText() {return joinFieldText; }
     public String getJoinedText() {return joinedText; }
     public String getTeamName() {return teamName; }
+    public void setEventName(String name){this.eventName = name;}
     public void addJoin() {
         int n = Integer.parseInt(joinedText);
         n++;

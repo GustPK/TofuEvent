@@ -276,9 +276,13 @@ public class ManageController {
         accounts.getParticipants().stream()
                 .filter(i -> i.getEvent().equals(event.getName()))
                 .forEach(i -> i.setEvent(eventName.getText()));
+        teamList.getTeams().stream()
+                .filter(i -> i.getEventName().equals(event.getName()))
+                .forEach(i -> i.setEventName(eventName.getText()));
 
         datasource.writeData(accounts);
         datasourceSchedule.writeData(scheduleList);
+        teamListDatasource.writeData(teamList);
         eventListDatasource.writeData(eventList);
 
         FXRouter.goTo("main");
