@@ -123,7 +123,12 @@ public class EventInfoController {
             boolean isAlreadyJoined = participantList.getParticipants().stream()
                     .anyMatch(p -> p.getUsername().equals(username) && p.getEvent().equals(event.getName()) && p.getTeamName().equals("join"));
 
-            if (isAlreadyJoined) {
+            if (event.getOrganizer().equals(username)) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setContentText("You are the owner of this event");
+                alert.showAndWait();
+            } else if (isAlreadyJoined) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("Already Joined");
@@ -170,7 +175,12 @@ public class EventInfoController {
             boolean isAlreadyJoined = participantList.getParticipants().stream()
                     .anyMatch(p -> p.getUsername().equals(username) && p.getEvent().equals(event.getName()) && p.getTeamName().equals(selectedTeam));
 
-            if (isAlreadyJoined) {
+            if (event.getOrganizer().equals(username)) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setContentText("You are the owner of this event");
+                alert.showAndWait();
+            }else if (isAlreadyJoined) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("Already Joined");

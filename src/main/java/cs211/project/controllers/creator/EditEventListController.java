@@ -18,16 +18,13 @@ import java.io.IOException;
 public class EditEventListController {
 
 
-    private EventList eventsLists;
-
-    private Datasource<EventList> EventListDataSource;
     @FXML
     private GridPane grid;
 
     @FXML
     public void initialize() throws IOException {
-        EventListDataSource = new EventListDatasource();
-        eventsLists = EventListDataSource.readData();
+        Datasource<EventList> eventListDataSource = new EventListDatasource();
+        EventList eventsLists = eventListDataSource.readData();
         int column = 1;
         int row = 0;
 
@@ -57,6 +54,7 @@ public class EditEventListController {
                 e.printStackTrace();
             }
         }
+
     @FXML
     protected void onBackButtonClick() throws IOException {
         FXRouter.goTo("main");

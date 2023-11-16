@@ -1,5 +1,6 @@
 package cs211.project.controllers.creator;
 
+import cs211.project.models.account.Account;
 import cs211.project.models.event.Schedule;
 import cs211.project.models.collections.ScheduleList;
 import cs211.project.models.event.Event;
@@ -153,13 +154,16 @@ public class EditScheduleController {
         datasource.writeData(scheduleList);
         FXRouter.goTo("manage");
     }
+    @FXML
+    protected void onBackButtonClick() throws IOException {
+        FXRouter.goTo("manage");
+    }
 
     private void filterSchedulesByEventAndTeamName(String eventName,String temp) {
         scheduleList = datasource.readData();
         for (Schedule schedule : scheduleList.getActivityList() ){
             if (schedule.getEventName().equals(eventName) && schedule.getTeamName().equals(temp)){
                 scheduleView.getItems().add(schedule);
-                System.out.println(schedule.getEventName());
             }
         }
     }

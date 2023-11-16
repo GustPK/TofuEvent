@@ -37,16 +37,20 @@ public class CreateTeamController {
     private Spinner<Integer> hourSpinner;
     @FXML
     private Spinner<Integer> minuteSpinner;
+    @FXML
+    private Button button;
+    public static String page;
     private Event event;
     private ScheduleList scheduleList = new ScheduleList();
-    private Datasource<ScheduleList> datasource;
+    private Datasource<ScheduleList> scheduleListDatasource;
     private TeamList teamList = new TeamList();
-    private Datasource<TeamList> datasource2;
+    private Datasource<TeamList> teamListDatasource;
+
 
     @FXML
-    private void initialize() {
-        datasource = new ScheduleFileDatasource("data", "schedule.csv");
-        datasource2 = new TeamListDatasource("data", "TeamList.csv");
+    public void initialize() {
+        scheduleListDatasource = new ScheduleFileDatasource("data", "schedule.csv");
+        teamListDatasource = new TeamListDatasource("data", "TeamList.csv");
 
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();
@@ -69,6 +73,9 @@ public class CreateTeamController {
         SpinnerValueFactory<Integer> minuteStartValueFactory = createSpinnerValueFactory(0, 59, 0);
         hourSpinner.setValueFactory(hourStartValueFactory);
         minuteSpinner.setValueFactory(minuteStartValueFactory);
+
+
+        if (page.equals("creat")) button.setText("Later");
     }
 
     private SpinnerValueFactory<Integer> createSpinnerValueFactory(int min, int max, int initialValue) {
@@ -151,8 +158,8 @@ public class CreateTeamController {
 
     @FXML
     private void clickAddMore() throws IOException {
-        scheduleList = datasource.readData();
-        teamList = datasource2.readData();
+        scheduleList = scheduleListDatasource.readData();
+        teamList = teamListDatasource.readData();
 
         List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
 
@@ -168,8 +175,8 @@ public class CreateTeamController {
                 teamList.addTeam(new Team(event.getName(), team, joinFieldText, "0"));
                 scheduleList.getActivityList().addAll(dataFromTableView);
 
-                datasource.writeData(scheduleList);
-                datasource2.writeData(teamList);
+                scheduleListDatasource.writeData(scheduleList);
+                teamListDatasource.writeData(teamList);
 
                 FXRouter.goTo("createTeam");
             } else {
@@ -182,8 +189,8 @@ public class CreateTeamController {
     private void clickDone() throws IOException {
         event = (Event) FXRouter.getData();
 
-        scheduleList = datasource.readData();
-        teamList = datasource2.readData();
+        scheduleList = scheduleListDatasource.readData();
+        teamList = teamListDatasource.readData();
 
         List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
 
@@ -197,8 +204,8 @@ public class CreateTeamController {
                 teamList.addTeam(new Team(event.getName(), team, joinFieldText, "0"));
                 scheduleList.getActivityList().addAll(dataFromTableView);
 
-                datasource.writeData(scheduleList);
-                datasource2.writeData(teamList);
+                scheduleListDatasource.writeData(scheduleList);
+                teamListDatasource.writeData(teamList);
 
                 if(event.tamp == null) {
                     FXRouter.goTo("main");
@@ -209,6 +216,10 @@ public class CreateTeamController {
                 showAlert("Team Name Duplicate", "Team name is already taken within this event.");
             }
         }
+    }
+    @FXML
+    protected void onBackButtonClick() throws IOException {
+        FXRouter.goTo(page.equals("manage") ? "manage" : "main");
     }
 
     private boolean isTeamNameDuplicate(String eventName, String teamName) {
