@@ -1,7 +1,5 @@
 package cs211.project.models.account;
 
-import java.util.SplittableRandom;
-
 public class Account {
 
     private String name;

@@ -45,7 +45,6 @@ public class MainController {
     @FXML
     private Hyperlink nameLink;
     @FXML ImageView logo;
-    private Account currentAccount;
     @FXML
     protected void onProfileButtonClick() throws IOException {
         FXRouter.goTo("profile");
@@ -68,7 +67,7 @@ public class MainController {
     }
     @FXML
     private void goToEditEvent() throws IOException {
-        FXRouter.goTo("creatorEventList", currentAccount);
+        FXRouter.goTo("creatorEventList");
     }
     @FXML
     private TextField srcField;
@@ -143,13 +142,11 @@ public class MainController {
                     eventItemController.setData(event);
 
                     anchorPane.setOnMouseClicked(eventClick -> {
-                        if (eventClick.getClickCount() == 2) {
                         try {
                             FXRouter.goTo("des", event);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    }
                     });
 
                     grid.add(anchorPane, column, row++);

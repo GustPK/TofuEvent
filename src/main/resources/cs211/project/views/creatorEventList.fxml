@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.creator.EditEventListController">
+<AnchorPane prefHeight="630.0" prefWidth="850.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.creator.EditEventListController">
    <children>
       <Label layoutX="58.0" layoutY="28.0" text="Edit event" textFill="WHITE">
          <font>
@@ -17,7 +17,7 @@
       </Label>
       <AnchorPane layoutX="130.0" layoutY="86.0" prefHeight="447.0" prefWidth="626.0">
          <children>
-            <ScrollPane layoutX="3.0" layoutY="1.0" prefHeight="460.0" prefWidth="615.0" styleClass="default-background-navy">
+            <ScrollPane layoutX="3.0" layoutY="15.0" prefHeight="418.0" prefWidth="655.0" styleClass="default-background-navy">
                <content>
                   <GridPane fx:id="grid" prefHeight="10.0" prefWidth="0.0">
                     <columnConstraints>
@@ -28,6 +28,6 @@
             </ScrollPane>
          </children>
       </AnchorPane>
-      <Button layoutX="82.0" layoutY="522.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="BACK" />
+      <Button layoutX="58.0" layoutY="534.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="BACK" />
    </children>
 </AnchorPane>

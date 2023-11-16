@@ -7,16 +7,20 @@ import cs211.project.services.AccountListDatasource;
 import cs211.project.services.Datasource;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 
 public class ProfileSettingController {
     @FXML
@@ -25,15 +29,11 @@ public class ProfileSettingController {
     private Label username;
     @FXML
     private Circle profilePic;
-    @FXML
-    private TextField accountNameChangeField;
-    @FXML
-    private Account currentAccount;
     private AccountList accountList;
     private Datasource <AccountList> datasource;
+
     @FXML
     private void initialize(){
-        currentAccount = (Account) FXRouter.getData();
         File file = new File("data/images", LoggedInAccount.getInstance().getAccount().getImage());
         String path = "file:///" + file.getAbsolutePath();
         Image image = new Image(path);
@@ -53,22 +53,39 @@ public class ProfileSettingController {
     }
 
     @FXML
-    private void onChangeProileButtonClick() {
-        FileChooser fileChooser = new FileChooser();
+    private void onChangeProfileButtonClick(MouseEvent event) {
+        FileChooser chooser = new FileChooser();
+        chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
+        Node source = (Node) event.getSource();
+        File file = chooser.showOpenDialog(source.getScene().getWindow());
+        if (file != null) {
+            try {
+                File destDir = new File("data/images");
+                if (!destDir.exists()) destDir.mkdirs();
+                String[] fileSplit = file.getName().split("\\.");
+                String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
+                        + fileSplit[fileSplit.length - 1];
+                Path target = FileSystems.getDefault().getPath(
+                        destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
+                );
+                Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
+                Image newImage = new Image(target.toUri().toString());
+                profilePic.setFill(new ImagePattern(newImage));
 
-        fileChooser.setTitle("Select Profile Picture");
+                String imgSrc = filename;
+                LoggedInAccount.getInstance().getAccount().setImage(imgSrc);
 
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
-
-        File selectedFile = fileChooser.showOpenDialog(new Stage());
-
-        if (selectedFile != null) {
-            Image image = new Image(selectedFile.toURI().toString());
-            profilePic.setFill(new ImagePattern(image));
-
-            currentAccount.setImage(selectedFile.getName());
-
-            datasource.writeData(accountList);
+                for (Account account : accountList.getAccounts()) {
+                    if (account.getUsername().equals(LoggedInAccount.getInstance().getAccount().getUsername())) {
+                        account.setImage(imgSrc);
+                        break;
+                    }
+                }
+                datasource.writeData(accountList);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

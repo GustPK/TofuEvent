@@ -58,6 +58,7 @@ public class CreateParticipantsController {
             String eventName = event.getName();
             filterSchedulesByEventAndTeamName(eventName);
         }
+        CreateTeamController.page = "creat";
 
     }
 
@@ -114,7 +115,6 @@ public class CreateParticipantsController {
             scheduleView.getItems().clear();
             showList(scheduleList);
         } else {
-            // แจ้งเตือนผู้ใช้ว่าต้องเลือกรายการก่อนที่จะลบ
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("You must select items before deleting them.");
@@ -150,14 +150,12 @@ public class CreateParticipantsController {
         List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
 
         if (dataFromTableView.isEmpty()) {
-            // แสดง Alert ให้รู้ว่าตารางว่าง
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(null);
             alert.setContentText("Please enter at least 1 activity.");
             alert.showAndWait();
         } else {
-            // ลบข้อมูลที่มี eventName เท่ากับ event.getName() และ teamName เท่ากับ "join" ออกจาก scheduleList
             scheduleList.getActivityList().removeIf(schedule ->
                     schedule.getEventName().equals(event.getName()) && schedule.getTeamName().equals("join")
             );
@@ -165,7 +163,6 @@ public class CreateParticipantsController {
             scheduleList.getActivityList().addAll(dataFromTableView);
 
             datasource.writeData(scheduleList);
-
             FXRouter.goTo("createTeam", event);
         }
     }

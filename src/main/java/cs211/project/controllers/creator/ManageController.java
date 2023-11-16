@@ -97,6 +97,7 @@ public class ManageController {
 
     @FXML
     private void initialize(){
+        CreateTeamController.page = "manage";
         event = (Event) FXRouter.getData();
         nameLabel.setText("Participant");
         teamListDatasource = new TeamListDatasource("data","TeamList.csv");
@@ -159,7 +160,7 @@ public class ManageController {
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.isPresent() && result.get() == buttonTypeBanUnban) {
                             datasource.writeData(accounts);
-                            refreshGridPane();
+                            showNewFeed();
                         }
                     });
 
@@ -220,7 +221,7 @@ public class ManageController {
                         }
 
                         datasourceSchedule.writeData(scheduleList);
-                        initialize();
+                        showNewFeed();
                     }
                 }
             }
@@ -291,7 +292,6 @@ public class ManageController {
     public void ClickAddMoreTeam()throws IOException {
         event.tamp = temp;
         FXRouter.goTo("createTeam",event);
-
     }
     @FXML
     public void ClickToGoEditSchedule()throws IOException {
@@ -343,7 +343,7 @@ public class ManageController {
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.isPresent() && result.get() == buttonTypeBanUnban) {
                             datasource.writeData(accounts);
-                            refreshGridPane();
+                            showNewFeed();
                         }
                     });
 
@@ -390,53 +390,6 @@ public class ManageController {
         } else {
             namePicture = event.getImgEvent();
 
-        }
-    }
-    public void refreshGridPane() {
-        gridPane.getChildren().clear();
-
-        int column = 0;
-        int row = 0;
-        for (Participant account : accounts.getParticipants()) {
-            if (event.getName().equals(account.getEvent()) && account.getTeamName().equals(temp)) {
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/userlist-item-view.fxml"));
-                    AnchorPane anchorPane = fxmlLoader.load();
-
-                    UserListItemController userListItemController = fxmlLoader.getController();
-                    userListItemController.setData(account);
-
-                    anchorPane.setOnMouseClicked(event -> {
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                        alert.setTitle("Confirmation");
-                        alert.setHeaderText(null);
-
-                        if ("banned".equals(account.getBan())) {
-                            alert.setContentText("You want to unban this person?");
-                            account.setBan("unbanned");
-                        } else {
-                            alert.setContentText("You want to ban this person?");
-                            account.setBan("banned");
-                        }
-
-                        ButtonType buttonTypeBanUnban = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
-                        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-                        alert.getButtonTypes().setAll(buttonTypeBanUnban, buttonTypeCancel);
-
-                        Optional<ButtonType> result = alert.showAndWait();
-                        if (result.isPresent() && result.get() == buttonTypeBanUnban) {
-                            datasource.writeData(accounts);
-                            refreshGridPane();
-                        }
-                    });
-
-                    gridPane.add(anchorPane, column, row++);
-                    GridPane.setMargin(anchorPane, new Insets(10));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
     @FXML

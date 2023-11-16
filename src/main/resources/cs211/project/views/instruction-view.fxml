@@ -2,46 +2,22 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="630.0" prefWidth="850.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.login.InstructionController">
    <children>
-      <Label layoutX="286.0" layoutY="85.0" stylesheets="@../../../values/style.css" text="คำแนะนำการใช้โปรแกรม" textFill="WHITE">
+      <Label layoutX="296.0" layoutY="43.0" stylesheets="@../../../values/style.css" text="คำแนะนำการใช้โปรแกรม" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="402.0" layoutY="490.0" mnemonicParsing="false" onAction="#BackButton" prefHeight="26.0" prefWidth="46.0" styleClass="default-button-white-navy" stylesheets="@../../../values/style.css" text="Back" />
-      <Label layoutX="84.0" layoutY="159.0" prefHeight="26.0" prefWidth="662.0" text="1. สามารถล็อคอินด้วย username และ password โดยใสได้ที่ช่องหมายเลข Username และ Password" textFill="WHITE">
+      <Button layoutX="62.0" layoutY="547.0" mnemonicParsing="false" onAction="#BackButton" prefHeight="26.0" prefWidth="52.0" styleClass="default-button-white-navy" stylesheets="@../../../values/style.css" text="Back" />
+      <TextArea layoutX="85.0" layoutY="98.0" prefHeight="432.0" prefWidth="678.0" text="การเข้าสู่ระบบ&#10;1. ผู้ใช้สามารถ Register ได้โดยการกดที่ปุ่ม Create account และกรอกชื่อ Username และ Password&#10;2. ผู้ใช้สามารถ Login ได้โดยการกรอกชื่อ Username และ Password ที่หน้า Login&#10;&#10;โปรไฟล์และการจัดการผู้ใช้&#10;1. ผู้ใช้สามารถเปลี่ยนภาพโปรไฟล์โดยการกดที่ Profile ในหน้า Main จากนั้นเข้าไปที่ profile setting-&gt;change profile&#10;    และเลือกรูปภาพที่ต้องการ&#10;2. ผู้ใช้สามารถเปลี่ยนรหัสผ่านโดยการกดที่ Profile ในหน้า Main จากนั้นเข้าไปที่ profile setting-&gt;change password&#10;    จากนั้นกรอกรหัสผ่านปัจจุบัน, รหัสผ่านใหม่, ยืนยันรหัสผ่าน ตามลำดับ&#10;&#10;การสร้างและเข้าร่วม Event&#10;1. ผู้ใช้สามารถสร้าง Event ได้โดยการกดที่ปุ่มสร้าง Event จากนั้นตั้งชื่อ Event ,Activity และใส่ Info ตามต้องการ&#10;2. ผู้ใช้สามารถเข้าร่วม Event ได้โดยเลือก Event ที่หน้า Main จากนั้นกด join&#10;3. ผู้ใช้สามารถตรวจสอบประวัติการเข้าร่วม Event ได้ที่เมนู Events Attended สำหรับ Event ที่กำลังดำเนินอยู่จะปรากฏที่&#10;    Upcoming และ History สำหรับ Event ที่ผ่านไปแล้ว&#10;4. ผู้ใช้สามารถแก้ไข Event เช่น ชื่อ, ภาพ, รายละเอียด, กิจกรรม และเวลา ได้ที่เมนู Edit Event&#10;5. ผู้ใช้สามารถค้นหา Event ด้วยการพิมพ์ชื่อที่ Search bar ในหน้า Main&#10;&#10;Team และการเข้าร่วม&#10;1. ผู้ใช้สามารถเข้าร่วม Team ได้โดยการการเลือก Evet ที่ต้องการร่วม Team จากนั้นกด join team&#10;2. ผู้ใช้สามารถตรวจสอบ Team และสื่อสารการผู้ร่วม Team รายอื่นได้ที่เมนู My team">
          <font>
-            <Font size="15.0" />
+            <Font size="14.0" />
          </font>
-      </Label>
-      <Label layoutX="97.0" layoutY="196.0" text="โดยในกรณีที่มีการใส่รหัสหรือ username ผิด จะมี่ข้อความแจ้งว่า “Username or password is wong”" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="84.0" layoutY="237.0" prefHeight="26.0" prefWidth="662.0" text="2. ในการสร้างบัญชีใหม่ ต้องสร้างโดยใช้ username ที่ไม่ซ้ำกับที่มีอยู่แล้ว จะมีการให้ยืนยันรหัสผ่านที่สร้างโดยต้องกรอก" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="98.0" layoutY="272.0" text="รหัสผ่านใหม่ให้เหมือนกัน สามารถใส่รูปโปรไฟล์ได้ แต่ถ้าไม่ต้องการใส่จะมีภาพ default ให้" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="84.0" layoutY="314.0" prefHeight="26.0" prefWidth="681.0" text="3. สามารถตรวจสอบข้อมูลผู้สร้างได้ในหน้า developers" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="84.0" layoutY="352.0" prefHeight="26.0" prefWidth="681.0" text="4. หากผู้ใช้มีพฤติกรรมที่ไม่เหมาะสมจะสามารถโดนแบนได้" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
+      </TextArea>
    </children>
 </AnchorPane>

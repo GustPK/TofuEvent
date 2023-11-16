@@ -1,5 +1,6 @@
 package cs211.project.controllers.creator;
 
+import cs211.project.models.account.Account;
 import cs211.project.models.event.Schedule;
 import cs211.project.models.collections.ScheduleList;
 import cs211.project.models.event.Event;
@@ -95,7 +96,14 @@ public class EditScheduleController {
 
         int hour = hourSpinner.getValue();
         int minute = minuteSpinner.getValue();
-
+        if (name.isEmpty() || date == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Incomplete Information");
+            alert.setContentText("Please fill out the information completely.");
+            alert.showAndWait();
+            return;
+        }
 
         String time = String.format("%02d:%02d", hour, minute);
         scheduleList.addActivity(new Schedule(getEvent.getName(), temp, name, time, date.toString()));
@@ -104,6 +112,7 @@ public class EditScheduleController {
         hourSpinner.getValueFactory().setValue(0);
         minuteSpinner.getValueFactory().setValue(0);
     }
+
 
     @FXML
     public void clickDelete() {
@@ -153,13 +162,16 @@ public class EditScheduleController {
         datasource.writeData(scheduleList);
         FXRouter.goTo("manage");
     }
+    @FXML
+    protected void onBackButtonClick() throws IOException {
+        FXRouter.goTo("manage");
+    }
 
     private void filterSchedulesByEventAndTeamName(String eventName,String temp) {
         scheduleList = datasource.readData();
         for (Schedule schedule : scheduleList.getActivityList() ){
             if (schedule.getEventName().equals(eventName) && schedule.getTeamName().equals(temp)){
                 scheduleView.getItems().add(schedule);
-                System.out.println(schedule.getEventName());
             }
         }
     }

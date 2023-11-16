@@ -9,11 +9,12 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        FXRouter.bind(this, stage, "TOFU");
         stage.setWidth(850);
         stage.setHeight(630);
         configRoute();
-        FXRouter.bind(this, stage, "CS211 661 Project");
         FXRouter.goTo("login");
+        stage.setResizable(false);
     }
 
     private static void configRoute() {
@@ -46,7 +47,6 @@ public class HelloApplication extends Application {
         FXRouter.when("editSchedule",resourcesPath + "EditSchedule-view.fxml");
         FXRouter.when("scheduleActivity",resourcesPath + "schedule-activity-view.fxml");
         FXRouter.when("instruction", resourcesPath + "instruction-view.fxml");
-
     }
 
 

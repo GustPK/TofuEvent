@@ -12,17 +12,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="850.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.creator.CreateTeamController">
+<AnchorPane prefHeight="600.0" prefWidth="850.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.creator.CreateTeamController">
    <children>
-      <Label layoutX="104.0" layoutY="110.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Max join count:">
+      <Label layoutX="514.0" layoutY="225.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Max join count:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="joinField" layoutX="197.0" layoutY="106.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField fx:id="joinField" layoutX="607.0" layoutY="221.0" prefHeight="26.0" prefWidth="54.0" />
       <Button fx:id="addMoreButton" layoutX="323.0" layoutY="516.0" mnemonicParsing="false" onAction="#clickAddMore" styleClass="default-button-white-navy" text="Add more teams" />
-      <TextField fx:id="teamField" layoutX="181.0" layoutY="65.0" prefHeight="26.0" prefWidth="151.0" />
-      <Label layoutX="104.0" layoutY="70.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Team Name:">
+      <TextField fx:id="teamField" layoutX="591.0" layoutY="180.0" prefHeight="26.0" prefWidth="151.0" />
+      <Label layoutX="514.0" layoutY="185.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Team Name:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -35,25 +35,25 @@
             <TableColumn prefWidth="125.0" text="C1" />
          </columns>
       </TableView>
-      <Label layoutX="514.0" layoutY="181.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Date:">
+      <Label layoutX="514.0" layoutY="269.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Date:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="nameField" layoutX="599.0" layoutY="257.0" prefHeight="26.0" prefWidth="151.0" />
-      <Label layoutX="514.0" layoutY="221.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Schedule time:">
+      <TextField fx:id="nameField" layoutX="599.0" layoutY="345.0" prefHeight="26.0" prefWidth="151.0" />
+      <Label layoutX="514.0" layoutY="309.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Schedule time:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="514.0" layoutY="261.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Activity name:">
+      <Label layoutX="514.0" layoutY="349.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Activity name:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="514.0" layoutY="301.0" mnemonicParsing="false" onAction="#clickAdd" styleClass="default-button-white-navy" text="Add" />
-      <DatePicker fx:id="datePicker" layoutX="549.0" layoutY="177.0" prefHeight="26.0" prefWidth="100.0" />
-      <HBox layoutX="604.0" layoutY="217.0" prefHeight="27.0" prefWidth="151.0">
+      <Button layoutX="514.0" layoutY="389.0" mnemonicParsing="false" onAction="#clickAdd" styleClass="default-button-white-navy" text="Add" />
+      <DatePicker fx:id="datePicker" layoutX="549.0" layoutY="265.0" prefHeight="26.0" prefWidth="100.0" />
+      <HBox layoutX="604.0" layoutY="305.0" prefHeight="27.0" prefWidth="151.0">
          <children>
             <Spinner fx:id="hourSpinner" prefHeight="26.0" prefWidth="55.0">
                <HBox.margin>
@@ -72,6 +72,12 @@
             </Spinner>
          </children>
       </HBox>
-      <Button layoutX="564.0" layoutY="301.0" mnemonicParsing="false" onAction="#clickDelete" styleClass="default-button-white-navy" text="Delete" />
+      <Button layoutX="564.0" layoutY="389.0" mnemonicParsing="false" onAction="#clickDelete" styleClass="default-button-white-navy" text="Delete" />
+      <Button fx:id="button" layoutX="43.0" layoutY="542.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Back" />
+      <Label layoutX="114.0" layoutY="72.0" styleClass="default-label-white" stylesheets="@../../../values/style.css" text="Team activities">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
