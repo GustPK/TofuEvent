@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.EventsAttendedController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="850.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.event.EventsAttendedController">
    <children>
       <Label layoutX="77.0" layoutY="58.0" text="Events Attended">
          <font>
@@ -41,15 +41,15 @@
       </Hyperlink>
    </children>
     <children>
-      <Button layoutX="14.0" layoutY="560.0" mnemonicParsing="false" onAction="#clickBackToMain" styleClass="default-button-white-navy" stylesheets="@../../../values/style.css" text="Back" />
+      <Button layoutX="47.0" layoutY="541.0" mnemonicParsing="false" onAction="#clickBackToMain" prefHeight="25.0" prefWidth="60.0" styleClass="default-button-white-navy" stylesheets="@../../../values/style.css" text="Back" />
         <Label layoutX="77.0" layoutY="58.0" text="Events Attended" textFill="WHITE">
             <font>
                 <Font size="39.0" />
             </font>
         </Label>
-        <AnchorPane layoutX="83.0" layoutY="178.0" prefHeight="407.0" prefWidth="683.0">
+        <AnchorPane layoutX="116.0" layoutY="169.0" prefHeight="398.0" prefWidth="656.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css">
             <children>
-                <ScrollPane layoutX="48.0" layoutY="10.0" prefHeight="378.0" prefWidth="628.0">
+                <ScrollPane layoutY="10.0" prefHeight="361.0" prefWidth="695.0" styleClass="default-background-navy" stylesheets="@../../../values/style.css">
                     <content>
                         <GridPane fx:id="grid" prefHeight="10.0" prefWidth="0.0">
                             <columnConstraints>

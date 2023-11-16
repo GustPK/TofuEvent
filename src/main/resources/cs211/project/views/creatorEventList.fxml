@@ -17,7 +17,7 @@
       </Label>
       <AnchorPane layoutX="130.0" layoutY="86.0" prefHeight="447.0" prefWidth="626.0">
          <children>
-            <ScrollPane layoutX="3.0" layoutY="15.0" prefHeight="418.0" prefWidth="655.0" styleClass="default-background-navy">
+            <ScrollPane layoutX="-17.0" layoutY="14.0" prefHeight="418.0" prefWidth="673.0" styleClass="default-background-navy">
                <content>
                   <GridPane fx:id="grid" prefHeight="10.0" prefWidth="0.0">
                     <columnConstraints>
@@ -28,6 +28,6 @@
             </ScrollPane>
          </children>
       </AnchorPane>
-      <Button layoutX="58.0" layoutY="534.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="BACK" />
+      <Button layoutX="54.0" layoutY="534.0" mnemonicParsing="false" onAction="#onBackButtonClick" prefHeight="26.0" prefWidth="50.0" text="BACK" />
    </children>
 </AnchorPane>
