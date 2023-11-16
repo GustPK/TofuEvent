@@ -94,4 +94,9 @@ public class LoginController {
         FXRouter.goTo("register");
     }
 
+    @FXML
+    private void onInstructionsHyperlinkClick() throws IOException{
+        FXRouter.goTo("instruction");
+    }
+
 }
