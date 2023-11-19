@@ -54,29 +54,5 @@ public class Event {
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
     }
-    public void setOrganizer(String name){
-        this.organizer = name;
-    }
-
-    public int[] splitDate(String date) {
-        String[] data = date.split("-");
-        int[] result = new int[data.length];
-
-        for (int i = 0; i < data.length; i++) {
-            result[i] = Integer.parseInt(data[i]);
-        }
-
-        return result;
-    }
-    public int[] splitTime(String date) {
-        String[] data = date.split(":");
-        int[] result = new int[data.length];
-
-        for (int i = 0; i < data.length; i++) {
-            result[i] = Integer.parseInt(data[i]);
-        }
-
-        return result;
-    }
 
 }
