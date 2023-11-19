@@ -74,7 +74,7 @@ public class CreateTeamController {
         minuteSpinner.setValueFactory(minuteStartValueFactory);
 
 
-        if (event.page.equals("creat")) button.setText("Later");
+        if (event.page.equals("create")) button.setText("Later");
     }
 
     private SpinnerValueFactory<Integer> createSpinnerValueFactory(int min, int max, int initialValue) {

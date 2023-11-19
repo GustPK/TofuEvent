@@ -49,7 +49,7 @@ public class CreateEventController {
     private Spinner<Integer> minuteSpinnerEnd;
     private Datasource<EventList> datasource;
     private EventList eventList;
-    private String imgSrc;
+    private String imageSource;
 
     @FXML
     public void clickBackToMain() throws IOException {
@@ -111,14 +111,14 @@ public class CreateEventController {
                         destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
                 );
                 Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
-                imgSrc = filename;
+                imageSource = filename;
                 Image image = new Image(target.toUri().toString());
                 imageRec.setFill(new ImagePattern(image));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            imgSrc = "default-pfp.jpg";
+            imageSource = "default-pfp.jpg";
             Image image = new Image(getClass().getResourceAsStream("/data/images/default-pfp.jpg"));
             imageRec.setFill(new ImagePattern(image));
         }
@@ -159,24 +159,24 @@ public class CreateEventController {
             String startTimeString = String.format("%02d:%02d", startHour, startMinute);
             String endTimeString = String.format("%02d:%02d", endHour, endMinute);
 
-            if (imgSrc == null || imgSrc.isEmpty()) {
-                imgSrc = "default-pfp.jpg";
+            if (imageSource == null || imageSource.isEmpty()) {
+                imageSource = "default-pfp.jpg";
             } else {
-                String[] fileSplit = imgSrc.split("\\.");
+                String[] fileSplit = imageSource.split("\\.");
                 String extension = fileSplit[fileSplit.length - 1];
                 String newFileName =  name +"_pic" + "." + extension;
 
-                File oldFile = new File("data/images/" + imgSrc);
+                File oldFile = new File("data/images/" + imageSource);
                 File newFile = new File("data/images/" + newFileName);
 
                 if (oldFile.renameTo(newFile)) {
-                    imgSrc = newFileName;
+                    imageSource = newFileName;
                 }
             }
 
             String status = "UNDONE";
 
-            eventList.addEvent(new Event(LoggedInAccount.getInstance().getAccount().getUsername(), name, startDateString, endDateString, startTimeString, endTimeString, desc, joinFieldText, "0", status, imgSrc));
+            eventList.addEvent(new Event(LoggedInAccount.getInstance().getAccount().getUsername(), name, startDateString, endDateString, startTimeString, endTimeString, desc, joinFieldText, "0", status, imageSource));
             datasource.writeData(eventList);
             int lastIndex = eventList.getEvents().size() - 1;
             FXRouter.goTo("createParticipants", eventList.getEvents().get(lastIndex));

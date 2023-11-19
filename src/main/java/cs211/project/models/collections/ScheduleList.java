@@ -1,6 +1,7 @@
 package cs211.project.models.collections;
 
 import cs211.project.models.event.Schedule;
+import cs211.project.models.event.Team;
 
 import java.util.ArrayList;
 
@@ -29,15 +30,12 @@ public class ScheduleList {
         }
         return scheduleListTemp;
     }
-    public ScheduleList filterSchedules(String eventName) {
-        ScheduleList scheduleListTemp = new ScheduleList();
-        for (Schedule schedule : scheduleList) {
-            if (schedule.getEventName().equals(eventName)) {
-                scheduleListTemp.addActivity(schedule);
-                System.out.println(schedule.getTeamName());
+    public void setScheduleList(String oldName,String newName){
+        for(Schedule schedule : scheduleList){
+            if(schedule.getEventName().equals(oldName)){
+                schedule.setEventName(newName);
             }
         }
-        return scheduleListTemp;
     }
 
 }

@@ -21,6 +21,14 @@ public class TeamList {
         }
         return null;
     }
+    public TeamList findByEventNameList(String eventName){
+        TeamList teamList = new TeamList();
+        for(Team team : teams){
+            if (team.getEventName().equals(eventName))
+                teamList.addTeam(team);
+        }
+        return teamList;
+    }
     public boolean isTeamNameDuplicate(String eventName, String teamName) {
         for (Team team : teams) {
             if (team.getEventName().equals(eventName) && team.getTeamName().equals(teamName)) {
@@ -28,6 +36,13 @@ public class TeamList {
             }
         }
         return false;
+    }
+    public void setTeams(String oldName,String newName){
+        for(Team team : teams){
+            if(team.getEventName().equals(oldName)){
+                team.setEventName(newName);
+            }
+        }
     }
 
 }

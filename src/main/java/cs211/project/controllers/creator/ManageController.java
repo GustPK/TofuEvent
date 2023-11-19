@@ -3,7 +3,6 @@ package cs211.project.controllers.creator;
 import cs211.project.controllers.login.UserListItemController;
 import cs211.project.models.event.Schedule;
 import cs211.project.models.collections.ScheduleList;
-import cs211.project.models.event.Team;
 import cs211.project.models.collections.EventList;
 import cs211.project.models.collections.ParticipantList;
 import cs211.project.models.collections.TeamList;
@@ -40,7 +39,7 @@ import java.util.Optional;
 
 public class ManageController {
 
-    private Datasource<ParticipantList> datasource;
+    private Datasource<ParticipantList> participantListDatasource;
     private Datasource<TeamList> teamListDatasource;
     private Datasource<EventList> eventListDatasource;
     private Datasource<ScheduleList> datasourceSchedule;
@@ -101,11 +100,11 @@ public class ManageController {
         event.page = "manage";
         nameLabel.setText("Participant");
         teamListDatasource = new TeamListDatasource();
-        datasource = new ParticipantListDatasource();
+        participantListDatasource = new ParticipantListDatasource();
         eventListDatasource = new EventListDatasource();
         eventList = eventListDatasource.readData();
         teamList = teamListDatasource.readData();
-        accounts = datasource.readData();
+        accounts = participantListDatasource.readData();
 
         eventName.setText(event.getName());
         namePicture = event.getImgEvent();
@@ -159,7 +158,7 @@ public class ManageController {
 
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.isPresent() && result.get() == buttonTypeBanUnban) {
-                            datasource.writeData(accounts);
+                            participantListDatasource.writeData(accounts);
                             showNewFeed();
                         }
                     });
@@ -192,12 +191,8 @@ public class ManageController {
         activityColumn.setCellValueFactory(new PropertyValueFactory<>("activity"));
         activityColumn.setPrefWidth(100);
 
-        scheduleView.getColumns().addAll(dateColumn, timeColumn, activityColumn,statusColumn);//
-        scheduleList.getActivityList().stream()
-                .filter(i -> i.getEventName().equals(event.getName()) && i.getTeamName().equals(temp))
-                .forEach(k -> {
-                    scheduleView.getItems().add(k);
-                });
+        scheduleView.getColumns().addAll(dateColumn, timeColumn, activityColumn,statusColumn);
+        scheduleView.getItems().setAll(scheduleList.filterSchedulesByEventAndTeamName(event.getName(),temp).getActivityList());
         scheduleView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1) {
                 Schedule selectedSchedule = scheduleView.getSelectionModel().getSelectedItem();
@@ -238,11 +233,8 @@ public class ManageController {
         hourSpinnerEnd.setValueFactory(hourEndValueFactory);
         minuteSpinnerEnd.setValueFactory(minuteEndValueFactory);
 
+        selectTeam.getItems().setAll(teamList.findByEventNameList(event.getName()).getTeams());
 
-        for (Team team : teamList.getTeams()) {
-            if (team.getEventName().equals(event.getName()))
-                selectTeam.getItems().add(team.getTeamName());
-        }
         selectTeam.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 temp = newValue.toString();
@@ -266,22 +258,11 @@ public class ManageController {
         String startTimeString = String.format("%02d:%02d", startHour, startMinute);
         String endTimeString = String.format("%02d:%02d", endHour, endMinute);
 
-        eventList.getEvents().stream()
-                .filter(i -> i.getName().equals(event.getName()))
-                .forEach(i -> {
-                    i.setEditEvent(eventName.getText(), description.getText(), maximum.getText(), namePicture, startTimeString, endTimeString ,startDateString, endDateString);
-                });
-        scheduleList.getActivityList().stream()
-                .filter(i -> i.getEventName().equals(event.getName()))
-                .forEach(i -> i.setEventName(eventName.getText()));
-        accounts.getParticipants().stream()
-                .filter(i -> i.getEvent().equals(event.getName()))
-                .forEach(i -> i.setEvent(eventName.getText()));
-        teamList.getTeams().stream()
-                .filter(i -> i.getEventName().equals(event.getName()))
-                .forEach(i -> i.setEventName(eventName.getText()));
-
-        datasource.writeData(accounts);
+        eventList.findByEventName(event.getName()).setEditEvent(eventName.getText(), description.getText(), maximum.getText(), namePicture, startTimeString, endTimeString ,startDateString, endDateString);
+        teamList.setTeams(event.getName(), eventName.getText());
+        accounts.setParticipants(event.getName(), eventName.getText());
+        scheduleList.setScheduleList(event.getName(), eventName.getText());
+        participantListDatasource.writeData(accounts);
         datasourceSchedule.writeData(scheduleList);
         teamListDatasource.writeData(teamList);
         eventListDatasource.writeData(eventList);
@@ -342,7 +323,7 @@ public class ManageController {
 
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.isPresent() && result.get() == buttonTypeBanUnban) {
-                            datasource.writeData(accounts);
+                            participantListDatasource.writeData(accounts);
                             showNewFeed();
                         }
                     });
@@ -356,11 +337,7 @@ public class ManageController {
         }
 
         scheduleList = datasourceSchedule.readData();
-        scheduleList.getActivityList().stream()
-                .filter(i -> i.getEventName().equals(event.getName()) && i.getTeamName().equals(temp))
-                .forEach(k -> {
-                    scheduleView.getItems().add(k);
-                });
+        scheduleView.getItems().setAll(scheduleList.filterSchedulesByEventAndTeamName(event.getName(),temp).getActivityList());
 
     }
     @FXML

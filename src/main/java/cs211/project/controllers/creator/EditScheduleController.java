@@ -145,9 +145,7 @@ public class EditScheduleController {
     private void clickNext() throws IOException {
         getEvent = (Event) FXRouter.getData();
         List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
-        scheduleList.getActivityList().removeIf(schedule ->
-                schedule.getEventName().equals(getEvent.getName()) && schedule.getTeamName().equals(temp)
-        );
+        scheduleList.getActivityList().removeAll(scheduleList.filterSchedulesByEventAndTeamName(getEvent.getName() , temp).getActivityList());
         scheduleList.getActivityList().addAll(dataFromTableView);
         datasource.writeData(scheduleList);
         FXRouter.goTo("manage");
