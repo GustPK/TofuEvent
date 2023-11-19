@@ -110,11 +110,11 @@ public class ManageController {
         eventName.setText(event.getName());
         namePicture = event.getImgEvent();
 
-        int[] date = event.splitDate(event.getDateStart());
+        int[] date = splitDate(event.getDateStart());
         LocalDate defaultDate = LocalDate.of(date[2], date[1], date[0]);
         startDateString = date[0]+"-"+date[1]+"-"+date[2];
         startDate.setValue(defaultDate);
-        date = event.splitDate(event.getDateEnd());
+        date = splitDate(event.getDateEnd());
         defaultDate = LocalDate.of(date[2], date[1], date[0]);
         endDateString = date[0]+"-"+date[1]+"-"+date[2];
         endDate.setValue(defaultDate);
@@ -226,10 +226,10 @@ public class ManageController {
                 }
             }
         });
-        int[] time = event.splitTime(event.getStartTime());
+        int[] time = splitTime(event.getStartTime());
         SpinnerValueFactory<Integer> hourStartValueFactory = createSpinnerValueFactory(0, 23, time[0]);
         SpinnerValueFactory<Integer> minuteStartValueFactory = createSpinnerValueFactory(0, 59, time[1]);
-        time = event.splitTime(event.getEndTime());
+        time = splitTime(event.getEndTime());
         SpinnerValueFactory<Integer> hourEndValueFactory = createSpinnerValueFactory(0, 23, time[0]);
         SpinnerValueFactory<Integer> minuteEndValueFactory = createSpinnerValueFactory(0, 59, time[1]);
 
@@ -406,5 +406,24 @@ public class ManageController {
         Background background = new Background(backgroundFill);
         play.setBackground(background);
     }
+    public int[] splitTime(String date) {
+        String[] data = date.split(":");
+        int[] result = new int[data.length];
 
+        for (int i = 0; i < data.length; i++) {
+            result[i] = Integer.parseInt(data[i]);
+        }
+
+        return result;
+    }
+    public int[] splitDate(String date) {
+        String[] data = date.split("-");
+        int[] result = new int[data.length];
+
+        for (int i = 0; i < data.length; i++) {
+            result[i] = Integer.parseInt(data[i]);
+        }
+
+        return result;
+    }
 }

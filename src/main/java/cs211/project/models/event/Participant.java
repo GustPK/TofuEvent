@@ -33,5 +33,4 @@ public class Participant {
     public void setBan(String banStatus) {
         this.ban = banStatus;
     }
-    public void setUserName(String name){this.userName = name; }
 }
