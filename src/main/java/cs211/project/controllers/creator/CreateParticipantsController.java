@@ -55,17 +55,7 @@ public class CreateParticipantsController {
         minuteSpinner.setValueFactory(minuteStartValueFactory);
 
         Event event = (Event) FXRouter.getData();
-//        if (event != null) {
-//            String eventName = event.getName();
-//            try {
-//                scheduleView.getItems().add(scheduleList.filterSchedulesByEventAndTeamName(eventName,"join"));
-//            } catch (Exception e) {
-//                System.err.println(e.getMessage());
-//            }
-//        }
-//        CreateTeamController.page = "creat";
-        event.page = "creat";
-
+        event.page = "create";
     }
 
 

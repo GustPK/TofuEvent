@@ -25,12 +25,8 @@ public class Team {
         n++;
         joinedText = Integer.toString(n);
     }
-
     @Override
     public String toString() {
-        return "Team{" +
-                "teamName='" + teamName + '\'' +
-                ", eventName='" + eventName + '\'' +
-                '}';
+        return teamName;
     }
 }

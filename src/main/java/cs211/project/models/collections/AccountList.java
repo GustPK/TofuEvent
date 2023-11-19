@@ -2,6 +2,7 @@ package cs211.project.models.collections;
 
 import cs211.project.models.account.Account;
 import cs211.project.models.event.Event;
+import cs211.project.models.event.Team;
 
 import java.util.ArrayList;
 import java.util.Collections;
