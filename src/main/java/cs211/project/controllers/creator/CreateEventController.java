@@ -47,7 +47,7 @@ public class CreateEventController {
     private Spinner<Integer> hourSpinnerEnd;
     @FXML
     private Spinner<Integer> minuteSpinnerEnd;
-    private Datasource<EventList> datasource;
+    private Datasource<EventList> eventListDatasource;
     private EventList eventList;
     private String imageSource;
 
@@ -58,8 +58,8 @@ public class CreateEventController {
 
     @FXML
     private void initialize() {
-        datasource = new EventListDatasource();
-        eventList = datasource.readData();
+        eventListDatasource = new EventListDatasource();
+        eventList = eventListDatasource.readData();
 
         File defaultImageFile = new File("data/images/Image.jpg");
         String defaultImagePath = "file:///" + defaultImageFile.getAbsolutePath();
@@ -177,7 +177,7 @@ public class CreateEventController {
             String status = "UNDONE";
 
             eventList.addEvent(new Event(LoggedInAccount.getInstance().getAccount().getUsername(), name, startDateString, endDateString, startTimeString, endTimeString, desc, joinFieldText, "0", status, imageSource));
-            datasource.writeData(eventList);
+            eventListDatasource.writeData(eventList);
             int lastIndex = eventList.getEvents().size() - 1;
             FXRouter.goTo("createParticipants", eventList.getEvents().get(lastIndex));
         }

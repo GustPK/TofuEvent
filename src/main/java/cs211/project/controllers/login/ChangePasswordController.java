@@ -3,12 +3,8 @@ package cs211.project.controllers.login;
 import cs211.project.models.account.Account;
 import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.AccountList;
-import cs211.project.models.collections.CommentList;
-import cs211.project.models.collections.EventList;
-import cs211.project.models.collections.ParticipantList;
 import cs211.project.services.AccountListDatasource;
 import cs211.project.services.Datasource;
-import cs211.project.services.EventListDatasource;
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -26,7 +22,7 @@ public class ChangePasswordController {
     @FXML
     private Label warning;
     private AccountList accountList;
-    private Datasource <AccountList> datasource;
+    private Datasource <AccountList> accountListDatasource;
     private String lastPage;
     @FXML
     private void initialize(){
@@ -35,10 +31,10 @@ public class ChangePasswordController {
         if (lastPage == null) {
             lastPage = "";
         }
-        datasource = new AccountListDatasource();
+        accountListDatasource = new AccountListDatasource();
 
 
-        accountList = datasource.readData();
+        accountList = accountListDatasource.readData();
     }
 
     @FXML
@@ -59,7 +55,7 @@ public class ChangePasswordController {
                 if (existAccount != null){
                     existAccount.setPassword(newPasswordField.getText());
 
-                    datasource.writeData(accountList);
+                    accountListDatasource.writeData(accountList);
                     currentPasswordField.clear();
                     newPasswordField.clear();
                     confirmPasswordField.clear();

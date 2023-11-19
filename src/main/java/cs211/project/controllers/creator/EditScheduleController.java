@@ -30,7 +30,7 @@ public class EditScheduleController {
     @FXML
     private Spinner<Integer> minuteSpinner;
     private ScheduleList scheduleList = new ScheduleList();
-    private Datasource<ScheduleList> datasource;
+    private Datasource<ScheduleList> scheduleListDatasource;
     private Event getEvent ;
     String temp;
 
@@ -39,8 +39,8 @@ public class EditScheduleController {
     void initialize() {
         getEvent = (Event) FXRouter.getData();
         temp = getEvent.page;
-        datasource = new ScheduleFileDatasource();
-        scheduleList = datasource.readData();
+        scheduleListDatasource = new ScheduleFileDatasource();
+        scheduleList = scheduleListDatasource.readData();
 
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();
@@ -147,7 +147,7 @@ public class EditScheduleController {
         List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
         scheduleList.getActivityList().removeAll(scheduleList.filterSchedulesByEventAndTeamName(getEvent.getName() , temp).getActivityList());
         scheduleList.getActivityList().addAll(dataFromTableView);
-        datasource.writeData(scheduleList);
+        scheduleListDatasource.writeData(scheduleList);
         FXRouter.goTo("manage");
     }
     @FXML

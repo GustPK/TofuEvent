@@ -36,7 +36,7 @@ public class RegisterController {
     private TextField passwordField;
     @FXML
     private TextField confirmPasswordField;
-    private Datasource<AccountList> datasource;
+    private Datasource<AccountList> accountListDatasource;
     private AccountList accountList;
     private String imgSrc;
     private String status;
@@ -44,8 +44,8 @@ public class RegisterController {
 
     @FXML
     private void initialize() {
-        datasource = new AccountListDatasource();
-        accountList = datasource.readData();
+        accountListDatasource = new AccountListDatasource();
+        accountList = accountListDatasource.readData();
 
         File defaultImageFile = new File("data/images/default-pfp.jpg"); // เปลี่ยน path ไปยังรูปภาพเริ่มต้นของคุณ
         String defaultImagePath = "file:///" + defaultImageFile.getAbsolutePath();
@@ -120,7 +120,7 @@ public class RegisterController {
             String formattedTime = currentTime.format(formatter);
 
             accountList.addAccount(new Account(name, username, password, imgSrc, status, formattedTime));
-            datasource.writeData(accountList);
+            accountListDatasource.writeData(accountList);
 
 
             FXRouter.goTo("login");

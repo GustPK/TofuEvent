@@ -15,7 +15,6 @@ import javafx.util.StringConverter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class CreateParticipantsController {
     @FXML
@@ -30,12 +29,12 @@ public class CreateParticipantsController {
     private Spinner<Integer> minuteSpinner;
     private Event event;
     private ScheduleList scheduleList;
-    private Datasource<ScheduleList> datasource;
+    private Datasource<ScheduleList> scheduleListDatasource;
 
     @FXML
     void initialize() {
-        datasource = new ScheduleFileDatasource();
-        scheduleList = datasource.readData();
+        scheduleListDatasource = new ScheduleFileDatasource();
+        scheduleList = scheduleListDatasource.readData();
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();
 
@@ -150,7 +149,7 @@ public class CreateParticipantsController {
             scheduleList.getActivityList().removeAll(scheduleList.filterSchedulesByEventAndTeamName(event.getName() , "join").getActivityList());
             scheduleList.getActivityList().addAll(dataFromTableView);
 
-            datasource.writeData(scheduleList);
+            scheduleListDatasource.writeData(scheduleList);
             FXRouter.goTo("createTeam", event);
         }
     }

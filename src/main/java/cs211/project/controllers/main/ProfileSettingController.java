@@ -1,6 +1,5 @@
 package cs211.project.controllers.main;
 
-import cs211.project.models.account.Account;
 import cs211.project.models.account.LoggedInAccount;
 import cs211.project.models.collections.AccountList;
 import cs211.project.services.AccountListDatasource;
@@ -30,7 +29,7 @@ public class ProfileSettingController {
     @FXML
     private Circle profilePic;
     private AccountList accountList;
-    private Datasource <AccountList> datasource;
+    private Datasource <AccountList> accountListDatasource;
 
     @FXML
     private void initialize(){
@@ -40,8 +39,8 @@ public class ProfileSettingController {
         profilePic.setFill(new ImagePattern(image));
         accountName.setText(LoggedInAccount.getInstance().getAccount().getName());
         username.setText(LoggedInAccount.getInstance().getAccount().getUsername());
-        datasource = new AccountListDatasource();
-        accountList = datasource.readData();
+        accountListDatasource = new AccountListDatasource();
+        accountList = accountListDatasource.readData();
     }
     @FXML
     private void onBackButtonClick() throws IOException {
@@ -77,7 +76,7 @@ public class ProfileSettingController {
                 LoggedInAccount.getInstance().getAccount().setImage(imgSrc);
 
                 accountList.findByUsername(LoggedInAccount.getInstance().getAccount().getUsername()).setImage(imgSrc);
-                datasource.writeData(accountList);
+                accountListDatasource.writeData(accountList);
             } catch (IOException e) {
                 e.printStackTrace();
             }

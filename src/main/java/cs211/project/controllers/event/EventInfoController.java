@@ -29,7 +29,7 @@ public class EventInfoController {
     @FXML
     private Button joinButton;
     private boolean buttonClicked = false;
-    private Datasource<EventList> datasource;
+    private Datasource<EventList> eventListDatasource;
     private EventList eventList;
     private Datasource<ParticipantList> participantDatasource;
     private Datasource<TeamList> teamListDatasource;
@@ -63,8 +63,8 @@ public class EventInfoController {
         teamList = new TeamList();
         teamListDatasource = new TeamListDatasource();
         teamList = teamListDatasource.readData();
-        datasource = new EventListDatasource();
-        eventList = datasource.readData();
+        eventListDatasource = new EventListDatasource();
+        eventList = eventListDatasource.readData();
 
         Text text = new Text(event.getName());
         text.setFill(Color.WHITE);
@@ -79,9 +79,9 @@ public class EventInfoController {
 
 
 
-        int data7 = Integer.parseInt(event.getMaximum());
-        int data8 = Integer.parseInt(event.getJoinedText());
-        int countValue = data7 - data8;
+        int maximum = Integer.parseInt(event.getMaximum());
+        int joinedText = Integer.parseInt(event.getJoinedText());
+        int countValue = maximum - joinedText;
 
         count.setText(String.valueOf(countValue));
 
@@ -92,10 +92,7 @@ public class EventInfoController {
 
         selectTeam.getItems().clear();
 
-        for (Team team : teamList.getTeams()) {
-            if (team.getEventName().equals(event.getName()))
-                selectTeam.getItems().add(team.getTeamName());
-        }
+        selectTeam.getItems().setAll(teamList.findByEventNameList(event.getName()).getTeams());
 
         String clockImagePath = "file:data/images/clock.png";
         Image clockImage = new Image(clockImagePath);
@@ -120,15 +117,13 @@ public class EventInfoController {
     private void clickJoinEvent() {
         if (!buttonClicked) {
             String username = LoggedInAccount.getInstance().getAccount().getUsername();
-            boolean isAlreadyJoined = participantList.getParticipants().stream()
-                    .anyMatch(p -> p.getUsername().equals(username) && p.getEvent().equals(event.getName()) && p.getTeamName().equals("join"));
 
             if (event.getOrganizer().equals(username)) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setContentText("You are the owner of this event");
                 alert.showAndWait();
-            } else if (isAlreadyJoined) {
+            } else if (participantList.isAlreadyJoined(username, event.getName(),"join")) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("Already Joined");
@@ -145,7 +140,7 @@ public class EventInfoController {
                 participantDatasource.writeData(participantList);
                 Event current = eventList.findByEventName(event.getName());
                 current.addJoin();
-                datasource.writeData(eventList);
+                eventListDatasource.writeData(eventList);
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information");

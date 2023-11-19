@@ -3,7 +3,6 @@ package cs211.project.controllers.login;
 import cs211.project.models.account.Account;
 import cs211.project.models.collections.AccountList;
 import cs211.project.services.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -20,7 +19,7 @@ public class AdminController {
     @FXML
     private ScrollPane scrollPane;
 
-    private Datasource<AccountList> datasource;
+    private Datasource<AccountList> accountListDatasource;
     private AccountList accounts;
 
     @FXML
@@ -35,8 +34,8 @@ public class AdminController {
 
     @FXML
     private void initialize() {
-        datasource = new AccountListDatasource();
-        accounts = datasource.readData();
+        accountListDatasource = new AccountListDatasource();
+        accounts = accountListDatasource.readData();
 
         accounts.sort(new LatestSortComparator());
 

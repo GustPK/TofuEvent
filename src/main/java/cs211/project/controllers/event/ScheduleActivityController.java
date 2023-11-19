@@ -26,7 +26,7 @@ public class ScheduleActivityController {
     private TableView<Schedule> scheduleView;
     private Event event;
     private ScheduleList scheduleList;
-    private Datasource<ScheduleList> datasource;
+    private Datasource<ScheduleList> scheduleListDatasource;
 
     @FXML
     private void BackButton() throws IOException {
@@ -42,8 +42,8 @@ public class ScheduleActivityController {
         Image eventImage = new Image(imageFile.toURI().toString());
         eventImageView.setImage(eventImage);
 
-        datasource = new ScheduleFileDatasource();
-        scheduleList = datasource.readData();
+        scheduleListDatasource = new ScheduleFileDatasource();
+        scheduleList = scheduleListDatasource.readData();
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();
 

@@ -29,7 +29,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class MainController {
-    private Datasource<EventList> datasource;
+    private Datasource<EventList> eventListDatasource;
     private EventList events;
     @FXML
     private ScrollPane scrollPane;
@@ -86,8 +86,8 @@ public class MainController {
     }
     @FXML
     public void initialize() {
-        datasource = new EventListDatasource();
-        events = datasource.readData();
+        eventListDatasource = new EventListDatasource();
+        events = eventListDatasource.readData();
         showGrid(events);
         srcField.textProperty().addListener((observable, oldValue, newValue)->{
             if (newValue != null && !newValue.isEmpty()) {
