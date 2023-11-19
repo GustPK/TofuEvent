@@ -2,7 +2,6 @@ package cs211.project.controllers.login;
 
 import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

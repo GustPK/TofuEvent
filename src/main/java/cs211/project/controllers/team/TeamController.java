@@ -43,6 +43,7 @@ public class TeamController {
         this.comment.getItems().add(comment);
         commentList.addComment(currentTeam.getTeamName(), commentFieldText, currentTeam.getEventName(),LoggedInAccount.getInstance().getAccount().getUsername());
         commentListDatasource.writeData(commentList);
+
         commentField.clear();
     }
     @FXML
