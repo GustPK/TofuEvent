@@ -1,9 +1,7 @@
 package cs211.project.controllers.main;
 
 import cs211.project.controllers.event.EventItemController;
-import cs211.project.models.account.Account;
 import cs211.project.models.account.LoggedInAccount;
-import cs211.project.models.collections.AccountList;
 import cs211.project.models.collections.EventList;
 import cs211.project.models.event.Event;
 import cs211.project.services.Datasource;
@@ -29,9 +27,6 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 public class MainController {
     private Datasource<EventList> datasource;
@@ -80,12 +75,6 @@ public class MainController {
         }
         showGrid(events);
     }
-    private List<EventList> getData() {
-        List<EventList> events = new ArrayList<>();
-        EventList event;
-        return events;
-    }
-
     private EventList filter(String src){
         EventList filtered = new EventList();
         for (Event event:events.getEvents()){
@@ -135,7 +124,7 @@ public class MainController {
 
                 if (currentDateTime.isBefore(eventStartDateTime) || currentDateTime.isEqual(eventStartDateTime)) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
+                    fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-view.fxml"));
                     AnchorPane anchorPane = fxmlLoader.load();
 
                     EventItemController eventItemController = fxmlLoader.getController();

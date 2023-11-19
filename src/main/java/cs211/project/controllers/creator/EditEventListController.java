@@ -32,7 +32,7 @@ public class EditEventListController {
             for (Event event : eventsLists.getEvents()) {
                 if (LoggedInAccount.getInstance().getAccount().getUsername().equals(event.getOrganizer())) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
+                    fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-view.fxml"));
                     AnchorPane anchorPane = fxmlLoader.load();
 
                     EventItemController eventItemController = fxmlLoader.getController();

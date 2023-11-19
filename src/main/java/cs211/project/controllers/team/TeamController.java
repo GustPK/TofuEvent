@@ -28,7 +28,6 @@ public class TeamController {
     private ListView<Comment> comment;
     @FXML
     private TextField commentField;
-    private Team selectedTeam;
     private Datasource<CommentList> commentListDatasource;
     private CommentList commentList;
 
@@ -39,18 +38,19 @@ public class TeamController {
 
     @FXML
     public void onClickComment(){
-        String c = commentField.getText();
-        Comment comment = new Comment(currentTeam.getTeamName(), c, currentTeam.getEventName(),LoggedInAccount.getInstance().getAccount().getUsername());
+        String commentFieldText = commentField.getText();
+        Comment comment = new Comment(currentTeam.getTeamName(), commentFieldText, currentTeam.getEventName(),LoggedInAccount.getInstance().getAccount().getUsername());
         this.comment.getItems().add(comment);
-        commentList.addComment(currentTeam.getTeamName(), c, currentTeam.getEventName(),LoggedInAccount.getInstance().getAccount().getUsername());
+        commentList.addComment(currentTeam.getTeamName(), commentFieldText, currentTeam.getEventName(),LoggedInAccount.getInstance().getAccount().getUsername());
         commentListDatasource.writeData(commentList);
+        commentField.clear();
     }
     @FXML
     public void initialize(){
         currentTeam = (Team) FXRouter.getData();
-        activityListDatasource = new ScheduleFileDatasource("data", "Schedule.csv");
+        activityListDatasource = new ScheduleFileDatasource();
         scheduleList = activityListDatasource.readData();
-        commentListDatasource = new CommentListDatasource("data", "comment.csv");
+        commentListDatasource = new CommentListDatasource();
         commentList = commentListDatasource.readData();
         showComment(commentList);
 
@@ -73,19 +73,10 @@ public class TeamController {
         activityColumn.setMinWidth(150);
 
         activityTableView.getColumns().addAll(dateColumn, timeColumn, activityColumn);
-
-        for (Schedule schedule : scheduleList.getActivityList()) {
-            if (schedule.getTeamName().equals(currentTeam.getTeamName()) && schedule.getEventName().equals(currentTeam.getEventName())) {
-                activityTableView.getItems().add(schedule);
-            }
-        }
+        activityTableView.getItems().addAll(scheduleList.filterSchedulesByEventAndTeamName(currentTeam.getEventName(),currentTeam.getTeamName()).getActivityList());
     }
 
     public void showComment(CommentList comments){
-        for(Comment c: comments.getCommentList()){
-            if(c.getTeamName().equals(currentTeam.getTeamName())){
-                comment.getItems().add(c);
-            }
-        }
+        comment.getItems().setAll(comments.findComment(currentTeam.getTeamName()).getCommentList());
     }
 }

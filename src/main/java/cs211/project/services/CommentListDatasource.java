@@ -7,29 +7,21 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class CommentListDatasource implements Datasource<CommentList>{
+    private String fileName = "data" + File.separator + "comment.csv";
 
-
-    private String directoryName;
-    private String fileName;
-
-    public CommentListDatasource(String directoryName, String fileName) {
-        this.directoryName = directoryName;
-        this.fileName = fileName;
-        checkFileIsExisted();
-    }
+    public CommentListDatasource() { checkFileIsExisted(); }
 
     private void checkFileIsExisted() {
-        File file = new File(directoryName);
+        File file = new File("data");
         if (!file.exists()) {
-            file.mkdirs();
+            file.mkdir();
         }
-        String filePath = directoryName + File.separator + fileName;
-        file = new File(filePath);
+        file = new File(fileName);
         if (!file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
     }
@@ -37,8 +29,7 @@ public class CommentListDatasource implements Datasource<CommentList>{
     @Override
     public CommentList readData() {
         CommentList comments = new CommentList();
-        String filePath = directoryName + File.separator + fileName;
-        File file = new File(filePath);
+        File file = new File(fileName);
 
         FileInputStream fileInputStream = null;
 
@@ -78,8 +69,7 @@ public class CommentListDatasource implements Datasource<CommentList>{
 
     @Override
     public void writeData(CommentList data) {
-        String filePath = directoryName + File.separator + fileName;
-        File file = new File(filePath);
+        File file = new File(fileName);
 
         try (FileOutputStream fileOutputStream = new FileOutputStream(file);
              OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);

@@ -8,27 +8,21 @@ import java.nio.charset.StandardCharsets;
 
 public class TeamListDatasource implements Datasource<TeamList>{
 
-    private String directoryName;
-    private String fileName;
+    private String fileName = "data" + File.separator + "TeamList.csv";
 
-    public TeamListDatasource(String directoryName, String fileName) {
-        this.directoryName = directoryName;
-        this.fileName = fileName;
-        checkFileIsExisted();
-    }
+    public TeamListDatasource() {checkFileIsExisted(); }
 
     private void checkFileIsExisted() {
-        File file = new File(directoryName);
+        File file = new File("data");
         if (!file.exists()) {
-            file.mkdirs();
+            file.mkdir();
         }
-        String filePath = directoryName + File.separator + fileName;
-        file = new File(filePath);
+        file = new File(fileName);
         if (!file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
     }
@@ -36,8 +30,8 @@ public class TeamListDatasource implements Datasource<TeamList>{
     @Override
     public TeamList readData() {
         TeamList teams = new TeamList();
-        String filePath = directoryName + File.separator + fileName;
-        File file = new File(filePath);
+//        String filePath = directoryName + File.separator + fileName;
+        File file = new File(fileName);
 
         FileInputStream fileInputStream = null;
 
@@ -80,8 +74,7 @@ public class TeamListDatasource implements Datasource<TeamList>{
     public void writeData(TeamList data) {
         BufferedWriter buffer = null;
         FileOutputStream fileOutputStream;
-        String filePath = directoryName + File.separator + fileName;
-        File file = new File(filePath);
+        File file = new File(fileName);
 
         try {
             fileOutputStream = new FileOutputStream(file);

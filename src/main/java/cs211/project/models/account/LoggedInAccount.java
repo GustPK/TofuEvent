@@ -1,7 +1,7 @@
 package cs211.project.models.account;
 
 public class LoggedInAccount {
-    private Account account;
+    public Account account;
     private static LoggedInAccount instance;
 
     private LoggedInAccount() {

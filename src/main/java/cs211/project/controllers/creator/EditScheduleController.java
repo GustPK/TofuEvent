@@ -1,6 +1,5 @@
 package cs211.project.controllers.creator;
 
-import cs211.project.models.account.Account;
 import cs211.project.models.event.Schedule;
 import cs211.project.models.collections.ScheduleList;
 import cs211.project.models.event.Event;
@@ -18,7 +17,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class EditScheduleController {
     @FXML
@@ -38,10 +36,11 @@ public class EditScheduleController {
 
 
     @FXML
-    private void initialize() {
+    void initialize() {
         getEvent = (Event) FXRouter.getData();
-        temp = getEvent.tamp;
-        datasource = new ScheduleFileDatasource("data", "schedule.csv");
+        temp = getEvent.page;
+        datasource = new ScheduleFileDatasource();
+        scheduleList = datasource.readData();
 
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();
@@ -65,10 +64,7 @@ public class EditScheduleController {
         hourSpinner.setValueFactory(hourStartValueFactory);
         minuteSpinner.setValueFactory(minuteStartValueFactory);
 
-
-        filterSchedulesByEventAndTeamName(getEvent.getName(),temp);
-
-
+        scheduleView.getItems().addAll(scheduleList.filterSchedulesByEventAndTeamName(getEvent.getName(),temp).getActivityList());
     }
 
 
@@ -130,13 +126,9 @@ public class EditScheduleController {
         }
     }
 
+
     private void showList(ScheduleList scheduleList) {
-
-        List<Schedule> sortedList = new ArrayList<>(scheduleList.getActivityList());
-        List<Schedule> filteredList = sortedList.stream()
-                .filter(schedule -> schedule.getEventName().equals(getEvent.getName()) && schedule.getTeamName().equals(temp))
-                .collect(Collectors.toList());
-
+        List<Schedule> filter = scheduleList.filterSchedulesByEventAndTeamName(getEvent.getName(),temp).getActivityList();
         Comparator<Schedule> customComparator = (schedule1, schedule2) -> {
             int dateComparison = schedule1.getDate().compareTo(schedule2.getDate());
             if (dateComparison == 0) {
@@ -145,15 +137,13 @@ public class EditScheduleController {
                 return dateComparison;
             }
         };
-
-        filteredList.sort(customComparator);
-        scheduleView.getItems().setAll(filteredList);
+        filter.sort(customComparator);
+        scheduleView.getItems().setAll(filter);
     }
 
     @FXML
     private void clickNext() throws IOException {
         getEvent = (Event) FXRouter.getData();
-        scheduleList = datasource.readData();
         List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
         scheduleList.getActivityList().removeIf(schedule ->
                 schedule.getEventName().equals(getEvent.getName()) && schedule.getTeamName().equals(temp)
@@ -165,15 +155,6 @@ public class EditScheduleController {
     @FXML
     protected void onBackButtonClick() throws IOException {
         FXRouter.goTo("manage");
-    }
-
-    private void filterSchedulesByEventAndTeamName(String eventName,String temp) {
-        scheduleList = datasource.readData();
-        for (Schedule schedule : scheduleList.getActivityList() ){
-            if (schedule.getEventName().equals(eventName) && schedule.getTeamName().equals(temp)){
-                scheduleView.getItems().add(schedule);
-            }
-        }
     }
 
 }

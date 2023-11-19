@@ -55,4 +55,5 @@ public class Account {
     public void setImage(String name) {
         this.image = name;
     }
+
 }

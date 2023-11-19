@@ -41,4 +41,12 @@ public class AccountList {
     public void sort(Comparator<Account> cmp) {
         Collections.sort(accounts, cmp);
     }
+    public boolean isUsernameUnique(String username) {
+        for (Account account : accounts) {
+            if (account.getUsername().equals(username)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

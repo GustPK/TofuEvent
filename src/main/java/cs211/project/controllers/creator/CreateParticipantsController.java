@@ -29,12 +29,13 @@ public class CreateParticipantsController {
     @FXML
     private Spinner<Integer> minuteSpinner;
     private Event event;
-    private ScheduleList scheduleList = new ScheduleList();
+    private ScheduleList scheduleList;
     private Datasource<ScheduleList> datasource;
 
     @FXML
-    private void initialize() {
-        datasource = new ScheduleFileDatasource("data", "schedule.csv");
+    void initialize() {
+        datasource = new ScheduleFileDatasource();
+        scheduleList = datasource.readData();
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();
 
@@ -54,11 +55,16 @@ public class CreateParticipantsController {
         minuteSpinner.setValueFactory(minuteStartValueFactory);
 
         Event event = (Event) FXRouter.getData();
-        if (event != null) {
-            String eventName = event.getName();
-            filterSchedulesByEventAndTeamName(eventName);
-        }
-        CreateTeamController.page = "creat";
+//        if (event != null) {
+//            String eventName = event.getName();
+//            try {
+//                scheduleView.getItems().add(scheduleList.filterSchedulesByEventAndTeamName(eventName,"join"));
+//            } catch (Exception e) {
+//                System.err.println(e.getMessage());
+//            }
+//        }
+//        CreateTeamController.page = "creat";
+        event.page = "creat";
 
     }
 
@@ -124,11 +130,7 @@ public class CreateParticipantsController {
 
     private void showList(ScheduleList scheduleList) {
         event = (Event) FXRouter.getData();
-        List<Schedule> sortedList = new ArrayList<>(scheduleList.getActivityList());
-
-        List<Schedule> filteredList = sortedList.stream()
-                .filter(schedule -> schedule.getEventName().equals(event.getName()) && schedule.getTeamName().equals("join"))
-                .collect(Collectors.toList());
+        List<Schedule> filter = scheduleList.filterSchedulesByEventAndTeamName(event.getName(),"join").getActivityList();
 
         Comparator<Schedule> customComparator = (schedule1, schedule2) -> {
             int dateComparison = schedule1.getDate().compareTo(schedule2.getDate());
@@ -138,15 +140,13 @@ public class CreateParticipantsController {
                 return dateComparison;
             }
         };
-
-        filteredList.sort(customComparator);
-        scheduleView.getItems().setAll(filteredList);
+        filter.sort(customComparator);
+        scheduleView.getItems().setAll(filter);
     }
 
     @FXML
     private void clickNext() throws IOException {
         event = (Event) FXRouter.getData();
-        scheduleList = datasource.readData();
         List<Schedule> dataFromTableView = new ArrayList<>(scheduleView.getItems());
 
         if (dataFromTableView.isEmpty()) {
@@ -156,10 +156,8 @@ public class CreateParticipantsController {
             alert.setContentText("Please enter at least 1 activity.");
             alert.showAndWait();
         } else {
-            scheduleList.getActivityList().removeIf(schedule ->
-                    schedule.getEventName().equals(event.getName()) && schedule.getTeamName().equals("join")
-            );
 
+            scheduleList.getActivityList().removeAll(scheduleList.filterSchedulesByEventAndTeamName(event.getName() , "join").getActivityList());
             scheduleList.getActivityList().addAll(dataFromTableView);
 
             datasource.writeData(scheduleList);
@@ -167,14 +165,4 @@ public class CreateParticipantsController {
         }
     }
 
-
-    private void filterSchedulesByEventAndTeamName(String eventName) {
-        scheduleList = datasource.readData();
-        for (Schedule schedule : scheduleList.getActivityList() ){
-            if (schedule.getEventName().equals(eventName) && schedule.getTeamName().equals("join")){
-                scheduleView.getItems().add(schedule);
-                System.out.println(schedule.getEventName());
-            }
-        }
-    }
 }

@@ -9,12 +9,10 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 
 # วิธีการติดตั้งหรือรันโปรแกรม
 1.git clone https://github.com/CS211-661/cs211-661-project-tofu.git
+2.เปิดโฟลเดอร์ TofuApplication \
+3.เปิด tofu-application-mac.jar หากเปิดจาก MacOS และ tofu-application-win.jar หากเปิดจาก Window 
 
-2.เปิดโฟลเดอร์ TofuApplication
-
-3.เปิด tofu-application-mac.jar หากเปิดจาก MacOS และ tofu-application-win.jar หากเปิดจาก Window
-*หมายเหตุ หากเไม่สามารถปิดไฟล์ tofu-application-mac.jar ได้จาก MacOS ให้เปิดผ่าน terminal java -jar tofu-application-mac.jar
-*หากต้องการดูรายละเอียดของ event ที่หน้า main **ให้คลิ๊ก 2 ครั้ง
+*หมายเหตุ หากไม่สามารถปิดไฟล์ tofu-application-mac.jar ได้จาก MacOS ให้เปิดผ่าน terminal java -jar tofu-application-mac.jar
 
 # บัญชี
 - บัญชีที่สร้างอีเว้นท์
@@ -92,7 +90,7 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 - 11.b ข้อมูลคําสั่งหรือคําแนะนําในการใช้โปรแกรมที่นิสิตสร้างขึ้นมา
 
 ### ธภัทร จิรเมธารัตน์ 6510450453
-### Github Username: DEASII
+### GitHub Username: DEASII
 ####  - หน้าที่ที่รับผิดชอบในความคืบหน้าครั้งที่ 1
 - 10.c ขนาดหน้าจอของโปรแกรมต้องมีความสูงไม่เกิน 1024 pixel มีความกว้างของหน้าจอโปรแกรมเหมาะสําหรับผู้ใช้โน้ตบุ๊กทั่วไป
 ####  - หน้าที่ที่รับผิดชอบในความคืบหน้าครั้งที่ 2
@@ -116,7 +114,7 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 
 
 ### พศวัต คำภีระ 6510450704
-### Github Username: GustPK
+### GitHub Username: GustPK
 ####  - หน้าที่ที่รับผิดชอบในความคืบหน้าครั้งที่ 1
 - 10.c ขนาดหน้าจอของโปรแกรมต้องมีความสูงไม่เกิน 1024 pixel มีความกว้างของหน้าจอโปรแกรมเหมาะสําหรับผู้ใช้โน้ตบุ๊กทั่วไป
 ####  - หน้าที่ที่รับผิดชอบในความคืบหน้าครั้งที่ 2
@@ -138,7 +136,7 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 
 
 ### ณฐนนท์ ภูธนกิจ 6510450313
-### Github Username: TheZeroNXD
+### GitHub Username: TheZeroNXD
 ####  - หน้าที่ที่รับผิดชอบในความคืบหน้าครั้งที่ 1
 - 10.c ขนาดหน้าจอของโปรแกรมต้องมีความสูงไม่เกิน 1024 pixel มีความกว้างของหน้าจอโปรแกรมเหมาะสําหรับผู้ใช้โน้ตบุ๊กทั่วไป
 - 11.a ข้อมูลนิสิตผู้จัดทําโปรแกรม

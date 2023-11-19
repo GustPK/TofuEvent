@@ -61,7 +61,7 @@ public class EventInfoController {
         participantDatasource = new ParticipantListDatasource();
         participantList = participantDatasource.readData();
         teamList = new TeamList();
-        teamListDatasource = new TeamListDatasource("data","TeamList.csv");
+        teamListDatasource = new TeamListDatasource();
         teamList = teamListDatasource.readData();
         datasource = new EventListDatasource();
         eventList = datasource.readData();
@@ -172,15 +172,12 @@ public class EventInfoController {
         } else {
             String username = LoggedInAccount.getInstance().getAccount().getUsername();
 
-            boolean isAlreadyJoined = participantList.getParticipants().stream()
-                    .anyMatch(p -> p.getUsername().equals(username) && p.getEvent().equals(event.getName()) && p.getTeamName().equals(selectedTeam));
-
             if (event.getOrganizer().equals(username)) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setContentText("You are the owner of this event");
                 alert.showAndWait();
-            }else if (isAlreadyJoined) {
+            }else if (participantList.isAlreadyJoined(username,event.getName(),selectedTeam)) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("Already Joined");

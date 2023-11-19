@@ -29,5 +29,23 @@ public class EventList {
         }
         return null;
     }
+    public boolean isEventNameDuplicate(String name) {
+        for (Event event : events) {
+            if (event.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public EventList findEventByUserName(String name){
+        EventList eventsTemp = new EventList();
+        for (Event event : events) {
+            if(event.getOrganizer().equals(name)){
+                eventsTemp.addEvent(event);
+            }
+        }
+        return eventsTemp;
+    }
+
 
 }

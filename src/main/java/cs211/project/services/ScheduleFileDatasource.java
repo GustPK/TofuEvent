@@ -7,35 +7,28 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class ScheduleFileDatasource implements Datasource<ScheduleList> {
-    private String directoryName;
-    private String fileName;
+    private String fileName = "data" + File.separator + "schedule.csv";
 
-    public ScheduleFileDatasource(String directoryName, String fileName) {
-        this.directoryName = directoryName;
-        this.fileName = fileName;
-        checkFileIsExisted();
-    }
+    public ScheduleFileDatasource() { checkFileIsExisted(); }
 
     private void checkFileIsExisted() {
-        File file = new File(directoryName);
+        File file = new File("data");
         if (!file.exists()) {
-            file.mkdirs();
+            file.mkdir();
         }
-        String filePath = directoryName + File.separator + fileName;
-        file = new File(filePath);
+        file = new File(fileName);
         if (!file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
     }
     @Override
     public ScheduleList readData() {
         ScheduleList scheduleList = new ScheduleList();
-        String filePath = directoryName + File.separator + fileName;
-        File file = new File(filePath);
+        File file = new File(fileName);
 
         FileInputStream fileInputStream = null;
 
@@ -79,7 +72,7 @@ public class ScheduleFileDatasource implements Datasource<ScheduleList> {
     public void writeData(ScheduleList data) {
         BufferedWriter buffer = null;
         FileOutputStream fileOutputStream;
-        File file = new File("data" + File.separator + "schedule.csv");
+        File file = new File(fileName);
         try {
             fileOutputStream = new FileOutputStream(file);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(

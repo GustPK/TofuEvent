@@ -12,7 +12,7 @@ public class Event {
     private String maximum;
     private String joinedText;
     private String status;
-    public String tamp;
+    public String page;
     public Event(String organizer, String name, String dateStart, String dateEnd, String startTime, String endTime, String desc, String maximum, String joinedText, String status, String imgEvent) {
         this.organizer = organizer;
         this.name = name;

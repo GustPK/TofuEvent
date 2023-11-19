@@ -76,12 +76,7 @@ public class ProfileSettingController {
                 String imgSrc = filename;
                 LoggedInAccount.getInstance().getAccount().setImage(imgSrc);
 
-                for (Account account : accountList.getAccounts()) {
-                    if (account.getUsername().equals(LoggedInAccount.getInstance().getAccount().getUsername())) {
-                        account.setImage(imgSrc);
-                        break;
-                    }
-                }
+                accountList.findByUsername(LoggedInAccount.getInstance().getAccount().getUsername()).setImage(imgSrc);
                 datasource.writeData(accountList);
             } catch (IOException e) {
                 e.printStackTrace();

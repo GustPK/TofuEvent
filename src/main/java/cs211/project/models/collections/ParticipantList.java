@@ -16,4 +16,9 @@ public class ParticipantList {
     public void addParticipant(Participant participant){
         participants.add(participant);
     }
+    public boolean isAlreadyJoined(String username, String eventName, String teamName) {
+        return participants.stream()
+                .anyMatch(p -> p.getUsername().equals(username) && p.getEvent().equals(eventName) && p.getTeamName().equals(teamName));
+    }
+
 }

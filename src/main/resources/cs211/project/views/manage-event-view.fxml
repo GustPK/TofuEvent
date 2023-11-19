@@ -57,7 +57,7 @@
                 <Font size="15.0" />
             </font>
         </Label>
-        <Hyperlink layoutX="739.0" layoutY="43.0" onAction="#ClickToGoManu" prefHeight="50.0" style="-fx-background-color: green; -fx-background-radius: 20;" text="Done" textFill="WHITE">
+        <Hyperlink layoutX="739.0" layoutY="43.0" onAction="#ClickToGoMenu" prefHeight="50.0" style="-fx-background-color: green; -fx-background-radius: 20;" text="Done" textFill="WHITE">
             <font>
                 <Font size="24.0" />
             </font>

@@ -148,7 +148,7 @@ public class CreateEventController {
             alert.setTitle("Warning");
             alert.setHeaderText("Please enter Max join count correctly.");
             alert.showAndWait();
-        } else if (isEventNameDuplicate(name)) {
+        } else if (eventList.isEventNameDuplicate(name)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Warning");
             alert.setHeaderText("Event name already exists. Please choose a different name.");
@@ -191,13 +191,4 @@ public class CreateEventController {
             return false;
         }
     }
-    private boolean isEventNameDuplicate(String name) {
-        for (Event event : eventList.getEvents()) {
-            if (event.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
 }

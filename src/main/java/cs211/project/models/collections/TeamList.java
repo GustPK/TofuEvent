@@ -21,5 +21,13 @@ public class TeamList {
         }
         return null;
     }
+    public boolean isTeamNameDuplicate(String eventName, String teamName) {
+        for (Team team : teams) {
+            if (team.getEventName().equals(eventName) && team.getTeamName().equals(teamName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

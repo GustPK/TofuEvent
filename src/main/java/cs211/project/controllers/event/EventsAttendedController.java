@@ -13,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -60,7 +59,7 @@ public class EventsAttendedController {
 
                         if (currentDateTime.isBefore(eventStartDateTime) || currentDateTime.isEqual(eventStartDateTime)) {
                             FXMLLoader fxmlLoader = new FXMLLoader();
-                            fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
+                            fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-view.fxml"));
                             AnchorPane anchorPane = fxmlLoader.load();
 
                             EventItemController eventItemController = fxmlLoader.getController();
@@ -131,7 +130,7 @@ public class EventsAttendedController {
 
                         if (currentDateTime.isAfter(eventStartDateTime)) {
                             FXMLLoader fxmlLoader = new FXMLLoader();
-                            fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
+                            fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-view.fxml"));
                             AnchorPane anchorPane = fxmlLoader.load();
 
                             EventItemController eventItemController = fxmlLoader.getController();
@@ -198,7 +197,7 @@ public class EventsAttendedController {
 
                         if (currentDateTime.isBefore(eventStartDateTime) || currentDateTime.isEqual(eventStartDateTime)) {
                             FXMLLoader fxmlLoader = new FXMLLoader();
-                            fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-views.fxml"));
+                            fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/event-item-view.fxml"));
                             AnchorPane anchorPane = fxmlLoader.load();
 
                             EventItemController eventItemController = fxmlLoader.getController();

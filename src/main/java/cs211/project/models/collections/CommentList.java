@@ -17,4 +17,18 @@ public class CommentList {
     public void addComment(String teamName, String comment, String eventName,String username){
         commentList.add(new Comment(teamName, comment, eventName,username));
     }
+    public void addComment(Comment comment){
+        commentList.add(comment);
+    }
+
+
+    public CommentList findComment(String name){
+        CommentList commentTemp = new CommentList();
+        for (Comment comment : commentList){
+            if(comment.getTeamName().equals(name)){
+                commentTemp.addComment(comment);
+            }
+        }
+        return commentTemp;
+    }
 }

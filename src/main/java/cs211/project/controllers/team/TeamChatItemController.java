@@ -15,14 +15,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class TeamChatItemController {
-    private Event selectedEvent;
+
     @FXML
     private Label eventNameLabel;
     @FXML
     private Label teamName;
     @FXML
     private ImageView eventImg;
-    private Event eventTamp;
     private Team team;
     private Datasource<EventList> eventListDatasource;
     private EventList eventList;
@@ -30,10 +29,7 @@ public class TeamChatItemController {
     public void setData(Team team){
         eventListDatasource = new EventListDatasource();
         eventList = eventListDatasource.readData();
-        for(Event event : eventList.getEvents())
-            if (event.getName().equals(team.getEventName()))
-                eventTamp = event;
-        String imagePath = "data/images/" + eventTamp.getImgEvent();
+        String imagePath = "data/images/" + eventList.findByEventName(team.getEventName()).getImgEvent();
         File imageFile = new File(imagePath);
         Image profileImage = new Image(imageFile.toURI().toString());
         eventImg.setImage(profileImage);

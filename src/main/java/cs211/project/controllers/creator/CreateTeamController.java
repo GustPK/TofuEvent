@@ -20,7 +20,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CreateTeamController {
     @FXML
@@ -39,7 +38,6 @@ public class CreateTeamController {
     private Spinner<Integer> minuteSpinner;
     @FXML
     private Button button;
-    public static String page;
     private Event event;
     private ScheduleList scheduleList = new ScheduleList();
     private Datasource<ScheduleList> scheduleListDatasource;
@@ -49,8 +47,9 @@ public class CreateTeamController {
 
     @FXML
     public void initialize() {
-        scheduleListDatasource = new ScheduleFileDatasource("data", "schedule.csv");
-        teamListDatasource = new TeamListDatasource("data", "TeamList.csv");
+        event = (Event) FXRouter.getData();
+        scheduleListDatasource = new ScheduleFileDatasource();
+        teamListDatasource = new TeamListDatasource();
 
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();
@@ -75,7 +74,7 @@ public class CreateTeamController {
         minuteSpinner.setValueFactory(minuteStartValueFactory);
 
 
-        if (page.equals("creat")) button.setText("Later");
+        if (event.page.equals("creat")) button.setText("Later");
     }
 
     private SpinnerValueFactory<Integer> createSpinnerValueFactory(int min, int max, int initialValue) {
@@ -96,7 +95,6 @@ public class CreateTeamController {
 
     @FXML
     public void clickAdd() {
-        event = (Event) FXRouter.getData();
 
         String name = nameField.getText();
         String team = teamField.getText();
@@ -136,12 +134,7 @@ public class CreateTeamController {
 
     private void showList(ScheduleList scheduleList) {
         event = (Event) FXRouter.getData();
-        List<Schedule> sortedList = new ArrayList<>(scheduleList.getActivityList());
-
-        List<Schedule> filteredList = sortedList.stream()
-                .filter(schedule -> schedule.getEventName().equals(event.getName()))
-                .collect(Collectors.toList());
-
+        List<Schedule> filter = scheduleList.filterSchedulesByEventAndTeamName(event.getName(),teamField.getText()).getActivityList();
         Comparator<Schedule> customComparator = (schedule1, schedule2) -> {
             int dateComparison = schedule1.getDate().compareTo(schedule2.getDate());
             if (dateComparison == 0) {
@@ -150,9 +143,8 @@ public class CreateTeamController {
                 return dateComparison;
             }
         };
-
-        filteredList.sort(customComparator);
-        scheduleView.getItems().setAll(filteredList);
+        filter.sort(customComparator);
+        scheduleView.getItems().setAll(filter);
     }
 
     @FXML
@@ -170,7 +162,7 @@ public class CreateTeamController {
         if (team.isEmpty() || joinFieldText.isEmpty()) {
             showAlert("Missing Information", "Please fill in all the required fields.");
         } else {
-            if (!isTeamNameDuplicate(event.getName(), team)) {
+            if (!teamList.isTeamNameDuplicate(event.getName(), team)) {
                 teamList.addTeam(new Team(event.getName(), team, joinFieldText, "0"));
                 scheduleList.getActivityList().addAll(dataFromTableView);
 
@@ -199,14 +191,14 @@ public class CreateTeamController {
         if (team.isEmpty() || joinFieldText.isEmpty()) {
             showAlert("Missing Information", "Please fill in all the required fields.");
         } else {
-            if (!isTeamNameDuplicate(event.getName(), team)) {
+            if (!teamList.isTeamNameDuplicate(event.getName(), team)) {
                 teamList.addTeam(new Team(event.getName(), team, joinFieldText, "0"));
                 scheduleList.getActivityList().addAll(dataFromTableView);
 
                 scheduleListDatasource.writeData(scheduleList);
                 teamListDatasource.writeData(teamList);
 
-                if(event.tamp == null) {
+                if(event.page == null) {
                     FXRouter.goTo("main");
                 }else {
                     FXRouter.goTo("manage",event);
@@ -218,17 +210,9 @@ public class CreateTeamController {
     }
     @FXML
     protected void onBackButtonClick() throws IOException {
-        FXRouter.goTo(page.equals("manage") ? "manage" : "main");
+        FXRouter.goTo(event.page.equals("manage") ? "manage" : "main");
     }
 
-    private boolean isTeamNameDuplicate(String eventName, String teamName) {
-        for (Team team : teamList.getTeams()) {
-            if (team.getEventName().equals(eventName) && team.getTeamName().equals(teamName)) {
-                return true;
-            }
-        }
-        return false;
-    }
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

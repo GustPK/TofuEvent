@@ -97,10 +97,10 @@ public class ManageController {
 
     @FXML
     private void initialize(){
-        CreateTeamController.page = "manage";
         event = (Event) FXRouter.getData();
+        event.page = "manage";
         nameLabel.setText("Participant");
-        teamListDatasource = new TeamListDatasource("data","TeamList.csv");
+        teamListDatasource = new TeamListDatasource();
         datasource = new ParticipantListDatasource();
         eventListDatasource = new EventListDatasource();
         eventList = eventListDatasource.readData();
@@ -171,7 +171,7 @@ public class ManageController {
                 }
             }
         }
-        datasourceSchedule = new ScheduleFileDatasource("data", "schedule.csv");
+        datasourceSchedule = new ScheduleFileDatasource();
         scheduleList = datasourceSchedule.readData();
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();
@@ -253,7 +253,7 @@ public class ManageController {
         });
     }
     @FXML
-    public void ClickToGoManu() throws IOException {
+    public void ClickToGoMenu() throws IOException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate firstDate = startDate.getValue();
         LocalDate lastDate = endDate.getValue();
@@ -290,12 +290,12 @@ public class ManageController {
     }
     @FXML
     public void ClickAddMoreTeam()throws IOException {
-        event.tamp = temp;
+        event.page = temp;
         FXRouter.goTo("createTeam",event);
     }
     @FXML
     public void ClickToGoEditSchedule()throws IOException {
-        event.tamp = temp;
+        event.page = temp;
         FXRouter.goTo("editSchedule",event);
 
     }

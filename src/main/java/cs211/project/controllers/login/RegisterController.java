@@ -117,9 +117,8 @@ public class RegisterController {
         status = "not banned";
 
 
-        boolean isUsernameUnique = isUsernameUnique(username);
 
-        if (isUsernameUnique && password.equals(confirmPassword)) {
+        if (accountList.isUsernameUnique(username) && password.equals(confirmPassword)) {
             LocalDateTime currentTime = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String formattedTime = currentTime.format(formatter);
@@ -130,7 +129,7 @@ public class RegisterController {
 
             FXRouter.goTo("login");
         } else {
-            if (!isUsernameUnique) {
+            if (!accountList.isUsernameUnique(username)) {
                 showAlert("Duplicate Username", "This username is already taken.");
             }
             if (!password.equals(confirmPassword)) {
@@ -147,13 +146,5 @@ public class RegisterController {
         alert.showAndWait();
     }
 
-    private boolean isUsernameUnique(String username) {
-        for (Account account : accountList.getAccounts()) {
-            if (account.getUsername().equals(username)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
 }

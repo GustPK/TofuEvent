@@ -42,7 +42,7 @@ public class ScheduleActivityController {
         Image eventImage = new Image(imageFile.toURI().toString());
         eventImageView.setImage(eventImage);
 
-        datasource = new ScheduleFileDatasource("data", "schedule.csv");
+        datasource = new ScheduleFileDatasource();
         scheduleList = datasource.readData();
         scheduleView.getColumns().clear();
         scheduleView.getItems().clear();
@@ -61,13 +61,10 @@ public class ScheduleActivityController {
 
         TableColumn<Schedule, String> activityColumn = new TableColumn<>("Activity");
         activityColumn.setCellValueFactory(new PropertyValueFactory<>("activity"));
-        activityColumn.setPrefWidth(190);
+        activityColumn.setPrefWidth(250);
 
-        scheduleView.getColumns().addAll(dateColumn, timeColumn, activityColumn,statusColumn);//
-        scheduleList.getActivityList().stream()
-                .filter(i -> i.getEventName().equals(event.getName()) && i.getTeamName().equals("join"))
-                .forEach(k -> {
-                    scheduleView.getItems().add(k);
-                });
+        scheduleView.getColumns().addAll(dateColumn, timeColumn, activityColumn,statusColumn);
+
+        scheduleView.getItems().setAll(scheduleList.filterSchedulesByEventAndTeamName(event.getName(),"join").getActivityList());
     }
 }

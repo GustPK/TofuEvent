@@ -33,7 +33,7 @@ public class MyTeamController {
     public void initialize() throws IOException {
         participantListDatasource = new ParticipantListDatasource();
         eventListDataSource = new EventListDatasource();
-        teamListDatasource = new TeamListDatasource("data", "TeamList.csv");
+        teamListDatasource = new TeamListDatasource();
         eventsLists = eventListDataSource.readData();
         participantList = participantListDatasource.readData();
         teamList = teamListDatasource.readData();
@@ -51,11 +51,7 @@ public class MyTeamController {
                             AnchorPane anchorPane = fxmlLoader.load();
 
                             TeamChatItemController teamItemController = fxmlLoader.getController();
-                            teamList.getTeams().stream()
-                                    .filter(i -> i.getTeamName().equals(participant.getTeamName()))
-                                    .forEach(team -> {
-                                        teamItemController.setData(team);
-                                    });
+                            teamItemController.setData(teamList.findByTeamName(participant.getTeamName()));
 
                             grid.add(anchorPane, column, row++);
                             GridPane.setMargin(anchorPane, new Insets(10));

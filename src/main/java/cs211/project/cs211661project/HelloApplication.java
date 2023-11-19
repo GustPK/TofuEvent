@@ -24,7 +24,7 @@ public class HelloApplication extends Application {
         FXRouter.when("developer", resourcesPath + "dev-view.fxml");
         FXRouter.when("main", resourcesPath + "main-view.fxml");
         FXRouter.when("profile", resourcesPath + "profile-view.fxml");
-        FXRouter.when("manage", resourcesPath + "manage.fxml");
+        FXRouter.when("manage", resourcesPath + "manage-event-view.fxml");
         FXRouter.when("staffSchedule", resourcesPath + "staffSchedule-view.fxml");
         FXRouter.when("staffMange", resourcesPath + "staffMange-view.fxml");
         FXRouter.when("manageInfo", resourcesPath + "manageInfo-view.fxml");
@@ -39,12 +39,12 @@ public class HelloApplication extends Application {
         FXRouter.when("myteam", resourcesPath + "myteam-view.fxml");
         FXRouter.when("eventInfo", resourcesPath + "team-view.fxml");
         FXRouter.when("ban", resourcesPath + "ban-view.fxml");
-        FXRouter.when("creatorEventList", resourcesPath + "creatorEventList.fxml");
+        FXRouter.when("creatorEventList", resourcesPath + "edit-event-list-view.fxml");
         FXRouter.when("createParticipants", resourcesPath + "create-participants-view.fxml");
         FXRouter.when("createTeam", resourcesPath + "create-team-view.fxml");
-        FXRouter.when("des", resourcesPath + "eventDes.fxml");
-        FXRouter.when("eventAttended",resourcesPath + "eventsAttended.fxml");
-        FXRouter.when("editSchedule",resourcesPath + "EditSchedule-view.fxml");
+        FXRouter.when("des", resourcesPath + "event-info-view.fxml");
+        FXRouter.when("eventAttended",resourcesPath + "events-attended-view.fxml");
+        FXRouter.when("editSchedule",resourcesPath + "edit-Schedule-view.fxml");
         FXRouter.when("scheduleActivity",resourcesPath + "schedule-activity-view.fxml");
         FXRouter.when("instruction", resourcesPath + "instruction-view.fxml");
     }
