@@ -54,5 +54,10 @@ public class Event {
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
     }
-
+    public boolean checkEventName(String eventName){
+        return this.name.equals(eventName);
+    }
+    public boolean checkOrganizerName(String organizerName){
+        return this.organizer.equals(organizerName);
+    }
 }

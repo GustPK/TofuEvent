@@ -7,7 +7,6 @@ public class Account {
     private String password;
     private String image;
     private String status;
-    private boolean banned;
     private String online;
 
     public Account(String name, String username, String password, String image, String status, String online) {
@@ -17,7 +16,6 @@ public class Account {
         this.image = image;
         this.status = status;
         this.online = online;
-        this.banned = false;
     }
 
     public String getName() { return name; }
@@ -55,5 +53,10 @@ public class Account {
     public void setImage(String name) {
         this.image = name;
     }
-
+    public boolean checkUsername(String username){
+        return this.username.equals(username);
+    }
+    public boolean checkUserNameAndPassword(String username,String password){
+        return this.username.equals(username) && this.password.equals(password);
+    }
 }

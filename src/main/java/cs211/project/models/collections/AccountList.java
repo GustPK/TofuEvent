@@ -24,7 +24,7 @@ public class AccountList {
 
     public Account checkLogin(String username, String password) {
         for (Account account : accounts) {
-            if (account.getUsername().equals(username) && account.getPassword().equals(password)) {
+            if (account.checkUserNameAndPassword(username, password)) {
                 return account;
             }
         }
@@ -32,10 +32,11 @@ public class AccountList {
         return null;
     }
 
-    public Account findByUsername(String username){
-        for (Account account: accounts){
-            if (account.getUsername().equals(username))
-                    return account;
+    public Account findByUsername(String username) {
+        for (Account account : accounts) {
+            if (account.checkUsername(username)) {
+                return account;
+            }
         }
         return null;
     }
@@ -44,7 +45,7 @@ public class AccountList {
     }
     public boolean isUsernameUnique(String username) {
         for (Account account : accounts) {
-            if (account.getUsername().equals(username)) {
+            if (account.checkUsername(username)) {
                 return false;
             }
         }

@@ -33,4 +33,13 @@ public class Participant {
     public void setBan(String banStatus) {
         this.ban = banStatus;
     }
+    public boolean checkEventName(String event){
+        return this.event.equals(event);
+    }
+    public boolean checkTeamName(String team){
+        return this.team.equals(team);
+    }
+    public boolean checkName(String name){
+        return this.userName.equals(name);
+    }
 }

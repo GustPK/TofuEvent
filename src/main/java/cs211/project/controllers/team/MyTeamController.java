@@ -42,7 +42,7 @@ public class MyTeamController {
 
         try {
             for (Participant participant : participantList.getParticipants()) {
-                if (LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername())) {
+                if (participant.checkName(LoggedInAccount.getInstance().getAccount().getUsername())) {
                     if (!"join".equals(participant.getTeamName())) {
                         if ("banned".equals(participant.getBan())) {
                         } else {

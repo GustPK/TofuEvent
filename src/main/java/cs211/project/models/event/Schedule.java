@@ -54,4 +54,10 @@ public class Schedule {
         this.status = "undone";
     }
     public void setEventName(String eventName){this.eventName = eventName;}
+    public boolean checkEventName(String eventName){
+        return this.eventName.equals(eventName);
+    }
+    public boolean checkTeamName(String teamName){
+        return this.teamName.equals(teamName);
+    }
 }

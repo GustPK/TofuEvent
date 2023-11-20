@@ -130,7 +130,7 @@ public class ManageController {
         int column = 0;
         int row = 0;
         for (Participant account : accounts.getParticipants()) {
-            if (event.getName().equals(account.getEvent()) && account.getTeamName().equals(temp)) {
+            if (account.checkEventName(event.getName()) && account.checkTeamName(temp)) {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/userlist-item-view.fxml"));
@@ -295,7 +295,7 @@ public class ManageController {
         int column = 0;
         int row = 0;
         for (Participant account : accounts.getParticipants()) {
-            if (event.getName().equals(account.getEvent()) && account.getTeamName().equals(temp)) {
+            if (account.checkEventName(event.getName()) && account.checkTeamName(temp)) {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/userlist-item-view.fxml"));

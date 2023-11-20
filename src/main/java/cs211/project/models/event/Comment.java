@@ -32,4 +32,7 @@ public class Comment {
     public String toString() {
         return username+": "+comment;
     }
+    public boolean checkTeamname(String teamName){
+        return this.teamName.equals(teamName);
+    }
 }

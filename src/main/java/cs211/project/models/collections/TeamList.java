@@ -15,23 +15,26 @@ public class TeamList {
     }
 
     public Team findByTeamName(String teamName){
-        for(Team team:teams){
-            if (team.getTeamName().equals(teamName))
+        for(Team team : teams){
+            if (team.checkTeamName(teamName)) {
                 return team;
+            }
         }
         return null;
     }
+
     public TeamList findByEventNameList(String eventName){
         TeamList teamList = new TeamList();
-        for(Team team : teams){
-            if (team.getEventName().equals(eventName))
+        for(Team team : teams) {
+            if (team.checkEventName(eventName)) {
                 teamList.addTeam(team);
+            }
         }
         return teamList;
     }
     public boolean isTeamNameDuplicate(String eventName, String teamName) {
         for (Team team : teams) {
-            if (team.getEventName().equals(eventName) && team.getTeamName().equals(teamName)) {
+            if (team.checkEventName(eventName) && team.checkTeamName(teamName)) {
                 return true;
             }
         }
@@ -39,7 +42,7 @@ public class TeamList {
     }
     public void setTeams(String oldName,String newName){
         for(Team team : teams){
-            if(team.getEventName().equals(oldName)){
+            if (team.checkEventName(oldName)) {
                 team.setEventName(newName);
             }
         }

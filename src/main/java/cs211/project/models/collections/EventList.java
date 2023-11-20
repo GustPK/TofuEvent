@@ -16,7 +16,6 @@ public class EventList {
         events = new ArrayList<>();
     }
 
-
     public void addEvent(Event event){
         events.add(event);
     }
@@ -25,14 +24,14 @@ public class EventList {
     }
     public Event findByEventName(String eventName){
         for(Event event:events){
-            if (event.getName().equals(eventName))
+            if (event.checkEventName(eventName))
                 return event;
         }
         return null;
     }
     public boolean isEventNameDuplicate(String name) {
         for (Event event : events) {
-            if (event.getName().equals(name)) {
+            if (event.checkEventName(name)) {
                 return true;
             }
         }
@@ -41,12 +40,10 @@ public class EventList {
     public EventList findEventByUserName(String name){
         EventList eventsTemp = new EventList();
         for (Event event : events) {
-            if(event.getOrganizer().equals(name)){
+            if(event.checkOrganizerName(name)){
                 eventsTemp.addEvent(event);
             }
         }
         return eventsTemp;
     }
-
-
 }

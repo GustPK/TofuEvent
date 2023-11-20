@@ -29,4 +29,10 @@ public class Team {
     public String toString() {
         return teamName;
     }
+    public boolean checkTeamName(String teamName){
+        return this.teamName.equals(teamName);
+    }
+    public boolean checkEventName(String eventName){
+        return this.eventName.equals(eventName);
+    }
 }
