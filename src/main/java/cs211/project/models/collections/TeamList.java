@@ -22,7 +22,6 @@ public class TeamList {
         }
         return null;
     }
-
     public TeamList findByEventNameList(String eventName){
         TeamList teamList = new TeamList();
         for(Team team : teams) {

@@ -59,4 +59,10 @@ public class Account {
     public boolean checkUserNameAndPassword(String username,String password){
         return this.username.equals(username) && this.password.equals(password);
     }
+    public boolean isBanned(){
+        return this.status.equals("banned");
+    }
+    public boolean isAdmin(){
+        return this.username.equals("admin");
+    }
 }

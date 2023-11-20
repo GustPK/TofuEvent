@@ -15,9 +15,7 @@ import javafx.scene.layout.GridPane;
 import java.io.IOException;
 
 public class MyTeamController {
-    private EventList eventsLists;
     private ParticipantList participantList;
-    private Datasource<EventList> eventListDataSource;
     private Datasource<ParticipantList> participantListDatasource;
     private Datasource<TeamList> teamListDatasource;
     private TeamList teamList;
@@ -32,9 +30,7 @@ public class MyTeamController {
     @FXML
     public void initialize() throws IOException {
         participantListDatasource = new ParticipantListDatasource();
-        eventListDataSource = new EventListDatasource();
         teamListDatasource = new TeamListDatasource();
-        eventsLists = eventListDataSource.readData();
         participantList = participantListDatasource.readData();
         teamList = teamListDatasource.readData();
         int column = 1;
@@ -43,9 +39,8 @@ public class MyTeamController {
         try {
             for (Participant participant : participantList.getParticipants()) {
                 if (participant.checkName(LoggedInAccount.getInstance().getAccount().getUsername())) {
-                    if (!"join".equals(participant.getTeamName())) {
-                        if ("banned".equals(participant.getBan())) {
-                        } else {
+                    if (!participant.checkTeamName("join")) {
+                        if (!participant.isBanned()) {
                             FXMLLoader fxmlLoader = new FXMLLoader();
                             fxmlLoader.setLocation(getClass().getResource("/cs211/project/views/team-item-view.fxml"));
                             AnchorPane anchorPane = fxmlLoader.load();

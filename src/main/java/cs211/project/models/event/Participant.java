@@ -42,4 +42,7 @@ public class Participant {
     public boolean checkName(String name){
         return this.userName.equals(name);
     }
+    public boolean isBanned(){
+        return this.ban.equals("banned");
+    }
 }

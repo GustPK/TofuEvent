@@ -49,7 +49,7 @@ public class ChangePasswordController {
     private void confirmPassword() throws IOException {
         Account currentLoggedInAccount = LoggedInAccount.getInstance().getAccount();
 
-        if (currentLoggedInAccount.getPassword().equals(currentPasswordField.getText())){
+        if (currentLoggedInAccount.checkUsername(currentPasswordField.getText())) {
             if (newPasswordField.getText().equals(confirmPasswordField.getText())){
                 Account existAccount = accountList.findByUsername(currentLoggedInAccount.getUsername());
                 if (existAccount != null){

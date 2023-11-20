@@ -28,7 +28,7 @@ public class CommentList {
     public CommentList findComment(String name) {
         CommentList commentTemp = new CommentList();
         for (Comment comment : commentList) {
-            if (comment.checkTeamname(name)) {
+            if (comment.checkTeamName(name)) {
                 commentTemp.addComment(comment);
             }
         }

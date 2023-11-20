@@ -23,7 +23,7 @@ public class ParticipantList {
 
     public boolean isAlreadyJoined(String username, String eventName, String teamName) {
         return participants.stream()
-                .anyMatch(p -> p.getUsername().equals(username) && p.getEvent().equals(eventName) && p.getTeamName().equals(teamName));
+                .anyMatch(p -> p.checkName(username) && p.checkEventName(eventName) && p.checkTeamName(teamName));
     }
 
     public void setParticipants(String oldName, String newName) {
@@ -32,13 +32,5 @@ public class ParticipantList {
                 participant.setEvent(newName);
             }
         }
-    }
-    public boolean findEventNameAndTeamName(String eventName, String teamName){
-        for (Participant participant : participants) {
-            if(participant.checkEventName(eventName) && participant.checkTeamName(teamName)){
-                return true;
-            }
-        }
-        return false;
     }
 }

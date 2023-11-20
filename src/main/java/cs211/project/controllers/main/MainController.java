@@ -57,10 +57,6 @@ public class MainController {
         FXRouter.goTo("eventAttended");
     }
     @FXML
-    private void onEventInfoButtonClick() throws IOException {
-        FXRouter.goTo("info");
-    }
-    @FXML
     private void goToEditEvent() throws IOException {
         FXRouter.goTo("creatorEventList");
     }
@@ -75,15 +71,6 @@ public class MainController {
         }
         showGrid(events);
     }
-    private EventList filter(String src){
-        EventList filtered = new EventList();
-        for (Event event:events.getEvents()){
-            if (event.getName().toLowerCase().contains(src.toLowerCase())){
-                filtered.addEvent(event);
-            }
-        }
-        return filtered;
-    }
     @FXML
     public void initialize() {
         eventListDatasource = new EventListDatasource();
@@ -91,7 +78,7 @@ public class MainController {
         showGrid(events);
         srcField.textProperty().addListener((observable, oldValue, newValue)->{
             if (newValue != null && !newValue.isEmpty()) {
-                showGrid(filter(newValue));
+                showGrid(events.filter(newValue));
             }
             else {
                 showGrid(events);

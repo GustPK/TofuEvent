@@ -1,6 +1,7 @@
 package cs211.project.models.collections;
 
 import cs211.project.models.event.Event;
+import cs211.project.models.event.Participant;
 import cs211.project.models.event.Team;
 
 import java.util.ArrayList;
@@ -37,13 +38,21 @@ public class EventList {
         }
         return false;
     }
-    public EventList findEventByUserName(String name){
-        EventList eventsTemp = new EventList();
-        for (Event event : events) {
-            if(event.checkOrganizerName(name)){
-                eventsTemp.addEvent(event);
+    public Event check(String eventName){
+        for (Event event : events){
+            if (event.checkEventName(eventName)) {
+                return event;
             }
         }
-        return eventsTemp;
+        return null;
+    }
+    public EventList filter(String src){
+        EventList filtered = new EventList();
+        for (Event event:events){
+            if (event.compareText(src)){
+                filtered.addEvent(event);
+            }
+        }
+        return filtered;
     }
 }

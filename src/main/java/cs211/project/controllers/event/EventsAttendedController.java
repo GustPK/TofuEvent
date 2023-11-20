@@ -19,7 +19,9 @@ import javafx.scene.layout.GridPane;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class EventsAttendedController {
@@ -45,12 +47,11 @@ public class EventsAttendedController {
 
         try {
             for (Participant participant : participantList.getParticipants()) {
-                Event event = eventsLists.getEvents().stream()
-                        .filter(e -> e.getName().equals(participant.getEvent()))
-                        .findFirst()
-                        .orElse(null);
+                Event event;
+                participant.checkEventName(participant.getEvent());
+                event = eventsLists.check(participant.getEvent());
 
-                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername())) {
+                if (event != null && participant.checkName(LoggedInAccount.getInstance().getAccount().getUsername())){
                     String eventName = participant.getEvent();
 
                     if (!processedEvents.contains(eventName)) {
@@ -63,12 +64,8 @@ public class EventsAttendedController {
                             AnchorPane anchorPane = fxmlLoader.load();
 
                             EventItemController eventItemController = fxmlLoader.getController();
-                            eventsLists.getEvents().stream()
-                                    .filter(i -> i.getName().equals(eventName))
-                                    .forEach(schedule -> {
-                                        eventItemController.setData(schedule);
-                                    });
 
+                            eventItemController.setData(eventsLists.findByEventName(eventName));
                             anchorPane.setOnMouseClicked(event1 -> {
                                 if ("banned".equals(participant.getBan())) {
                                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -116,12 +113,11 @@ public class EventsAttendedController {
 
         try {
             for (Participant participant : participantList.getParticipants()) {
-                Event event = eventsLists.getEvents().stream()
-                        .filter(e -> e.getName().equals(participant.getEvent()))
-                        .findFirst()
-                        .orElse(null);
+                Event event;
+                participant.checkEventName(participant.getEvent());
+                event = eventsLists.check(participant.getEvent());
 
-                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername())) {
+                if (event != null && participant.checkName(LoggedInAccount.getInstance().getAccount().getUsername())) {
                     String eventName = participant.getEvent();
 
                     if (!processedEvents.contains(eventName)) {
@@ -134,11 +130,8 @@ public class EventsAttendedController {
                             AnchorPane anchorPane = fxmlLoader.load();
 
                             EventItemController eventItemController = fxmlLoader.getController();
-                            eventsLists.getEvents().stream()
-                                    .filter(i -> i.getName().equals(eventName))
-                                    .forEach(schedule -> {
-                                        eventItemController.setData(schedule);
-                                    });
+
+                            eventItemController.setData(eventsLists.findByEventName(eventName));
 
                             anchorPane.setOnMouseClicked(event1 -> {
                                 if ("banned".equals(participant.getBan())) {
@@ -184,11 +177,11 @@ public class EventsAttendedController {
 
         try {
             for (Participant participant : participantList.getParticipants()) {
-                Event event = eventsLists.getEvents().stream()
-                        .filter(e -> e.getName().equals(participant.getEvent()))
-                        .findFirst()
-                        .orElse(null);
-                if (event != null && LoggedInAccount.getInstance().getAccount().getUsername().equals(participant.getUsername())) {
+                Event event;
+                participant.checkEventName(participant.getEvent());
+                event = eventsLists.check(participant.getEvent());
+
+                if (event != null && participant.checkName(LoggedInAccount.getInstance().getAccount().getUsername())) {
                     String eventName = participant.getEvent();
 
                     if (!processedEvents.contains(eventName)) {
@@ -201,11 +194,8 @@ public class EventsAttendedController {
                             AnchorPane anchorPane = fxmlLoader.load();
 
                             EventItemController eventItemController = fxmlLoader.getController();
-                            eventsLists.getEvents().stream()
-                                    .filter(i -> i.getName().equals(eventName))
-                                    .forEach(schedule -> {
-                                        eventItemController.setData(schedule);
-                                    });
+
+                            eventItemController.setData(eventsLists.findByEventName(eventName));
 
                             anchorPane.setOnMouseClicked(event1 -> {
                                 if ("banned".equals(participant.getBan())) {

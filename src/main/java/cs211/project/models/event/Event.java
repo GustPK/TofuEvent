@@ -1,5 +1,7 @@
 package cs211.project.models.event;
 
+import cs211.project.models.collections.EventList;
+
 public class Event {
     private String organizer;
     private String dateStart;
@@ -59,5 +61,11 @@ public class Event {
     }
     public boolean checkOrganizerName(String organizerName){
         return this.organizer.equals(organizerName);
+    }
+    public boolean checkMaximum(String maximum){
+        return this.maximum.equals(maximum);
+    }
+    public boolean compareText(String src){
+        return this.name.toLowerCase().contains(src.toLowerCase());
     }
 }

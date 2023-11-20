@@ -118,7 +118,7 @@ public class EventInfoController {
         if (!buttonClicked) {
             String username = LoggedInAccount.getInstance().getAccount().getUsername();
 
-            if (event.getOrganizer().equals(username)) {
+            if (event.checkOrganizerName(username)) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setContentText("You are the owner of this event");
@@ -129,7 +129,7 @@ public class EventInfoController {
                 alert.setHeaderText("Already Joined");
                 alert.setContentText("You've already joined the event.");
                 alert.showAndWait();
-            } else if (event.getJoinedText().equals(event.getMaximum())) {
+            } else if (event.checkMaximum(event.getMaximum())) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("Event has reached its maximum capacity");
@@ -167,7 +167,7 @@ public class EventInfoController {
         } else {
             String username = LoggedInAccount.getInstance().getAccount().getUsername();
 
-            if (event.getOrganizer().equals(username)) {
+            if (event.checkOrganizerName(username)) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setContentText("You are the owner of this event");

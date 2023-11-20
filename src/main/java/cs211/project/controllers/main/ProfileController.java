@@ -19,11 +19,9 @@ public class ProfileController {
     private Label username;
     @FXML
     private Circle profilePic;
-    private AccountList currentAccount;
 
     @FXML
     private void initialize(){
-        currentAccount = (AccountList) FXRouter.getData();
         File file = new File("data/images", LoggedInAccount.getInstance().getAccount().getImage());
         String path = "file:///" + file.getAbsolutePath();
         Image image = new Image(path);

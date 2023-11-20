@@ -50,7 +50,7 @@ public class LoginController {
         Account exist = accountsList.checkLogin(username, password);
 
         if (exist != null) {
-            if (!exist.getStatus().equals("banned")) {
+            if (!exist.isBanned()) {
                 System.out.println("Login: Success");
                 LoggedInAccount.getInstance().setAccount(exist);
 
@@ -62,7 +62,7 @@ public class LoginController {
 
                 accountListDataSource.writeData(accountsList);
 
-                if (exist.getUsername().equals("admin")) {
+                if (exist.isAdmin()) {
                     FXRouter.goTo("admin");
                 } else {
                     FXRouter.goTo("main");
@@ -82,7 +82,6 @@ public class LoginController {
             System.out.println("Login: Failed");
         }
     }
-
 
     @FXML
     private void onDevelopersHyperlinkClick() throws IOException{

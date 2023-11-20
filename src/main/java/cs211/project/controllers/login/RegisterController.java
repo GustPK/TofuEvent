@@ -47,7 +47,7 @@ public class RegisterController {
         accountListDatasource = new AccountListDatasource();
         accountList = accountListDatasource.readData();
 
-        File defaultImageFile = new File("data/images/default-pfp.jpg"); // เปลี่ยน path ไปยังรูปภาพเริ่มต้นของคุณ
+        File defaultImageFile = new File("data/images/default-pfp.jpg");
         String defaultImagePath = "file:///" + defaultImageFile.getAbsolutePath();
         Image defaultImage = new Image(defaultImagePath);
         imageCircle.setFill(new ImagePattern(defaultImage));

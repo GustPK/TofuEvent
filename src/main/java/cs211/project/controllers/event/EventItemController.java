@@ -15,12 +15,10 @@ public class EventItemController {
     private Label eventDate;
     @FXML
     private ImageView eventImg;
-    private Event event;
     @FXML
     private Label count;
 
     public void setData(Event event){
-        this.event = event;
         eventNameLabel.setText(event.getName());
         eventDate.setText(event.getDateStart());
         String path = "data/images/"+event.getImgEvent();
@@ -28,14 +26,14 @@ public class EventItemController {
         Image image = new Image(file.toURI().toString());
         eventImg.setImage(image);
 
-        int data7 = Integer.parseInt(event.getMaximum());
-        int data8 = Integer.parseInt(event.getJoinedText());
+        int maximum = Integer.parseInt(event.getMaximum());
+        int joined = Integer.parseInt(event.getJoinedText());
 
-        if (data7 == data8) {
+        if (maximum == joined) {
             count.setText("FULL");
             count.setStyle("-fx-background-color: RED; -fx-background-radius: 20;");
         }else
-            count.setText(data8 +"/"+data7);
+            count.setText(joined +"/"+maximum);
     }
 
 
